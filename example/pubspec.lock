@@ -102,6 +102,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gm5_utils:
+    dependency: transitive
+    description:
+      path: "/Users/vidklopcic/StudioProjects/gm5_utils"
+      relative: false
+    source: path
+    version: "0.0.1"
   intl:
     dependency: transitive
     description:

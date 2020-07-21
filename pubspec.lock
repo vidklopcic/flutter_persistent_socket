@@ -221,6 +221,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  gm5_utils:
+    dependency: "direct main"
+    description:
+      path: "/Users/vidklopcic/StudioProjects/gm5_utils"
+      relative: false
+    source: path
+    version: "0.0.1"
   graphs:
     dependency: transitive
     description:

@@ -307,14 +307,18 @@ class $SocketTxEventsTable extends SocketTxEvents
 
 class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   final String uuid;
+  final String type;
   final String jsonContent;
   final DateTime timeRecorded;
+  final DateTime timeReceived;
   final DateTime expires;
   SocketRxEvent(
       {@required this.uuid,
+      @required this.type,
       @required this.jsonContent,
       @required this.timeRecorded,
-      this.expires});
+      @required this.timeReceived,
+      @required this.expires});
   factory SocketRxEvent.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
@@ -323,10 +327,13 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
     final dateTimeType = db.typeSystem.forDartType<DateTime>();
     return SocketRxEvent(
       uuid: stringType.mapFromDatabaseResponse(data['${effectivePrefix}uuid']),
+      type: stringType.mapFromDatabaseResponse(data['${effectivePrefix}type']),
       jsonContent: stringType
           .mapFromDatabaseResponse(data['${effectivePrefix}json_content']),
       timeRecorded: dateTimeType
           .mapFromDatabaseResponse(data['${effectivePrefix}time_recorded']),
+      timeReceived: dateTimeType
+          .mapFromDatabaseResponse(data['${effectivePrefix}time_received']),
       expires: dateTimeType
           .mapFromDatabaseResponse(data['${effectivePrefix}expires']),
     );
@@ -337,11 +344,17 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
     if (!nullToAbsent || uuid != null) {
       map['uuid'] = Variable<String>(uuid);
     }
+    if (!nullToAbsent || type != null) {
+      map['type'] = Variable<String>(type);
+    }
     if (!nullToAbsent || jsonContent != null) {
       map['json_content'] = Variable<String>(jsonContent);
     }
     if (!nullToAbsent || timeRecorded != null) {
       map['time_recorded'] = Variable<DateTime>(timeRecorded);
+    }
+    if (!nullToAbsent || timeReceived != null) {
+      map['time_received'] = Variable<DateTime>(timeReceived);
     }
     if (!nullToAbsent || expires != null) {
       map['expires'] = Variable<DateTime>(expires);
@@ -352,12 +365,16 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   SocketRxEventsCompanion toCompanion(bool nullToAbsent) {
     return SocketRxEventsCompanion(
       uuid: uuid == null && nullToAbsent ? const Value.absent() : Value(uuid),
+      type: type == null && nullToAbsent ? const Value.absent() : Value(type),
       jsonContent: jsonContent == null && nullToAbsent
           ? const Value.absent()
           : Value(jsonContent),
       timeRecorded: timeRecorded == null && nullToAbsent
           ? const Value.absent()
           : Value(timeRecorded),
+      timeReceived: timeReceived == null && nullToAbsent
+          ? const Value.absent()
+          : Value(timeReceived),
       expires: expires == null && nullToAbsent
           ? const Value.absent()
           : Value(expires),
@@ -369,8 +386,10 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return SocketRxEvent(
       uuid: serializer.fromJson<String>(json['uuid']),
+      type: serializer.fromJson<String>(json['type']),
       jsonContent: serializer.fromJson<String>(json['jsonContent']),
       timeRecorded: serializer.fromJson<DateTime>(json['timeRecorded']),
+      timeReceived: serializer.fromJson<DateTime>(json['timeReceived']),
       expires: serializer.fromJson<DateTime>(json['expires']),
     );
   }
@@ -379,29 +398,37 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'uuid': serializer.toJson<String>(uuid),
+      'type': serializer.toJson<String>(type),
       'jsonContent': serializer.toJson<String>(jsonContent),
       'timeRecorded': serializer.toJson<DateTime>(timeRecorded),
+      'timeReceived': serializer.toJson<DateTime>(timeReceived),
       'expires': serializer.toJson<DateTime>(expires),
     };
   }
 
   SocketRxEvent copyWith(
           {String uuid,
+          String type,
           String jsonContent,
           DateTime timeRecorded,
+          DateTime timeReceived,
           DateTime expires}) =>
       SocketRxEvent(
         uuid: uuid ?? this.uuid,
+        type: type ?? this.type,
         jsonContent: jsonContent ?? this.jsonContent,
         timeRecorded: timeRecorded ?? this.timeRecorded,
+        timeReceived: timeReceived ?? this.timeReceived,
         expires: expires ?? this.expires,
       );
   @override
   String toString() {
     return (StringBuffer('SocketRxEvent(')
           ..write('uuid: $uuid, ')
+          ..write('type: $type, ')
           ..write('jsonContent: $jsonContent, ')
           ..write('timeRecorded: $timeRecorded, ')
+          ..write('timeReceived: $timeReceived, ')
           ..write('expires: $expires')
           ..write(')'))
         .toString();
@@ -410,59 +437,82 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   @override
   int get hashCode => $mrjf($mrjc(
       uuid.hashCode,
-      $mrjc(jsonContent.hashCode,
-          $mrjc(timeRecorded.hashCode, expires.hashCode))));
+      $mrjc(
+          type.hashCode,
+          $mrjc(
+              jsonContent.hashCode,
+              $mrjc(timeRecorded.hashCode,
+                  $mrjc(timeReceived.hashCode, expires.hashCode))))));
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
       (other is SocketRxEvent &&
           other.uuid == this.uuid &&
+          other.type == this.type &&
           other.jsonContent == this.jsonContent &&
           other.timeRecorded == this.timeRecorded &&
+          other.timeReceived == this.timeReceived &&
           other.expires == this.expires);
 }
 
 class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
   final Value<String> uuid;
+  final Value<String> type;
   final Value<String> jsonContent;
   final Value<DateTime> timeRecorded;
+  final Value<DateTime> timeReceived;
   final Value<DateTime> expires;
   const SocketRxEventsCompanion({
     this.uuid = const Value.absent(),
+    this.type = const Value.absent(),
     this.jsonContent = const Value.absent(),
     this.timeRecorded = const Value.absent(),
+    this.timeReceived = const Value.absent(),
     this.expires = const Value.absent(),
   });
   SocketRxEventsCompanion.insert({
     @required String uuid,
+    @required String type,
     @required String jsonContent,
     this.timeRecorded = const Value.absent(),
-    this.expires = const Value.absent(),
+    @required DateTime timeReceived,
+    @required DateTime expires,
   })  : uuid = Value(uuid),
-        jsonContent = Value(jsonContent);
+        type = Value(type),
+        jsonContent = Value(jsonContent),
+        timeReceived = Value(timeReceived),
+        expires = Value(expires);
   static Insertable<SocketRxEvent> custom({
     Expression<String> uuid,
+    Expression<String> type,
     Expression<String> jsonContent,
     Expression<DateTime> timeRecorded,
+    Expression<DateTime> timeReceived,
     Expression<DateTime> expires,
   }) {
     return RawValuesInsertable({
       if (uuid != null) 'uuid': uuid,
+      if (type != null) 'type': type,
       if (jsonContent != null) 'json_content': jsonContent,
       if (timeRecorded != null) 'time_recorded': timeRecorded,
+      if (timeReceived != null) 'time_received': timeReceived,
       if (expires != null) 'expires': expires,
     });
   }
 
   SocketRxEventsCompanion copyWith(
       {Value<String> uuid,
+      Value<String> type,
       Value<String> jsonContent,
       Value<DateTime> timeRecorded,
+      Value<DateTime> timeReceived,
       Value<DateTime> expires}) {
     return SocketRxEventsCompanion(
       uuid: uuid ?? this.uuid,
+      type: type ?? this.type,
       jsonContent: jsonContent ?? this.jsonContent,
       timeRecorded: timeRecorded ?? this.timeRecorded,
+      timeReceived: timeReceived ?? this.timeReceived,
       expires: expires ?? this.expires,
     );
   }
@@ -473,11 +523,17 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     if (uuid.present) {
       map['uuid'] = Variable<String>(uuid.value);
     }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
     if (jsonContent.present) {
       map['json_content'] = Variable<String>(jsonContent.value);
     }
     if (timeRecorded.present) {
       map['time_recorded'] = Variable<DateTime>(timeRecorded.value);
+    }
+    if (timeReceived.present) {
+      map['time_received'] = Variable<DateTime>(timeReceived.value);
     }
     if (expires.present) {
       map['expires'] = Variable<DateTime>(expires.value);
@@ -489,8 +545,10 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
   String toString() {
     return (StringBuffer('SocketRxEventsCompanion(')
           ..write('uuid: $uuid, ')
+          ..write('type: $type, ')
           ..write('jsonContent: $jsonContent, ')
           ..write('timeRecorded: $timeRecorded, ')
+          ..write('timeReceived: $timeReceived, ')
           ..write('expires: $expires')
           ..write(')'))
         .toString();
@@ -509,6 +567,18 @@ class $SocketRxEventsTable extends SocketRxEvents
   GeneratedTextColumn _constructUuid() {
     return GeneratedTextColumn(
       'uuid',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _typeMeta = const VerificationMeta('type');
+  GeneratedTextColumn _type;
+  @override
+  GeneratedTextColumn get type => _type ??= _constructType();
+  GeneratedTextColumn _constructType() {
+    return GeneratedTextColumn(
+      'type',
       $tableName,
       false,
     );
@@ -542,6 +612,20 @@ class $SocketRxEventsTable extends SocketRxEvents
     )..clientDefault = () => DateTime.now();
   }
 
+  final VerificationMeta _timeReceivedMeta =
+      const VerificationMeta('timeReceived');
+  GeneratedDateTimeColumn _timeReceived;
+  @override
+  GeneratedDateTimeColumn get timeReceived =>
+      _timeReceived ??= _constructTimeReceived();
+  GeneratedDateTimeColumn _constructTimeReceived() {
+    return GeneratedDateTimeColumn(
+      'time_received',
+      $tableName,
+      false,
+    );
+  }
+
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
   GeneratedDateTimeColumn _expires;
   @override
@@ -550,13 +634,13 @@ class $SocketRxEventsTable extends SocketRxEvents
     return GeneratedDateTimeColumn(
       'expires',
       $tableName,
-      true,
+      false,
     );
   }
 
   @override
   List<GeneratedColumn> get $columns =>
-      [uuid, jsonContent, timeRecorded, expires];
+      [uuid, type, jsonContent, timeRecorded, timeReceived, expires];
   @override
   $SocketRxEventsTable get asDslTable => this;
   @override
@@ -574,6 +658,12 @@ class $SocketRxEventsTable extends SocketRxEvents
     } else if (isInserting) {
       context.missing(_uuidMeta);
     }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type'], _typeMeta));
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
     if (data.containsKey('json_content')) {
       context.handle(
           _jsonContentMeta,
@@ -588,9 +678,19 @@ class $SocketRxEventsTable extends SocketRxEvents
           timeRecorded.isAcceptableOrUnknown(
               data['time_recorded'], _timeRecordedMeta));
     }
+    if (data.containsKey('time_received')) {
+      context.handle(
+          _timeReceivedMeta,
+          timeReceived.isAcceptableOrUnknown(
+              data['time_received'], _timeReceivedMeta));
+    } else if (isInserting) {
+      context.missing(_timeReceivedMeta);
+    }
     if (data.containsKey('expires')) {
       context.handle(_expiresMeta,
           expires.isAcceptableOrUnknown(data['expires'], _expiresMeta));
+    } else if (isInserting) {
+      context.missing(_expiresMeta);
     }
     return context;
   }
