@@ -7,14 +7,14 @@ class SocketRxMessageData {
   final DateTime time;
   final String raw;
 
-  String get messageType => data['messageType'];
+  String get messageType => this['messageType'];
   final Map<String, dynamic> data;
 
   SocketRxMessageData(this.raw, {this.fromCache = false})
       : this.time = DateTime.now(),
         data = json.decode(raw);
 
-  operator [](String key) => data[key];
+  operator [](String key) => data['body'][key];
 
   @override
   String toString() => raw;
@@ -33,7 +33,7 @@ abstract class SocketTxMessage {
   final bool authRequired;
   final Duration cache;
 
-  const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache});
+  const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache=Duration.zero});
 }
 
 abstract class SocketRxMessage {

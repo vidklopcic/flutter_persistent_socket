@@ -16,6 +16,7 @@ dependencies:
   path_provider: ^1.6.10
   path: ^1.7.0
   uuid: ^2.0.4
+  web_socket_channel: ^1.1.0
   gm5_utils:
     path: /Users/vidklopcic/StudioProjects/gm5_utils
 

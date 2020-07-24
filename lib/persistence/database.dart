@@ -19,7 +19,10 @@ LazyDatabase _openConnection() {
 
 @UseMoor(tables: [SocketTxEvents, SocketRxEvents], daos: [SocketTxEventDao, SocketRxEventDao])
 class Database extends _$Database {
-  Database() : super(_openConnection());
+  Database() : super(_openConnection()) {
+    socketRxEventDao.deleteExpired();
+    socketTxEventDao.deleteExpired();
+  }
 
   @override
   int get schemaVersion => 0;

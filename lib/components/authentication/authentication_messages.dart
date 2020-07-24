@@ -3,8 +3,7 @@ import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 class RxLoginToken extends SocketRxMessage {
   static const String type = 'login-token';
 
-  const RxLoginToken([SocketRxMessageData message])
-      : super(type, message, cache: const Duration(days: 1460));
+  const RxLoginToken([SocketRxMessageData message]) : super(type, message, cache: const Duration(days: 1460));
 
   @override
   RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);
@@ -47,9 +46,10 @@ class TxLogin extends SocketTxMessage {
 
 class TxVerifyToken extends SocketTxMessage {
   static const String type = 'verify-token';
+  final String token;
 
-  TxVerifyToken(String messageType) : super(messageType);
+  TxVerifyToken({this.token}) : super(type);
 
   @override
-  Map<String, dynamic> get data => {};
+  Map<String, dynamic> get data => {'token': token};
 }

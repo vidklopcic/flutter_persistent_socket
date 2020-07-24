@@ -42,7 +42,7 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
         .watch();
   }
 
-  Future deleteExpired() {
+  Future<int> deleteExpired() {
     return (delete(socketTxEvents)..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now()))).go();
   }
 

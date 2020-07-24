@@ -282,6 +282,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety"
+  web_socket_channel:
+    dependency: transitive
+    description:
+      name: web_socket_channel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   xdg_directories:
     dependency: transitive
     description:

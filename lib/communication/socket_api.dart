@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
@@ -9,15 +10,21 @@ import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
 
 class SocketApi {
+  static Map<String, SocketApi> _instances = {};
   String _token;
 
   String get token => _token;
   SocketConnector connection;
   Observable<bool> authenticated = Observable(false);
+  Map<String, StreamController<SocketTxMessage>> _txMessageHandlers = {};
   Map<String, StreamController<SocketRxMessage>> _messageHandlers = {};
   Map<String, SocketRxMessage> _messageConverters = {};
 
-  SocketApi._([String address = 'wss://turing.si/ws']) {
+  factory SocketApi(String address) {
+    return _instances.putIfAbsent(address, () => SocketApi._internal(address));
+  }
+
+  SocketApi._internal(String address) {
     connection = SocketConnector(address);
     connection.connected.changes.listen(_connectionStateChange);
     connection.dataStream.listen(_onData);
@@ -29,6 +36,7 @@ class SocketApi {
   }
 
   void sendMessage(SocketTxMessage message) {
+    _txMessageHandlers[message.messageType]?.add(message);
     String msg = json.encode({
       'body': {
         'messageType': message.messageType,
@@ -46,7 +54,7 @@ class SocketApi {
       connection.channel.sink.add(msg);
     } catch (e) {
       print('error sending $e');
-      if (message.cache != null) {
+      if (message.cache != Duration.zero) {
         print('caching event!');
         database.socketTxEventDao.addEvent(
           SocketTxEventsCompanion(
@@ -62,20 +70,31 @@ class SocketApi {
 
   void _onData(event) {
     print('rxevent: $event');
-    SocketRxMessageData message = SocketRxMessageData(event);
-    _messageHandlers[message.messageType]?.add(_messageConverters[message.messageType].fromMessage(message));
+    SocketRxMessageData messageData = SocketRxMessageData(event);
+    SocketRxMessage message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
+    if (message == null) return;
+    _messageHandlers[messageData.messageType]?.add(message);
+    if (message.cache != Duration.zero) {
+      database.socketRxEventDao.cacheEvent(message);
+    }
   }
 
-  Stream<SocketRxMessage> getMessageHandler(SocketRxMessage message, {void Function(SocketRxMessage) fromCache}) {
+  Stream getTxMessageHandler(SocketTxMessage message) {
+    return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
+  }
+
+  Stream getMessageHandler(SocketRxMessage message, {bool withoutCache = false}) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
-    if (fromCache != null) {
-      () async {
-        for (SocketRxEvent cachedEvent in await database.socketRxEventDao.getEvents(message)) {
-          fromCache(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
-        }
-      }();
+    Stream stream = _messageHandlers
+        .putIfAbsent(
+            message.messageType,
+            () => StreamController.broadcast(
+                onListen: message.cache == Duration.zero ? null : () => _fireFromCache(message)))
+        .stream;
+    if (withoutCache) {
+      return stream.where((message) => (message as SocketRxMessage)?.message?.fromCache == false);
     }
-    return _messageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
+    return stream;
   }
 
   void _connectionStateChange(bool connected) {
@@ -105,6 +124,30 @@ class SocketApi {
     database.socketTxEventDao.deleteEvents(sentEvents);
     database.socketTxEventDao.deleteExpired();
   }
+
+  static SocketApi of(BuildContext context) {
+    return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
+  }
+
+  void _fireFromCache(SocketRxMessage message) async {
+    for (SocketRxEvent cachedEvent in await database.socketRxEventDao.getEvents(message)) {
+      print('from cache ${message.messageType}');
+      _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
+    }
+  }
 }
 
-SocketApi socketApi = SocketApi._();
+class SocketApiProvider extends InheritedWidget {
+  const SocketApiProvider({
+    Key key,
+    @required this.socketApi,
+    @required Widget child,
+  })  : assert(socketApi != null),
+        assert(child != null),
+        super(key: key, child: child);
+
+  final SocketApi socketApi;
+
+  @override
+  bool updateShouldNotify(SocketApiProvider saProvider) => saProvider.socketApi != saProvider.socketApi;
+}

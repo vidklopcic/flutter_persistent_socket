@@ -31,11 +31,12 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
 
   SocketRxEventDao(this.db) : super(db);
 
-  Future deleteExpired() {
+  Future<int> deleteExpired() {
     return (delete(socketRxEvents)..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now()))).go();
   }
 
   Future cacheEvent(SocketRxMessage message) {
+    print('caching ${message.messageType}');
     return into(socketRxEvents).insertOnConflictUpdate(
       SocketRxEventsCompanion.insert(
         uuid: message.cacheUuid,
@@ -50,6 +51,7 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
   Future<List<SocketRxEvent>> getEvents(SocketRxMessage message) {
     return (select(socketRxEvents)
           ..where((tbl) => tbl.type.equals(message.messageType))
+          ..where((tbl) => tbl.expires.isBiggerOrEqualValue(DateTime.now()))
           ..orderBy([(o) => OrderingTerm(expression: o.timeReceived)]))
         .get();
   }
