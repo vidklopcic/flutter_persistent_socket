@@ -1,7 +1,9 @@
 import 'dart:async';
-import 'dart:io';
+import 'package:flutter_persistent_socket/communication/socket_connector_stub.dart'
+if (dart.library.io) 'package:flutter_persistent_socket/communication/socket_connector_native.dart'
+if (dart.library.html) 'package:flutter_persistent_socket/communication/socket_connector_web.dart';
 import 'package:gm5_utils/types/observable.dart';
-import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class SocketConnector {
   static const int RECONNECT_INTERVAL_S = 2;
@@ -10,7 +12,7 @@ class SocketConnector {
 
   final String address;
 
-  IOWebSocketChannel channel;
+  WebSocketChannel channel;
 
   // is connected
   Observable<bool> connected = Observable(false);
@@ -39,25 +41,24 @@ class SocketConnector {
     _dataStream.add(event);
   }
 
-  Future<Null> _onError(obj) async {
+  Future<Null> _onError(e) async {
+    print('ws connect error $e ($address)');
     await Future.delayed(Duration(seconds: 2));
     _connect();
   }
 
   void _onDone() {
+    print('ws done ($address)');
     _connect();
   }
 
-  void _connect() {
+  void _connect() async {
     print('connecting to $address');
     connected.val = false;
     channel?.sink?.close();
-    WebSocket.connect(address).then((ws) {
-      ws.pingInterval = Duration(seconds: 1);
-      channel = IOWebSocketChannel(ws);
-      channel.stream.listen(_onData, onDone: _onDone);
-      print('$address connected');
-      connected.val = true;
-    }).catchError(_onError);
+    channel = await getWebSocketChannel(address, onData: _onData, onDone: _onDone, onError: _onError);
+    if (channel == null) return;
+    connected.val = true;
+    print('$address connected');
   }
 }

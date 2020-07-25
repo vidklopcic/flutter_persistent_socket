@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/components/error_handling/error_handling_messages.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/components/error_handling/error_handling_widgets.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/communication/socket_connector_native.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/communication/socket_connector_stub.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/communication/socket_connector_web.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/persistence/database_native.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/persistence/database_stub.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/persistence/database_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/persistence/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,31 +58,45 @@
       <option name="project" value="LOCAL" />
       <updated>1595323529095</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="caching fixes, authentication improvements (check if token valid on start)">
+      <created>1595601665588</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595601665588</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finalized core functionality (untested)" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalized core functionality (untested)" />
+    <MESSAGE value="caching fixes, authentication improvements (check if token valid on start)" />
+    <option name="LAST_COMMIT_MESSAGE" value="caching fixes, authentication improvements (check if token valid on start)" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="431" y="-1117" key="CommitChangelistDialog2" timestamp="1595323528932">
+    <state x="431" y="-1117" key="CommitChangelistDialog2" timestamp="1595675567221">
       <screen x="-409" y="-1440" width="2560" height="1440" />
     </state>
-    <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595323528932" />
-    <state x="471" y="-980" key="Vcs.Push.Dialog.v2" timestamp="1595323529877">
-      <screen x="-409" y="-1440" width="2560" height="1440" />
+    <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675567221" />
+    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1595601665465" />
+    <state x="293" y="161" key="DiffContextDialog" timestamp="1595601644494">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="293" y="161" key="DiffContextDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1595601644494" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1595601666319">
+      <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595323529877" />
-    <state x="746" y="424" width="695" height="486" key="find.popup" timestamp="1595601604648">
-      <screen x="0" y="0" width="2048" height="1280" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1595601666319" />
+    <state x="523" y="-963" width="695" height="486" key="find.popup" timestamp="1595675388808">
+      <screen x="-409" y="-1440" width="2560" height="1440" />
     </state>
-    <state x="523" y="-963" width="695" height="486" key="find.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595510427646" />
+    <state x="523" y="-963" width="695" height="486" key="find.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675388808" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1595601604648" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1595601549724">
-      <screen x="0" y="0" width="2048" height="1280" />
+    <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup" timestamp="1595675389968">
+      <screen x="-409" y="-1440" width="2560" height="1440" />
     </state>
-    <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595509516516" />
+    <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1595601549724" />
   </component>
 </project>
