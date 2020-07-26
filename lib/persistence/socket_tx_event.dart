@@ -5,8 +5,6 @@ import 'database.dart';
 
 part 'socket_tx_event.g.dart';
 
-final uuidObj = Uuid();
-
 class SocketTxEvents extends Table {
   IntColumn get id => integer().autoIncrement()();
 

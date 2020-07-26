@@ -1,4 +1,5 @@
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:flutter_persistent_socket/components/files/files_structures.dart';
 
 class RxUploadStart extends SocketRxMessage {
   static const String type = 'upload-start';
@@ -9,6 +10,8 @@ class RxUploadStart extends SocketRxMessage {
   RxUploadStart fromMessage(SocketRxMessageData message) => RxUploadStart(message);
 
   String get key => message['key'];
+
+  String get localKey => message['local-key'];
 }
 
 class RxUploadProgress extends SocketRxMessage {
@@ -19,9 +22,11 @@ class RxUploadProgress extends SocketRxMessage {
   @override
   RxUploadProgress fromMessage(SocketRxMessageData message) => RxUploadProgress(message);
 
-  double get progress => message['progress'];
+  int get nBytes => message['n-bytes'];
 
   String get key => message['key'];
+
+  String get localKey => message['local-key'];
 }
 
 class RxUploadDone extends SocketRxMessage {
@@ -33,15 +38,26 @@ class RxUploadDone extends SocketRxMessage {
   RxUploadDone fromMessage(SocketRxMessageData message) => RxUploadDone(message);
 
   String get key => message['key'];
+
+  SFile get file => SFile().fromObject(message['file']);
 }
 
 class TxUploadStart extends SocketTxMessage {
   static const String type = 'upload-start';
-  final String filename;
-  final int size;
+  final String localKey;
+  final String extension;
 
-  const TxUploadStart({this.filename, this.size}) : super(type);
+  const TxUploadStart({this.localKey, this.extension}) : super(type);
 
   @override
-  Map<String, dynamic> get data => {'filename': filename, 'size': size};
+  Map<String, dynamic> get data => {'local-key': localKey, 'extension': extension};
+}
+
+class TxUploadEnd extends SocketTxMessage {
+  static const String type = 'upload-end';
+
+  const TxUploadEnd() : super(type);
+
+  @override
+  Map<String, dynamic> get data => {};
 }

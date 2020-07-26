@@ -6,10 +6,11 @@ import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:gm5_utils/gm5_utils.dart';
+import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
 
-class SocketApi {
+class SocketApi with SubscriptionsMixin {
   static Map<String, SocketApi> _instances = {};
   String _token;
 
@@ -26,8 +27,8 @@ class SocketApi {
 
   SocketApi._internal(String address) {
     connection = SocketConnector(address);
-    connection.connected.changes.listen(_connectionStateChange);
-    connection.dataStream.listen(_onData);
+    listen(connection.connected.changes, _connectionStateChange);
+    listen(connection.dataStream, _onData);
   }
 
   void setAuth(String token) {
@@ -134,6 +135,17 @@ class SocketApi {
       print('from cache ${message.messageType}');
       _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
     }
+  }
+
+  void close() {
+    cancelSubscriptions();
+    for (StreamController controller in _messageHandlers.values) {
+      controller.close();
+    }
+     for (StreamController controller in _txMessageHandlers.values) {
+       controller.close();
+     }
+     connection.close();
   }
 }
 

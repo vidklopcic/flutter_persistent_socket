@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_persistent_socket/communication/socket_connector_stub.dart'
-if (dart.library.io) 'package:flutter_persistent_socket/communication/socket_connector_native.dart'
-if (dart.library.html) 'package:flutter_persistent_socket/communication/socket_connector_web.dart';
+    if (dart.library.io) 'package:flutter_persistent_socket/communication/socket_connector_native.dart'
+    if (dart.library.html) 'package:flutter_persistent_socket/communication/socket_connector_web.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -16,6 +16,8 @@ class SocketConnector {
 
   // is connected
   Observable<bool> connected = Observable(false);
+
+  bool _closed = false;
 
   Future get whenConnected async {
     if (connected.val) {
@@ -53,6 +55,7 @@ class SocketConnector {
   }
 
   void _connect() async {
+    if (_closed) return;
     print('connecting to $address');
     connected.val = false;
     channel?.sink?.close();
@@ -60,5 +63,10 @@ class SocketConnector {
     if (channel == null) return;
     connected.val = true;
     print('$address connected');
+  }
+
+  void close() {
+    _closed = true;
+    channel?.sink?.close();
   }
 }

@@ -15,6 +15,7 @@ Future<WebSocketChannel> getWebSocketChannel(String address,
     channel = IOWebSocketChannel(ws);
     channel.stream.listen(onData, onDone: onDone);
   } catch (e) {
+    onError(e);
     return null;
   }
   return channel;
