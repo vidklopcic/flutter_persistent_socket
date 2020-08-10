@@ -16,6 +16,8 @@ class SocketRxMessageData {
 
   operator [](String key) => data['body'][key];
 
+  operator ==(Object other) => other is SocketRxMessageData && other.raw == raw;
+
   @override
   String toString() => raw;
 
@@ -24,6 +26,9 @@ class SocketRxMessageData {
         time = event.timeReceived,
         raw = event.jsonContent,
         data = json.decode(event.jsonContent);
+
+  @override
+  int get hashCode => super.hashCode;
 }
 
 abstract class SocketTxMessage {
@@ -33,7 +38,7 @@ abstract class SocketTxMessage {
   final bool authRequired;
   final Duration cache;
 
-  const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache=Duration.zero});
+  const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache = Duration.zero});
 }
 
 abstract class SocketRxMessage {

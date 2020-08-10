@@ -1,13 +1,34 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/components/files/files_messages.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:uuid/uuid.dart';
 
+class FilesController with SubscriptionsMixin {
+  final SocketApi socketApi;
+  final FileUploadController Function(RxUploadStart) createUploadController;
+
+  FilesController(this.socketApi, this.createUploadController) {
+    listen(socketApi.getMessageHandler(RxUploadStart()), _onUploadStart);
+  }
+
+  void dispose() {
+    cancelSubscriptions();
+  }
+
+  void _onUploadStart(RxUploadStart message) {
+    FileUploadController controller = createUploadController(message);
+    controller.startUpload(message.key).then((value) {
+      print('uploaded ${message.localKey}');
+    });
+  }
+}
+
 class FileUploadController with SubscriptionsMixin {
-  bool debug = true;
+  bool debug = false;
   final SocketApi socketApi;
   final String localKey;
   final String Function(String) getUploadUrl;
@@ -23,23 +44,23 @@ class FileUploadController with SubscriptionsMixin {
 
   bool get uploadInProgress => _uploadInProgress;
 
-  FileUploadController.fromFile(this.socketApi, File file, this.getUploadUrl, {this.extension = ''})
-      : localKey = file.path {
+  FileUploadController.fromFile(this.socketApi, File file, this.getUploadUrl,
+      {@required this.localKey, this.extension = ''}) {
     _data = file.openRead();
   }
 
-  FileUploadController.fromPath(this.socketApi, String path, this.getUploadUrl, {this.extension = ''})
-      : localKey = path {
+  FileUploadController.fromPath(this.socketApi, String path, this.getUploadUrl,
+      {@required this.localKey, this.extension = ''}) {
     _data = File(path).openRead();
   }
 
-  FileUploadController.fromStream(this.socketApi, this._data, this.getUploadUrl, {this.extension = ''})
-      : localKey = Uuid().v4();
+  FileUploadController.fromStream(this.socketApi, this._data, this.getUploadUrl,
+      {@required this.localKey, this.extension = ''});
 
-  Future startUpload() {
+  Future startUpload(String key) {
+    remoteKey = key;
     _uploadCompleter = Completer();
-    listen(socketApi.getMessageHandler(RxUploadStart()), _onUploadStart);
-    socketApi.sendMessage(TxUploadStart(localKey: localKey, extension: extension));
+    _onUploadStart();
     return _uploadCompleter.future;
   }
 
@@ -52,9 +73,7 @@ class FileUploadController with SubscriptionsMixin {
     uploadApi?.close();
   }
 
-  void _onUploadStart(RxUploadStart message) {
-    if (message.localKey != localKey) return;
-    remoteKey = message.key;
+  void _onUploadStart() {
     _log('upload started (key: $remoteKey)');
     _uploadInProgress = true;
     uploadApi = SocketApi(getUploadUrl(remoteKey));
@@ -68,25 +87,27 @@ class FileUploadController with SubscriptionsMixin {
     listen(uploadApi.getMessageHandler(RxUploadProgress()), _onProgressUpdate);
 
     // send the data when connected
-    uploadApi.connection.whenConnected.then((_) async {
-      _log('upload api connected');
-      await for (List<int> chunk in _data) {
-        _log('writing chunk (${chunk.length} bytes)');
-        _targetSize += chunk.length;
-        _targetSizeCompleter = Completer();
-        try {
-          uploadApi.connection.channel.sink.add(chunk);
-          await _targetSizeCompleter.future;
-        } catch (e) {
-          _log('upload failed $e');
-          break;
+    uploadApi.connection.whenConnected.then(
+      (_) async {
+        _log('upload api connected');
+        await for (List<int> chunk in _data) {
+          _log('writing chunk (${chunk.length} bytes)');
+          _targetSize += chunk.length;
+          _targetSizeCompleter = Completer();
+          try {
+            uploadApi.connection.channel.sink.add(chunk);
+            await _targetSizeCompleter.future;
+          } catch (e) {
+            _log('upload failed $e');
+            break;
+          }
         }
-      }
-      uploadApi.sendMessage(TxUploadEnd());
-      _uploadInProgress = false;
-      _log('upload done');
-      dispose();
-    });
+        uploadApi.sendMessage(TxUploadEnd());
+        _uploadInProgress = false;
+        _log('upload done');
+        dispose();
+      },
+    );
   }
 
   void _log(String message) {

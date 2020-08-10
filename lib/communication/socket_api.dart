@@ -21,6 +21,13 @@ class SocketApi with SubscriptionsMixin {
   Map<String, StreamController<SocketRxMessage>> _messageHandlers = {};
   Map<String, SocketRxMessage> _messageConverters = {};
 
+  Future get whenAuthenticated async {
+    if (authenticated.val) {
+      return;
+    }
+    await authenticated.changes.firstWhere((element) => element);
+  }
+
   factory SocketApi(String address) {
     return _instances.putIfAbsent(address, () => SocketApi._internal(address));
   }
@@ -142,10 +149,10 @@ class SocketApi with SubscriptionsMixin {
     for (StreamController controller in _messageHandlers.values) {
       controller.close();
     }
-     for (StreamController controller in _txMessageHandlers.values) {
-       controller.close();
-     }
-     connection.close();
+    for (StreamController controller in _txMessageHandlers.values) {
+      controller.close();
+    }
+    connection.close();
   }
 }
 

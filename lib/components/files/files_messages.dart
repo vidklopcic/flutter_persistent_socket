@@ -61,3 +61,14 @@ class TxUploadEnd extends SocketTxMessage {
   @override
   Map<String, dynamic> get data => {};
 }
+
+class TxDeleteFile extends SocketTxMessage {
+  static const String type = 'delete-file';
+
+  final SFile file;
+
+  const TxDeleteFile({this.file}) : super(type);
+
+  @override
+  Map<String, dynamic> get data => {'file': file.toSerializable()};
+}

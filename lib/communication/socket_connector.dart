@@ -26,6 +26,7 @@ class SocketConnector {
     await connected.changes.firstWhere((element) => element);
   }
 
+
   StreamController _dataStream;
 
   Stream get dataStream => _dataStream.stream;

@@ -1,5 +1,5 @@
 abstract class Structure {
-  void toSerializable(obj);
+  toSerializable() => throw UnimplementedError();
 
-  Structure fromObject(obj);
+  Structure fromObject(obj) => throw UnimplementedError();
 }
