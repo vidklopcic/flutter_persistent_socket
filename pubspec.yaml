@@ -18,7 +18,7 @@ dependencies:
   uuid: ^2.0.4
   web_socket_channel: ^1.1.0
   gm5_utils:
-    path: /Users/vidklopcic/StudioProjects/gm5_utils
+    git: git@github.com:vidklopcic/gm5_utils.git
 
 dev_dependencies:
   flutter_test:

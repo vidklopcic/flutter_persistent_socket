@@ -224,9 +224,11 @@ packages:
   gm5_utils:
     dependency: "direct main"
     description:
-      path: "/Users/vidklopcic/StudioProjects/gm5_utils"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: c43c16ace6b3b1207053f540936ad23d832830fb
+      url: "git@github.com:vidklopcic/gm5_utils.git"
+    source: git
     version: "0.0.1"
   graphs:
     dependency: transitive
@@ -319,13 +321,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
-  moor_ffi:
-    dependency: "direct main"
-    description:
-      name: moor_ffi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.0"
   moor_generator:
     dependency: "direct dev"
     description:
@@ -492,6 +487,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
+  sqlite3_flutter_libs:
+    dependency: "direct main"
+    description:
+      name: sqlite3_flutter_libs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   sqlparser:
     dependency: transitive
     description:

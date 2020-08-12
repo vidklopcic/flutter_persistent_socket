@@ -5,14 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_structures.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_structures.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/files/files_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/files/files_structures.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_structures.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_native.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_native.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
