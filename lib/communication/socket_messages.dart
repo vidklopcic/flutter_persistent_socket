@@ -14,7 +14,7 @@ class SocketRxMessageData {
       : this.time = DateTime.now(),
         data = json.decode(raw);
 
-  operator [](String key) => data['body'][key];
+  operator [](String key) => (data['body'] ?? data)[key];
 
   operator ==(Object other) => other is SocketRxMessageData && other.raw == raw;
 
