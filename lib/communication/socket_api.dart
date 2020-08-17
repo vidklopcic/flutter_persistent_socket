@@ -42,6 +42,16 @@ class SocketApi with SubscriptionsMixin {
     _token = token;
     authenticated.val = token != null;
   }
+  
+  void changeAddress(String address) {
+    _instances.remove(connection.address);
+    _instances[address] = this;
+    cancelSubscriptions();
+    connection.close();
+    connection = SocketConnector(address);
+    listen(connection.connected.changes, _connectionStateChange);
+    listen(connection.dataStream, _onData);
+  }
 
   void sendMessage(SocketTxMessage message) {
     _txMessageHandlers[message.messageType]?.add(message);
