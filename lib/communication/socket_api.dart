@@ -178,5 +178,5 @@ class SocketApiProvider extends InheritedWidget {
   final SocketApi socketApi;
 
   @override
-  bool updateShouldNotify(SocketApiProvider saProvider) => saProvider.socketApi != saProvider.socketApi;
+  bool updateShouldNotify(SocketApiProvider saProvider) => saProvider.socketApi != socketApi;
 }
