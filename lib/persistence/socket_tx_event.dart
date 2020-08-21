@@ -1,3 +1,4 @@
+import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
