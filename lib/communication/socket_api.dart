@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:flutter_persistent_socket/components/authentication/authentication_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:gm5_utils/gm5_utils.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
@@ -42,7 +43,7 @@ class SocketApi with SubscriptionsMixin {
     _token = token;
     authenticated.val = token != null;
   }
-  
+
   void changeAddress(String address) {
     _instances.remove(connection.address);
     _instances[address] = this;
