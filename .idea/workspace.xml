@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597668302153</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="typo">
+      <created>1597668599850</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1597668599850</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -133,15 +140,16 @@
     <MESSAGE value="depend from github" />
     <MESSAGE value="skljoc compat fix" />
     <MESSAGE value="added method to change address without creating new instance" />
-    <option name="LAST_COMMIT_MESSAGE" value="added method to change address without creating new instance" />
+    <MESSAGE value="typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="typo" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1597668302063">
+    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1597668599765">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678931577" />
     <state x="2888" y="-292" key="CommitChangelistDialog2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768282482" />
-    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1597668302063" />
+    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1597668599765" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485243" />
     <state x="293" y="161" key="DiffContextDialog" timestamp="1595842733143">
       <screen x="0" y="0" width="2048" height="1280" />
@@ -153,12 +161,12 @@
     </state>
     <state x="571" y="-1002" key="RollbackChangesDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917907" />
     <state x="784" y="389" key="RollbackChangesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1595842733648" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1597668302933">
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1597668600542">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678932244" />
     <state x="2928" y="-155" key="Vcs.Push.Dialog.v2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768283251" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1597668302933" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1597668600542" />
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485834" />
     <state x="746" y="424" width="695" height="486" key="find.popup" timestamp="1597667050317">
       <screen x="0" y="0" width="2048" height="1280" />
@@ -166,12 +174,12 @@
     <state x="523" y="-963" width="695" height="486" key="find.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595679692404" />
     <state x="2980" y="-138" width="695" height="729" key="find.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795038561" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1597667050317" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1597667951519">
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1598023620033">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1597667951519" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1596183567965" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1598023620033" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1597828770607" />
   </component>
 </project>

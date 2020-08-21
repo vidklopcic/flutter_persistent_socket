@@ -32,7 +32,8 @@ class SocketConnector {
   Stream get dataStream => _dataStream.stream;
 
   factory SocketConnector(String address) {
-    return _instances.putIfAbsent(address, () => SocketConnector._internal(address));
+    SocketConnector connector = _instances.putIfAbsent(address, () => SocketConnector._internal(address));
+    return connector;
   }
 
   SocketConnector._internal(this.address) {
@@ -69,5 +70,6 @@ class SocketConnector {
   void close() {
     _closed = true;
     channel?.sink?.close();
+    _instances.remove(address);
   }
 }
