@@ -43,6 +43,10 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
     return (delete(socketRxEvents)..where((tbl) => tbl.uuid.equals(message.cacheUuid))).go();
   }
 
+  Future<int> invalidateCache() {
+    return (delete(socketRxEvents)).go();
+  }
+
   Future cacheEvent(SocketRxMessage message) {
     print('caching ${message.messageType}');
     return into(socketRxEvents).insertOnConflictUpdate(
