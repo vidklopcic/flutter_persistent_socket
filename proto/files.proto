@@ -15,10 +15,10 @@ message RxUploadProgressData {
 
 message RxUploadDoneData {
   string key = 1;
-  File file = 2;
+  SFile file = 2;
 }
 
-message File {
+message SFile {
   string localKey = 1;
   string url = 2;
   string id = 3;
@@ -30,7 +30,7 @@ message TxUploadStartData {
 }
 
 message TxDeleteFileData {
-  File file = 1;
+  SFile file = 1;
 }
 
 

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/gen_rx_message_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/files.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/rx_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rx_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/files.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/files.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gen_rx_message_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gen_rx_message_list" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599902785712</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="option to generate and set all rx messages (for caching purposes)">
+      <created>1599909763810</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1599909763810</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -170,6 +181,42 @@
         <option value="3" />
         <option value="1" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
@@ -188,7 +235,8 @@
     <MESSAGE value="invalidate token on logout" />
     <MESSAGE value="cache keys (not sure of implementation)" />
     <MESSAGE value="migrated existing messages to protobuf" />
-    <option name="LAST_COMMIT_MESSAGE" value="migrated existing messages to protobuf" />
+    <MESSAGE value="option to generate and set all rx messages (for caching purposes)" />
+    <option name="LAST_COMMIT_MESSAGE" value="option to generate and set all rx messages (for caching purposes)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="624" y="305" key="#Inspections" timestamp="1599908947949">
@@ -207,18 +255,19 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="783" y="477" key="#com.intellij.tools.ToolEditorDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1599909005456" />
-    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1599902785578">
+    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1599909763691">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678931577" />
     <state x="2888" y="-292" key="CommitChangelistDialog2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768282482" />
-    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1599902785578" />
+    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1599909763691" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485243" />
-    <state x="293" y="161" key="DiffContextDialog" timestamp="1598024388154">
-      <screen x="0" y="0" width="2048" height="1280" />
+    <state x="293" y="161" width="1638" height="1024" key="DiffContextDialog" timestamp="1599913498225">
+      <screen x="0" y="23" width="2048" height="1206" />
     </state>
     <state x="-43" y="-1259" key="DiffContextDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917367" />
     <state x="293" y="161" key="DiffContextDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1598024388154" />
+    <state x="293" y="161" width="1638" height="1024" key="DiffContextDialog/0.23.2048.1206@0.23.2048.1206" timestamp="1599913498225" />
     <state x="784" y="389" key="RollbackChangesDialog" timestamp="1595842733648">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
@@ -228,13 +277,17 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="525" y="279" key="SettingsEditor/0.0.2048.1280@0.0.2048.1280" timestamp="1599909013452" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1599902786373">
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1599909764515">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678932244" />
     <state x="2928" y="-155" key="Vcs.Push.Dialog.v2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768283251" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1599902786373" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1599909764515" />
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485834" />
+    <state x="732" y="381" key="VcsDiffUtil.ChangesDialog" timestamp="1599913435362">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="732" y="381" key="VcsDiffUtil.ChangesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1599913435362" />
     <state x="682" y="262" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599811354980">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
@@ -253,12 +306,12 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="689" y="305" key="run.anything.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599900590569" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1599908906558">
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1599912541115">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599908906558" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599912541115" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1597828770607" />
   </component>
 </project>

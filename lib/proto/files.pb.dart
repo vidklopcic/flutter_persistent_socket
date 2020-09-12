@@ -105,7 +105,7 @@ class RxUploadProgressData extends $pb.GeneratedMessage {
 class RxUploadDoneData extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('RxUploadDoneData', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOS(1, 'key')
-    ..aOM<File>(2, 'file', subBuilder: File.create)
+    ..aOM<SFile>(2, 'file', subBuilder: SFile.create)
     ..hasRequiredFields = false
   ;
 
@@ -134,39 +134,39 @@ class RxUploadDoneData extends $pb.GeneratedMessage {
   void clearKey() => clearField(1);
 
   @$pb.TagNumber(2)
-  File get file => $_getN(1);
+  SFile get file => $_getN(1);
   @$pb.TagNumber(2)
-  set file(File v) { setField(2, v); }
+  set file(SFile v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasFile() => $_has(1);
   @$pb.TagNumber(2)
   void clearFile() => clearField(2);
   @$pb.TagNumber(2)
-  File ensureFile() => $_ensure(1);
+  SFile ensureFile() => $_ensure(1);
 }
 
-class File extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('File', package: const $pb.PackageName('files'), createEmptyInstance: create)
+class SFile extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SFile', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'url')
     ..aOS(3, 'id')
     ..hasRequiredFields = false
   ;
 
-  File._() : super();
-  factory File() => create();
-  factory File.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory File.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  File clone() => File()..mergeFromMessage(this);
-  File copyWith(void Function(File) updates) => super.copyWith((message) => updates(message as File));
+  SFile._() : super();
+  factory SFile() => create();
+  factory SFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SFile clone() => SFile()..mergeFromMessage(this);
+  SFile copyWith(void Function(SFile) updates) => super.copyWith((message) => updates(message as SFile));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static File create() => File._();
-  File createEmptyInstance() => create();
-  static $pb.PbList<File> createRepeated() => $pb.PbList<File>();
+  static SFile create() => SFile._();
+  SFile createEmptyInstance() => create();
+  static $pb.PbList<SFile> createRepeated() => $pb.PbList<SFile>();
   @$core.pragma('dart2js:noInline')
-  static File getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<File>(create);
-  static File _defaultInstance;
+  static SFile getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SFile>(create);
+  static SFile _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get localKey => $_getSZ(0);
@@ -239,7 +239,7 @@ class TxUploadStartData extends $pb.GeneratedMessage {
 
 class TxDeleteFileData extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('TxDeleteFileData', package: const $pb.PackageName('files'), createEmptyInstance: create)
-    ..aOM<File>(1, 'file', subBuilder: File.create)
+    ..aOM<SFile>(1, 'file', subBuilder: SFile.create)
     ..hasRequiredFields = false
   ;
 
@@ -259,14 +259,14 @@ class TxDeleteFileData extends $pb.GeneratedMessage {
   static TxDeleteFileData _defaultInstance;
 
   @$pb.TagNumber(1)
-  File get file => $_getN(0);
+  SFile get file => $_getN(0);
   @$pb.TagNumber(1)
-  set file(File v) { setField(1, v); }
+  set file(SFile v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasFile() => $_has(0);
   @$pb.TagNumber(1)
   void clearFile() => clearField(1);
   @$pb.TagNumber(1)
-  File ensureFile() => $_ensure(0);
+  SFile ensureFile() => $_ensure(0);
 }
 

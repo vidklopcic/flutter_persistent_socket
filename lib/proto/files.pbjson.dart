@@ -26,12 +26,12 @@ const RxUploadDoneData$json = const {
   '1': 'RxUploadDoneData',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'file', '3': 2, '4': 1, '5': 11, '6': '.files.File', '10': 'file'},
+    const {'1': 'file', '3': 2, '4': 1, '5': 11, '6': '.files.SFile', '10': 'file'},
   ],
 };
 
-const File$json = const {
-  '1': 'File',
+const SFile$json = const {
+  '1': 'SFile',
   '2': const [
     const {'1': 'localKey', '3': 1, '4': 1, '5': 9, '10': 'localKey'},
     const {'1': 'url', '3': 2, '4': 1, '5': 9, '10': 'url'},
@@ -50,7 +50,7 @@ const TxUploadStartData$json = const {
 const TxDeleteFileData$json = const {
   '1': 'TxDeleteFileData',
   '2': const [
-    const {'1': 'file', '3': 1, '4': 1, '5': 11, '6': '.files.File', '10': 'file'},
+    const {'1': 'file', '3': 1, '4': 1, '5': 11, '6': '.files.SFile', '10': 'file'},
   ],
 };
 

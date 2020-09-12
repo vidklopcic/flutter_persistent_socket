@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/components/files/files_messages.dart';
+import 'package:flutter_persistent_socket/proto/files.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 
 class FilesController with SubscriptionsMixin {
@@ -23,6 +24,12 @@ class FilesController with SubscriptionsMixin {
     controller.startUpload(message.data.key).then((value) {
       print('uploaded ${message.data.localKey}');
     });
+  }
+
+  static void delete(SocketApi api, SFile file) {
+    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(TxDeleteFileData()..file = file));
+    file.localKey = null;
+    file.url = null;
   }
 }
 
