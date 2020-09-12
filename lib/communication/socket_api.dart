@@ -11,6 +11,9 @@ import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
 
+typedef SocketRxMessageQueryFilter = SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> Function(
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query);
+
 class SocketApi with SubscriptionsMixin {
   static Map<String, SocketApi> _instances = {};
   String _token;
@@ -89,7 +92,7 @@ class SocketApi with SubscriptionsMixin {
 
   void _onData(event) {
     print('rxevent: $event');
-    SocketRxMessageData messageData = SocketRxMessageData(event);
+    SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
     SocketRxMessage message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
     if (message == null) return;
     _messageHandlers[messageData.messageType]?.add(message);
@@ -102,13 +105,13 @@ class SocketApi with SubscriptionsMixin {
     return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
   }
 
-  Stream getMessageHandler(SocketRxMessage message, {bool withoutCache = false}) {
+  Stream getMessageHandler(SocketRxMessage message, {bool withoutCache = false, SocketRxMessageQueryFilter filter}) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
     Stream stream = _messageHandlers
         .putIfAbsent(
             message.messageType,
             () => StreamController.broadcast(
-                onListen: message.cache == Duration.zero ? null : () => _fireFromCache(message)))
+                onListen: message.cache == Duration.zero ? null : () => fireFromCache(message, filter: filter)))
         .stream;
     if (withoutCache) {
       return stream.where((message) => (message as SocketRxMessage)?.message?.fromCache == false);
@@ -148,9 +151,10 @@ class SocketApi with SubscriptionsMixin {
     return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
   }
 
-  void _fireFromCache(SocketRxMessage message) async {
-    for (SocketRxEvent cachedEvent in await database.socketRxEventDao.getEvents(message)) {
-      print('from cache ${message.messageType}');
+  void fireFromCache(SocketRxMessage message, {SocketRxMessageQueryFilter filter}) async {
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
+        (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
+    for (SocketRxEvent cachedEvent in await query.get()) {
       _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
     }
   }

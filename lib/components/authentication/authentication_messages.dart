@@ -2,8 +2,9 @@ import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 
 class RxLoginToken extends SocketRxMessage {
   static const String type = 'login-token';
+  final Duration cache = const Duration(days: 1460);
 
-  const RxLoginToken([SocketRxMessageData message]) : super(type, message, cache: const Duration(days: 1460));
+  const RxLoginToken([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);

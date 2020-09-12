@@ -15,11 +15,43 @@ class SocketRxEvents extends Table {
 
   TextColumn get jsonContent => text()();
 
+  BoolColumn get online => boolean()();
+
   DateTimeColumn get timeRecorded => dateTime().clientDefault(() => DateTime.now())();
 
   DateTimeColumn get timeReceived => dateTime()();
 
   DateTimeColumn get expires => dateTime()();
+
+  DateTimeColumn get dateKey0 => dateTime().nullable()();
+
+  DateTimeColumn get dateKey1 => dateTime().nullable()();
+
+  DateTimeColumn get dateKey2 => dateTime().nullable()();
+
+  DateTimeColumn get dateKey3 => dateTime().nullable()();
+
+  DateTimeColumn get dateKey4 => dateTime().nullable()();
+
+  TextColumn get textKey0 => text().nullable()();
+
+  TextColumn get textKey1 => text().nullable()();
+
+  TextColumn get textKey2 => text().nullable()();
+
+  TextColumn get textKey3 => text().nullable()();
+
+  TextColumn get textKey4 => text().nullable()();
+
+  RealColumn get realKey0 => real().nullable()();
+
+  RealColumn get realKey1 => real().nullable()();
+
+  RealColumn get realKey2 => real().nullable()();
+
+  RealColumn get realKey3 => real().nullable()();
+
+  RealColumn get realKey4 => real().nullable()();
 
   @override
   Set<Column> get primaryKey => {uuid};
@@ -56,15 +88,57 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
         jsonContent: message.message.toString(),
         timeReceived: message.message.time,
         expires: DateTime.now().add(message.cache),
+        online: message.message.online,
+        dateKey0: message.getCacheVal(CacheKeyType.date, 0),
+        dateKey1: message.getCacheVal(CacheKeyType.date, 1),
+        dateKey2: message.getCacheVal(CacheKeyType.date, 2),
+        dateKey3: message.getCacheVal(CacheKeyType.date, 3),
+        dateKey4: message.getCacheVal(CacheKeyType.date, 4),
+        textKey0: message.getCacheVal(CacheKeyType.text, 0),
+        textKey1: message.getCacheVal(CacheKeyType.text, 1),
+        textKey2: message.getCacheVal(CacheKeyType.text, 2),
+        textKey3: message.getCacheVal(CacheKeyType.text, 3),
+        textKey4: message.getCacheVal(CacheKeyType.text, 4),
+        realKey0: message.getCacheVal(CacheKeyType.real, 0),
+        realKey1: message.getCacheVal(CacheKeyType.real, 1),
+        realKey2: message.getCacheVal(CacheKeyType.real, 2),
+        realKey3: message.getCacheVal(CacheKeyType.real, 3),
+        realKey4: message.getCacheVal(CacheKeyType.real, 4),
       ),
     );
   }
 
-  Future<List<SocketRxEvent>> getEvents(SocketRxMessage message) {
-    return (select(socketRxEvents)
-          ..where((tbl) => tbl.type.equals(message.messageType))
-          ..where((tbl) => tbl.expires.isBiggerOrEqualValue(DateTime.now()))
-          ..orderBy([(o) => OrderingTerm(expression: o.timeReceived)]))
-        .get();
+  SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> filter(SocketRxMessage message) {
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query = select(socketRxEvents);
+    query.where((tbl) => tbl.type.equals(message.messageType));
+    query.where((tbl) => tbl.expires.isBiggerOrEqualValue(DateTime.now()));
+    query.orderBy([(o) => OrderingTerm(expression: o.timeReceived)]);
+    return query;
   }
+}
+
+extension CacheKeys on $SocketRxEventsTable {
+  List<GeneratedDateTimeColumn> get dateKeys => [
+        dateKey0,
+        dateKey1,
+        dateKey2,
+        dateKey3,
+        dateKey4,
+      ];
+
+  List<GeneratedTextColumn> get textKeys => [
+        textKey0,
+        textKey1,
+        textKey2,
+        textKey3,
+        textKey4,
+      ];
+
+  List<GeneratedRealColumn> get realKeys => [
+        realKey0,
+        realKey1,
+        realKey2,
+        realKey3,
+        realKey4,
+      ];
 }
