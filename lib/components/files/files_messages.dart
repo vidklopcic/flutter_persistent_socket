@@ -1,19 +1,19 @@
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/proto/files.pb.dart';
 
-class RxUploadStart extends SocketRxMessage {
+class RxUploadStartSlot extends SocketRxMessage {
   static const String type = 'upload-start';
-  final RxUploadStartData data = RxUploadStartData();
+  final UploadStartSlot data = UploadStartSlot();
 
-  RxUploadStart([SocketRxMessageData message]) : super(type, message);
+  RxUploadStartSlot([SocketRxMessageData message]) : super(type, message);
 
   @override
-  RxUploadStart fromMessage(SocketRxMessageData message) => RxUploadStart(message);
+  RxUploadStartSlot fromMessage(SocketRxMessageData message) => RxUploadStartSlot(message);
 }
 
 class RxUploadProgress extends SocketRxMessage {
   static const String type = 'upload-progress';
-  RxUploadProgressData data = RxUploadProgressData();
+  UploadProgress data = UploadProgress();
 
   RxUploadProgress([SocketRxMessageData message]) : super(type, message);
 
@@ -23,7 +23,7 @@ class RxUploadProgress extends SocketRxMessage {
 
 class RxUploadDone extends SocketRxMessage {
   static const String type = 'upload-done';
-  RxUploadDoneData data = RxUploadDoneData();
+  UploadDone data = UploadDone();
 
   RxUploadDone([SocketRxMessageData message]) : super(type, message);
 
@@ -33,7 +33,7 @@ class RxUploadDone extends SocketRxMessage {
 
 class TxUploadStart extends SocketTxMessage {
   static const String type = 'upload-start';
-  final TxUploadStartData proto;
+  final UploadStart proto;
 
   const TxUploadStart(this.proto) : super(type);
 }
@@ -46,7 +46,7 @@ class TxUploadEnd extends SocketTxMessage {
 
 class TxDeleteFile extends SocketTxMessage {
   static const String type = 'delete-file';
-  final TxDeleteFileData proto;
+  final DeleteFile proto;
 
   const TxDeleteFile(this.proto) : super(type);
 }

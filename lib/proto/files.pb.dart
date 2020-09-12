@@ -10,27 +10,27 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class RxUploadStartData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('RxUploadStartData', package: const $pb.PackageName('files'), createEmptyInstance: create)
+class UploadStartSlot extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStartSlot', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOS(1, 'key')
     ..aOS(2, 'localKey', protoName: 'localKey')
     ..hasRequiredFields = false
   ;
 
-  RxUploadStartData._() : super();
-  factory RxUploadStartData() => create();
-  factory RxUploadStartData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RxUploadStartData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  RxUploadStartData clone() => RxUploadStartData()..mergeFromMessage(this);
-  RxUploadStartData copyWith(void Function(RxUploadStartData) updates) => super.copyWith((message) => updates(message as RxUploadStartData));
+  UploadStartSlot._() : super();
+  factory UploadStartSlot() => create();
+  factory UploadStartSlot.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadStartSlot.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadStartSlot clone() => UploadStartSlot()..mergeFromMessage(this);
+  UploadStartSlot copyWith(void Function(UploadStartSlot) updates) => super.copyWith((message) => updates(message as UploadStartSlot));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static RxUploadStartData create() => RxUploadStartData._();
-  RxUploadStartData createEmptyInstance() => create();
-  static $pb.PbList<RxUploadStartData> createRepeated() => $pb.PbList<RxUploadStartData>();
+  static UploadStartSlot create() => UploadStartSlot._();
+  UploadStartSlot createEmptyInstance() => create();
+  static $pb.PbList<UploadStartSlot> createRepeated() => $pb.PbList<UploadStartSlot>();
   @$core.pragma('dart2js:noInline')
-  static RxUploadStartData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RxUploadStartData>(create);
-  static RxUploadStartData _defaultInstance;
+  static UploadStartSlot getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadStartSlot>(create);
+  static UploadStartSlot _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get key => $_getSZ(0);
@@ -51,28 +51,28 @@ class RxUploadStartData extends $pb.GeneratedMessage {
   void clearLocalKey() => clearField(2);
 }
 
-class RxUploadProgressData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('RxUploadProgressData', package: const $pb.PackageName('files'), createEmptyInstance: create)
+class UploadProgress extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadProgress', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aInt64(1, 'nBytes', protoName: 'nBytes')
     ..aOS(2, 'key')
     ..aOS(3, 'localKey', protoName: 'localKey')
     ..hasRequiredFields = false
   ;
 
-  RxUploadProgressData._() : super();
-  factory RxUploadProgressData() => create();
-  factory RxUploadProgressData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RxUploadProgressData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  RxUploadProgressData clone() => RxUploadProgressData()..mergeFromMessage(this);
-  RxUploadProgressData copyWith(void Function(RxUploadProgressData) updates) => super.copyWith((message) => updates(message as RxUploadProgressData));
+  UploadProgress._() : super();
+  factory UploadProgress() => create();
+  factory UploadProgress.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadProgress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadProgress clone() => UploadProgress()..mergeFromMessage(this);
+  UploadProgress copyWith(void Function(UploadProgress) updates) => super.copyWith((message) => updates(message as UploadProgress));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static RxUploadProgressData create() => RxUploadProgressData._();
-  RxUploadProgressData createEmptyInstance() => create();
-  static $pb.PbList<RxUploadProgressData> createRepeated() => $pb.PbList<RxUploadProgressData>();
+  static UploadProgress create() => UploadProgress._();
+  UploadProgress createEmptyInstance() => create();
+  static $pb.PbList<UploadProgress> createRepeated() => $pb.PbList<UploadProgress>();
   @$core.pragma('dart2js:noInline')
-  static RxUploadProgressData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RxUploadProgressData>(create);
-  static RxUploadProgressData _defaultInstance;
+  static UploadProgress getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadProgress>(create);
+  static UploadProgress _defaultInstance;
 
   @$pb.TagNumber(1)
   $fixnum.Int64 get nBytes => $_getI64(0);
@@ -102,27 +102,27 @@ class RxUploadProgressData extends $pb.GeneratedMessage {
   void clearLocalKey() => clearField(3);
 }
 
-class RxUploadDoneData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('RxUploadDoneData', package: const $pb.PackageName('files'), createEmptyInstance: create)
+class UploadDone extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadDone', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOS(1, 'key')
     ..aOM<SFile>(2, 'file', subBuilder: SFile.create)
     ..hasRequiredFields = false
   ;
 
-  RxUploadDoneData._() : super();
-  factory RxUploadDoneData() => create();
-  factory RxUploadDoneData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RxUploadDoneData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  RxUploadDoneData clone() => RxUploadDoneData()..mergeFromMessage(this);
-  RxUploadDoneData copyWith(void Function(RxUploadDoneData) updates) => super.copyWith((message) => updates(message as RxUploadDoneData));
+  UploadDone._() : super();
+  factory UploadDone() => create();
+  factory UploadDone.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadDone.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadDone clone() => UploadDone()..mergeFromMessage(this);
+  UploadDone copyWith(void Function(UploadDone) updates) => super.copyWith((message) => updates(message as UploadDone));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static RxUploadDoneData create() => RxUploadDoneData._();
-  RxUploadDoneData createEmptyInstance() => create();
-  static $pb.PbList<RxUploadDoneData> createRepeated() => $pb.PbList<RxUploadDoneData>();
+  static UploadDone create() => UploadDone._();
+  UploadDone createEmptyInstance() => create();
+  static $pb.PbList<UploadDone> createRepeated() => $pb.PbList<UploadDone>();
   @$core.pragma('dart2js:noInline')
-  static RxUploadDoneData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RxUploadDoneData>(create);
-  static RxUploadDoneData _defaultInstance;
+  static UploadDone getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadDone>(create);
+  static UploadDone _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get key => $_getSZ(0);
@@ -196,27 +196,27 @@ class SFile extends $pb.GeneratedMessage {
   void clearId() => clearField(3);
 }
 
-class TxUploadStartData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TxUploadStartData', package: const $pb.PackageName('files'), createEmptyInstance: create)
+class UploadStart extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStart', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'extension')
     ..hasRequiredFields = false
   ;
 
-  TxUploadStartData._() : super();
-  factory TxUploadStartData() => create();
-  factory TxUploadStartData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TxUploadStartData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TxUploadStartData clone() => TxUploadStartData()..mergeFromMessage(this);
-  TxUploadStartData copyWith(void Function(TxUploadStartData) updates) => super.copyWith((message) => updates(message as TxUploadStartData));
+  UploadStart._() : super();
+  factory UploadStart() => create();
+  factory UploadStart.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadStart.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadStart clone() => UploadStart()..mergeFromMessage(this);
+  UploadStart copyWith(void Function(UploadStart) updates) => super.copyWith((message) => updates(message as UploadStart));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TxUploadStartData create() => TxUploadStartData._();
-  TxUploadStartData createEmptyInstance() => create();
-  static $pb.PbList<TxUploadStartData> createRepeated() => $pb.PbList<TxUploadStartData>();
+  static UploadStart create() => UploadStart._();
+  UploadStart createEmptyInstance() => create();
+  static $pb.PbList<UploadStart> createRepeated() => $pb.PbList<UploadStart>();
   @$core.pragma('dart2js:noInline')
-  static TxUploadStartData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TxUploadStartData>(create);
-  static TxUploadStartData _defaultInstance;
+  static UploadStart getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadStart>(create);
+  static UploadStart _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get localKey => $_getSZ(0);
@@ -237,26 +237,26 @@ class TxUploadStartData extends $pb.GeneratedMessage {
   void clearExtension_2() => clearField(2);
 }
 
-class TxDeleteFileData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TxDeleteFileData', package: const $pb.PackageName('files'), createEmptyInstance: create)
+class DeleteFile extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('DeleteFile', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOM<SFile>(1, 'file', subBuilder: SFile.create)
     ..hasRequiredFields = false
   ;
 
-  TxDeleteFileData._() : super();
-  factory TxDeleteFileData() => create();
-  factory TxDeleteFileData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TxDeleteFileData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TxDeleteFileData clone() => TxDeleteFileData()..mergeFromMessage(this);
-  TxDeleteFileData copyWith(void Function(TxDeleteFileData) updates) => super.copyWith((message) => updates(message as TxDeleteFileData));
+  DeleteFile._() : super();
+  factory DeleteFile() => create();
+  factory DeleteFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory DeleteFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  DeleteFile clone() => DeleteFile()..mergeFromMessage(this);
+  DeleteFile copyWith(void Function(DeleteFile) updates) => super.copyWith((message) => updates(message as DeleteFile));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TxDeleteFileData create() => TxDeleteFileData._();
-  TxDeleteFileData createEmptyInstance() => create();
-  static $pb.PbList<TxDeleteFileData> createRepeated() => $pb.PbList<TxDeleteFileData>();
+  static DeleteFile create() => DeleteFile._();
+  DeleteFile createEmptyInstance() => create();
+  static $pb.PbList<DeleteFile> createRepeated() => $pb.PbList<DeleteFile>();
   @$core.pragma('dart2js:noInline')
-  static TxDeleteFileData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TxDeleteFileData>(create);
-  static TxDeleteFileData _defaultInstance;
+  static DeleteFile getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteFile>(create);
+  static DeleteFile _defaultInstance;
 
   @$pb.TagNumber(1)
   SFile get file => $_getN(0);

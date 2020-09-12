@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/fps_proto_gen_dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_messages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/files/files_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/proto/files.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pb.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/files.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pbserver.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/rx_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rx_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/authentication.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/authentication.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/files.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/files.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/gen_rx_message_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gen_rx_message_list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gen_rx_message_list" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_gen_rx_message_list" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,17 +42,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/components/files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/lib/components/files" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/proto" />
       <recent name="$PROJECT_DIR$/proto/authentication" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/components/files" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -306,12 +315,12 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="689" y="305" key="run.anything.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599900590569" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1599912541115">
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1599935239220">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599912541115" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599935239220" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1597828770607" />
   </component>
 </project>

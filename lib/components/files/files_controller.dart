@@ -9,17 +9,17 @@ import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 
 class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
-  final FileUploadController Function(RxUploadStart) createUploadController;
+  final FileUploadController Function(RxUploadStartSlot) createUploadController;
 
   FilesController(this.socketApi, this.createUploadController) {
-    listen(socketApi.getMessageHandler(RxUploadStart()), _onUploadStart);
+    listen(socketApi.getMessageHandler(RxUploadStartSlot()), _onUploadStart);
   }
 
   void dispose() {
     cancelSubscriptions();
   }
 
-  void _onUploadStart(RxUploadStart message) {
+  void _onUploadStart(RxUploadStartSlot message) {
     FileUploadController controller = createUploadController(message);
     controller.startUpload(message.data.key).then((value) {
       print('uploaded ${message.data.localKey}');
@@ -27,7 +27,7 @@ class FilesController with SubscriptionsMixin {
   }
 
   static void delete(SocketApi api, SFile file) {
-    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(TxDeleteFileData()..file = file));
+    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
     file.localKey = null;
     file.url = null;
   }

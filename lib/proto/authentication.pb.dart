@@ -9,26 +9,26 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class RxLoginTokenData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('RxLoginTokenData', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+class LoginToken extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('LoginToken', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
     ..aOS(1, 'token')
     ..hasRequiredFields = false
   ;
 
-  RxLoginTokenData._() : super();
-  factory RxLoginTokenData() => create();
-  factory RxLoginTokenData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RxLoginTokenData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  RxLoginTokenData clone() => RxLoginTokenData()..mergeFromMessage(this);
-  RxLoginTokenData copyWith(void Function(RxLoginTokenData) updates) => super.copyWith((message) => updates(message as RxLoginTokenData));
+  LoginToken._() : super();
+  factory LoginToken() => create();
+  factory LoginToken.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LoginToken.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  LoginToken clone() => LoginToken()..mergeFromMessage(this);
+  LoginToken copyWith(void Function(LoginToken) updates) => super.copyWith((message) => updates(message as LoginToken));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static RxLoginTokenData create() => RxLoginTokenData._();
-  RxLoginTokenData createEmptyInstance() => create();
-  static $pb.PbList<RxLoginTokenData> createRepeated() => $pb.PbList<RxLoginTokenData>();
+  static LoginToken create() => LoginToken._();
+  LoginToken createEmptyInstance() => create();
+  static $pb.PbList<LoginToken> createRepeated() => $pb.PbList<LoginToken>();
   @$core.pragma('dart2js:noInline')
-  static RxLoginTokenData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RxLoginTokenData>(create);
-  static RxLoginTokenData _defaultInstance;
+  static LoginToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoginToken>(create);
+  static LoginToken _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get token => $_getSZ(0);
@@ -40,27 +40,27 @@ class RxLoginTokenData extends $pb.GeneratedMessage {
   void clearToken() => clearField(1);
 }
 
-class RxLoginErrorData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('RxLoginErrorData', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+class LoginError extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('LoginError', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
     ..aOS(1, 'errorText', protoName: 'errorText')
     ..aOS(2, 'errorCode', protoName: 'errorCode')
     ..hasRequiredFields = false
   ;
 
-  RxLoginErrorData._() : super();
-  factory RxLoginErrorData() => create();
-  factory RxLoginErrorData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RxLoginErrorData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  RxLoginErrorData clone() => RxLoginErrorData()..mergeFromMessage(this);
-  RxLoginErrorData copyWith(void Function(RxLoginErrorData) updates) => super.copyWith((message) => updates(message as RxLoginErrorData));
+  LoginError._() : super();
+  factory LoginError() => create();
+  factory LoginError.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LoginError.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  LoginError clone() => LoginError()..mergeFromMessage(this);
+  LoginError copyWith(void Function(LoginError) updates) => super.copyWith((message) => updates(message as LoginError));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static RxLoginErrorData create() => RxLoginErrorData._();
-  RxLoginErrorData createEmptyInstance() => create();
-  static $pb.PbList<RxLoginErrorData> createRepeated() => $pb.PbList<RxLoginErrorData>();
+  static LoginError create() => LoginError._();
+  LoginError createEmptyInstance() => create();
+  static $pb.PbList<LoginError> createRepeated() => $pb.PbList<LoginError>();
   @$core.pragma('dart2js:noInline')
-  static RxLoginErrorData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RxLoginErrorData>(create);
-  static RxLoginErrorData _defaultInstance;
+  static LoginError getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoginError>(create);
+  static LoginError _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get errorText => $_getSZ(0);
@@ -81,27 +81,27 @@ class RxLoginErrorData extends $pb.GeneratedMessage {
   void clearErrorCode() => clearField(2);
 }
 
-class TxLoginData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TxLoginData', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+class Login extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('Login', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
     ..aOS(1, 'username')
     ..aOS(2, 'password')
     ..hasRequiredFields = false
   ;
 
-  TxLoginData._() : super();
-  factory TxLoginData() => create();
-  factory TxLoginData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TxLoginData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TxLoginData clone() => TxLoginData()..mergeFromMessage(this);
-  TxLoginData copyWith(void Function(TxLoginData) updates) => super.copyWith((message) => updates(message as TxLoginData));
+  Login._() : super();
+  factory Login() => create();
+  factory Login.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Login.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  Login clone() => Login()..mergeFromMessage(this);
+  Login copyWith(void Function(Login) updates) => super.copyWith((message) => updates(message as Login));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TxLoginData create() => TxLoginData._();
-  TxLoginData createEmptyInstance() => create();
-  static $pb.PbList<TxLoginData> createRepeated() => $pb.PbList<TxLoginData>();
+  static Login create() => Login._();
+  Login createEmptyInstance() => create();
+  static $pb.PbList<Login> createRepeated() => $pb.PbList<Login>();
   @$core.pragma('dart2js:noInline')
-  static TxLoginData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TxLoginData>(create);
-  static TxLoginData _defaultInstance;
+  static Login getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Login>(create);
+  static Login _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get username => $_getSZ(0);
@@ -122,26 +122,26 @@ class TxLoginData extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
-class TxVerifyTokenData extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TxVerifyTokenData', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+class VerifyToken extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('VerifyToken', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
     ..aOS(1, 'token')
     ..hasRequiredFields = false
   ;
 
-  TxVerifyTokenData._() : super();
-  factory TxVerifyTokenData() => create();
-  factory TxVerifyTokenData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TxVerifyTokenData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TxVerifyTokenData clone() => TxVerifyTokenData()..mergeFromMessage(this);
-  TxVerifyTokenData copyWith(void Function(TxVerifyTokenData) updates) => super.copyWith((message) => updates(message as TxVerifyTokenData));
+  VerifyToken._() : super();
+  factory VerifyToken() => create();
+  factory VerifyToken.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VerifyToken.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  VerifyToken clone() => VerifyToken()..mergeFromMessage(this);
+  VerifyToken copyWith(void Function(VerifyToken) updates) => super.copyWith((message) => updates(message as VerifyToken));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TxVerifyTokenData create() => TxVerifyTokenData._();
-  TxVerifyTokenData createEmptyInstance() => create();
-  static $pb.PbList<TxVerifyTokenData> createRepeated() => $pb.PbList<TxVerifyTokenData>();
+  static VerifyToken create() => VerifyToken._();
+  VerifyToken createEmptyInstance() => create();
+  static $pb.PbList<VerifyToken> createRepeated() => $pb.PbList<VerifyToken>();
   @$core.pragma('dart2js:noInline')
-  static TxVerifyTokenData getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TxVerifyTokenData>(create);
-  static TxVerifyTokenData _defaultInstance;
+  static VerifyToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VerifyToken>(create);
+  static VerifyToken _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get token => $_getSZ(0);

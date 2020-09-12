@@ -1,19 +1,19 @@
 syntax = "proto3";
 package files;
 
-message RxUploadStartData {
+message UploadStartSlot {
   string key = 1;
   string localKey = 2;
 
 }
 
-message RxUploadProgressData {
+message UploadProgress {
   int64 nBytes = 1;
   string key = 2;
   string localKey = 3;
 }
 
-message RxUploadDoneData {
+message UploadDone {
   string key = 1;
   SFile file = 2;
 }
@@ -24,12 +24,12 @@ message SFile {
   string id = 3;
 }
 
-message TxUploadStartData {
+message UploadStart {
   string localKey = 1;
   string extension = 2;
 }
 
-message TxDeleteFileData {
+message DeleteFile {
   SFile file = 1;
 }
 

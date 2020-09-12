@@ -21,6 +21,6 @@ abstract class AuthenticationController with SubscriptionsMixin {
 
   void verifyToken() {
     if (!socketApi.authenticated.val) return;
-    socketApi.sendMessage(TxVerifyToken(TxVerifyTokenData()..token = socketApi.token));
+    socketApi.sendMessage(TxVerifyToken(VerifyToken()..token = socketApi.token));
   }
 }

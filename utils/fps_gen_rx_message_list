@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 import os
 import subprocess as s
+import sys
 
+if not os.path.isfile('pubspec.yaml'):
+    print('Run the command from flutter project root!')
+    sys.exit(1)
+
+os.chdir('lib')
 items = s.check_output('grep -ri "extends SocketRxMessage" .', shell=True).decode('utf-8').split('\n')
 rx_messages = [msg.split('class ')[1].split(' extends')[0] + '()' for msg in items if 'extends' in msg]
 imports = set(['''import '%s';''' % msg.split(':')[0][2:] for msg in items if '.dart' in msg])

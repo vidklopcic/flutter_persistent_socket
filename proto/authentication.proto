@@ -1,20 +1,20 @@
 syntax = "proto3";
 package authentication;
 
-message RxLoginTokenData {
+message LoginToken {
   string token = 1;
 }
 
-message RxLoginErrorData {
+message LoginError {
   string errorText = 1;
   string errorCode = 2;
 }
 
-message TxLoginData {
+message Login {
   string username = 1;
   string password = 2;
 }
 
-message TxVerifyTokenData {
+message VerifyToken {
   string token = 1;
 }
