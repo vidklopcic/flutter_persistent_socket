@@ -6,6 +6,7 @@ import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/components/authentication/authentication_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
+import 'package:flutter_persistent_socket/rx_messages.dart';
 import 'package:gm5_utils/gm5_utils.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
@@ -40,6 +41,7 @@ class SocketApi with SubscriptionsMixin {
     connection = SocketConnector(address);
     listen(connection.connected.changes, _connectionStateChange);
     listen(connection.dataStream, _onData);
+    setMessages(rxMessages);
   }
 
   void setAuth(String token) {
@@ -117,6 +119,12 @@ class SocketApi with SubscriptionsMixin {
       return stream.where((message) => (message as SocketRxMessage)?.message?.fromCache == false);
     }
     return stream;
+  }
+
+  void setMessages(List<SocketRxMessage> messages) {
+    for (SocketRxMessage message in messages) {
+      _messageConverters[message.messageType] = message;
+    }
   }
 
   void _connectionStateChange(bool connected) {
