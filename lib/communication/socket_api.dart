@@ -156,12 +156,14 @@ class SocketApi with SubscriptionsMixin {
     return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
   }
 
-  void fireFromCache(SocketRxMessage message, {SocketRxMessageQueryFilter filter}) async {
+  Future<int> fireFromCache(SocketRxMessage message, {SocketRxMessageQueryFilter filter}) async {
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
         (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
-    for (SocketRxEvent cachedEvent in await query.get()) {
+    List<SocketRxEvent> events = await query.get();
+    for (SocketRxEvent cachedEvent in events) {
       _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
     }
+    return events.length;
   }
 
   void close() {
