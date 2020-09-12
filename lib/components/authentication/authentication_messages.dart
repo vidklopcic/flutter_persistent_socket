@@ -1,10 +1,12 @@
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:flutter_persistent_socket/proto/authentication.pb.dart';
 
 class RxLoginToken extends SocketRxMessage {
   static const String type = 'login-token';
+  final RxLoginTokenData data = RxLoginTokenData();
   final Duration cache = const Duration(days: 1460);
 
-  const RxLoginToken([SocketRxMessageData message]) : super(type, message);
+  RxLoginToken([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);
@@ -14,21 +16,18 @@ class RxLoginToken extends SocketRxMessage {
 
 class RxLoginError extends SocketRxMessage {
   static const String type = 'login-error';
+  final RxLoginErrorData data = RxLoginErrorData();
 
-  const RxLoginError([SocketRxMessageData message]) : super(type, message);
+  RxLoginError([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxLoginError fromMessage(SocketRxMessageData message) => RxLoginError(message);
-
-  String get errorText => message['error_text'];
-
-  String get errorCode => message['error_code'];
 }
 
 class RxTokenInvalid extends SocketRxMessage {
   static const String type = 'token-invalid';
 
-  const RxTokenInvalid([SocketRxMessageData message]) : super(type, message);
+  RxTokenInvalid([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxTokenInvalid fromMessage(SocketRxMessageData message) => RxTokenInvalid(message);
@@ -36,21 +35,14 @@ class RxTokenInvalid extends SocketRxMessage {
 
 class TxLogin extends SocketTxMessage {
   static const String type = 'login';
-  final String username;
-  final String password;
+  final TxLoginData proto;
 
-  const TxLogin({this.username, this.password}) : super(type, authRequired: false);
-
-  @override
-  Map<String, dynamic> get data => {'username': username, 'password': password};
+  TxLogin(this.proto) : super(type, authRequired: false);
 }
 
 class TxVerifyToken extends SocketTxMessage {
   static const String type = 'verify-token';
-  final String token;
+  final TxVerifyTokenData proto;
 
-  TxVerifyToken({this.token}) : super(type);
-
-  @override
-  Map<String, dynamic> get data => {'token': token};
+  TxVerifyToken(this.proto) : super(type);
 }

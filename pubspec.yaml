@@ -19,6 +19,7 @@ dependencies:
   web_socket_channel: ^1.1.0
   gm5_utils:
     git: git@github.com:vidklopcic/gm5_utils.git
+  protobuf:
 
 dev_dependencies:
   flutter_test:

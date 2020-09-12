@@ -1,0 +1,20 @@
+syntax = "proto3";
+package authentication;
+
+message RxLoginTokenData {
+  string token = 1;
+}
+
+message RxLoginErrorData {
+  string errorText = 1;
+  string errorCode = 2;
+}
+
+message TxLoginData {
+  string username = 1;
+  string password = 2;
+}
+
+message TxVerifyTokenData {
+  string token = 1;
+}

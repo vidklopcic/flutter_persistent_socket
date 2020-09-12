@@ -1,74 +1,52 @@
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:flutter_persistent_socket/components/files/files_structures.dart';
+import 'package:flutter_persistent_socket/proto/files.pb.dart';
 
 class RxUploadStart extends SocketRxMessage {
   static const String type = 'upload-start';
+  final RxUploadStartData data = RxUploadStartData();
 
-  const RxUploadStart([SocketRxMessageData message]) : super(type, message);
+  RxUploadStart([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxUploadStart fromMessage(SocketRxMessageData message) => RxUploadStart(message);
-
-  String get key => message['key'];
-
-  String get localKey => message['local-key'];
 }
 
 class RxUploadProgress extends SocketRxMessage {
   static const String type = 'upload-progress';
+  RxUploadProgressData data = RxUploadProgressData();
 
-  const RxUploadProgress([SocketRxMessageData message]) : super(type, message);
+  RxUploadProgress([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxUploadProgress fromMessage(SocketRxMessageData message) => RxUploadProgress(message);
-
-  int get nBytes => message['n-bytes'];
-
-  String get key => message['key'];
-
-  String get localKey => message['local-key'];
 }
 
 class RxUploadDone extends SocketRxMessage {
   static const String type = 'upload-done';
+  RxUploadDoneData data = RxUploadDoneData();
 
-  const RxUploadDone([SocketRxMessageData message]) : super(type, message);
+  RxUploadDone([SocketRxMessageData message]) : super(type, message);
 
   @override
   RxUploadDone fromMessage(SocketRxMessageData message) => RxUploadDone(message);
-
-  String get key => message['key'];
-
-  SFile get file => SFile().fromObject(message['file']);
 }
 
 class TxUploadStart extends SocketTxMessage {
   static const String type = 'upload-start';
-  final String localKey;
-  final String extension;
+  final TxUploadStartData proto;
 
-  const TxUploadStart({this.localKey, this.extension}) : super(type);
-
-  @override
-  Map<String, dynamic> get data => {'local-key': localKey, 'extension': extension};
+  const TxUploadStart(this.proto) : super(type);
 }
 
 class TxUploadEnd extends SocketTxMessage {
   static const String type = 'upload-end';
 
   const TxUploadEnd() : super(type);
-
-  @override
-  Map<String, dynamic> get data => {};
 }
 
 class TxDeleteFile extends SocketTxMessage {
   static const String type = 'delete-file';
+  final TxDeleteFileData proto;
 
-  final SFile file;
-
-  const TxDeleteFile({this.file}) : super(type);
-
-  @override
-  Map<String, dynamic> get data => {'file': file.toSerializable()};
+  const TxDeleteFile(this.proto) : super(type);
 }

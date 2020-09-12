@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/components/files/files_messages.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
-import 'package:uuid/uuid.dart';
 
 class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
@@ -21,8 +20,8 @@ class FilesController with SubscriptionsMixin {
 
   void _onUploadStart(RxUploadStart message) {
     FileUploadController controller = createUploadController(message);
-    controller.startUpload(message.key).then((value) {
-      print('uploaded ${message.localKey}');
+    controller.startUpload(message.data.key).then((value) {
+      print('uploaded ${message.data.localKey}');
     });
   }
 }
@@ -115,9 +114,9 @@ class FileUploadController with SubscriptionsMixin {
   }
 
   void _onProgressUpdate(RxUploadProgress message) {
-    if (message.key != remoteKey) return;
-    _log('uploaded ${message.nBytes} bytes');
-    if (message.nBytes == _targetSize) {
+    if (message.data.key != remoteKey) return;
+    _log('uploaded ${message.data.nBytes} bytes');
+    if (message.data.nBytes == _targetSize) {
       _targetSizeCompleter.complete();
     }
   }

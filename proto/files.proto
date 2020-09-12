@@ -1,0 +1,36 @@
+syntax = "proto3";
+package files;
+
+message RxUploadStartData {
+  string key = 1;
+  string localKey = 2;
+
+}
+
+message RxUploadProgressData {
+  int64 nBytes = 1;
+  string key = 2;
+  string localKey = 3;
+}
+
+message RxUploadDoneData {
+  string key = 1;
+  File file = 2;
+}
+
+message File {
+  string localKey = 1;
+  string url = 2;
+  string id = 3;
+}
+
+message TxUploadStartData {
+  string localKey = 1;
+  string extension = 2;
+}
+
+message TxDeleteFileData {
+  File file = 1;
+}
+
+

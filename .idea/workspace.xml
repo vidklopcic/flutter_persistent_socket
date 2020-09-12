@@ -2,14 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/files.pb.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/files.pbenum.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/files.pbserver.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto/authentication.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto/files.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto/generate.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/files/files_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/files/files_structures.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -38,9 +49,14 @@
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/components/files" />
+    <property name="settings.editor.selected.configurable" value="ics" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/proto" />
+      <recent name="$PROJECT_DIR$/proto/authentication" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/components/files" />
     </key>
@@ -147,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598024399564</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="cache keys (not sure of implementation)">
+      <created>1599896802941</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1599896802941</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -174,15 +197,24 @@
     <MESSAGE value="bugfix - remove connector instance on close" />
     <MESSAGE value="add option to invalidate cache" />
     <MESSAGE value="invalidate token on logout" />
-    <option name="LAST_COMMIT_MESSAGE" value="invalidate token on logout" />
+    <MESSAGE value="cache keys (not sure of implementation)" />
+    <option name="LAST_COMMIT_MESSAGE" value="cache keys (not sure of implementation)" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1598024399452">
+    <state x="624" y="305" key="#Plugins" timestamp="1599896926657">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="624" y="305" key="#Plugins/0.0.2048.1280@0.0.2048.1280" timestamp="1599896926657" />
+    <state x="726" y="450" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599899007104">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="726" y="450" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2048.1280@0.0.2048.1280" timestamp="1599899007104" />
+    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1599896802786">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678931577" />
     <state x="2888" y="-292" key="CommitChangelistDialog2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768282482" />
-    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1598024399452" />
+    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1599896802786" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485243" />
     <state x="293" y="161" key="DiffContextDialog" timestamp="1598024388154">
       <screen x="0" y="0" width="2048" height="1280" />
@@ -194,29 +226,41 @@
     </state>
     <state x="571" y="-1002" key="RollbackChangesDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917907" />
     <state x="784" y="389" key="RollbackChangesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1595842733648" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1598024400271">
+    <state x="525" y="279" key="SettingsEditor" timestamp="1599898353188">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="525" y="279" key="SettingsEditor/0.0.2048.1280@0.0.2048.1280" timestamp="1599898353188" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1599896804037">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678932244" />
     <state x="2928" y="-155" key="Vcs.Push.Dialog.v2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768283251" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1598024400271" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1599896804037" />
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485834" />
     <state x="682" y="262" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599811354980">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="682" y="262" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.2048.1280@0.0.2048.1280" timestamp="1599811354980" />
-    <state x="746" y="424" width="695" height="486" key="find.popup" timestamp="1599896768279">
+    <state x="100" y="100" width="1848" height="1080" key="dock-window-1" timestamp="1599900876414">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="100" y="100" width="1848" height="1080" key="dock-window-1/0.0.2048.1280@0.0.2048.1280" timestamp="1599900876414" />
+    <state x="746" y="424" width="695" height="486" key="find.popup" timestamp="1599901917796">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="523" y="-963" width="695" height="486" key="find.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595679692404" />
     <state x="2980" y="-138" width="695" height="729" key="find.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795038561" />
-    <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599896768279" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1599896747423">
+    <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599901917796" />
+    <state x="689" y="305" key="run.anything.popup" timestamp="1599900590569">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="689" y="305" key="run.anything.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599900590569" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1599902520256">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599896747423" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599902520256" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1597828770607" />
   </component>
 </project>

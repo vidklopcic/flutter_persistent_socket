@@ -6,6 +6,7 @@ import 'package:flutter_persistent_socket/components/authentication/authenticati
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:moor/moor.dart';
+import 'package:protobuf/protobuf.dart';
 
 class SocketRxMessageData {
   final bool online;
@@ -39,13 +40,14 @@ class SocketRxMessageData {
 }
 
 abstract class SocketTxMessage {
-  Map<String, dynamic> get data;
-
   final String messageType;
   final bool authRequired;
   final Duration cache;
+  final GeneratedMessage proto = null;
 
   const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache = Duration.zero});
+
+  Map<String, dynamic> get data => proto?.writeToJsonMap() ?? {};
 }
 
 abstract class SocketRxMessage {
@@ -53,12 +55,17 @@ abstract class SocketRxMessage {
   final String messageType;
   final Duration cache;
   final CacheKeys cacheKeys;
+  final GeneratedMessage data = null;
 
   String get cacheUuid => '${message.messageType}|${cacheKeys.keys.map((cacheKey) => message[cacheKey]).join('|')}';
 
-  const SocketRxMessage(this.messageType, this.message)
+  SocketRxMessage(this.messageType, this.message)
       : cache = null,
-        cacheKeys = null;
+        cacheKeys = null {
+    if (message != null && data != null) {
+      data.mergeFromJsonMap(message.data);
+    }
+  }
 
   SocketRxMessage fromMessage(SocketRxMessageData message);
 
