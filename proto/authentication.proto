@@ -1,20 +1,37 @@
 syntax = "proto3";
 package authentication;
 
+/*
+type = 'login-token'
+origin = server
+client cache = years(1)
+ */
 message LoginToken {
   string token = 1;
 }
 
+/*
+type = 'login-error'
+origin = server
+ */
 message LoginError {
   string errorText = 1;
   string errorCode = 2;
 }
 
+/*
+type = 'login
+origin = client
+ */
 message Login {
   string username = 1;
   string password = 2;
 }
 
+/*
+type = 'verify-token'
+origin = client
+ */
 message VerifyToken {
   string token = 1;
 }

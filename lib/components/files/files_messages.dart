@@ -1,9 +1,17 @@
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/proto/files.pb.dart';
 
+class RxUploadStartSlotCacheKeys extends CacheKeys {
+  CacheKey localKey = CacheKey(CacheKeyType.text, 0, 'localKey');
+
+  RxUploadStartSlotCacheKeys() : super(textKeys: ['localKey']);
+}
+
 class RxUploadStartSlot extends SocketRxMessage {
   static const String type = 'upload-start';
   final UploadStartSlot data = UploadStartSlot();
+  final Duration cache = Duration(days: 365);
+  final RxUploadStartSlotCacheKeys cacheKeys = RxUploadStartSlotCacheKeys();
 
   RxUploadStartSlot([SocketRxMessageData message]) : super(type, message);
 

@@ -10,8 +10,6 @@ class RxLoginToken extends SocketRxMessage {
 
   @override
   RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);
-
-  String get token => message['token'];
 }
 
 class RxLoginError extends SocketRxMessage {

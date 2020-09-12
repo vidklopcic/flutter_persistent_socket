@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/components/files/files_messages.dart';
+import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/proto/files.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 
@@ -22,6 +23,8 @@ class FilesController with SubscriptionsMixin {
   void _onUploadStart(RxUploadStartSlot message) {
     FileUploadController controller = createUploadController(message);
     controller.startUpload(message.data.key).then((value) {
+      // todo - test!
+      database.socketRxEventDao.invalidateCacheForCacheUuid(message);
       print('uploaded ${message.data.localKey}');
     });
   }
@@ -71,7 +74,7 @@ class FileUploadController with SubscriptionsMixin {
   }
 
   void dispose() {
-    if (uploadInProgress) throw Exception('upload must be complete');
+    if (uploadInProgress) throw Exception('upload must be completed');
     if (!(_targetSizeCompleter?.isCompleted ?? true)) {
       _targetSizeCompleter.completeError(Exception('disconencted'));
     }

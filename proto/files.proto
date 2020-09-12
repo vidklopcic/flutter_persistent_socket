@@ -1,18 +1,31 @@
 syntax = "proto3";
 package files;
 
+/*
+type = 'upload-start'
+origin = server
+client cache = years(1)
+client cache_keys = text('localKey')
+ */
 message UploadStartSlot {
   string key = 1;
   string localKey = 2;
-
 }
 
+/*
+type = 'upload-progress'
+origin = server
+ */
 message UploadProgress {
   int64 nBytes = 1;
   string key = 2;
   string localKey = 3;
 }
 
+/*
+type = 'upload-done'
+origin = server
+ */
 message UploadDone {
   string key = 1;
   SFile file = 2;
@@ -24,11 +37,19 @@ message SFile {
   string id = 3;
 }
 
+/*
+type = 'upload-start'
+origin = client
+ */
 message UploadStart {
   string localKey = 1;
   string extension = 2;
 }
 
+/*
+type = 'delete-file'
+origin = client
+ */
 message DeleteFile {
   SFile file = 1;
 }
