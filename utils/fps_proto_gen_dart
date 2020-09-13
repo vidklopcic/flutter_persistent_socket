@@ -10,4 +10,4 @@ echo refactoring imports
 sed -i '' 's/files.pb.dart/package:flutter_persistent_socket\/proto\/files.pb.dart/g' ../lib/proto/*
 echo adding to git
 git add ../lib/proto
-echo done
+echo 'done'

@@ -20,7 +20,7 @@ message LoginError {
 }
 
 /*
-type = 'login
+type = 'login'
 origin = client
  */
 message Login {

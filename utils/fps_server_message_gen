@@ -1,0 +1,111 @@
+#!/usr/bin/python3
+
+import argparse
+import sys
+import re
+import os
+
+
+class MessageGen():
+    def __init__(self, path, spec, proto):
+        self.path = path
+        self.proto = proto.strip()
+        self.spec = spec.strip()
+        self.spec_items = [i.strip() for i in self.spec.split('\n') if i.strip()]
+
+    def get_type(self):
+        return re.search('type.+=.+\'(.+)\'', self.spec).group(1)
+
+    def get_import(self):
+        return 'from proto.%s import *' % self.path.split('.proto')[0].split('/')[-1]
+
+    def get_server_prefix(self):
+        if 'client' in re.search('origin.+=(.+)', self.spec).group(1):
+            return 'Rx'
+        else:
+            return 'Tx'
+
+    def get_server_message_classname(self):
+        return self.get_server_prefix() + self.proto
+
+    def get_server_message(self) -> str:
+        message = '''
+
+class %s(%sMessage):
+    type = '%s'
+    proto = %s
+''' % (self.get_server_message_classname(), self.get_server_prefix(), self.get_type(), self.proto)
+
+        return message
+
+    def __str__(self):
+        return self.proto + ' (' + self.path + ')'
+
+
+args = argparse.ArgumentParser(description='Generate message objects from proto and docstring specs.')
+args.add_argument(type=str, nargs='+', dest='protos', help='list of proto files')
+params = args.parse_args(sys.argv[1:])
+
+generators = []
+for f in params.protos:
+    proto_content = open(f, 'r', encoding='utf-8').read()
+    generators += [MessageGen(f, i[0], i[1]) for i in re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
+
+imports = {'from abc import ABC'}
+imports.update(set([i.get_import() for i in generators]))
+
+with open('proto/messages.py', 'w', encoding='utf-8') as f:
+    f.write('\n'.join(imports))
+    f.write('''
+
+
+class RxMessageData:
+    def __init__(self, json_data: dict):
+        self.headers = json_data.get('headers')
+        self.body = json_data.get('body')
+        self.type = self.headers.get('messageType')
+
+
+class RxMessage(ABC):
+    proto = None
+    type = None
+    
+    def __init__(self, data: RxMessageData):
+        self.proto = self.proto().from_dict(data.body)
+    
+    def set_data(self, data: RxMessageData):
+        self.proto = self.proto.from_dict(data.body)
+
+
+class TxMessage(ABC):
+    proto = None
+    type = None
+    
+    def __init__(self):
+        self.proto = self.proto()
+    
+    def get_message(self) -> dict:
+        return {
+            'headers': {
+                'messageType': self.type,
+            },
+            'body': {
+                'messageType': self.type,
+                **self.proto.to_dict()
+            }
+        }
+''')
+
+    classnames = []
+    for generator in generators:
+        try:
+            f.write(generator.get_server_message())
+            classnames.append(generator.get_server_message_classname())
+        except Exception as e:
+            print('Syntax error:', generator)
+            print(e)
+    f.write('''
+
+class Messages:
+    %s
+''' % '\n    '.join(['%s = %s' % (i, i) for i in classnames]))
