@@ -4,7 +4,7 @@ import 'package:flutter_persistent_socket/proto/files.pb.dart';
 class RxUploadStartSlotCacheKeys extends CacheKeys {
   CacheKey localKey = CacheKey(CacheKeyType.text, 0, 'localKey');
 
-  RxUploadStartSlotCacheKeys() : super(textKeys: ['localKey']);
+  RxUploadStartSlotCacheKeys() : super(textKeys: ['localKey'], realKeys: [], dateKeys: []);
 }
 
 class RxUploadStartSlot extends SocketRxMessage {

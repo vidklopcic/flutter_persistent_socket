@@ -8,6 +8,8 @@ echo generating
 protoc -I /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto  --dart_out=../lib/proto **/*.proto
 echo refactoring imports
 sed -i '' 's/files.pb.dart/package:flutter_persistent_socket\/proto\/files.pb.dart/g' ../lib/proto/*
+echo generating dart client rx and tx messages
+fps_dart_client_message_gen /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto**/*.proto ./*.proto
 echo adding to git
-git add ../lib/proto
+git add ../lib/proto ../lib/messages.dart
 echo 'done'

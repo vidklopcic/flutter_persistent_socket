@@ -40,6 +40,7 @@ message SFile {
 /*
 type = 'upload-start'
 origin = client
+client cache = days(1)
  */
 message UploadStart {
   string localKey = 1;
@@ -49,6 +50,7 @@ message UploadStart {
 /*
 type = 'delete-file'
 origin = client
+auth = false
  */
 message DeleteFile {
   SFile file = 1;

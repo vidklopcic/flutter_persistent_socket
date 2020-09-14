@@ -13,4 +13,4 @@ proto_path = ' '.join(['-I ' + i for i in config['protos']])
 protos = ' '.join(['/' + i.strip('/') + '**/*.proto' for i in config['protos']])
 
 s.run('protoc -I /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto %s  --python_betterproto_out=proto /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto**/*.proto %s' % (proto_path, protos), shell=True)
-s.run('fps_server_message_gen /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto**/*.proto %s' % protos, shell=True)
+s.run('fps_python_server_message_gen /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto**/*.proto %s' % protos, shell=True)

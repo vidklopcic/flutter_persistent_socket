@@ -1,0 +1,196 @@
+#!/usr/bin/python3
+
+import argparse
+import sys
+import re
+import os
+
+CACHE_KEYS_CLASS = '''
+class {prefix}{proto}CacheKeys extends CacheKeys {{
+  {fields}
+
+  {prefix}{proto}CacheKeys() : super(textKeys: [{text_keys}], realKeys: [{real_keys}], dateKeys: [{date_keys}]);
+}}'''
+
+RX_MESSAGE_CLASS = '''class Rx{proto} extends SocketRxMessage {{
+  static const String type = '{type}';
+  final {proto} data = {proto}();
+  {fields}
+
+  Rx{proto}([SocketRxMessageData message]) : super(type, message);
+
+  @override
+  Rx{proto} fromMessage(SocketRxMessageData message) => Rx{proto}(message);
+}}
+'''
+
+TX_MESSAGE_CLASS = '''
+
+class Tx{proto} extends SocketTxMessage {{
+  static const String type = '{type}';
+  final {proto} proto;
+
+  const Tx{proto}(this.proto) : super(type, authRequired: {auth}, cache: {cache});
+}}
+'''
+
+
+class MessageGen():
+    def __init__(self, path, spec, proto):
+        self.path = path
+        self.proto = proto.strip()
+        self.spec = spec.strip()
+        self.spec_items = [i.strip() for i in self.spec.split('\n') if i.strip()]
+
+    def get_type(self):
+        return re.search('type.+=.+\'(.+)\'', self.spec).group(1)
+
+    def get_import(self):
+        return "import 'proto/{}.pb.dart';".format(self.path.split('.proto')[0].split('/')[-1])
+
+    def get_client_prefix(self):
+        if 'client' in re.search('origin.+=(.+)', self.spec).group(1):
+            return 'Tx'
+        else:
+            return 'Rx'
+
+    def origin_is_client(self):
+        return 'client' in re.search('origin.+=(.+)', self.spec).group(1)
+
+    def get_client_message_classname(self):
+        return self.get_client_prefix() + self.proto
+
+    def get_client_cache_duration(self):
+        if re.search('client\s+cache\s*=', self.spec):
+            cache = re.search('client\s+cache\s*=(.+)', self.spec).group(1)
+            cache_duration = {
+                'seconds': 0,
+                'minutes': 0,
+                'hours': 0,
+                'days': 0,
+            }
+            if 'seconds' in cache:
+                cache_duration['seconds'] = int(re.search('seconds\((.+)\)', cache).group(1))
+            if 'minutes' in cache:
+                cache_duration['minutes'] = int(re.search('minutes\((.+)\)', cache).group(1))
+            if 'hours' in cache:
+                cache_duration['hours'] = int(re.search('hours\((.+)\)', cache).group(1))
+            if 'days' in cache:
+                cache_duration['days'] = int(re.search('days\((.+)\)', cache).group(1))
+            if 'years' in cache:
+                cache_duration['days'] += int(re.search('years\((.+)\)', cache).group(1)) * 365
+            return 'Duration(days: {days}, hours: {hours}, minutes: {minutes}, seconds: {seconds})'.format(
+                **cache_duration)
+
+    def get_spec_fields_and_cache_class(self):
+        fields = []
+        cache_class = ''
+        client_cache = self.get_client_cache_duration()
+        if client_cache:
+            fields.append('Duration cache = {};'.format(client_cache))
+
+        if re.search('client\s+cache_keys\s*=', self.spec):
+            cache_keys = re.search('client\s+cache_keys\s*=(.+)', self.spec).group(1)
+            text_keys = []
+            real_keys = []
+            date_keys = []
+
+            if re.search('text\((.+)\)', cache_keys):
+                text_keys = re.findall('\'(.+)\'', re.search('text\((.+)\)', cache_keys).group(1))
+            if re.search('real\((.+)\)', cache_keys):
+                real_keys = re.findall('\'(.+)\'', re.search('real\((.+)\)', cache_keys).group(1))
+            if re.search('date\((.+)\)', cache_keys):
+                date_keys = re.findall('\'(.+)\'', re.search('date\((.+)\)', cache_keys).group(1))
+
+            if text_keys or real_keys or date_keys:
+                fields.append('''final {prefix}{proto}CacheKeys cacheKeys = {prefix}{proto}CacheKeys();'''.format(
+                    prefix=self.get_client_prefix(), proto=self.proto))
+                cache_fields = []
+                for i in range(len(text_keys)):
+                    text_key = text_keys[i]
+                    cache_fields.append(
+                        '''CacheKey {0} = CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
+                for i in range(len(real_keys)):
+                    real_key = real_keys[i]
+                    cache_fields.append(
+                        '''CacheKey {0} = CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
+                for i in range(len(date_keys)):
+                    date_key = date_keys[i]
+                    cache_fields.append(
+                        '''CacheKey {0} = CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
+                cache_class = CACHE_KEYS_CLASS.format(prefix=self.get_client_prefix(), proto=self.proto,
+                                                      text_keys="'" + "', ".join(text_keys) + "'" if text_keys else '',
+                                                      real_keys="'" + "', ".join(real_keys) + "'" if real_keys else '',
+                                                      date_keys="'" + "', ".join(date_keys) + "'" if date_keys else '',
+                                                      fields='\n  '.join(cache_fields))
+
+        return fields, cache_class
+
+    def is_auth_required(self):
+        auth = re.search('auth\s*=\s*(.+)\s*', self.spec)
+        if auth:
+            return auth.group(1)
+        else:
+            return 'true'
+
+    def get_client_message(self) -> str:
+        fields, cache_class = self.get_spec_fields_and_cache_class()
+        if self.origin_is_client():
+            cache_duration = self.get_client_cache_duration()
+            return TX_MESSAGE_CLASS.format(
+                prefix=self.get_client_prefix(),
+                type=self.get_type(),
+                proto=self.proto,
+                auth=self.is_auth_required(),
+                cache=('const ' + cache_duration) if cache_duration else 'Duration.zero',
+            )
+        else:
+            return cache_class + '\n\n' + RX_MESSAGE_CLASS.format(
+                prefix=self.get_client_prefix(),
+                type=self.get_type(),
+                proto=self.proto,
+                fields='\n  '.join(fields),
+            )
+
+    def __eq__(self, other):
+        return isinstance(other, MessageGen) and self.proto == other.proto
+
+    def __hash__(self):
+        return hash(self.proto)
+
+    def __str__(self):
+        return self.proto + ' (' + self.path + ')'
+
+
+args = argparse.ArgumentParser(description='Generate message objects from proto and docstring specs.')
+args.add_argument(type=str, nargs='+', dest='protos', help='list of proto files')
+params = args.parse_args(sys.argv[1:])
+
+generators = []
+for f in params.protos:
+    proto_content = open(f, 'r', encoding='utf-8').read()
+    generators += [MessageGen(f, i[0], i[1]) for i in
+                   re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
+generators = set(generators)
+
+imports = set()
+imports.add("import 'package:flutter_persistent_socket/communication/socket_messages.dart';")
+imports.update(set([i.get_import() for i in generators]))
+
+with open('../lib/messages.dart', 'w', encoding='utf-8') as f:
+    f.write('\n'.join(imports))
+
+    rx_classnames = []
+    for generator in generators:
+        try:
+            f.write(generator.get_client_message())
+            if not generator.origin_is_client():
+                rx_classnames.append(generator.get_client_message_classname())
+        except IndexError as e:
+            print('Syntax error:', generator)
+            print(e)
+    f.write('''
+
+List<SocketRxMessage> rxMessages = [
+  %s
+];''' % ',\n  '.join(['{}()'.format(i) for i in rx_classnames]))

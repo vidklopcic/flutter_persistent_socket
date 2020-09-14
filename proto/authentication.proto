@@ -22,6 +22,7 @@ message LoginError {
 /*
 type = 'login'
 origin = client
+auth = false
  */
 message Login {
   string username = 1;
@@ -31,6 +32,7 @@ message Login {
 /*
 type = 'verify-token'
 origin = client
+auth = false
  */
 message VerifyToken {
   string token = 1;

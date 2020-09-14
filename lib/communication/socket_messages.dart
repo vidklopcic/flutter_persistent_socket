@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
-import 'package:flutter_persistent_socket/components/authentication/authentication_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:moor/moor.dart';

@@ -108,4 +108,4 @@ class TxMessage(ABC):
 
 class Messages:
     %s
-''' % '\n    '.join(['%s = %s' % (i, i) for i in classnames]))
+''' % '\n    '.join(['%s = %s' % (i.lower()[0] + i[1:], i) for i in classnames]))
