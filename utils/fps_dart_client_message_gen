@@ -30,7 +30,7 @@ class Tx{proto} extends SocketTxMessage {{
   static const String type = '{type}';
   final {proto} proto;
 
-  const Tx{proto}(this.proto) : super(type, authRequired: {auth}, cache: {cache});
+  const Tx{proto}([this.proto=const {proto}()]) : super(type, authRequired: {auth}, cache: {cache});
 }}
 '''
 

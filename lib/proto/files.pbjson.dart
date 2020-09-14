@@ -54,3 +54,7 @@ const DeleteFile$json = const {
   ],
 };
 
+const UploadEnd$json = const {
+  '1': 'UploadEnd',
+};
+

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package authentication;
+
+/*
+type = 'form-errors'
+origin = server
+ */
+message FormErrors {
+  string relatedMessageType = 1;
+
+  map<string, SList> errors = 2;
+}
+
+message SList {
+  repeated string list = 1;
+}

@@ -270,3 +270,24 @@ class DeleteFile extends $pb.GeneratedMessage {
   SFile ensureFile() => $_ensure(0);
 }
 
+class UploadEnd extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadEnd', package: const $pb.PackageName('files'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  UploadEnd._() : super();
+  factory UploadEnd() => create();
+  factory UploadEnd.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadEnd.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadEnd clone() => UploadEnd()..mergeFromMessage(this);
+  UploadEnd copyWith(void Function(UploadEnd) updates) => super.copyWith((message) => updates(message as UploadEnd));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static UploadEnd create() => UploadEnd._();
+  UploadEnd createEmptyInstance() => create();
+  static $pb.PbList<UploadEnd> createRepeated() => $pb.PbList<UploadEnd>();
+  @$core.pragma('dart2js:noInline')
+  static UploadEnd getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadEnd>(create);
+  static UploadEnd _defaultInstance;
+}
+

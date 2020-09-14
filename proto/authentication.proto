@@ -37,3 +37,11 @@ auth = false
 message VerifyToken {
   string token = 1;
 }
+
+/*
+type = 'token-invalid'
+origin = server
+ */
+message TokenInvalid {
+
+}

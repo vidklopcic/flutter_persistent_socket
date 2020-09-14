@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
-import 'package:flutter_persistent_socket/rx_messages.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:gm5_utils/gm5_utils.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
+
+import '../messages.dart';
 
 class SocketApi with SubscriptionsMixin {
   static Map<String, SocketApi> _instances = {};

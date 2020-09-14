@@ -35,3 +35,7 @@ const VerifyToken$json = const {
   ],
 };
 
+const TokenInvalid$json = const {
+  '1': 'TokenInvalid',
+};
+

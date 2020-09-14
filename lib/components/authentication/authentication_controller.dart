@@ -1,8 +1,9 @@
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
-import 'package:flutter_persistent_socket/components/authentication/authentication_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/proto/authentication.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
+
+import '../../messages.dart';
 
 abstract class AuthenticationController with SubscriptionsMixin {
   final SocketApi socketApi;

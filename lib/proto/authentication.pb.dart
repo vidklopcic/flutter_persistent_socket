@@ -153,3 +153,24 @@ class VerifyToken extends $pb.GeneratedMessage {
   void clearToken() => clearField(1);
 }
 
+class TokenInvalid extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenInvalid', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  TokenInvalid._() : super();
+  factory TokenInvalid() => create();
+  factory TokenInvalid.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TokenInvalid.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  TokenInvalid clone() => TokenInvalid()..mergeFromMessage(this);
+  TokenInvalid copyWith(void Function(TokenInvalid) updates) => super.copyWith((message) => updates(message as TokenInvalid));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TokenInvalid create() => TokenInvalid._();
+  TokenInvalid createEmptyInstance() => create();
+  static $pb.PbList<TokenInvalid> createRepeated() => $pb.PbList<TokenInvalid>();
+  @$core.pragma('dart2js:noInline')
+  static TokenInvalid getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenInvalid>(create);
+  static TokenInvalid _defaultInstance;
+}
+
