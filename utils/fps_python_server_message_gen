@@ -93,7 +93,7 @@ class RxMessage(ABC):
             return self.fields
         for field in dataclasses.fields(self.proto):
             meta = field.metadata['betterproto']
-            self.fields[str(meta.number)] = field.name
+            self.fields[str(meta.number)] = betterproto.Casing.CAMEL(field.name)
         return self.fields
 
     def set_by_number(self, data: dict):
@@ -123,10 +123,7 @@ class TxMessage(ABC):
             'headers': {
                 'messageType': self.type,
             },
-            'body': {
-                'messageType': self.type,
-                **self.to_number_dict()
-            }
+            'body': self.to_number_dict()
         }
 
     def get_field_map(self) -> Dict[str, str]:
@@ -134,14 +131,14 @@ class TxMessage(ABC):
             return self.fields
         for field in dataclasses.fields(self.proto):
             meta = field.metadata['betterproto']
-            self.fields[field.name] = str(meta.number)
+            self.fields[betterproto.Casing.CAMEL(field.name)] = str(meta.number)
         return self.fields
 
     def to_number_dict(self):
         name_dict = self.proto.to_dict()
         fields = self.get_field_map()
+        print(fields, name_dict, 'eheras')
         return {fields[k]: name_dict[k] for k in name_dict}
-
 ''')
 
     classnames = []
