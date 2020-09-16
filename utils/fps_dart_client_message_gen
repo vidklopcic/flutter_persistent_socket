@@ -30,7 +30,7 @@ class Tx{proto} extends SocketTxMessage {{
   static const String type = '{type}';
   final {proto} proto;
 
-  const Tx{proto}([this.proto=const {proto}()]) : super(type, authRequired: {auth}, cache: {cache});
+  const Tx{proto}(this.proto) : super(type, authRequired: {auth}, cache: {cache});
 }}
 '''
 
@@ -46,7 +46,10 @@ class MessageGen():
         return re.search('type.+=.+\'(.+)\'', self.spec).group(1)
 
     def get_import(self):
-        return "import 'proto/{}.pb.dart';".format(self.path.split('.proto')[0].split('/')[-1])
+        prefix = ''
+        if 'flutter_persistent_socket' in self.path:
+            prefix = 'package:flutter_persistent_socket/'
+        return "import '{}proto/{}.pb.dart';".format(prefix, self.path.split('.proto')[0].split('/')[-1])
 
     def get_client_prefix(self):
         if 'client' in re.search('origin.+=(.+)', self.spec).group(1):
@@ -175,6 +178,8 @@ generators = set(generators)
 
 imports = set()
 imports.add("import 'package:flutter_persistent_socket/communication/socket_messages.dart';")
+imports.add("import 'package:provider/provider.dart';")
+imports.add("import 'package:flutter_persistent_socket/communication/socket_api.dart';")
 imports.update(set([i.get_import() for i in generators]))
 
 with open('../lib/messages.dart', 'w', encoding='utf-8') as f:
@@ -194,3 +199,15 @@ with open('../lib/messages.dart', 'w', encoding='utf-8') as f:
 List<SocketRxMessage> rxMessages = [
   %s
 ];''' % ',\n  '.join(['{}()'.format(i) for i in rx_classnames]))
+    f.write('''
+    
+List<StreamProvider> getMessageProviders(SocketApi api) => [
+  {}
+];'''.format(
+        ',\n  '.join([
+            '''StreamProvider<{0}>(
+          create: (c) => api.getMessageHandler({0}()),
+          lazy: true,
+        )'''.format(m) for m in rx_classnames
+        ])
+    ))

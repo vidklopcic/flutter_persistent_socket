@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector_stub.dart'
     if (dart.library.io) 'package:flutter_persistent_socket/communication/socket_connector_native.dart'
     if (dart.library.html) 'package:flutter_persistent_socket/communication/socket_connector_web.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-class SocketConnector {
+class SocketConnector with ChangeNotifier {
   static const int RECONNECT_INTERVAL_S = 2;
 
   static final Map<String, SocketConnector> _instances = {};
@@ -59,11 +60,14 @@ class SocketConnector {
   void _connect() async {
     if (_closed) return;
     print('connecting to $address');
+    bool changed = connected.val != false;
     connected.val = false;
+    if (changed) notifyListeners();
     channel?.sink?.close();
     channel = await getWebSocketChannel(address, onData: _onData, onDone: _onDone, onError: _onError);
     if (channel == null) return;
     connected.val = true;
+    notifyListeners();
     print('$address connected');
   }
 

@@ -5,7 +5,7 @@ cd proto || ( echo You must store the proto files in the proto directory! && kil
 echo removing old genereated entries
 rm -rf ../lib/proto/*
 echo generating
-protoc -I /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto  --dart_out=../lib/proto **/*.proto
+protoc -I /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto -I ./  --dart_out=../lib/proto **/*.proto
 echo refactoring imports
 sed -i '' 's/files.pb.dart/package:flutter_persistent_socket\/proto\/files.pb.dart/g' ../lib/proto/*
 echo generating dart client rx and tx messages

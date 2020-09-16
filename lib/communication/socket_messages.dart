@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:moor/moor.dart';
 import 'package:protobuf/protobuf.dart';
 
 class SocketRxMessageData {
-  final bool online;
+  bool online;
   final bool fromCache;
   final DateTime time;
   final String raw;
@@ -18,6 +19,8 @@ class SocketRxMessageData {
   SocketRxMessageData(this.raw, {@required this.online, this.fromCache = false})
       : this.time = DateTime.now(),
         data = json.decode(raw);
+
+  Map<String, dynamic> get body => data['body'] ?? data;
 
   operator [](String key) => (data['body'] ?? data)[key];
 
@@ -61,7 +64,7 @@ abstract class SocketRxMessage {
       : cache = null,
         cacheKeys = null {
     if (message != null && data != null) {
-      data.mergeFromJsonMap(message.data);
+      data.mergeFromJsonMap(message.body);
     }
   }
 
@@ -71,6 +74,11 @@ abstract class SocketRxMessage {
     String key = cacheKeys.getKey(type, index);
     if (key == null) return null;
     return message[key];
+  }
+
+  Future save() {
+    message.online = false;
+    return database.socketRxEventDao.cacheEvent(this);
   }
 }
 

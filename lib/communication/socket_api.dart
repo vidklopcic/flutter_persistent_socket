@@ -13,7 +13,7 @@ import 'package:moor/moor.dart';
 
 import '../messages.dart';
 
-class SocketApi with SubscriptionsMixin {
+class SocketApi with SubscriptionsMixin, ChangeNotifier {
   static Map<String, SocketApi> _instances = {};
   String _token;
 
@@ -40,11 +40,18 @@ class SocketApi with SubscriptionsMixin {
     listen(connection.connected.changes, _connectionStateChange);
     listen(connection.dataStream, _onData);
     setMessages(rxMessages);
+    connection.addListener(_connectionChange);
+  }
+
+  void _connectionChange() {
+    notifyListeners();
   }
 
   void setAuth(String token) {
+    bool changed = _token != token;
     _token = token;
     authenticated.val = token != null;
+    notifyListeners();
   }
 
   void changeAddress(String address) {
@@ -60,15 +67,12 @@ class SocketApi with SubscriptionsMixin {
   void sendMessage(SocketTxMessage message) {
     _txMessageHandlers[message.messageType]?.add(message);
     String msg = json.encode({
-      'body': {
-        'messageType': message.messageType,
-        'eventTime': gm5Utils.secondsFromEpoch,
-        'localTime': gm5Utils.secondsFromEpoch,
-        ...message.data,
-      },
+      'body': message.data,
       'headers': {
         'messageType': message.messageType,
         'authHeader': message.authRequired ? _token : null,
+        'eventTime': gm5Utils.secondsFromEpoch,
+        'localTime': gm5Utils.secondsFromEpoch,
       }
     });
     print('txevent: $msg');
@@ -90,6 +94,11 @@ class SocketApi with SubscriptionsMixin {
     }
   }
 
+  void fireLocalUpdate(SocketRxMessage message) {
+    message.message.online = false;
+    _messageHandlers[message.messageType].add(message);
+  }
+
   void _onData(event) {
     print('rxevent: $event');
     SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
@@ -105,12 +114,13 @@ class SocketApi with SubscriptionsMixin {
     return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
   }
 
-  Stream getMessageHandler(SocketRxMessage message, {bool withoutCache = false, SocketRxMessageQueryFilter filter}) {
+  Stream<T> getMessageHandler<T extends SocketRxMessage>(T message,
+      {bool withoutCache = false, SocketRxMessageQueryFilter filter}) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
     Stream stream = _messageHandlers
         .putIfAbsent(
             message.messageType,
-            () => StreamController.broadcast(
+            () => StreamController<T>.broadcast(
                 onListen: message.cache == Duration.zero ? null : () => fireFromCache(message, filter: filter)))
         .stream;
     if (withoutCache) {
@@ -168,6 +178,7 @@ class SocketApi with SubscriptionsMixin {
   }
 
   void close() {
+    connection.removeListener(_connectionChange);
     cancelSubscriptions();
     for (StreamController controller in _messageHandlers.values) {
       controller.close();
