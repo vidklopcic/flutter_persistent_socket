@@ -9,10 +9,13 @@ abstract class AuthenticationController with SubscriptionsMixin {
   final SocketApi socketApi;
 
   AuthenticationController(this.socketApi) {
-    listen(socketApi.getMessageHandler(RxLoginToken()), (message) => socketApi.setAuth(message.token));
+    listen(
+        socketApi.getMessageHandler(RxLoginToken()), (RxLoginToken message) => socketApi.setAuth(message.data.token));
     listen(socketApi.getMessageHandler(RxLoginError()), (_) => _logout());
     listen(socketApi.getMessageHandler(RxTokenInvalid()), (_) => _logout());
-    socketApi.connection.whenConnected.then((value) => verifyToken());
+    socketApi
+        .fireFromCache(RxLoginToken())
+        .then((value) => socketApi.connection.whenConnected.then((value) => verifyToken()));
   }
 
   void _logout() {

@@ -22,7 +22,7 @@ class SocketRxMessageData {
 
   Map<String, dynamic> get body => data['body'] ?? data;
 
-  operator [](String key) => (data['body'] ?? data)[key];
+  operator [](String key) => (data['body'] ?? data)[key] ?? (data['headers'] ?? {})[key];
 
   operator ==(Object other) => other is SocketRxMessageData && other.raw == raw;
 
@@ -58,7 +58,7 @@ abstract class SocketRxMessage {
   final CacheKeys cacheKeys;
   final GeneratedMessage data = null;
 
-  String get cacheUuid => '${message.messageType}|${cacheKeys.keys.map((cacheKey) => message[cacheKey]).join('|')}';
+  String get cacheUuid => '${message.messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => message[cacheKey]).join('|')}';
 
   SocketRxMessage(this.messageType, this.message)
       : cache = null,
@@ -71,7 +71,7 @@ abstract class SocketRxMessage {
   SocketRxMessage fromMessage(SocketRxMessageData message);
 
   dynamic getCacheVal(CacheKeyType type, int index) {
-    String key = cacheKeys.getKey(type, index);
+    String key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
     return message[key];
   }
