@@ -72,7 +72,7 @@ class RxMessageData:
     def __init__(self, json_data: dict):
         self.headers = json_data.get('headers')
         self.body = json_data.get('body')
-        self.authHeader = json_data.get('authHeader')
+        self.authHeader = self.headers.get('authHeader')
         self.type = self.headers.get('messageType')
 
 
@@ -80,10 +80,10 @@ class RxMessage(ABC):
     proto = None
     type = None
     auth_required = True
-    fields = {}
 
     def __init__(self, data: RxMessageData):
-        self.proto = self.proto().from_dict(data.body)
+        self.fields = {}
+        self.set_data(data)
 
     def set_data(self, data: RxMessageData):
         self.set_by_number(data.body)
@@ -104,14 +104,15 @@ class RxMessage(ABC):
             if not field:
                 continue
             name_dict[field] = data[key]
+        self.proto = self.proto(**name_dict)
 
 
 class TxMessage(ABC):
     proto: betterproto.Message = None
     type: str = None
-    fields = {}
 
     def __init__(self, proto=None):
+        self.fields = {}
         if proto is not None:
             assert type(proto) is self.proto
             self.proto = proto
@@ -137,7 +138,6 @@ class TxMessage(ABC):
     def to_number_dict(self):
         name_dict = self.proto.to_dict()
         fields = self.get_field_map()
-        print(fields, name_dict, 'eheras')
         return {fields[k]: name_dict[k] for k in name_dict}
 ''')
 

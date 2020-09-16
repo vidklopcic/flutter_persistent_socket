@@ -30,7 +30,7 @@ class Tx{proto} extends SocketTxMessage {{
   static const String type = '{type}';
   final {proto} proto;
 
-  const Tx{proto}(this.proto) : super(type, authRequired: {auth}, cache: {cache});
+  const Tx{proto}([this.proto]) : super(type, authRequired: {auth}, cache: {cache});
 }}
 '''
 
@@ -180,6 +180,7 @@ imports = set()
 imports.add("import 'package:flutter_persistent_socket/communication/socket_messages.dart';")
 imports.add("import 'package:provider/provider.dart';")
 imports.add("import 'package:flutter_persistent_socket/communication/socket_api.dart';")
+imports.add("import 'package:provider/single_child_widget.dart';")
 imports.update(set([i.get_import() for i in generators]))
 
 with open('../lib/messages.dart', 'w', encoding='utf-8') as f:
@@ -201,13 +202,21 @@ List<SocketRxMessage> rxMessages = [
 ];''' % ',\n  '.join(['{}()'.format(i) for i in rx_classnames]))
     f.write('''
     
-List<StreamProvider> getMessageProviders(SocketApi api) => [
-  {}
+List<SingleChildWidget> getMessageProviders(SocketApi api) => [
+      {}
 ];'''.format(
-        ',\n  '.join([
+        ',\n      '.join([
             '''StreamProvider<{0}>(
-          create: (c) => api.getMessageHandler({0}()),
-          lazy: true,
-        )'''.format(m) for m in rx_classnames
+        create: (c) => _getMessageHandler(api, {0}()),
+        lazy: true,
+      )'''.format(m) for m in rx_classnames
         ])
     ))
+
+    f.write('''
+
+Stream<T> _getMessageHandler<T extends SocketRxMessage>(SocketApi api, T message) {
+  Stream<T> s = api.getMessageHandler(message);
+  api.fireFromCache(message);
+  return s;
+}''')
