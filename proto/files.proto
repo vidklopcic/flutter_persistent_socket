@@ -44,6 +44,7 @@ origin = client
 message UploadStart {
   string localKey = 1;
   string extension = 2;
+  string name = 3;
 }
 
 /*

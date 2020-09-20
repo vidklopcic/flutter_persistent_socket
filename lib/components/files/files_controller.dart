@@ -12,6 +12,10 @@ import '../../messages.dart';
 class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
   final FileUploadController Function(RxUploadStartSlot) createUploadController;
+  final StreamController<RxUploadProgress> _progressEvents = StreamController.broadcast();
+
+  Stream<RxUploadProgress> get progressEvents => _progressEvents.stream;
+  Map<String, FileUploadController> _uploadControllers = {};
 
   FilesController(this.socketApi, this.createUploadController) {
     listen(socketApi.getMessageHandler(RxUploadStartSlot()), _onUploadStart);
@@ -23,6 +27,8 @@ class FilesController with SubscriptionsMixin {
 
   void _onUploadStart(RxUploadStartSlot message) {
     FileUploadController controller = createUploadController(message);
+    _uploadControllers[message.data.localKey] = controller;
+    controller.filesController = this;
     controller.startUpload(message.data.key).then((value) {
       // todo - test!
       database.socketRxEventDao.invalidateCacheForCacheUuid(message);
@@ -35,6 +41,10 @@ class FilesController with SubscriptionsMixin {
     file.localKey = null;
     file.url = null;
   }
+
+  void cancelUpload(String localKey) {
+    _uploadControllers[localKey]?.cancel();
+  }
 }
 
 class FileUploadController with SubscriptionsMixin {
@@ -44,6 +54,7 @@ class FileUploadController with SubscriptionsMixin {
   final String Function(String) getUploadUrl;
   final String extension;
 
+  FilesController filesController;
   Stream<List<int>> _data;
   String remoteKey;
   SocketApi uploadApi;
@@ -125,10 +136,16 @@ class FileUploadController with SubscriptionsMixin {
   }
 
   void _onProgressUpdate(RxUploadProgress message) {
+    filesController._progressEvents.add(message);
     if (message.data.key != remoteKey) return;
     _log('uploaded ${message.data.nBytes} bytes');
     if (message.data.nBytes == _targetSize) {
       _targetSizeCompleter.complete();
     }
+  }
+
+  void cancel() {
+    _uploadInProgress = false;
+    dispose();
   }
 }

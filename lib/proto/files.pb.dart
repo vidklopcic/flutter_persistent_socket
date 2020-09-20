@@ -200,6 +200,7 @@ class UploadStart extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStart', package: const $pb.PackageName('files'), createEmptyInstance: create)
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'extension')
+    ..aOS(3, 'name')
     ..hasRequiredFields = false
   ;
 
@@ -235,6 +236,15 @@ class UploadStart extends $pb.GeneratedMessage {
   $core.bool hasExtension_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearExtension_2() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => clearField(3);
 }
 
 class DeleteFile extends $pb.GeneratedMessage {

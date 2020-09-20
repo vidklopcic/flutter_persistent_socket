@@ -22,7 +22,7 @@ class SocketRxMessageData {
 
   Map<String, dynamic> get body => data['body'] ?? data;
 
-  operator [](String key) => (data['body'] ?? data)[key] ?? (data['headers'] ?? {})[key];
+  operator [](String key) => (data['headers'] ?? {})[key] ?? (data['body'] ?? data)[key];
 
   operator ==(Object other) => other is SocketRxMessageData && other.raw == raw;
 

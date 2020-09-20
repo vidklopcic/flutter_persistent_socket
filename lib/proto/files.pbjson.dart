@@ -44,6 +44,7 @@ const UploadStart$json = const {
   '2': const [
     const {'1': 'localKey', '3': 1, '4': 1, '5': 9, '10': 'localKey'},
     const {'1': 'extension', '3': 2, '4': 1, '5': 9, '10': 'extension'},
+    const {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 

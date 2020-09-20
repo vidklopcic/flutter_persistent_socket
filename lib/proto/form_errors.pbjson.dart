@@ -9,7 +9,7 @@ const FormErrors$json = const {
   '1': 'FormErrors',
   '2': const [
     const {'1': 'relatedMessageType', '3': 1, '4': 1, '5': 9, '10': 'relatedMessageType'},
-    const {'1': 'errors', '3': 2, '4': 3, '5': 11, '6': '.authentication.FormErrors.ErrorsEntry', '10': 'errors'},
+    const {'1': 'errors', '3': 2, '4': 3, '5': 11, '6': '.form_errors.FormErrors.ErrorsEntry', '10': 'errors'},
   ],
   '3': const [FormErrors_ErrorsEntry$json],
 };
@@ -18,7 +18,7 @@ const FormErrors_ErrorsEntry$json = const {
   '1': 'ErrorsEntry',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'value', '3': 2, '4': 1, '5': 11, '6': '.authentication.SList', '10': 'value'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 11, '6': '.form_errors.SList', '10': 'value'},
   ],
   '7': const {'7': true},
 };

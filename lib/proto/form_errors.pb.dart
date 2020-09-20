@@ -10,9 +10,9 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class FormErrors extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('FormErrors', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('FormErrors', package: const $pb.PackageName('form_errors'), createEmptyInstance: create)
     ..aOS(1, 'relatedMessageType', protoName: 'relatedMessageType')
-    ..m<$core.String, SList>(2, 'errors', entryClassName: 'FormErrors.ErrorsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: SList.create, packageName: const $pb.PackageName('authentication'))
+    ..m<$core.String, SList>(2, 'errors', entryClassName: 'FormErrors.ErrorsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: SList.create, packageName: const $pb.PackageName('form_errors'))
     ..hasRequiredFields = false
   ;
 
@@ -45,7 +45,7 @@ class FormErrors extends $pb.GeneratedMessage {
 }
 
 class SList extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SList', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SList', package: const $pb.PackageName('form_errors'), createEmptyInstance: create)
     ..pPS(1, 'list')
     ..hasRequiredFields = false
   ;

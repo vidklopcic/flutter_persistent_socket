@@ -116,9 +116,9 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         .stream;
   }
 
-  Stream<T> getMessageHandler<T extends SocketRxMessage>(T message) {
+  Stream getMessageHandler<T extends SocketRxMessage>(T message) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
-    Stream stream = _messageHandlers
+    Stream<T> stream = _messageHandlers
         .putIfAbsent(message.messageType, () => StreamController<T>.broadcast())
         .stream;
     return stream;
