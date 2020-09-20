@@ -1,5 +1,5 @@
 syntax = "proto3";
-package files;
+package sfiles;
 
 /*
 type = 'upload-start'

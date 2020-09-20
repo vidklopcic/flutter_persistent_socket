@@ -31,6 +31,8 @@ class Tx{proto} extends SocketTxMessage {{
   final {proto} proto;
 
   const Tx{proto}([this.proto]) : super(type, authRequired: {auth}, cache: {cache});
+  
+  static {proto} get newProto => {proto}();
 }}
 '''
 

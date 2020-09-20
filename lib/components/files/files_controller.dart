@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
-import 'package:flutter_persistent_socket/proto/files.pb.dart';
+import 'package:flutter_persistent_socket/proto/sfiles.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 
 import '../../messages.dart';
@@ -124,6 +124,7 @@ class FileUploadController with SubscriptionsMixin {
           }
         }
         uploadApi.sendMessage(TxUploadEnd(UploadEnd()));
+        await Future.delayed(Duration(seconds: 5));
         _uploadInProgress = false;
         _log('upload done');
         dispose();

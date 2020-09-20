@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: files.proto
+//  source: sfiles.proto
 //
 // @dart = 2.3
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
@@ -11,7 +11,7 @@ import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class UploadStartSlot extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStartSlot', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStartSlot', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOS(1, 'key')
     ..aOS(2, 'localKey', protoName: 'localKey')
     ..hasRequiredFields = false
@@ -52,7 +52,7 @@ class UploadStartSlot extends $pb.GeneratedMessage {
 }
 
 class UploadProgress extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadProgress', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadProgress', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aInt64(1, 'nBytes', protoName: 'nBytes')
     ..aOS(2, 'key')
     ..aOS(3, 'localKey', protoName: 'localKey')
@@ -103,7 +103,7 @@ class UploadProgress extends $pb.GeneratedMessage {
 }
 
 class UploadDone extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadDone', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadDone', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOS(1, 'key')
     ..aOM<SFile>(2, 'file', subBuilder: SFile.create)
     ..hasRequiredFields = false
@@ -146,7 +146,7 @@ class UploadDone extends $pb.GeneratedMessage {
 }
 
 class SFile extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SFile', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SFile', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'url')
     ..aOS(3, 'id')
@@ -197,7 +197,7 @@ class SFile extends $pb.GeneratedMessage {
 }
 
 class UploadStart extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStart', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadStart', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'extension')
     ..aOS(3, 'name')
@@ -248,7 +248,7 @@ class UploadStart extends $pb.GeneratedMessage {
 }
 
 class DeleteFile extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('DeleteFile', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('DeleteFile', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOM<SFile>(1, 'file', subBuilder: SFile.create)
     ..hasRequiredFields = false
   ;
@@ -281,7 +281,7 @@ class DeleteFile extends $pb.GeneratedMessage {
 }
 
 class UploadEnd extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadEnd', package: const $pb.PackageName('files'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadEnd', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 

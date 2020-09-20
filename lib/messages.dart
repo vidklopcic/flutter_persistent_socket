@@ -1,66 +1,30 @@
-import 'proto/authentication.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
-import 'proto/form_errors.pb.dart';
-import 'proto/files.pb.dart';
-import 'package:provider/single_child_widget.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-class RxUploadStartSlotCacheKeys extends CacheKeys {
-  CacheKey localKey = CacheKey(CacheKeyType.text, 0, 'localKey');
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'proto/authentication.pb.dart';
+import 'package:provider/provider.dart';
+import 'proto/form_errors.pb.dart';
+import 'proto/sfiles.pb.dart';
+import 'package:provider/single_child_widget.dart';
 
-  RxUploadStartSlotCacheKeys() : super(textKeys: ['localKey'], realKeys: [], dateKeys: []);
-}
+class TxDeleteFile extends SocketTxMessage {
+  static const String type = 'delete-file';
+  final DeleteFile proto;
 
-class RxUploadStartSlot extends SocketRxMessage {
-  static const String type = 'upload-start';
-  final UploadStartSlot data = UploadStartSlot();
-  Duration cache = Duration(days: 365, hours: 0, minutes: 0, seconds: 0);
-  final RxUploadStartSlotCacheKeys cacheKeys = RxUploadStartSlotCacheKeys();
-
-  RxUploadStartSlot([SocketRxMessageData message]) : super(type, message);
-
-  @override
-  RxUploadStartSlot fromMessage(SocketRxMessageData message) => RxUploadStartSlot(message);
-}
-
-
-class TxLogin extends SocketTxMessage {
-  static const String type = 'login';
-  final Login proto;
-
-  const TxLogin([this.proto]) : super(type, authRequired: false, cache: Duration.zero);
+  const TxDeleteFile([this.proto]) : super(type, authRequired: true, cache: Duration.zero);
+  
+  static DeleteFile get newProto => DeleteFile();
 }
 
 
-class RxUploadProgress extends SocketRxMessage {
-  static const String type = 'upload-progress';
-  final UploadProgress data = UploadProgress();
+class RxFormErrors extends SocketRxMessage {
+  static const String type = 'form-errors';
+  final FormErrors data = FormErrors();
   
 
-  RxUploadProgress([SocketRxMessageData message]) : super(type, message);
+  RxFormErrors([SocketRxMessageData message]) : super(type, message);
 
   @override
-  RxUploadProgress fromMessage(SocketRxMessageData message) => RxUploadProgress(message);
-}
-
-
-class TxUploadStart extends SocketTxMessage {
-  static const String type = 'upload-start';
-  final UploadStart proto;
-
-  const TxUploadStart([this.proto]) : super(type, authRequired: true, cache: Duration.zero);
-}
-
-
-class RxLoginError extends SocketRxMessage {
-  static const String type = 'login-error';
-  final LoginError data = LoginError();
-  
-
-  RxLoginError([SocketRxMessageData message]) : super(type, message);
-
-  @override
-  RxLoginError fromMessage(SocketRxMessageData message) => RxLoginError(message);
+  RxFormErrors fromMessage(SocketRxMessageData message) => RxFormErrors(message);
 }
 
 
@@ -81,14 +45,8 @@ class TxUploadEnd extends SocketTxMessage {
   final UploadEnd proto;
 
   const TxUploadEnd([this.proto]) : super(type, authRequired: true, cache: Duration.zero);
-}
-
-
-class TxDeleteFile extends SocketTxMessage {
-  static const String type = 'delete-file';
-  final DeleteFile proto;
-
-  const TxDeleteFile([this.proto]) : super(type, authRequired: true, cache: Duration.zero);
+  
+  static UploadEnd get newProto => UploadEnd();
 }
 
 
@@ -104,23 +62,45 @@ class RxTokenInvalid extends SocketRxMessage {
 }
 
 
-class RxFormErrors extends SocketRxMessage {
-  static const String type = 'form-errors';
-  final FormErrors data = FormErrors();
+class RxUploadProgress extends SocketRxMessage {
+  static const String type = 'upload-progress';
+  final UploadProgress data = UploadProgress();
   
 
-  RxFormErrors([SocketRxMessageData message]) : super(type, message);
+  RxUploadProgress([SocketRxMessageData message]) : super(type, message);
 
   @override
-  RxFormErrors fromMessage(SocketRxMessageData message) => RxFormErrors(message);
+  RxUploadProgress fromMessage(SocketRxMessageData message) => RxUploadProgress(message);
 }
 
 
-class TxVerifyToken extends SocketTxMessage {
-  static const String type = 'verify-token';
-  final VerifyToken proto;
+class RxLoginError extends SocketRxMessage {
+  static const String type = 'login-error';
+  final LoginError data = LoginError();
+  
 
-  const TxVerifyToken([this.proto]) : super(type, authRequired: false, cache: Duration.zero);
+  RxLoginError([SocketRxMessageData message]) : super(type, message);
+
+  @override
+  RxLoginError fromMessage(SocketRxMessageData message) => RxLoginError(message);
+}
+
+class RxUploadStartSlotCacheKeys extends CacheKeys {
+  CacheKey localKey = CacheKey(CacheKeyType.text, 0, 'localKey');
+
+  RxUploadStartSlotCacheKeys() : super(textKeys: ['localKey'], realKeys: [], dateKeys: []);
+}
+
+class RxUploadStartSlot extends SocketRxMessage {
+  static const String type = 'upload-start';
+  final UploadStartSlot data = UploadStartSlot();
+  Duration cache = Duration(days: 365, hours: 0, minutes: 0, seconds: 0);
+  final RxUploadStartSlotCacheKeys cacheKeys = RxUploadStartSlotCacheKeys();
+
+  RxUploadStartSlot([SocketRxMessageData message]) : super(type, message);
+
+  @override
+  RxUploadStartSlot fromMessage(SocketRxMessageData message) => RxUploadStartSlot(message);
 }
 
 
@@ -136,27 +116,49 @@ class RxUploadDone extends SocketRxMessage {
 }
 
 
+class TxVerifyToken extends SocketTxMessage {
+  static const String type = 'verify-token';
+  final VerifyToken proto;
+
+  const TxVerifyToken([this.proto]) : super(type, authRequired: false, cache: Duration.zero);
+  
+  static VerifyToken get newProto => VerifyToken();
+}
+
+
+class TxLogin extends SocketTxMessage {
+  static const String type = 'login';
+  final Login proto;
+
+  const TxLogin([this.proto]) : super(type, authRequired: false, cache: Duration.zero);
+  
+  static Login get newProto => Login();
+}
+
+
+class TxUploadStart extends SocketTxMessage {
+  static const String type = 'upload-start';
+  final UploadStart proto;
+
+  const TxUploadStart([this.proto]) : super(type, authRequired: true, cache: Duration.zero);
+  
+  static UploadStart get newProto => UploadStart();
+}
+
+
 List<SocketRxMessage> rxMessages = [
-  RxUploadStartSlot(),
-  RxUploadProgress(),
-  RxLoginError(),
+  RxFormErrors(),
   RxLoginToken(),
   RxTokenInvalid(),
-  RxFormErrors(),
+  RxUploadProgress(),
+  RxLoginError(),
+  RxUploadStartSlot(),
   RxUploadDone()
 ];
     
 List<SingleChildWidget> getMessageProviders(SocketApi api) => [
-      StreamProvider<RxUploadStartSlot>(
-        create: (c) => _getMessageHandler(api, RxUploadStartSlot()),
-        lazy: true,
-      ),
-      StreamProvider<RxUploadProgress>(
-        create: (c) => _getMessageHandler(api, RxUploadProgress()),
-        lazy: true,
-      ),
-      StreamProvider<RxLoginError>(
-        create: (c) => _getMessageHandler(api, RxLoginError()),
+      StreamProvider<RxFormErrors>(
+        create: (c) => _getMessageHandler(api, RxFormErrors()),
         lazy: true,
       ),
       StreamProvider<RxLoginToken>(
@@ -167,8 +169,16 @@ List<SingleChildWidget> getMessageProviders(SocketApi api) => [
         create: (c) => _getMessageHandler(api, RxTokenInvalid()),
         lazy: true,
       ),
-      StreamProvider<RxFormErrors>(
-        create: (c) => _getMessageHandler(api, RxFormErrors()),
+      StreamProvider<RxUploadProgress>(
+        create: (c) => _getMessageHandler(api, RxUploadProgress()),
+        lazy: true,
+      ),
+      StreamProvider<RxLoginError>(
+        create: (c) => _getMessageHandler(api, RxLoginError()),
+        lazy: true,
+      ),
+      StreamProvider<RxUploadStartSlot>(
+        create: (c) => _getMessageHandler(api, RxUploadStartSlot()),
         lazy: true,
       ),
       StreamProvider<RxUploadDone>(

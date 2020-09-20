@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: files.proto
+//  source: sfiles.proto
 //
 // @dart = 2.3
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
@@ -26,7 +26,7 @@ const UploadDone$json = const {
   '1': 'UploadDone',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'file', '3': 2, '4': 1, '5': 11, '6': '.files.SFile', '10': 'file'},
+    const {'1': 'file', '3': 2, '4': 1, '5': 11, '6': '.sfiles.SFile', '10': 'file'},
   ],
 };
 
@@ -51,7 +51,7 @@ const UploadStart$json = const {
 const DeleteFile$json = const {
   '1': 'DeleteFile',
   '2': const [
-    const {'1': 'file', '3': 1, '4': 1, '5': 11, '6': '.files.SFile', '10': 'file'},
+    const {'1': 'file', '3': 1, '4': 1, '5': 11, '6': '.sfiles.SFile', '10': 'file'},
   ],
 };
 

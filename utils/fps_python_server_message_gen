@@ -60,7 +60,7 @@ for f in params.protos:
     generators += [MessageGen(f, i[0], i[1]) for i in
                    re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
 
-imports = {'from abc import ABC', 'import dataclasses'}
+imports = {'from abc import ABC', 'import dataclasses', 'from betterproto import FieldMetadata'}
 imports.update(set([i.get_import() for i in generators]))
 
 with open('proto/messages.py', 'w', encoding='utf-8') as f:
@@ -106,13 +106,17 @@ class RxMessage(ABC):
                 continue
             obj = data[num]
             if meta.proto_type == 'message':
-                obj = getattr(proto, name).from_dict(RxMessage.num_to_name_dict(getattr(proto, name), obj))
+                cls = proto._betterproto.cls_by_field[name]()
+                if isinstance(obj, list):
+                    obj = [RxMessage.num_to_name_dict(cls, i) for i in obj]
+                else:
+                    obj = RxMessage.num_to_name_dict(cls, obj)
             name_dict[name] = obj
         return name_dict
 
     def set_by_number(self, data: dict):
         name_dict = RxMessage.num_to_name_dict(self.proto(), data)
-        self.proto = self.proto(**name_dict)
+        self.proto = self.proto().from_dict(name_dict)
 
 
 class TxMessage(ABC):
@@ -140,18 +144,21 @@ class TxMessage(ABC):
         fields = {}
         for field in dataclasses.fields(proto):
             meta = field.metadata['betterproto']
-            fields[betterproto.Casing.CAMEL(field.name)] = meta
+            fields[betterproto.Casing.SNAKE(field.name)] = meta
         return fields
 
     @staticmethod
     def to_number_dict(proto):
-        name_dict = proto.to_dict()
+        name_dict = proto.to_dict(casing=betterproto.Casing.SNAKE)
         fields = TxMessage.get_field_map(proto)
         num_dict = {}
         for name in name_dict:
             obj = name_dict[name]
             if fields[name].proto_type == 'message':
-                obj = TxMessage.to_number_dict(getattr(proto, name))
+                if isinstance(obj, list):
+                    obj = [TxMessage.to_number_dict(i) for i in getattr(proto, name)]
+                else:
+                    obj = TxMessage.to_number_dict(getattr(proto, name))
             num_dict[str(fields[name].number)] = obj
         return num_dict
 
