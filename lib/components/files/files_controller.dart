@@ -38,8 +38,8 @@ class FilesController with SubscriptionsMixin {
 
   static void delete(SocketApi api, SFile file) {
     if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
-    file.localKey = null;
-    file.url = null;
+    file.clearLocalKey();
+    file.clearUrl();
   }
 
   void cancelUpload(String localKey) {

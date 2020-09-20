@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/files.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/files.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/files.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/files.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_dart" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_python_server_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_python_server_message_gen" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600289956413</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="proto serialization fixes">
+      <created>1600596697053</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1600596697053</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -303,7 +301,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="caching fixes, authentication improvements (check if token valid on start)" />
     <MESSAGE value="web support" />
     <MESSAGE value="websocket reconnect working" />
     <MESSAGE value="prepared for websocket uploads" />
@@ -328,7 +325,8 @@
     <MESSAGE value="messages are working" />
     <MESSAGE value="multiple proto related bugfixes" />
     <MESSAGE value="code generation fixes (formatting, fire from cache on subscribe...)" />
-    <option name="LAST_COMMIT_MESSAGE" value="code generation fixes (formatting, fire from cache on subscribe...)" />
+    <MESSAGE value="proto serialization fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="proto serialization fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="624" y="305" key="#Inspections" timestamp="1599908947949">
@@ -347,18 +345,19 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="783" y="477" key="#com.intellij.tools.ToolEditorDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1599909005456" />
-    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1600289956253">
-      <screen x="0" y="0" width="2048" height="1280" />
+    <state x="672" y="305" key="CommitChangelistDialog2" timestamp="1600596696817">
+      <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state x="672" y="287" key="CommitChangelistDialog2/-1366.-114.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600289956253" />
+    <state x="672" y="305" key="CommitChangelistDialog2/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600596696817" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678931577" />
     <state x="2888" y="-292" key="CommitChangelistDialog2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768282482" />
     <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1600096059162" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485243" />
-    <state x="293" y="181" width="1638" height="1024" key="DiffContextDialog" timestamp="1600593865527">
+    <state x="293" y="181" width="1638" height="1024" key="DiffContextDialog" timestamp="1600598988713">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
-    <state x="293" y="181" key="DiffContextDialog/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600593865527" />
+    <state x="293" y="181" key="DiffContextDialog/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600598988713" />
     <state x="-43" y="-1259" key="DiffContextDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917367" />
     <state x="293" y="161" width="1638" height="1024" key="DiffContextDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1599938064942" />
     <state x="293" y="161" width="1638" height="1024" key="DiffContextDialog/0.23.2048.1206@0.23.2048.1206" timestamp="1599913498225" />
@@ -382,10 +381,10 @@
     </state>
     <state width="2006" height="405" key="GridCell.Tab.0.right/-1366.-114.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600247108182" />
     <state width="2006" height="443" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1600293181262" />
-    <state x="784" y="405" key="RollbackChangesDialog" timestamp="1600593865915">
+    <state x="784" y="405" key="RollbackChangesDialog" timestamp="1600598989134">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
-    <state x="784" y="405" key="RollbackChangesDialog/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600593865915" />
+    <state x="784" y="405" key="RollbackChangesDialog/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600598989134" />
     <state x="571" y="-1002" key="RollbackChangesDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917907" />
     <state x="784" y="389" key="RollbackChangesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1595842733648" />
     <state x="525" y="279" key="SettingsEditor" timestamp="1600278084903">
@@ -393,10 +392,11 @@
     </state>
     <state x="525" y="279" key="SettingsEditor/-1366.-114.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600278084903" />
     <state x="525" y="279" key="SettingsEditor/0.0.2048.1280@0.0.2048.1280" timestamp="1599909013452" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1600289957219">
-      <screen x="0" y="0" width="2048" height="1280" />
+    <state x="704" y="425" key="Vcs.Push.Dialog.v2" timestamp="1600596697684">
+      <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/-1366.-114.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600289957219" />
+    <state x="704" y="425" key="Vcs.Push.Dialog.v2/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600596697684" />
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678932244" />
     <state x="2928" y="-155" key="Vcs.Push.Dialog.v2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768283251" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1600096059962" />
@@ -417,11 +417,11 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="100" y="100" width="1848" height="1080" key="dock-window-1/0.0.2048.1280@0.0.2048.1280" timestamp="1599900876414" />
-    <state x="746" y="439" width="695" height="486" key="find.popup" timestamp="1600593839064">
+    <state x="746" y="439" width="695" height="486" key="find.popup" timestamp="1600598978024">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state x="746" y="424" width="695" height="486" key="find.popup/-1366.-114.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600279986386" />
-    <state x="746" y="439" width="695" height="486" key="find.popup/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600593839064" />
+    <state x="746" y="439" width="695" height="486" key="find.popup/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600598978024" />
     <state x="523" y="-963" width="695" height="486" key="find.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595679692404" />
     <state x="2980" y="-138" width="695" height="729" key="find.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795038561" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1600294587537" />
@@ -429,11 +429,11 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="689" y="305" key="run.anything.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1599900590569" />
-    <state x="756" y="312" width="670" height="591" key="search.everywhere.popup" timestamp="1600592128611">
+    <state x="756" y="312" width="670" height="591" key="search.everywhere.popup" timestamp="1600598795101">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/-1366.-114.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600281572074" />
-    <state x="756" y="312" width="670" height="591" key="search.everywhere.popup/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600592128611" />
+    <state x="756" y="312" width="670" height="591" key="search.everywhere.popup/-1366.-91.1366.950/0.23.2048.1257@0.23.2048.1257" timestamp="1600598795101" />
     <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1600294942112" />

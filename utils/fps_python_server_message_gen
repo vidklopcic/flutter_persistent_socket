@@ -83,28 +83,35 @@ class RxMessage(ABC):
 
     def __init__(self, data: RxMessageData):
         self.data = data
-        self.fields = {}
         self.set_data(data)
 
     def set_data(self, data: RxMessageData):
         self.set_by_number(data.body)
 
-    def get_field_map(self) -> Dict[str, str]:
-        if self.fields:
-            return self.fields
-        for field in dataclasses.fields(self.proto):
-            meta = field.metadata['betterproto']
-            self.fields[str(meta.number)] = betterproto.Casing.SNAKE(field.name)
-        return self.fields
+    @staticmethod
+    def get_field_map(proto) -> Dict:
+        fields = {}
+        for field in dataclasses.fields(proto):
+            meta = FieldMetadata.get(field)
+            fields[str(meta.number)] = (betterproto.Casing.SNAKE(field.name), meta, field)
+        return fields
+
+    @staticmethod
+    def num_to_name_dict(proto, data: dict):
+        fields = RxMessage.get_field_map(proto)
+        name_dict = {}
+        for num in data:
+            name, meta, field = fields.get(num)
+            if not meta:
+                continue
+            obj = data[num]
+            if meta.proto_type == 'message':
+                obj = getattr(proto, name).from_dict(RxMessage.num_to_name_dict(getattr(proto, name), obj))
+            name_dict[name] = obj
+        return name_dict
 
     def set_by_number(self, data: dict):
-        fields = self.get_field_map()
-        name_dict = {}
-        for key in data:
-            field = fields.get(key)
-            if not field:
-                continue
-            name_dict[field] = data[key]
+        name_dict = RxMessage.num_to_name_dict(self.proto(), data)
         self.proto = self.proto(**name_dict)
 
 

@@ -50,7 +50,6 @@ message UploadStart {
 /*
 type = 'delete-file'
 origin = client
-auth = false
  */
 message DeleteFile {
   SFile file = 1;
