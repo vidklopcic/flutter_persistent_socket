@@ -109,18 +109,14 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       database.socketRxEventDao.cacheEvent(message);
     }
   }
-
+  
   Stream getTxMessageHandler(SocketTxMessage message) {
-    return _txMessageHandlers
-        .putIfAbsent(message.messageType, () => StreamController.broadcast())
-        .stream;
+    return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
   }
 
   Stream getMessageHandler<T extends SocketRxMessage>(T message) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
-    Stream<T> stream = _messageHandlers
-        .putIfAbsent(message.messageType, () => StreamController<T>.broadcast())
-        .stream;
+    Stream<T> stream = _messageHandlers.putIfAbsent(message.messageType, () => StreamController<T>.broadcast()).stream;
     return stream;
   }
 
@@ -159,14 +155,12 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   static SocketApi of(BuildContext context) {
-    return (context
-        .getElementForInheritedWidgetOfExactType<SocketApiProvider>()
-        .widget as SocketApiProvider).socketApi;
+    return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
   }
 
   Future<int> fireFromCache(SocketRxMessage message, {SocketRxMessageQueryFilter filter}) async {
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
-    (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
+        (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
     List<SocketRxEvent> events = await query.get();
     for (SocketRxEvent cachedEvent in events) {
       _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
@@ -192,8 +186,7 @@ class SocketApiProvider extends InheritedWidget {
     Key key,
     @required this.socketApi,
     @required Widget child,
-  })
-      : assert(socketApi != null),
+  })  : assert(socketApi != null),
         assert(child != null),
         super(key: key, child: child);
 

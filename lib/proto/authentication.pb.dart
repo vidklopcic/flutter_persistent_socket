@@ -124,7 +124,6 @@ class Login extends $pb.GeneratedMessage {
 
 class VerifyToken extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('VerifyToken', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
-    ..aOS(1, 'token')
     ..hasRequiredFields = false
   ;
 
@@ -142,15 +141,6 @@ class VerifyToken extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static VerifyToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VerifyToken>(create);
   static VerifyToken _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get token => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set token($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasToken() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearToken() => clearField(1);
 }
 
 class TokenInvalid extends $pb.GeneratedMessage {

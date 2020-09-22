@@ -32,10 +32,8 @@ message Login {
 /*
 type = 'verify-token'
 origin = client
-auth = false
  */
 message VerifyToken {
-  string token = 1;
 }
 
 /*

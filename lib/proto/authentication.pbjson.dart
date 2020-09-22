@@ -30,9 +30,6 @@ const Login$json = const {
 
 const VerifyToken$json = const {
   '1': 'VerifyToken',
-  '2': const [
-    const {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
-  ],
 };
 
 const TokenInvalid$json = const {
