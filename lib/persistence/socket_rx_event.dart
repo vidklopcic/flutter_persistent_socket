@@ -6,6 +6,8 @@ import 'database.dart';
 
 part 'socket_rx_event.g.dart';
 
+typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T Function(T query);
+
 final uuidObj = Uuid();
 
 class SocketRxEvents extends Table {
@@ -43,8 +45,9 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
     return (delete(socketRxEvents)..where((tbl) => tbl.uuid.equals(message.cacheUuid))).go();
   }
 
-  Future<int> invalidateCache() {
-    return (delete(socketRxEvents)).go();
+  Future<int> invalidateCache(
+      [SocketRxMessageQueryFilter<DeleteStatement<$SocketRxEventsTable, SocketRxEvent>> filter]) {
+    return ((filter ?? (f) => f)(delete(socketRxEvents))).go();
   }
 
   Future cacheEvent(SocketRxMessage message) {
