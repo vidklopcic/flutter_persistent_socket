@@ -5,6 +5,12 @@ import sys
 import re
 import os
 
+def to_camel_case(snake_str):
+    components = snake_str.split('_')
+    # We capitalize the first letter of each component except the first one
+    # with the 'title' method and join them together.
+    return components[0] + ''.join(x.title() for x in components[1:])
+
 CACHE_KEYS_CLASS = '''
 class {prefix}{proto}CacheKeys extends CacheKeys {{
   {fields}
@@ -100,14 +106,17 @@ class MessageGen():
             real_keys = []
             date_keys = []
 
-            if re.search('text\((.+)\)', cache_keys):
-                text_keys = re.findall('\'(.+)\'', re.search('text\((.+)\)', cache_keys).group(1))
-            if re.search('real\((.+)\)', cache_keys):
-                real_keys = re.findall('\'(.+)\'', re.search('real\((.+)\)', cache_keys).group(1))
-            if re.search('date\((.+)\)', cache_keys):
-                date_keys = re.findall('\'(.+)\'', re.search('date\((.+)\)', cache_keys).group(1))
+            if re.search('text\((.+?)\)', cache_keys):
+                text_keys = re.findall('\'(.+?)\'', re.search('text\((.+?)\)', cache_keys).group(1))
+            if re.search('real\((.+?)\)', cache_keys):
+                real_keys = re.findall('\'(.+?)\'', re.search('real\((.+?)\)', cache_keys).group(1))
+            if re.search('date\((.+?)\)', cache_keys):
+                date_keys = re.findall('\'(.+?)\'', re.search('date\((.+?)\)', cache_keys).group(1))
 
             if text_keys or real_keys or date_keys:
+                text_keys = [to_camel_case(k) for k in text_keys]
+                real_keys = [to_camel_case(k) for k in real_keys]
+                date_keys = [to_camel_case(k) for k in date_keys]
                 fields.append('''final {prefix}{proto}CacheKeys cacheKeys = {prefix}{proto}CacheKeys();'''.format(
                     prefix=self.get_client_prefix(), proto=self.proto))
                 cache_fields = []
@@ -210,7 +219,7 @@ List<SingleChildWidget> getMessageProviders(SocketApi api) => [
         ',\n      '.join([
             '''StreamProvider<{0}>(
         create: (c) => _getMessageHandler(api, {0}()),
-        lazy: true,
+        lazy: false,
       )'''.format(m) for m in rx_classnames
         ])
     ))

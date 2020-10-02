@@ -159,6 +159,12 @@ class TxMessage(ABC):
                     obj = [TxMessage.to_number_dict(i) for i in getattr(proto, name)]
                 else:
                     obj = TxMessage.to_number_dict(getattr(proto, name))
+            elif fields[name].proto_type == 'string' and not obj:
+                obj = ''
+            elif fields[name].proto_type == 'enum':
+                obj = getattr(proto, name)
+            if obj is None or obj == 'None':
+                continue
             num_dict[str(fields[name].number)] = obj
         return num_dict
 

@@ -28,13 +28,16 @@ origin = server
  */
 message UploadDone {
   string key = 1;
-  SFile file = 2;
+  UploadedFile file = 2;
 }
 
-message SFile {
+message UploadedFile {
   string localKey = 1;
   string url = 2;
   string id = 3;
+  string mime = 4;
+  string thumbUrl = 5;
+  string name = 6;
 }
 
 /*
@@ -45,6 +48,7 @@ message UploadStart {
   string localKey = 1;
   string extension = 2;
   string name = 3;
+  string mime = 4;
 }
 
 /*
@@ -52,7 +56,7 @@ type = 'delete-file'
 origin = client
  */
 message DeleteFile {
-  SFile file = 1;
+  UploadedFile file = 1;
 }
 
 

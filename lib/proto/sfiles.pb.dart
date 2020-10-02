@@ -105,7 +105,7 @@ class UploadProgress extends $pb.GeneratedMessage {
 class UploadDone extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadDone', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOS(1, 'key')
-    ..aOM<SFile>(2, 'file', subBuilder: SFile.create)
+    ..aOM<UploadedFile>(2, 'file', subBuilder: UploadedFile.create)
     ..hasRequiredFields = false
   ;
 
@@ -134,39 +134,42 @@ class UploadDone extends $pb.GeneratedMessage {
   void clearKey() => clearField(1);
 
   @$pb.TagNumber(2)
-  SFile get file => $_getN(1);
+  UploadedFile get file => $_getN(1);
   @$pb.TagNumber(2)
-  set file(SFile v) { setField(2, v); }
+  set file(UploadedFile v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasFile() => $_has(1);
   @$pb.TagNumber(2)
   void clearFile() => clearField(2);
   @$pb.TagNumber(2)
-  SFile ensureFile() => $_ensure(1);
+  UploadedFile ensureFile() => $_ensure(1);
 }
 
-class SFile extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SFile', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
+class UploadedFile extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('UploadedFile', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'url')
     ..aOS(3, 'id')
+    ..aOS(4, 'mime')
+    ..aOS(5, 'thumbUrl', protoName: 'thumbUrl')
+    ..aOS(6, 'name')
     ..hasRequiredFields = false
   ;
 
-  SFile._() : super();
-  factory SFile() => create();
-  factory SFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory SFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  SFile clone() => SFile()..mergeFromMessage(this);
-  SFile copyWith(void Function(SFile) updates) => super.copyWith((message) => updates(message as SFile));
+  UploadedFile._() : super();
+  factory UploadedFile() => create();
+  factory UploadedFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadedFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadedFile clone() => UploadedFile()..mergeFromMessage(this);
+  UploadedFile copyWith(void Function(UploadedFile) updates) => super.copyWith((message) => updates(message as UploadedFile));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static SFile create() => SFile._();
-  SFile createEmptyInstance() => create();
-  static $pb.PbList<SFile> createRepeated() => $pb.PbList<SFile>();
+  static UploadedFile create() => UploadedFile._();
+  UploadedFile createEmptyInstance() => create();
+  static $pb.PbList<UploadedFile> createRepeated() => $pb.PbList<UploadedFile>();
   @$core.pragma('dart2js:noInline')
-  static SFile getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SFile>(create);
-  static SFile _defaultInstance;
+  static UploadedFile getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadedFile>(create);
+  static UploadedFile _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get localKey => $_getSZ(0);
@@ -194,6 +197,33 @@ class SFile extends $pb.GeneratedMessage {
   $core.bool hasId() => $_has(2);
   @$pb.TagNumber(3)
   void clearId() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get mime => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set mime($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasMime() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearMime() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get thumbUrl => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set thumbUrl($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasThumbUrl() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearThumbUrl() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get name => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set name($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasName() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearName() => clearField(6);
 }
 
 class UploadStart extends $pb.GeneratedMessage {
@@ -201,6 +231,7 @@ class UploadStart extends $pb.GeneratedMessage {
     ..aOS(1, 'localKey', protoName: 'localKey')
     ..aOS(2, 'extension')
     ..aOS(3, 'name')
+    ..aOS(4, 'mime')
     ..hasRequiredFields = false
   ;
 
@@ -245,11 +276,20 @@ class UploadStart extends $pb.GeneratedMessage {
   $core.bool hasName() => $_has(2);
   @$pb.TagNumber(3)
   void clearName() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get mime => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set mime($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasMime() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearMime() => clearField(4);
 }
 
 class DeleteFile extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('DeleteFile', package: const $pb.PackageName('sfiles'), createEmptyInstance: create)
-    ..aOM<SFile>(1, 'file', subBuilder: SFile.create)
+    ..aOM<UploadedFile>(1, 'file', subBuilder: UploadedFile.create)
     ..hasRequiredFields = false
   ;
 
@@ -269,15 +309,15 @@ class DeleteFile extends $pb.GeneratedMessage {
   static DeleteFile _defaultInstance;
 
   @$pb.TagNumber(1)
-  SFile get file => $_getN(0);
+  UploadedFile get file => $_getN(0);
   @$pb.TagNumber(1)
-  set file(SFile v) { setField(1, v); }
+  set file(UploadedFile v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasFile() => $_has(0);
   @$pb.TagNumber(1)
   void clearFile() => clearField(1);
   @$pb.TagNumber(1)
-  SFile ensureFile() => $_ensure(0);
+  UploadedFile ensureFile() => $_ensure(0);
 }
 
 class UploadEnd extends $pb.GeneratedMessage {

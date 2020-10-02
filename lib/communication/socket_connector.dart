@@ -12,6 +12,7 @@ class SocketConnector with ChangeNotifier {
   static final Map<String, SocketConnector> _instances = {};
 
   final String address;
+  bool autoReconnect = true;
 
   WebSocketChannel channel;
 
@@ -58,7 +59,7 @@ class SocketConnector with ChangeNotifier {
   }
 
   void _connect() async {
-    if (_closed) return;
+    if (_closed || autoReconnect == false) return;
     print('connecting to $address');
     bool changed = connected.val != false;
     connected.val = false;

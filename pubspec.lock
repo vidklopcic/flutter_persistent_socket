@@ -224,11 +224,9 @@ packages:
   gm5_utils:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "73021017db40d9b959be4ccd7c07733c871b1512"
-      url: "git@github.com:vidklopcic/gm5_utils.git"
-    source: git
+      path: "/Users/vidklopcic/StudioProjects/gm5_utils"
+      relative: false
+    source: path
     version: "0.0.1"
   graphs:
     dependency: transitive
@@ -500,7 +498,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0-nullsafety"
+    version: "1.8.0-nullsafety.2"
   sqlite3:
     dependency: transitive
     description:

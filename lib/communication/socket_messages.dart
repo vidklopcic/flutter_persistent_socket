@@ -13,16 +13,14 @@ class SocketRxMessageData {
   final DateTime time;
   final String raw;
 
-  String get messageType => this['messageType'];
+  String get messageType => data['headers']['messageType'];
   final Map<String, dynamic> data;
 
   SocketRxMessageData(this.raw, {@required this.online, this.fromCache = false})
       : this.time = DateTime.now(),
-        data = json.decode(raw);
+        this.data = json.decode(raw);
 
   Map<String, dynamic> get body => data['body'] ?? data;
-
-  operator [](String key) => (data['headers'] ?? {})[key] ?? (data['body'] ?? data)[key];
 
   operator ==(Object other) => other is SocketRxMessageData && other.raw == raw;
 
@@ -58,7 +56,7 @@ abstract class SocketRxMessage {
   final CacheKeys cacheKeys;
   final GeneratedMessage data = null;
 
-  String get cacheUuid => '${message.messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => message[cacheKey]).join('|')}';
+  String get cacheUuid => '${message.messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => message.body[cacheKey]).join('|')}';
 
   SocketRxMessage(this.messageType, this.message)
       : cache = null,
@@ -73,7 +71,11 @@ abstract class SocketRxMessage {
   dynamic getCacheVal(CacheKeyType type, int index) {
     String key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
-    return message[key];
+    final field = data.getField(data.getTagNumber(key));
+    if (field.runtimeType == ProtobufEnum) {
+      return (field as ProtobufEnum).value;
+    }
+    return field;
   }
 
   Future save() {

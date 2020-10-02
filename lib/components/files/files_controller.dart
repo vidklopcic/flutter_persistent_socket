@@ -36,7 +36,7 @@ class FilesController with SubscriptionsMixin {
     });
   }
 
-  static void delete(SocketApi api, SFile file) {
+  static void delete(SocketApi api, UploadedFile file) {
     if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
     file.clearLocalKey();
     file.clearUrl();
@@ -98,6 +98,7 @@ class FileUploadController with SubscriptionsMixin {
     _log('upload started (key: $remoteKey)');
     _uploadInProgress = true;
     uploadApi = SocketApi(getUploadUrl(remoteKey));
+    uploadApi.connection.autoReconnect = false;
     uploadApi.setAuth(socketApi.token);
     listen(uploadApi.connection.connected.changes, (bool isConnected) {
       if (!isConnected) {
