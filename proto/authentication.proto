@@ -30,6 +30,19 @@ message Login {
 }
 
 /*
+type = 'apple-login'
+origin = client
+auth = false
+ */
+message AppleLogin {
+  string code = 1;
+  string firstName = 2;
+  string lastName = 3;
+  bool useBundleId = 4;
+  string state = 5;
+}
+
+/*
 type = 'verify-token'
 origin = client
  */
@@ -41,5 +54,4 @@ type = 'token-invalid'
 origin = server
  */
 message TokenInvalid {
-
 }
