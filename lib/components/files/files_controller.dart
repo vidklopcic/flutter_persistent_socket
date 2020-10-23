@@ -25,15 +25,14 @@ class FilesController with SubscriptionsMixin {
     cancelSubscriptions();
   }
 
-  void _onUploadStart(RxUploadStartSlot message) {
+  void _onUploadStart(RxUploadStartSlot message) async {
     FileUploadController controller = createUploadController(message);
     _uploadControllers[message.data.localKey] = controller;
     controller.filesController = this;
-    controller.startUpload(message.data.key).then((value) {
-      // todo - test!
-      database.socketRxEventDao.invalidateCacheForCacheUuid(message);
-      print('uploaded ${message.data.localKey}');
-    });
+    controller.startUpload(message.data.key);
+    await socketApi.getMessageHandler(RxUploadDone()).firstWhere((msg) => msg.data.file.localKey == message.data.localKey);
+    database.socketRxEventDao.invalidateCacheForCacheUuid(message);
+    print('uploaded ${message.data.localKey}');
   }
 
   static void delete(SocketApi api, UploadedFile file) {
@@ -92,6 +91,7 @@ class FileUploadController with SubscriptionsMixin {
     }
     cancelSubscriptions();
     uploadApi?.close();
+    _uploadCompleter.complete();
   }
 
   void _onUploadStart() {

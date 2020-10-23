@@ -60,7 +60,7 @@ for f in params.protos:
     generators += [MessageGen(f, i[0], i[1]) for i in
                    re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
 
-imports = {'from abc import ABC', 'import dataclasses', 'from betterproto import FieldMetadata'}
+imports = {'from abc import ABC', 'import dataclasses', 'from betterproto import *'}
 imports.update(set([i.get_import() for i in generators]))
 
 with open('proto/messages.py', 'w', encoding='utf-8') as f:
@@ -86,38 +86,7 @@ class RxMessage(ABC):
         self.set_data(data)
 
     def set_data(self, data: RxMessageData):
-        self.set_by_number(data.body)
-
-    @staticmethod
-    def get_field_map(proto) -> Dict:
-        fields = {}
-        for field in dataclasses.fields(proto):
-            meta = FieldMetadata.get(field)
-            fields[str(meta.number)] = (betterproto.Casing.SNAKE(field.name), meta, field)
-        return fields
-
-    @staticmethod
-    def num_to_name_dict(proto, data: dict):
-        fields = RxMessage.get_field_map(proto)
-        name_dict = {}
-        for num in data:
-            name, meta, field = fields.get(num)
-            if not meta:
-                continue
-            obj = data[num]
-            if meta.proto_type == 'message':
-                cls = proto._betterproto.cls_by_field[name]()
-                if isinstance(obj, list):
-                    obj = [RxMessage.num_to_name_dict(cls, i) for i in obj]
-                else:
-                    obj = RxMessage.num_to_name_dict(cls, obj)
-            name_dict[name] = obj
-        return name_dict
-
-    def set_by_number(self, data: dict):
-        name_dict = RxMessage.num_to_name_dict(self.proto(), data)
-        self.proto = self.proto().from_dict(name_dict)
-
+        self.proto = self.proto().from_dict(data.body)
 
 class TxMessage(ABC):
     proto: betterproto.Message = None
@@ -136,40 +105,150 @@ class TxMessage(ABC):
             'headers': {
                 'messageType': self.type,
             },
-            'body': self.get_number_dict()
+            'body': self.proto.to_dict()
         }
 
-    @staticmethod
-    def get_field_map(proto) -> Dict:
-        fields = {}
-        for field in dataclasses.fields(proto):
-            meta = field.metadata['betterproto']
-            fields[betterproto.Casing.SNAKE(field.name)] = meta
-        return fields
+def to_dict_patch(
+        self, casing: Casing = Casing.CAMEL, include_default_values: bool = False
+) -> dict:
+    """
+    Returns a dict representation of this message instance which can be
+    used to serialize to e.g. JSON. Defaults to camel casing for
+    compatibility but can be set to other modes.
 
-    @staticmethod
-    def to_number_dict(proto):
-        name_dict = proto.to_dict(casing=betterproto.Casing.SNAKE)
-        fields = TxMessage.get_field_map(proto)
-        num_dict = {}
-        for name in name_dict:
-            obj = name_dict[name]
-            if fields[name].proto_type == 'message':
-                if isinstance(obj, list):
-                    obj = [TxMessage.to_number_dict(i) for i in getattr(proto, name)]
+    `include_default_values` can be set to `True` to include default
+    values of fields. E.g. an `int32` type field with `0` value will
+    not be in returned dict if `include_default_values` is set to
+    `False`.
+    """
+    output: Dict[str, Any] = {}
+    for field in dataclasses.fields(self):
+        meta = FieldMetadata.get(field)
+        v = getattr(self, field.name)
+        cased_name = str(meta.number)
+        if meta.proto_type == "message":
+            if isinstance(v, datetime):
+                if v != DATETIME_ZERO or include_default_values:
+                    output[cased_name] = _Timestamp.timestamp_to_json(v)
+            elif isinstance(v, timedelta):
+                if v != timedelta(0) or include_default_values:
+                    output[cased_name] = _Duration.delta_to_json(v)
+            elif meta.wraps:
+                if v is not None or include_default_values:
+                    output[cased_name] = v
+            elif isinstance(v, list):
+                # Convert each item.
+                v = [i.to_dict(casing, include_default_values) for i in v]
+                if v or include_default_values:
+                    output[cased_name] = v
+            else:
+                if v._serialized_on_wire or include_default_values:
+                    output[cased_name] = v.to_dict(casing, include_default_values)
+        elif meta.proto_type == "map":
+            for k in v:
+                if hasattr(v[k], "to_dict"):
+                    v[k] = v[k].to_dict(casing, include_default_values)
+
+            if v or include_default_values:
+                output[cased_name] = [{'1': k, '2': v} for k, v in v.items()]
+        elif v != self._get_field_default(field, meta) or include_default_values:
+            if meta.proto_type in INT_64_TYPES:
+                if isinstance(v, list):
+                    output[cased_name] = [str(n) for n in v]
                 else:
-                    obj = TxMessage.to_number_dict(getattr(proto, name))
-            elif fields[name].proto_type == 'string' and not obj:
-                obj = ''
-            elif fields[name].proto_type == 'enum':
-                obj = getattr(proto, name)
-            if obj is None or obj == 'None':
-                continue
-            num_dict[str(fields[name].number)] = obj
-        return num_dict
+                    output[cased_name] = str(v)
+            elif meta.proto_type == TYPE_BYTES:
+                if isinstance(v, list):
+                    output[cased_name] = [b64encode(b).decode("utf8") for b in v]
+                else:
+                    output[cased_name] = b64encode(v).decode("utf8")
+            elif meta.proto_type == TYPE_ENUM:
+                if isinstance(v, list):
+                    output[cased_name] = [e for e in v]
+                else:
+                    output[cased_name] = v
+            else:
+                output[cased_name] = v
+    return output
 
-    def get_number_dict(self) -> Dict:
-        return TxMessage.to_number_dict(self.proto)
+
+def from_dict_patch(self: T, value: dict) -> T:
+    """
+    Parse the key/value pairs in `value` into this message instance. This
+    returns the instance itself and is therefore assignable and chainable.
+    """
+    self._serialized_on_wire = True
+    fields_by_name = {str(FieldMetadata.get(f).number): f for f in dataclasses.fields(self)}
+    for key in value:
+        snake_cased = safe_snake_case(key)
+        if snake_cased in fields_by_name:
+            field = fields_by_name[snake_cased]
+            meta = FieldMetadata.get(field)
+
+            if value[key] is not None:
+                if meta.proto_type == "message":
+                    v = getattr(self, field.name)
+                    if isinstance(v, list):
+                        cls = self._betterproto.cls_by_field[field.name]
+                        for i in range(len(value[key])):
+                            v.append(cls().from_dict(value[key][i]))
+                    elif isinstance(v, datetime):
+                        v = datetime.fromisoformat(
+                            value[key].replace("Z", "+00:00")
+                        )
+                        setattr(self, field.name, v)
+                    elif isinstance(v, timedelta):
+                        v = timedelta(seconds=float(value[key][:-1]))
+                        setattr(self, field.name, v)
+                    elif meta.wraps:
+                        setattr(self, field.name, value[key])
+                    else:
+                        v.from_dict(value[key])
+                elif meta.map_types and meta.map_types[1] == TYPE_MESSAGE:
+                    v = getattr(self, field.name)
+                    cls = self._betterproto.cls_by_field[field.name + ".value"]
+                    for k in value[key]:
+                        v[k] = cls().from_dict(value[key][k])
+                else:
+                    v = value[key]
+                    if meta.proto_type in INT_64_TYPES:
+                        if isinstance(value[key], list):
+                            v = [int(n) for n in value[key]]
+                        else:
+                            v = int(value[key])
+                    elif meta.proto_type == TYPE_BYTES:
+                        if isinstance(value[key], list):
+                            v = [b64decode(n) for n in value[key]]
+                        else:
+                            v = b64decode(value[key])
+                    elif meta.proto_type == TYPE_ENUM:
+                        enum_cls = self._betterproto.cls_by_field[field.name]
+                        if isinstance(v, list):
+                            v = [enum_cls.from_string(e) for e in v]
+                        elif isinstance(v, str):
+                            v = enum_cls.from_string(v)
+
+                    if v is not None:
+                        setattr(self, field.name, v)
+    return self
+
+
+def init_default_gen_patch(self):
+    default_gen = {}
+
+    for field in dataclasses.fields(self.cls):
+        meta = FieldMetadata.get(field)
+        if meta.proto_type == TYPE_MESSAGE:
+            default_gen[field.name] = self.cls._get_field_default_gen(field, meta)
+        else:
+            default_gen[field.name] = lambda: None
+
+    self.default_gen = default_gen
+
+
+betterproto.Message.to_dict = to_dict_patch
+betterproto.Message.from_dict = from_dict_patch
+betterproto.ProtoClassMetadata.init_default_gen = init_default_gen_patch
 ''')
 
     classnames = []

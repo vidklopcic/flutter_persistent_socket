@@ -8,20 +8,32 @@ import 'package:moor/moor.dart';
 import 'package:protobuf/protobuf.dart';
 
 class SocketRxMessageData {
-  bool online;
   final bool fromCache;
+
+  /// Indicates if the message was modified locally (set to `false` when calling `save()` on the `SocketRxMessage`).
+  bool online;
+
+  /// Date and time of reception
   final DateTime time;
+
+  /// Raw JSON string
   final String raw;
 
-  String get messageType => data['headers']['messageType'];
+  /// Tries to find the `messageType` attribute. There are two possible locations in order to be compatible
+  /// with skljoc
+  String get messageType => data['headers']['messageType'] ?? data['messageType'];
+
+  /// Decoded JSON map.
   final Map<String, dynamic> data;
 
   SocketRxMessageData(this.raw, {@required this.online, this.fromCache = false})
       : this.time = DateTime.now(),
         this.data = json.decode(raw);
 
+  /// There can be two location of the body in order to be compatible with skljoc.
   Map<String, dynamic> get body => data['body'] ?? data;
 
+  /// Messages are equal if raw string is exactly the same
   operator ==(Object other) => other is SocketRxMessageData && other.raw == raw;
 
   @override
@@ -40,8 +52,10 @@ class SocketRxMessageData {
 
 abstract class SocketTxMessage {
   final String messageType;
+  /// If set to `true`, SocketApi will attach the `authHeader`, if we are authenticated
   final bool authRequired;
-  final Duration cache;
+  /// If sending failed, cache the message for this duration and try to send it when reconnected.
+  final Duration cache;  // todo: provide means to fetch and invalidate cached TX messages (similar to cacheKeys as in RX message?)
   final GeneratedMessage proto = null;
 
   const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache = Duration.zero});
@@ -50,13 +64,26 @@ abstract class SocketTxMessage {
 }
 
 abstract class SocketRxMessage {
+  /// Wraps the raw JSON data received from the server and holds
+  /// some metadata (eg. whether message originates from cache or from server).
   final SocketRxMessageData message;
   final String messageType;
+
+  /// After the `cache` duration, the message gets removed from the cache.
   final Duration cache;
+
+  /// Provides a set of `real`, `date` and `text` keys that can be used to query and differentiate messages
+  /// of the same type in the cache
   final CacheKeys cacheKeys;
+
+  /// Protobuf generated class that provides easier access to the data.
   final GeneratedMessage data = null;
 
-  String get cacheUuid => '${message.messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => message.body[cacheKey]).join('|')}';
+  /// returns the uuid that is assembled based on the contents of the `message` and keys
+  /// specified in `cacheKeys` (eg. `<messageType>|<key1>|<key2>`). **When there is a clash,
+  /// the old cached message gets overwritten**.
+  String get cacheUuid =>
+      '${messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
 
   SocketRxMessage(this.messageType, this.message)
       : cache = null,
@@ -66,21 +93,34 @@ abstract class SocketRxMessage {
     }
   }
 
+  /// Returns the instance of the derived class (Dart doesn't allow us to create a new object of type T)
   SocketRxMessage fromMessage(SocketRxMessageData message);
 
+  /// Returns the value from the `data` field based on the cache key.
   dynamic getCacheVal(CacheKeyType type, int index) {
     String key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
     final field = data.getField(data.getTagNumber(key));
-    if (field.runtimeType == ProtobufEnum) {
-      return (field as ProtobufEnum).value;
+    if (field is ProtobufEnum) {
+      return (field as ProtobufEnum).value.toDouble();
     }
+    if (type == CacheKeyType.real) return field?.toDouble();
     return field;
   }
 
+  /// Save local changes to the cache (**if cacheUuid changed due to these changes,
+  /// it is user's responsibility to invalidate old message if that is desired**)
   Future save() {
     message.online = false;
     return database.socketRxEventDao.cacheEvent(this);
+  }
+
+  /// Returns the value from the `GeneratedMessage data` based on a string key (`null` if the field does not exist).
+  @override
+  dynamic operator [](String key) {
+    int tag = data.getTagNumber(key);
+    if (tag == null) return null;
+    return data.getField(tag);
   }
 }
 

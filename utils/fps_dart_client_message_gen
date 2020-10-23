@@ -133,9 +133,9 @@ class MessageGen():
                     cache_fields.append(
                         '''CacheKey {0} = CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
                 cache_class = CACHE_KEYS_CLASS.format(prefix=self.get_client_prefix(), proto=self.proto,
-                                                      text_keys="'" + "', ".join(text_keys) + "'" if text_keys else '',
-                                                      real_keys="'" + "', ".join(real_keys) + "'" if real_keys else '',
-                                                      date_keys="'" + "', ".join(date_keys) + "'" if date_keys else '',
+                                                      text_keys="'" + "', '".join(text_keys) + "'" if text_keys else '',
+                                                      real_keys="'" + "', '".join(real_keys) + "'" if real_keys else '',
+                                                      date_keys="'" + "', '".join(date_keys) + "'" if date_keys else '',
                                                       fields='\n  '.join(cache_fields))
 
         return fields, cache_class

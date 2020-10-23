@@ -109,7 +109,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       database.socketRxEventDao.cacheEvent(message);
     }
   }
-  
+
   Stream getTxMessageHandler(SocketTxMessage message) {
     return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
   }
@@ -158,12 +158,18 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
   }
 
-  Future<int> fireFromCache(SocketRxMessage message, {SocketRxMessageQueryFilter filter}) async {
+  Future<int> fireFromCache(SocketRxMessage message,
+      {SocketRxMessageQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>> filter}) async {
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
         (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
     List<SocketRxEvent> events = await query.get();
     for (SocketRxEvent cachedEvent in events) {
-      _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
+      try {
+        final msg = message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent));
+        _messageHandlers[message.messageType].add(msg);
+      } catch (e) {
+        print('Exception while parsing cached rx message. Schema changed?');
+      }
     }
     return events.length;
   }
