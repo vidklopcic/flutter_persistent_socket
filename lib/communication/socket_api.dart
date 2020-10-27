@@ -80,16 +80,9 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       connection.channel.sink.add(msg);
     } catch (e) {
       print('error sending $e');
-      if (message.cache != Duration.zero) {
+      if (message.cache != Duration.zero && message.cache != null) {
         print('caching event!');
-        database.socketTxEventDao.addEvent(
-          SocketTxEventsCompanion(
-            jsonContent: Value(msg),
-            expires: Value(
-              DateTime.now().add(message.cache),
-            ),
-          ),
-        );
+        database.socketTxEventDao.cacheEvent(message, msg);
       }
     }
   }
@@ -103,7 +96,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     print('rxevent: $event');
     SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
     SocketRxMessage message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
-    if (message == null) return;
+    if (message == null) return;  // todo proper logging
     _messageHandlers[messageData.messageType]?.add(message);
     if (message.cache != null && message.cache != Duration.zero) {
       database.socketRxEventDao.cacheEvent(message);

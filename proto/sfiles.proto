@@ -43,6 +43,8 @@ message UploadedFile {
 /*
 type = 'upload-start'
 origin = client
+client cache = years(1)
+client cache_keys = text('localKey')
  */
 message UploadStart {
   string localKey = 1;

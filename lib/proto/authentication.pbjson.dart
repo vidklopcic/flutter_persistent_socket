@@ -28,6 +28,17 @@ const Login$json = const {
   ],
 };
 
+const AppleLogin$json = const {
+  '1': 'AppleLogin',
+  '2': const [
+    const {'1': 'code', '3': 1, '4': 1, '5': 9, '10': 'code'},
+    const {'1': 'firstName', '3': 2, '4': 1, '5': 9, '10': 'firstName'},
+    const {'1': 'lastName', '3': 3, '4': 1, '5': 9, '10': 'lastName'},
+    const {'1': 'useBundleId', '3': 4, '4': 1, '5': 8, '10': 'useBundleId'},
+    const {'1': 'state', '3': 5, '4': 1, '5': 9, '10': 'state'},
+  ],
+};
+
 const VerifyToken$json = const {
   '1': 'VerifyToken',
 };

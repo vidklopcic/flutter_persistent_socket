@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
+import 'package:gm5_utils/gm5_utils.dart';
 import 'package:moor/moor.dart';
 import 'package:protobuf/protobuf.dart';
+import 'package:uuid/uuid.dart';
 
 class SocketRxMessageData {
   final bool fromCache;
@@ -52,15 +54,46 @@ class SocketRxMessageData {
 
 abstract class SocketTxMessage {
   final String messageType;
+
   /// If set to `true`, SocketApi will attach the `authHeader`, if we are authenticated
   final bool authRequired;
+
   /// If sending failed, cache the message for this duration and try to send it when reconnected.
-  final Duration cache;  // todo: provide means to fetch and invalidate cached TX messages (similar to cacheKeys as in RX message?)
+  final Duration cache;
   final GeneratedMessage proto = null;
 
-  const SocketTxMessage(this.messageType, {this.authRequired = true, this.cache = Duration.zero});
+  final CacheKeys cacheKeys;
+
+  String get cacheUuid => cacheKeys == null
+      ? uuidObj.v4()
+      : '${messageType}${'|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
+
+  const SocketTxMessage(this.messageType, {this.authRequired = true})
+      : cacheKeys = null,
+        cache = null;
 
   Map<String, dynamic> get data => proto?.writeToJsonMap() ?? {};
+
+  /// Returns the value from the `GeneratedMessage data` based on a string key (`null` if the field does not exist).
+  @override
+  dynamic operator [](String key) {
+    int tag = proto.getTagNumber(key);
+    if (tag == null) return null;
+    return proto.getField(tag);
+  }
+
+  /// Returns the value from the `data` field based on the cache key.
+  dynamic getCacheVal(CacheKeyType type, int index) {
+    String key = cacheKeys?.getKey(type, index);
+    if (key == null) return null;
+    print('getting key $key');
+    final field = proto.getField(proto.getTagNumber(key));
+    if (field is ProtobufEnum) {
+      return (field as ProtobufEnum).value.toDouble();
+    }
+    if (type == CacheKeyType.real) return field?.toDouble();
+    return field;
+  }
 }
 
 abstract class SocketRxMessage {

@@ -122,6 +122,77 @@ class Login extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
+class AppleLogin extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('AppleLogin', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
+    ..aOS(1, 'code')
+    ..aOS(2, 'firstName', protoName: 'firstName')
+    ..aOS(3, 'lastName', protoName: 'lastName')
+    ..aOB(4, 'useBundleId', protoName: 'useBundleId')
+    ..aOS(5, 'state')
+    ..hasRequiredFields = false
+  ;
+
+  AppleLogin._() : super();
+  factory AppleLogin() => create();
+  factory AppleLogin.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AppleLogin.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  AppleLogin clone() => AppleLogin()..mergeFromMessage(this);
+  AppleLogin copyWith(void Function(AppleLogin) updates) => super.copyWith((message) => updates(message as AppleLogin));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AppleLogin create() => AppleLogin._();
+  AppleLogin createEmptyInstance() => create();
+  static $pb.PbList<AppleLogin> createRepeated() => $pb.PbList<AppleLogin>();
+  @$core.pragma('dart2js:noInline')
+  static AppleLogin getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AppleLogin>(create);
+  static AppleLogin _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get code => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set code($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasCode() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCode() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get firstName => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set firstName($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasFirstName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearFirstName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get lastName => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set lastName($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasLastName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLastName() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get useBundleId => $_getBF(3);
+  @$pb.TagNumber(4)
+  set useBundleId($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasUseBundleId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearUseBundleId() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get state => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set state($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasState() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearState() => clearField(5);
+}
+
 class VerifyToken extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('VerifyToken', package: const $pb.PackageName('authentication'), createEmptyInstance: create)
     ..hasRequiredFields = false

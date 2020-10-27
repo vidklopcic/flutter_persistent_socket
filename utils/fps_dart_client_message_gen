@@ -5,17 +5,19 @@ import sys
 import re
 import os
 
+
 def to_camel_case(snake_str):
     components = snake_str.split('_')
     # We capitalize the first letter of each component except the first one
     # with the 'title' method and join them together.
     return components[0] + ''.join(x.title() for x in components[1:])
 
+
 CACHE_KEYS_CLASS = '''
 class {prefix}{proto}CacheKeys extends CacheKeys {{
   {fields}
 
-  {prefix}{proto}CacheKeys() : super(textKeys: [{text_keys}], realKeys: [{real_keys}], dateKeys: [{date_keys}]);
+  const {prefix}{proto}CacheKeys() : super(textKeys: const [{text_keys}], realKeys: const [{real_keys}], dateKeys: const [{date_keys}]);
 }}'''
 
 RX_MESSAGE_CLASS = '''class Rx{proto} extends SocketRxMessage {{
@@ -30,15 +32,16 @@ RX_MESSAGE_CLASS = '''class Rx{proto} extends SocketRxMessage {{
 }}
 '''
 
-TX_MESSAGE_CLASS = '''
-
-class Tx{proto} extends SocketTxMessage {{
+TX_MESSAGE_CLASS = '''class Tx{proto} extends SocketTxMessage {{
   static const String type = '{type}';
   final {proto} proto;
-
-  const Tx{proto}([this.proto]) : super(type, authRequired: {auth}, cache: {cache});
+  {fields}
+  
+  const Tx{proto}([this.proto]) : super(type, authRequired: {auth});
   
   static {proto} get newProto => {proto}();
+  
+  static Tx{proto} create({proto} Function({proto} data) setData) => Tx{proto}(setData(Tx{proto}.newProto));
 }}
 '''
 
@@ -90,15 +93,17 @@ class MessageGen():
                 cache_duration['days'] = int(re.search('days\((.+)\)', cache).group(1))
             if 'years' in cache:
                 cache_duration['days'] += int(re.search('years\((.+)\)', cache).group(1)) * 365
-            return 'Duration(days: {days}, hours: {hours}, minutes: {minutes}, seconds: {seconds})'.format(
+            return 'const Duration(days: {days}, hours: {hours}, minutes: {minutes}, seconds: {seconds})'.format(
                 **cache_duration)
 
     def get_spec_fields_and_cache_class(self):
-        fields = []
+        common_fields = []
+        tx_fields = []
+        rx_fields = []
         cache_class = ''
         client_cache = self.get_client_cache_duration()
         if client_cache:
-            fields.append('Duration cache = {};'.format(client_cache))
+            common_fields.append('final Duration cache = {};'.format(client_cache))
 
         if re.search('client\s+cache_keys\s*=', self.spec):
             cache_keys = re.search('client\s+cache_keys\s*=(.+)', self.spec).group(1)
@@ -117,28 +122,28 @@ class MessageGen():
                 text_keys = [to_camel_case(k) for k in text_keys]
                 real_keys = [to_camel_case(k) for k in real_keys]
                 date_keys = [to_camel_case(k) for k in date_keys]
-                fields.append('''final {prefix}{proto}CacheKeys cacheKeys = {prefix}{proto}CacheKeys();'''.format(
+                common_fields.append('''final {prefix}{proto}CacheKeys cacheKeys = const {prefix}{proto}CacheKeys();'''.format(
                     prefix=self.get_client_prefix(), proto=self.proto))
                 cache_fields = []
                 for i in range(len(text_keys)):
                     text_key = text_keys[i]
                     cache_fields.append(
-                        '''CacheKey {0} = CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
+                        '''final CacheKey {0} = const CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
                 for i in range(len(real_keys)):
                     real_key = real_keys[i]
                     cache_fields.append(
-                        '''CacheKey {0} = CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
+                        '''final CacheKey {0} = const CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
                 for i in range(len(date_keys)):
                     date_key = date_keys[i]
                     cache_fields.append(
-                        '''CacheKey {0} = CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
+                        '''final CacheKey {0} = const CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
                 cache_class = CACHE_KEYS_CLASS.format(prefix=self.get_client_prefix(), proto=self.proto,
                                                       text_keys="'" + "', '".join(text_keys) + "'" if text_keys else '',
                                                       real_keys="'" + "', '".join(real_keys) + "'" if real_keys else '',
                                                       date_keys="'" + "', '".join(date_keys) + "'" if date_keys else '',
                                                       fields='\n  '.join(cache_fields))
 
-        return fields, cache_class
+        return common_fields, rx_fields, tx_fields, cache_class
 
     def is_auth_required(self):
         auth = re.search('auth\s*=\s*(.+)\s*', self.spec)
@@ -148,22 +153,21 @@ class MessageGen():
             return 'true'
 
     def get_client_message(self) -> str:
-        fields, cache_class = self.get_spec_fields_and_cache_class()
+        common_fields, rx_fields, tx_fields, cache_class = self.get_spec_fields_and_cache_class()
         if self.origin_is_client():
-            cache_duration = self.get_client_cache_duration()
-            return TX_MESSAGE_CLASS.format(
+            return cache_class + '\n\n' + TX_MESSAGE_CLASS.format(
                 prefix=self.get_client_prefix(),
                 type=self.get_type(),
                 proto=self.proto,
                 auth=self.is_auth_required(),
-                cache=('const ' + cache_duration) if cache_duration else 'Duration.zero',
+                fields='\n  '.join(common_fields + tx_fields),
             )
         else:
             return cache_class + '\n\n' + RX_MESSAGE_CLASS.format(
                 prefix=self.get_client_prefix(),
                 type=self.get_type(),
                 proto=self.proto,
-                fields='\n  '.join(fields),
+                fields='\n  '.join(common_fields + rx_fields),
             )
 
     def __eq__(self, other):

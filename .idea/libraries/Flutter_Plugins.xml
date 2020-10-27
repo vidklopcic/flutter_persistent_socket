@@ -3,10 +3,11 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+3" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/sqlite3_flutter_libs-0.2.0" />
       <root url="file://$PROJECT_DIR$/../gm5_utils" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.14" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+4" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.4+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.22" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
