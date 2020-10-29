@@ -12,18 +12,23 @@ dependencies:
   flutter:
     sdk: flutter
   sqlite3_flutter_libs: ^0.2.0
-  moor: ^3.3.0
+  moor: ^3.4.0
   path_provider: ^1.6.10
+  provider: ^4.3.2+2
   path: ^1.6.4
   uuid: ^2.0.4
   web_socket_channel: ^1.1.0
   gm5_utils:
     git: git@github.com:vidklopcic/gm5_utils.git
+#  gm5_utils:
+#    path: /Users/vidklopcic/StudioProjects/gm5_utils
+
+  protobuf:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  moor_generator: ^3.1.0
+  moor_generator: ^3.4.0
   build_runner: ^1.10.0
 
 # For information on the generic Dart part of this file, see the

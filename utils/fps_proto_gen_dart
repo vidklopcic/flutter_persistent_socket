@@ -1,0 +1,31 @@
+#!/usr/bin/python3
+import os
+import subprocess as s
+import sys
+import json
+
+PROTO_ROOT = os.environ.get('FPS_PROTO_ROOT')
+
+if not os.path.isfile('pubspec.yaml') or not os.path.isdir('proto'):
+    print('Run the command from python project root, containing proto directory')
+    sys.exit(1)
+
+try:
+    config = json.load(open('fps_config.json'))
+except:
+    config = {
+        'protos': []
+    }
+print(config)
+os.chdir('proto')
+proto_path = ' '.join(['-I ' + i for i in config['protos'] + ['./']])
+protos = ' '.join(['/' + i.strip('/') + '**/*.proto' for i in config['protos']])
+if os.getcwd() != PROTO_ROOT:
+    proto_path += ' -I {}'.format(PROTO_ROOT)
+
+s.run('rm -rf ../lib/proto/*', shell=True, executable="/bin/zsh")
+s.run('protoc {} --dart_out=../lib/proto **/*.proto {}'.format(proto_path, protos), shell=True, executable="/bin/zsh")
+s.run("sed -i '' 's/sfiles.pb.dart/package:flutter_persistent_socket\/proto\/sfiles.pb.dart/g' ../lib/proto/*",
+      shell=True, executable="/bin/zsh")
+s.run("fps_dart_client_message_gen ./*.proto {}".format(protos), shell=True, executable="/bin/zsh")
+s.run("git add ../lib/proto ../lib/messages.dart", shell=True, executable="/bin/zsh")

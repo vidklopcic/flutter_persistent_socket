@@ -12,15 +12,18 @@ Future<WebSocketChannel> getWebSocketChannel(String address,
   HtmlWebSocketChannel channel;
   try {
     html.WebSocket ws = html.WebSocket(address);
+    Future onOpenEvent = ws.onOpen.first;
+    onOpenEvent = onOpenEvent.timeout(Duration(seconds: 5));
+    await onOpenEvent;
     _sockets[address] = ws;
     channel = HtmlWebSocketChannel(ws);
     channel.stream.listen(onData, onDone: () async {
       _sockets[address]?.close();
-      await Future.delayed(Duration(seconds: 2));
       onDone();
     });
   } catch (e) {
     _sockets[address]?.close();
+    Future.delayed(Duration(seconds: 1)).then((value) => onDone());
     return null;
   }
   return channel;

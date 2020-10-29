@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+import os
+import subprocess as s
+import sys
+import json
+import re
+
+if not os.path.isdir('proto') or not os.path.isfile('fps_config.json'):
+    print('Run the command from python project root, containing proto directory and fps_config.json!')
+    sys.exit(1)
+
+config = json.load(open('fps_config.json'))
+app_name_match = re.compile(r"AppConfig\):.+name\s+=\s+'(.+)'", flags=re.DOTALL)
+app_names = []
+for path in config['protos']:
+    base_path = os.path.dirname(path)
+    model_path = os.path.join(base_path, 'models.py')
+    apps_path = os.path.join(base_path, 'apps.py')
+    if not os.path.isfile(model_path) or not os.path.isfile(apps_path):
+        continue
+    app_name = app_name_match.search(open(apps_path, 'r', encoding='utf-8').read()).group(1)
+    app_names.append(app_name)
+s.run('{python} manage.py genproto {apps}'.format(python=sys.argv[1], apps=' '.join(app_names)), shell=True)

@@ -3,27 +3,46 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
-import 'package:flutter_persistent_socket/components/files/files_messages.dart';
+import 'package:flutter_persistent_socket/persistence/database.dart';
+import 'package:flutter_persistent_socket/proto/sfiles.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
-import 'package:uuid/uuid.dart';
+
+import '../../messages.dart';
 
 class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
-  final FileUploadController Function(RxUploadStart) createUploadController;
+  final FileUploadController Function(RxUploadStartSlot) createUploadController;
+  final StreamController<RxUploadProgress> _progressEvents = StreamController.broadcast();
+
+  Stream<RxUploadProgress> get progressEvents => _progressEvents.stream;
+  Map<String, FileUploadController> _uploadControllers = {};
 
   FilesController(this.socketApi, this.createUploadController) {
-    listen(socketApi.getMessageHandler(RxUploadStart()), _onUploadStart);
+    listen(socketApi.getMessageHandler(RxUploadStartSlot()), _onUploadStart);
   }
 
   void dispose() {
     cancelSubscriptions();
   }
 
-  void _onUploadStart(RxUploadStart message) {
+  void _onUploadStart(RxUploadStartSlot message) async {
     FileUploadController controller = createUploadController(message);
-    controller.startUpload(message.key).then((value) {
-      print('uploaded ${message.localKey}');
-    });
+    _uploadControllers[message.data.localKey] = controller;
+    controller.filesController = this;
+    controller.startUpload(message.data.key);
+    await socketApi.getMessageHandler(RxUploadDone()).firstWhere((msg) => msg.data.file.localKey == message.data.localKey);
+    database.socketRxEventDao.invalidateCacheForCacheUuid(message);
+    print('uploaded ${message.data.localKey}');
+  }
+
+  static void delete(SocketApi api, UploadedFile file) {
+    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
+    file.clearLocalKey();
+    file.clearUrl();
+  }
+
+  void cancelUpload(String localKey) {
+    _uploadControllers[localKey]?.cancel();
   }
 }
 
@@ -34,6 +53,7 @@ class FileUploadController with SubscriptionsMixin {
   final String Function(String) getUploadUrl;
   final String extension;
 
+  FilesController filesController;
   Stream<List<int>> _data;
   String remoteKey;
   SocketApi uploadApi;
@@ -65,18 +85,20 @@ class FileUploadController with SubscriptionsMixin {
   }
 
   void dispose() {
-    if (uploadInProgress) throw Exception('upload must be complete');
+    if (uploadInProgress) throw Exception('upload must be completed');
     if (!(_targetSizeCompleter?.isCompleted ?? true)) {
       _targetSizeCompleter.completeError(Exception('disconencted'));
     }
     cancelSubscriptions();
     uploadApi?.close();
+    _uploadCompleter.complete();
   }
 
   void _onUploadStart() {
     _log('upload started (key: $remoteKey)');
     _uploadInProgress = true;
     uploadApi = SocketApi(getUploadUrl(remoteKey));
+    uploadApi.connection.autoReconnect = false;
     uploadApi.setAuth(socketApi.token);
     listen(uploadApi.connection.connected.changes, (bool isConnected) {
       if (!isConnected) {
@@ -102,7 +124,8 @@ class FileUploadController with SubscriptionsMixin {
             break;
           }
         }
-        uploadApi.sendMessage(TxUploadEnd());
+        uploadApi.sendMessage(TxUploadEnd(UploadEnd()));
+        await Future.delayed(Duration(seconds: 5));
         _uploadInProgress = false;
         _log('upload done');
         dispose();
@@ -115,10 +138,16 @@ class FileUploadController with SubscriptionsMixin {
   }
 
   void _onProgressUpdate(RxUploadProgress message) {
-    if (message.key != remoteKey) return;
-    _log('uploaded ${message.nBytes} bytes');
-    if (message.nBytes == _targetSize) {
+    filesController._progressEvents.add(message);
+    if (message.data.key != remoteKey) return;
+    _log('uploaded ${message.data.nBytes} bytes');
+    if (message.data.nBytes == _targetSize) {
       _targetSizeCompleter.complete();
     }
+  }
+
+  void cancel() {
+    _uploadInProgress = false;
+    dispose();
   }
 }

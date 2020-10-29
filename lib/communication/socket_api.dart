@@ -4,14 +4,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:flutter_persistent_socket/components/authentication/authentication_messages.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
+import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:gm5_utils/gm5_utils.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
 
-class SocketApi with SubscriptionsMixin {
+import '../messages.dart';
+
+class SocketApi with SubscriptionsMixin, ChangeNotifier {
   static Map<String, SocketApi> _instances = {};
   String _token;
 
@@ -37,11 +39,19 @@ class SocketApi with SubscriptionsMixin {
     connection = SocketConnector(address);
     listen(connection.connected.changes, _connectionStateChange);
     listen(connection.dataStream, _onData);
+    setMessages(rxMessages);
+    connection.addListener(_connectionChange);
+  }
+
+  void _connectionChange() {
+    notifyListeners();
   }
 
   void setAuth(String token) {
+    bool changed = _token != token;
     _token = token;
     authenticated.val = token != null;
+    notifyListeners();
   }
 
   void changeAddress(String address) {
@@ -57,15 +67,12 @@ class SocketApi with SubscriptionsMixin {
   void sendMessage(SocketTxMessage message) {
     _txMessageHandlers[message.messageType]?.add(message);
     String msg = json.encode({
-      'body': {
-        'messageType': message.messageType,
-        'eventTime': gm5Utils.secondsFromEpoch,
-        'localTime': gm5Utils.secondsFromEpoch,
-        ...message.data,
-      },
+      'body': message.data,
       'headers': {
         'messageType': message.messageType,
         'authHeader': message.authRequired ? _token : null,
+        'eventTime': gm5Utils.secondsFromEpoch,
+        'localTime': gm5Utils.secondsFromEpoch,
       }
     });
     print('txevent: $msg');
@@ -73,27 +80,25 @@ class SocketApi with SubscriptionsMixin {
       connection.channel.sink.add(msg);
     } catch (e) {
       print('error sending $e');
-      if (message.cache != Duration.zero) {
+      if (message.cache != Duration.zero && message.cache != null) {
         print('caching event!');
-        database.socketTxEventDao.addEvent(
-          SocketTxEventsCompanion(
-            jsonContent: Value(msg),
-            expires: Value(
-              DateTime.now().add(message.cache),
-            ),
-          ),
-        );
+        database.socketTxEventDao.cacheEvent(message, msg);
       }
     }
   }
 
+  void fireLocalUpdate(SocketRxMessage message) {
+    message.message.online = false;
+    _messageHandlers[message.messageType].add(message);
+  }
+
   void _onData(event) {
     print('rxevent: $event');
-    SocketRxMessageData messageData = SocketRxMessageData(event);
+    SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
     SocketRxMessage message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
-    if (message == null) return;
+    if (message == null) return;  // todo proper logging
     _messageHandlers[messageData.messageType]?.add(message);
-    if (message.cache != Duration.zero) {
+    if (message.cache != null && message.cache != Duration.zero) {
       database.socketRxEventDao.cacheEvent(message);
     }
   }
@@ -102,18 +107,16 @@ class SocketApi with SubscriptionsMixin {
     return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
   }
 
-  Stream getMessageHandler(SocketRxMessage message, {bool withoutCache = false}) {
+  Stream getMessageHandler<T extends SocketRxMessage>(T message) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
-    Stream stream = _messageHandlers
-        .putIfAbsent(
-            message.messageType,
-            () => StreamController.broadcast(
-                onListen: message.cache == Duration.zero ? null : () => _fireFromCache(message)))
-        .stream;
-    if (withoutCache) {
-      return stream.where((message) => (message as SocketRxMessage)?.message?.fromCache == false);
-    }
+    Stream<T> stream = _messageHandlers.putIfAbsent(message.messageType, () => StreamController<T>.broadcast()).stream;
     return stream;
+  }
+
+  void setMessages(List<SocketRxMessage> messages) {
+    for (SocketRxMessage message in messages) {
+      _messageConverters[message.messageType] = message;
+    }
   }
 
   void _connectionStateChange(bool connected) {
@@ -148,14 +151,24 @@ class SocketApi with SubscriptionsMixin {
     return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
   }
 
-  void _fireFromCache(SocketRxMessage message) async {
-    for (SocketRxEvent cachedEvent in await database.socketRxEventDao.getEvents(message)) {
-      print('from cache ${message.messageType}');
-      _messageHandlers[message.messageType].add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
+  Future<int> fireFromCache(SocketRxMessage message,
+      {SocketRxMessageQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>> filter}) async {
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
+        (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
+    List<SocketRxEvent> events = await query.get();
+    for (SocketRxEvent cachedEvent in events) {
+      try {
+        final msg = message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent));
+        _messageHandlers[message.messageType].add(msg);
+      } catch (e) {
+        print('Exception while parsing cached rx message. Schema changed?');
+      }
     }
+    return events.length;
   }
 
   void close() {
+    connection.removeListener(_connectionChange);
     cancelSubscriptions();
     for (StreamController controller in _messageHandlers.values) {
       controller.close();

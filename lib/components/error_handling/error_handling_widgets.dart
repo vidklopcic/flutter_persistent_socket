@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:flutter_persistent_socket/components/error_handling/error_handling_messages.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
+
+import '../../messages.dart';
 
 typedef SocketFormFieldBuilder = Widget Function(BuildContext context, List<String> errors);
 typedef SocketFormLayoutBuilder = Widget Function(BuildContext context, List<Widget> fields);
@@ -74,10 +75,10 @@ class SocketFormState extends State<SocketForm> with SubscriptionsMixin {
   }
 
   void _onFormErrors(RxFormErrors newErrors) {
-    print(newErrors.isRelated(relatedTxMessageTypes));
-    if (!newErrors.isRelated(relatedTxMessageTypes)) return;
+    print(relatedTxMessageTypes.contains(newErrors.data.relatedMessageType));
+    if (!relatedTxMessageTypes.contains(newErrors.data.relatedMessageType)) return;
     setState(() {
-      errors = newErrors.errors;
+      errors = newErrors.data.errors.map((key, value) => MapEntry(key, value.list));
     });
   }
 

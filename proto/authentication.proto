@@ -1,0 +1,57 @@
+syntax = "proto3";
+package authentication;
+
+/*
+type = 'login-token'
+origin = server
+client cache = years(1)
+ */
+message LoginToken {
+  string token = 1;
+}
+
+/*
+type = 'login-error'
+origin = server
+ */
+message LoginError {
+  string errorText = 1;
+  string errorCode = 2;
+}
+
+/*
+type = 'login'
+origin = client
+auth = false
+ */
+message Login {
+  string username = 1;
+  string password = 2;
+}
+
+/*
+type = 'apple-login'
+origin = client
+auth = false
+ */
+message AppleLogin {
+  string code = 1;
+  string firstName = 2;
+  string lastName = 3;
+  bool useBundleId = 4;
+  string state = 5;
+}
+
+/*
+type = 'verify-token'
+origin = client
+ */
+message VerifyToken {
+}
+
+/*
+type = 'token-invalid'
+origin = server
+ */
+message TokenInvalid {
+}
