@@ -180,7 +180,6 @@
     <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1600867668582">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="431" y="-1117" key="CommitChangelistDialog2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678931577" />
     <state x="2888" y="-292" key="CommitChangelistDialog2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768282482" />
     <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1598024399452" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485243" />
@@ -188,17 +187,14 @@
     <state x="293" y="161" key="DiffContextDialog" timestamp="1598024388154">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="-43" y="-1259" key="DiffContextDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917367" />
     <state x="293" y="161" key="DiffContextDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1598024388154" />
     <state x="784" y="389" key="RollbackChangesDialog" timestamp="1595842733648">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="571" y="-1002" key="RollbackChangesDialog/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678917907" />
     <state x="784" y="389" key="RollbackChangesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1595842733648" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1600867669448">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595678932244" />
     <state x="2928" y="-155" key="Vcs.Push.Dialog.v2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768283251" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1598024400271" />
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485834" />
@@ -206,15 +202,13 @@
     <state x="746" y="424" width="695" height="486" key="find.popup" timestamp="1597667050317">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="523" y="-963" width="695" height="486" key="find.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595679692404" />
     <state x="2980" y="-138" width="695" height="729" key="find.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795038561" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1597667050317" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1603984103239">
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1604327038423">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="536" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595675389968" />
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1603984103239" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1604327038423" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1597828770607" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867577917" />
   </component>

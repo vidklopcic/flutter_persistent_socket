@@ -13,7 +13,7 @@ Future<WebSocketChannel> getWebSocketChannel(String address,
   try {
     html.WebSocket ws = html.WebSocket(address);
     Future onOpenEvent = ws.onOpen.first;
-    onOpenEvent = onOpenEvent.timeout(Duration(seconds: 5));
+    onOpenEvent = onOpenEvent;
     await onOpenEvent;
     _sockets[address] = ws;
     channel = HtmlWebSocketChannel(ws);
