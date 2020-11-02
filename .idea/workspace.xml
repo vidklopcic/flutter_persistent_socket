@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector_web.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598024399564</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="remove timeout for connection on web">
+      <created>1604327101490</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1604327101490</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -174,14 +182,15 @@
     <MESSAGE value="bugfix - remove connector instance on close" />
     <MESSAGE value="add option to invalidate cache" />
     <MESSAGE value="invalidate token on logout" />
-    <option name="LAST_COMMIT_MESSAGE" value="invalidate token on logout" />
+    <MESSAGE value="remove timeout for connection on web" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove timeout for connection on web" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1600867668582">
+    <state x="672" y="287" key="CommitChangelistDialog2" timestamp="1604327101363">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="2888" y="-292" key="CommitChangelistDialog2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768282482" />
-    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1598024399452" />
+    <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1604327101363" />
     <state x="431" y="-1117" key="CommitChangelistDialog2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485243" />
     <state x="672" y="287" key="CommitChangelistDialog2/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867668582" />
     <state x="293" y="161" key="DiffContextDialog" timestamp="1598024388154">
@@ -192,11 +201,11 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="784" y="389" key="RollbackChangesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1595842733648" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1600867669448">
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2" timestamp="1604327102269">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="2928" y="-155" key="Vcs.Push.Dialog.v2/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595768283251" />
-    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1598024400271" />
+    <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1604327102269" />
     <state x="471" y="-980" key="Vcs.Push.Dialog.v2/0.23.2048.1206/-409.-1440.2560.1440@-409.-1440.2560.1440" timestamp="1595688485834" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867669448" />
     <state x="746" y="424" width="695" height="486" key="find.popup" timestamp="1597667050317">
@@ -204,11 +213,11 @@
     </state>
     <state x="2980" y="-138" width="695" height="729" key="find.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795038561" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1597667050317" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1604327038423">
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup" timestamp="1604327222907">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="2993" y="-284" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280/2048.-615.2560.1440@2048.-615.2560.1440" timestamp="1595795044359" />
-    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1604327038423" />
+    <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1604327222907" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.23.2048.1206@0.23.2048.1206" timestamp="1597828770607" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867577917" />
   </component>

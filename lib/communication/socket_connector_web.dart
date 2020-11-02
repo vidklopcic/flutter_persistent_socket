@@ -11,11 +11,12 @@ Future<WebSocketChannel> getWebSocketChannel(String address,
     @required void Function(dynamic) onError}) async {
   HtmlWebSocketChannel channel;
   try {
+    _sockets[address]?.close();
     html.WebSocket ws = html.WebSocket(address);
-    Future onOpenEvent = ws.onOpen.first;
-    onOpenEvent = onOpenEvent;
-    await onOpenEvent;
     _sockets[address] = ws;
+    Future onOpenEvent = ws.onOpen.first;
+    onOpenEvent = onOpenEvent.timeout(Duration(seconds: 5));
+    await onOpenEvent;
     channel = HtmlWebSocketChannel(ws);
     channel.stream.listen(onData, onDone: () async {
       _sockets[address]?.close();
