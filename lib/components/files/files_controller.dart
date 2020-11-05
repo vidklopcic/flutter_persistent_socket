@@ -26,17 +26,38 @@ class FilesController with SubscriptionsMixin {
   }
 
   void _onUploadStart(RxUploadStartSlot message) async {
+    _uploadControllers[message.data.localKey]?.cancel();
     FileUploadController controller = createUploadController(message);
     _uploadControllers[message.data.localKey] = controller;
     controller.filesController = this;
-    controller.startUpload(message.data.key);
-    await socketApi.getMessageHandler(RxUploadDone()).firstWhere((msg) => msg.data.file.localKey == message.data.localKey);
+
+    Completer _doneCompleter = Completer();
+    final _doneSub = socketApi.getMessageHandler(RxUploadDone()).listen((devent) {
+      final event = devent as RxUploadDone;
+      if (event.data.file.id != message.data.key) return;
+      if (!_doneCompleter.isCompleted) _doneCompleter.complete();
+    });
+
+    try {
+      await controller.startUpload(message.data.key);
+      if (!_doneCompleter.isCompleted) await _doneCompleter.future.timeout(Duration(seconds: 5));
+      _doneSub.cancel();
+    } catch (e) {
+      print('Upload error, reuploading $e , ${message.data.localKey}');
+      if (!socketApi.connection.connected.val) return;
+      await Future.delayed(Duration(seconds: 1));
+      _onUploadStart(message);
+      _doneSub.cancel();
+      return;
+    }
+
     database.socketRxEventDao.invalidateCacheForCacheUuid(message);
     print('uploaded ${message.data.localKey}');
   }
 
   static void delete(SocketApi api, UploadedFile file) {
-    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
+    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()
+      ..file = file));
     file.clearLocalKey();
     file.clearUrl();
   }
@@ -84,53 +105,62 @@ class FileUploadController with SubscriptionsMixin {
     return _uploadCompleter.future;
   }
 
-  void dispose() {
+  void dispose(bool failed) {
     if (uploadInProgress) throw Exception('upload must be completed');
     if (!(_targetSizeCompleter?.isCompleted ?? true)) {
       _targetSizeCompleter.completeError(Exception('disconencted'));
     }
     cancelSubscriptions();
     uploadApi?.close();
-    _uploadCompleter.complete();
+
+    if (_uploadCompleter.isCompleted) return;
+    if (failed) {
+      _uploadCompleter.completeError(Exception('Upload failed'));
+    } else {
+      _uploadCompleter.complete();
+    }
   }
 
   void _onUploadStart() {
     _log('upload started (key: $remoteKey)');
     _uploadInProgress = true;
-    uploadApi = SocketApi(getUploadUrl(remoteKey));
+    uploadApi = SocketApi(getUploadUrl(remoteKey), alwaysNew: true);
     uploadApi.connection.autoReconnect = false;
     uploadApi.setAuth(socketApi.token);
     listen(uploadApi.connection.connected.changes, (bool isConnected) {
       if (!isConnected) {
+        dispose(_uploadInProgress);
         _uploadInProgress = false;
-        dispose();
       }
     });
     listen(uploadApi.getMessageHandler(RxUploadProgress()), _onProgressUpdate);
 
     // send the data when connected
-    uploadApi.connection.whenConnected.then(
-      (_) async {
+    uploadApi.connection.whenConnected.timeout(Duration(seconds: 5)).then(
+          (_) async {
         _log('upload api connected');
+        bool failed = false;
         await for (List<int> chunk in _data) {
           _log('writing chunk (${chunk.length} bytes)');
           _targetSize += chunk.length;
           _targetSizeCompleter = Completer();
           try {
             uploadApi.connection.channel.sink.add(chunk);
-            await _targetSizeCompleter.future;
+            await _targetSizeCompleter.future.timeout(Duration(seconds: 20)); // FIXME: handle this better?
           } catch (e) {
             _log('upload failed $e');
+            failed = true;
             break;
           }
         }
         uploadApi.sendMessage(TxUploadEnd(UploadEnd()));
-        await Future.delayed(Duration(seconds: 5));
+        await Future.delayed(Duration(seconds: 1));
         _uploadInProgress = false;
         _log('upload done');
-        dispose();
+        dispose(failed);
       },
-    );
+    ).catchError((e) =>
+        _uploadCompleter.completeError(Exception('Could not establish connection to ${uploadApi.connection.address}')));
   }
 
   void _log(String message) {
@@ -148,6 +178,6 @@ class FileUploadController with SubscriptionsMixin {
 
   void cancel() {
     _uploadInProgress = false;
-    dispose();
+    dispose(false);
   }
 }

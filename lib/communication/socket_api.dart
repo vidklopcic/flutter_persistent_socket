@@ -31,8 +31,12 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     await authenticated.changes.firstWhere((element) => element);
   }
 
-  factory SocketApi(String address) {
-    return _instances.putIfAbsent(address, () => SocketApi._internal(address));
+  factory SocketApi(String address, {bool alwaysNew=false}) {
+    if (alwaysNew) {
+      return SocketApi._internal(address);
+    } else {
+      return _instances.putIfAbsent(address, () => SocketApi._internal(address));
+    }
   }
 
   SocketApi._internal(String address) {
@@ -64,7 +68,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     listen(connection.dataStream, _onData);
   }
 
-  void sendMessage(SocketTxMessage message) {
+  bool sendMessage(SocketTxMessage message) {
     _txMessageHandlers[message.messageType]?.add(message);
     String msg = json.encode({
       'body': message.data,
@@ -84,7 +88,9 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         print('caching event!');
         database.socketTxEventDao.cacheEvent(message, msg);
       }
+      return false;
     }
+    return true;
   }
 
   void fireLocalUpdate(SocketRxMessage message) {
@@ -96,7 +102,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     print('rxevent: $event');
     SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
     SocketRxMessage message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
-    if (message == null) return;  // todo proper logging
+    if (message == null) return; // todo proper logging
     _messageHandlers[messageData.messageType]?.add(message);
     if (message.cache != null && message.cache != Duration.zero) {
       database.socketRxEventDao.cacheEvent(message);
@@ -177,6 +183,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       controller.close();
     }
     connection.close();
+    _instances.remove(connection.address);
   }
 }
 
