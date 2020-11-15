@@ -251,16 +251,9 @@ betterproto.Message.from_dict = from_dict_patch
 betterproto.ProtoClassMetadata.init_default_gen = init_default_gen_patch
 ''')
 
-    classnames = []
     for generator in generators:
         try:
             f.write(generator.get_server_message())
-            classnames.append(generator.get_server_message_classname())
         except Exception as e:
             print('Syntax error:', generator)
             print(e)
-    f.write('''
-
-class Messages:
-    %s
-''' % '\n    '.join(['%s = %s' % (i.lower()[0] + i[1:], i) for i in classnames]))

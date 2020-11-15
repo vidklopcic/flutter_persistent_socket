@@ -159,6 +159,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
   Future<int> fireFromCache(SocketRxMessage message,
       {SocketRxMessageQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>> filter}) async {
+    if (message.cache == null || message.cache == Duration.zero) return 0;
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
         (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
     List<SocketRxEvent> events = await query.get();
