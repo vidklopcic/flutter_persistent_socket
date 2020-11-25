@@ -1,10 +1,72 @@
+import 'proto/sfiles.pb.dart';
 import 'proto/authentication.pb.dart';
 import 'proto/form_errors.pb.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:provider/single_child_widget.dart';
-import 'proto/sfiles.pb.dart';
-import 'package:provider/provider.dart';
+
+class RxFormErrors extends SocketRxMessage {
+  static const String type = 'form-errors';
+  final FormErrors data = FormErrors();
+  
+
+  RxFormErrors([SocketRxMessageData message]) : super(type, message);
+
+  @override
+  RxFormErrors fromMessage(SocketRxMessageData message) => RxFormErrors(message);
+}
+
+
+class RxLoginToken extends SocketRxMessage {
+  static const String type = 'login-token';
+  final LoginToken data = LoginToken();
+  final Duration cache = const Duration(days: 365, hours: 0, minutes: 0, seconds: 0);
+
+  RxLoginToken([SocketRxMessageData message]) : super(type, message);
+
+  @override
+  RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);
+}
+
+
+class RxUploadDone extends SocketRxMessage {
+  static const String type = 'upload-done';
+  final UploadDone data = UploadDone();
+  
+
+  RxUploadDone([SocketRxMessageData message]) : super(type, message);
+
+  @override
+  RxUploadDone fromMessage(SocketRxMessageData message) => RxUploadDone(message);
+}
+
+
+class TxAppleLogin extends SocketTxMessage {
+  static const String type = 'apple-login';
+  final AppleLogin proto;
+  
+  
+  const TxAppleLogin([this.proto]) : super(type, authRequired: false);
+  
+  static AppleLogin get newProto => AppleLogin();
+  
+  static TxAppleLogin create(AppleLogin Function(AppleLogin data) setData) => TxAppleLogin(setData(TxAppleLogin.newProto));
+}
+
+
+class TxLogin extends SocketTxMessage {
+  static const String type = 'login';
+  final Login proto;
+  
+  
+  const TxLogin([this.proto]) : super(type, authRequired: false);
+  
+  static Login get newProto => Login();
+  
+  static TxLogin create(Login Function(Login data) setData) => TxLogin(setData(TxLogin.newProto));
+}
+
 class RxUploadStartSlotCacheKeys extends CacheKeys {
   final CacheKey localKey = const CacheKey(CacheKeyType.text, 0, 'localKey');
 
@@ -24,66 +86,15 @@ class RxUploadStartSlot extends SocketRxMessage {
 }
 
 
-class RxLoginToken extends SocketRxMessage {
-  static const String type = 'login-token';
-  final LoginToken data = LoginToken();
-  final Duration cache = const Duration(days: 365, hours: 0, minutes: 0, seconds: 0);
-
-  RxLoginToken([SocketRxMessageData message]) : super(type, message);
-
-  @override
-  RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);
-}
-
-
-class RxFormErrors extends SocketRxMessage {
-  static const String type = 'form-errors';
-  final FormErrors data = FormErrors();
+class RxUploadProgress extends SocketRxMessage {
+  static const String type = 'upload-progress';
+  final UploadProgress data = UploadProgress();
   
 
-  RxFormErrors([SocketRxMessageData message]) : super(type, message);
+  RxUploadProgress([SocketRxMessageData message]) : super(type, message);
 
   @override
-  RxFormErrors fromMessage(SocketRxMessageData message) => RxFormErrors(message);
-}
-
-
-class TxLogin extends SocketTxMessage {
-  static const String type = 'login';
-  final Login proto;
-  
-  
-  const TxLogin([this.proto]) : super(type, authRequired: false);
-  
-  static Login get newProto => Login();
-  
-  static TxLogin create(Login Function(Login data) setData) => TxLogin(setData(TxLogin.newProto));
-}
-
-
-class TxDeleteFile extends SocketTxMessage {
-  static const String type = 'delete-file';
-  final DeleteFile proto;
-  
-  
-  const TxDeleteFile([this.proto]) : super(type, authRequired: true);
-  
-  static DeleteFile get newProto => DeleteFile();
-  
-  static TxDeleteFile create(DeleteFile Function(DeleteFile data) setData) => TxDeleteFile(setData(TxDeleteFile.newProto));
-}
-
-
-class TxAppleLogin extends SocketTxMessage {
-  static const String type = 'apple-login';
-  final AppleLogin proto;
-  
-  
-  const TxAppleLogin([this.proto]) : super(type, authRequired: false);
-  
-  static AppleLogin get newProto => AppleLogin();
-  
-  static TxAppleLogin create(AppleLogin Function(AppleLogin data) setData) => TxAppleLogin(setData(TxAppleLogin.newProto));
+  RxUploadProgress fromMessage(SocketRxMessageData message) => RxUploadProgress(message);
 }
 
 class TxUploadStartCacheKeys extends CacheKeys {
@@ -106,15 +117,15 @@ class TxUploadStart extends SocketTxMessage {
 }
 
 
-class RxLoginError extends SocketRxMessage {
-  static const String type = 'login-error';
-  final LoginError data = LoginError();
+class RxTokenInvalid extends SocketRxMessage {
+  static const String type = 'token-invalid';
+  final TokenInvalid data = TokenInvalid();
   
 
-  RxLoginError([SocketRxMessageData message]) : super(type, message);
+  RxTokenInvalid([SocketRxMessageData message]) : super(type, message);
 
   @override
-  RxLoginError fromMessage(SocketRxMessageData message) => RxLoginError(message);
+  RxTokenInvalid fromMessage(SocketRxMessageData message) => RxTokenInvalid(message);
 }
 
 
@@ -144,71 +155,56 @@ class TxVerifyToken extends SocketTxMessage {
 }
 
 
-class RxUploadDone extends SocketRxMessage {
-  static const String type = 'upload-done';
-  final UploadDone data = UploadDone();
+class TxDeleteFile extends SocketTxMessage {
+  static const String type = 'delete-file';
+  final DeleteFile proto;
   
-
-  RxUploadDone([SocketRxMessageData message]) : super(type, message);
-
-  @override
-  RxUploadDone fromMessage(SocketRxMessageData message) => RxUploadDone(message);
+  
+  const TxDeleteFile([this.proto]) : super(type, authRequired: true);
+  
+  static DeleteFile get newProto => DeleteFile();
+  
+  static TxDeleteFile create(DeleteFile Function(DeleteFile data) setData) => TxDeleteFile(setData(TxDeleteFile.newProto));
 }
 
 
-class RxUploadProgress extends SocketRxMessage {
-  static const String type = 'upload-progress';
-  final UploadProgress data = UploadProgress();
+class RxLoginError extends SocketRxMessage {
+  static const String type = 'login-error';
+  final LoginError data = LoginError();
   
 
-  RxUploadProgress([SocketRxMessageData message]) : super(type, message);
+  RxLoginError([SocketRxMessageData message]) : super(type, message);
 
   @override
-  RxUploadProgress fromMessage(SocketRxMessageData message) => RxUploadProgress(message);
-}
-
-
-class RxTokenInvalid extends SocketRxMessage {
-  static const String type = 'token-invalid';
-  final TokenInvalid data = TokenInvalid();
-  
-
-  RxTokenInvalid([SocketRxMessageData message]) : super(type, message);
-
-  @override
-  RxTokenInvalid fromMessage(SocketRxMessageData message) => RxTokenInvalid(message);
+  RxLoginError fromMessage(SocketRxMessageData message) => RxLoginError(message);
 }
 
 
 List<SocketRxMessage> rxMessages = [
-  RxUploadStartSlot(),
-  RxLoginToken(),
   RxFormErrors(),
-  RxLoginError(),
+  RxLoginToken(),
   RxUploadDone(),
+  RxUploadStartSlot(),
   RxUploadProgress(),
-  RxTokenInvalid()
+  RxTokenInvalid(),
+  RxLoginError()
 ];
     
 List<SingleChildWidget> getMessageProviders(SocketApi api) => [
-      StreamProvider<RxUploadStartSlot>(
-        create: (c) => _getMessageHandler(api, RxUploadStartSlot()),
+      StreamProvider<RxFormErrors>(
+        create: (c) => _getMessageHandler(api, RxFormErrors()),
         lazy: false,
       ),
       StreamProvider<RxLoginToken>(
         create: (c) => _getMessageHandler(api, RxLoginToken()),
         lazy: false,
       ),
-      StreamProvider<RxFormErrors>(
-        create: (c) => _getMessageHandler(api, RxFormErrors()),
-        lazy: false,
-      ),
-      StreamProvider<RxLoginError>(
-        create: (c) => _getMessageHandler(api, RxLoginError()),
-        lazy: false,
-      ),
       StreamProvider<RxUploadDone>(
         create: (c) => _getMessageHandler(api, RxUploadDone()),
+        lazy: false,
+      ),
+      StreamProvider<RxUploadStartSlot>(
+        create: (c) => _getMessageHandler(api, RxUploadStartSlot()),
         lazy: false,
       ),
       StreamProvider<RxUploadProgress>(
@@ -217,6 +213,10 @@ List<SingleChildWidget> getMessageProviders(SocketApi api) => [
       ),
       StreamProvider<RxTokenInvalid>(
         create: (c) => _getMessageHandler(api, RxTokenInvalid()),
+        lazy: false,
+      ),
+      StreamProvider<RxLoginError>(
+        create: (c) => _getMessageHandler(api, RxLoginError()),
         lazy: false,
       )
 ];

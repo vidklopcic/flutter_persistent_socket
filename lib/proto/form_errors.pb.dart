@@ -3,16 +3,16 @@
 //  source: form_errors.proto
 //
 // @dart = 2.3
-// ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
+// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class FormErrors extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('FormErrors', package: const $pb.PackageName('form_errors'), createEmptyInstance: create)
-    ..aOS(1, 'relatedMessageType', protoName: 'relatedMessageType')
-    ..m<$core.String, SList>(2, 'errors', entryClassName: 'FormErrors.ErrorsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: SList.create, packageName: const $pb.PackageName('form_errors'))
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'FormErrors', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'form_errors'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'relatedMessageType', protoName: 'relatedMessageType')
+    ..m<$core.String, SList>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errors', entryClassName: 'FormErrors.ErrorsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: SList.create, packageName: const $pb.PackageName('form_errors'))
     ..hasRequiredFields = false
   ;
 
@@ -20,8 +20,16 @@ class FormErrors extends $pb.GeneratedMessage {
   factory FormErrors() => create();
   factory FormErrors.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory FormErrors.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   FormErrors clone() => FormErrors()..mergeFromMessage(this);
-  FormErrors copyWith(void Function(FormErrors) updates) => super.copyWith((message) => updates(message as FormErrors));
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  FormErrors copyWith(void Function(FormErrors) updates) => super.copyWith((message) => updates(message as FormErrors)); // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static FormErrors create() => FormErrors._();
@@ -45,8 +53,8 @@ class FormErrors extends $pb.GeneratedMessage {
 }
 
 class SList extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SList', package: const $pb.PackageName('form_errors'), createEmptyInstance: create)
-    ..pPS(1, 'list')
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SList', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'form_errors'), createEmptyInstance: create)
+    ..pPS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'list')
     ..hasRequiredFields = false
   ;
 
@@ -54,8 +62,16 @@ class SList extends $pb.GeneratedMessage {
   factory SList() => create();
   factory SList.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SList.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   SList clone() => SList()..mergeFromMessage(this);
-  SList copyWith(void Function(SList) updates) => super.copyWith((message) => updates(message as SList));
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SList copyWith(void Function(SList) updates) => super.copyWith((message) => updates(message as SList)); // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SList create() => SList._();

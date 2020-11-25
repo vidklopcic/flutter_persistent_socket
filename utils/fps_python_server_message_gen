@@ -222,11 +222,9 @@ def from_dict_patch(self: T, value: dict) -> T:
                         else:
                             v = b64decode(value[key])
                     elif meta.proto_type == TYPE_ENUM:
-                        enum_cls = self._betterproto.cls_by_field[field.name]
-                        if isinstance(v, list):
-                            v = [enum_cls.from_string(e) for e in v]
-                        elif isinstance(v, str):
-                            v = enum_cls.from_string(v)
+                        # already in correct format as received
+                        pass
+
 
                     if v is not None:
                         setattr(self, field.name, v)

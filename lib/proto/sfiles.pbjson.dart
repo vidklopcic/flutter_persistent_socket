@@ -3,7 +3,7 @@
 //  source: sfiles.proto
 //
 // @dart = 2.3
-// ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
+// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 const UploadStartSlot$json = const {
   '1': 'UploadStartSlot',
@@ -39,6 +39,7 @@ const UploadedFile$json = const {
     const {'1': 'mime', '3': 4, '4': 1, '5': 9, '10': 'mime'},
     const {'1': 'thumbUrl', '3': 5, '4': 1, '5': 9, '10': 'thumbUrl'},
     const {'1': 'name', '3': 6, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'downloadable', '3': 7, '4': 1, '5': 8, '10': 'downloadable'},
   ],
 };
 
