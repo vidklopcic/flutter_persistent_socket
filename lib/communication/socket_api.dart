@@ -14,6 +14,7 @@ import 'package:moor/moor.dart';
 import '../messages.dart';
 
 class SocketApi with SubscriptionsMixin, ChangeNotifier {
+  bool logging = false;
   static Map<String, SocketApi> _instances = {};
   String _token;
 
@@ -31,7 +32,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     await authenticated.changes.firstWhere((element) => element);
   }
 
-  factory SocketApi(String address, {bool alwaysNew=false}) {
+  factory SocketApi(String address, {bool alwaysNew = false}) {
     if (alwaysNew) {
       return SocketApi._internal(address);
     } else {
@@ -79,7 +80,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         'localTime': gm5Utils.secondsFromEpoch,
       }
     });
-    print('txevent: $msg');
+    if (logging) print('txevent: $msg');
     try {
       connection.channel.sink.add(msg);
     } catch (e) {
@@ -99,7 +100,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   void _onData(event) {
-    print('rxevent: $event');
+    if (logging) print('rxevent: $event');
     SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
     SocketRxMessage message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
     if (message == null) return; // todo proper logging
