@@ -13,6 +13,7 @@ class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
   final FileUploadController Function(RxUploadStartSlot) createUploadController;
   final StreamController<RxUploadProgress> _progressEvents = StreamController.broadcast();
+  int _nTries = 0;
 
   Stream<RxUploadProgress> get progressEvents => _progressEvents.stream;
   Map<String, FileUploadController> _uploadControllers = {};
@@ -45,10 +46,13 @@ class FilesController with SubscriptionsMixin {
     } catch (e) {
       print('Upload error, reuploading $e , ${message.data.localKey}');
       if (!socketApi.connection.connected.val) return;
-      await Future.delayed(Duration(seconds: 1));
-      _onUploadStart(message);
-      _doneSub.cancel();
-      return;
+      if (_nTries < 2) {
+        await Future.delayed(Duration(seconds: 5));
+        _onUploadStart(message);
+        _doneSub.cancel();
+        _nTries++;
+        return;
+      }
     }
 
     database.socketRxEventDao.invalidateCacheForCacheUuid(message);
@@ -56,8 +60,7 @@ class FilesController with SubscriptionsMixin {
   }
 
   static void delete(SocketApi api, UploadedFile file) {
-    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()
-      ..file = file));
+    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
     file.clearLocalKey();
     file.clearUrl();
   }
@@ -137,7 +140,7 @@ class FileUploadController with SubscriptionsMixin {
 
     // send the data when connected
     uploadApi.connection.whenConnected.timeout(Duration(seconds: 5)).then(
-          (_) async {
+      (_) async {
         _log('upload api connected');
         bool failed = false;
         await for (List<int> chunk in _data) {

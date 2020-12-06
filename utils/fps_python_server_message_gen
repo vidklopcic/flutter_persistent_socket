@@ -35,6 +35,9 @@ class MessageGen():
         else:
             return 'True'
 
+    def permissions(self):
+        permissions = ('')
+
     def get_server_message(self) -> str:
         message = '''
 
@@ -42,7 +45,8 @@ class {prefix}{proto}({prefix}Message):
     type = '{type}'
     proto = {proto}
     auth_required = {auth}
-'''.format(prefix=self.get_server_prefix(), proto=self.proto, type=self.get_type(), auth=self.is_auth_required())
+    permissions = [{permissions}]
+'''.format(prefix=self.get_server_prefix(), proto=self.proto, type=self.get_type(), auth=self.is_auth_required(), permissions=self.permissions())
 
         return message
 
