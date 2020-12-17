@@ -212,6 +212,7 @@ def from_dict_patch(self: T, value: dict) -> T:
                     v = getattr(self, field.name)
                     cls = self._betterproto.cls_by_field[field.name + ".value"]
                     for k in value[key]:
+                        # fixme - map is converted to ['1': key, '2': value], which isn't consistent with betterproto
                         v[k] = cls().from_dict(value[key][k])
                 else:
                     v = value[key]

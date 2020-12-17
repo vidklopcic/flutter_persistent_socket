@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
@@ -46,7 +47,7 @@ class FilesController with SubscriptionsMixin {
     } catch (e) {
       print('Upload error, reuploading $e , ${message.data.localKey}');
       if (!socketApi.connection.connected.val) return;
-      if (_nTries < 2) {
+      if (_nTries < 2 || !kIsWeb) {
         await Future.delayed(Duration(seconds: 5));
         _onUploadStart(message);
         _doneSub.cancel();

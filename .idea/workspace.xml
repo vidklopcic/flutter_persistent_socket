@@ -188,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606346546773</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="stop reuploading after 2 failed attempts">
+      <created>1607255975755</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1607255975755</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -199,6 +206,42 @@
         <option value="3" />
         <option value="1" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
@@ -221,41 +264,46 @@
     <MESSAGE value="do not fire from cache for messages that have duration zero" />
     <MESSAGE value="add downloadable field to sfile" />
     <MESSAGE value="add logging flag for tx / rx event printouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="add logging flag for tx / rx event printouts" />
+    <MESSAGE value="stop reuploading after 2 failed attempts" />
+    <option name="LAST_COMMIT_MESSAGE" value="stop reuploading after 2 failed attempts" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="588" y="251" key="CommitChangelistDialog2" timestamp="1606346546680">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state x="2888" y="289" key="CommitChangelistDialog2" timestamp="1608228540115">
+      <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="672" y="287" key="CommitChangelistDialog2/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581108481" />
     <state x="588" y="251" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1606346546680" />
     <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1605461015383" />
-    <state x="840" y="323" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1606327301950" />
+    <state x="840" y="323" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1607255975646" />
+    <state x="2888" y="289" key="CommitChangelistDialog2/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608228540115" />
     <state x="672" y="287" key="CommitChangelistDialog2/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867668582" />
-    <state x="293" y="161" key="DiffContextDialog" timestamp="1604581099310">
-      <screen x="0" y="0" width="2048" height="1280" />
+    <state x="2414" y="149" width="1638" height="1024" key="DiffContextDialog" timestamp="1608228539241">
+      <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="293" y="161" key="DiffContextDialog/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581099310" />
-    <state x="616" y="358" key="Vcs.Push.Dialog.v2" timestamp="1606346548954">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state x="2414" y="129" width="1638" height="1024" key="DiffContextDialog/0.0.2048.1280/2048.-52.2560.1440@2048.-52.2560.1440" timestamp="1608227933038" />
+    <state x="2414" y="149" key="DiffContextDialog/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608228539241" />
+    <state x="880" y="460" key="Vcs.Push.Dialog.v2" timestamp="1607255976773">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581109737" />
     <state x="616" y="358" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1606346548954" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1605461016563" />
-    <state x="880" y="460" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1606327303695" />
+    <state x="880" y="460" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1607255976773" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867669448" />
-    <state x="933" y="477" width="869" height="547" key="find.popup" timestamp="1607255848828">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="2981" y="425" width="869" height="547" key="find.popup" timestamp="1608227794667">
+      <screen x="2048" y="-52" width="2560" height="1440" />
     </state>
     <state x="653" y="371" width="695" height="486" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1606346461738" />
+    <state x="2981" y="425" width="869" height="547" key="find.popup/0.0.2048.1280/2048.-52.2560.1440@2048.-52.2560.1440" timestamp="1608227794667" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1605460941957" />
-    <state x="933" y="477" width="869" height="547" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607255848828" />
-    <state x="945" y="331" width="838" height="678" key="search.everywhere.popup" timestamp="1607255836013">
+    <state x="933" y="477" width="869" height="547" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607368119514" />
+    <state x="945" y="331" width="838" height="678" key="search.everywhere.popup" timestamp="1607278369401">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="662" y="257" width="670" height="528" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1606346448289" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1605805281693" />
-    <state x="945" y="331" width="838" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607255836013" />
+    <state x="945" y="331" width="838" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607278369401" />
     <state x="756" y="312" width="670" height="591" key="search.everywhere.popup/0.23.2048.1257/2048.-253.2560.1440@0.23.2048.1257" timestamp="1605983562857" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867577917" />
   </component>
