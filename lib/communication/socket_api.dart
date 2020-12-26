@@ -12,10 +12,6 @@ import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
 import '../messages.dart';
 
-enum SocketApiAckStatus { success, timeout, messageError }
-
-typedef SocketApiAckCallback = void Function(SocketApiAckStatus status, String errorMessage);
-
 class SocketApi with SubscriptionsMixin, ChangeNotifier {
   bool logging = false;
   static Map<String, SocketApi> _instances = {};
@@ -72,10 +68,10 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     listen(connection.dataStream, _onData);
   }
 
-  bool sendMessage(SocketTxMessage message,
-      {SocketApiAckCallback onAck, Duration timeout = const Duration(seconds: 10)}) {
+  Future<SocketApiTxStatus> sendMessage(SocketTxMessage message,
+      {bool ack = false, Duration timeout = const Duration(seconds: 10)}) async {
     _txMessageHandlers[message.messageType]?.add(message);
-    bool ack = onAck != null;
+
     String instanceUuid = uuidObj.v4();
     String msg = json.encode({
       'body': message.data,
@@ -88,18 +84,10 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         'uuid': instanceUuid,
       }
     });
+
     if (logging) print('txevent: $msg');
 
-    if (ack) {
-      getMessageHandler(RxAck()).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout).then((event) {
-        final e = event as RxAck;
-        final status = e.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
-        onAck(status, e.data.errorMessage);
-      }).catchError(() {
-        onAck(SocketApiAckStatus.timeout, '');
-      });
-    }
-
+    // send event
     try {
       connection.channel.sink.add(msg);
     } catch (e) {
@@ -108,9 +96,21 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         print('caching event!');
         database.socketTxEventDao.cacheEvent(message, msg);
       }
-      return false;
+      return SocketApiTxStatus(SocketApiAckStatus.success, 'Error sending the message.');
     }
-    return true;
+
+    // handle ack message
+    if (ack) {
+      try {
+        final e = getMessageHandler(RxAck()).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout)
+            as RxAck;
+        final status = e.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
+        return SocketApiTxStatus(status, e.data.errorMessage);
+      } catch (e) {
+        return SocketApiTxStatus(SocketApiAckStatus.timeout, 'No response from server.');
+      }
+    }
+    return SocketApiTxStatus(SocketApiAckStatus.success, '');
   }
 
   void fireLocalUpdate(SocketRxMessage message) {
@@ -221,4 +221,13 @@ class SocketApiProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(SocketApiProvider saProvider) => saProvider.socketApi != socketApi;
+}
+
+enum SocketApiAckStatus { success, connectionError, timeout, messageError }
+
+class SocketApiTxStatus {
+  final SocketApiAckStatus status;
+  final String errorMessage;
+
+  SocketApiTxStatus(this.status, this.errorMessage);
 }
