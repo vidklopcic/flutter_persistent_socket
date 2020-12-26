@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto/socket_api.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/fps_python_server_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_python_server_message_gen" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607255975755</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="stop reuploading after 2 failed attempts - only on web">
+      <created>1608228551056</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1608228551056</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -265,17 +278,22 @@
     <MESSAGE value="add downloadable field to sfile" />
     <MESSAGE value="add logging flag for tx / rx event printouts" />
     <MESSAGE value="stop reuploading after 2 failed attempts" />
-    <option name="LAST_COMMIT_MESSAGE" value="stop reuploading after 2 failed attempts" />
+    <MESSAGE value="stop reuploading after 2 failed attempts - only on web" />
+    <option name="LAST_COMMIT_MESSAGE" value="stop reuploading after 2 failed attempts - only on web" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2888" y="289" key="CommitChangelistDialog2" timestamp="1608228540115">
+    <state x="3030" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608992876243">
+      <screen x="2048" y="-29" width="2560" height="1417" />
+    </state>
+    <state x="3030" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608992876243" />
+    <state x="2888" y="289" key="CommitChangelistDialog2" timestamp="1608228550935">
       <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="672" y="287" key="CommitChangelistDialog2/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581108481" />
     <state x="588" y="251" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1606346546680" />
     <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1605461015383" />
     <state x="840" y="323" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1607255975646" />
-    <state x="2888" y="289" key="CommitChangelistDialog2/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608228540115" />
+    <state x="2888" y="289" key="CommitChangelistDialog2/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608228550935" />
     <state x="672" y="287" key="CommitChangelistDialog2/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867668582" />
     <state x="2414" y="149" width="1638" height="1024" key="DiffContextDialog" timestamp="1608228539241">
       <screen x="2048" y="-29" width="2560" height="1417" />
@@ -283,28 +301,31 @@
     <state x="293" y="161" key="DiffContextDialog/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581099310" />
     <state x="2414" y="129" width="1638" height="1024" key="DiffContextDialog/0.0.2048.1280/2048.-52.2560.1440@2048.-52.2560.1440" timestamp="1608227933038" />
     <state x="2414" y="149" key="DiffContextDialog/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608228539241" />
-    <state x="880" y="460" key="Vcs.Push.Dialog.v2" timestamp="1607255976773">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="2928" y="424" key="Vcs.Push.Dialog.v2" timestamp="1608228552268">
+      <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581109737" />
     <state x="616" y="358" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1606346548954" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1605461016563" />
     <state x="880" y="460" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1607255976773" />
+    <state x="2928" y="424" key="Vcs.Push.Dialog.v2/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608228552268" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867669448" />
-    <state x="2981" y="425" width="869" height="547" key="find.popup" timestamp="1608227794667">
-      <screen x="2048" y="-52" width="2560" height="1440" />
+    <state x="2981" y="440" width="869" height="539" key="find.popup" timestamp="1608992531645">
+      <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="653" y="371" width="695" height="486" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1606346461738" />
     <state x="2981" y="425" width="869" height="547" key="find.popup/0.0.2048.1280/2048.-52.2560.1440@2048.-52.2560.1440" timestamp="1608227794667" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1605460941957" />
     <state x="933" y="477" width="869" height="547" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607368119514" />
-    <state x="945" y="331" width="838" height="678" key="search.everywhere.popup" timestamp="1607278369401">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="2981" y="440" width="869" height="539" key="find.popup/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608992531645" />
+    <state x="2993" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1608993622211">
+      <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="662" y="257" width="670" height="528" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1606346448289" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1605805281693" />
     <state x="945" y="331" width="838" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607278369401" />
     <state x="756" y="312" width="670" height="591" key="search.everywhere.popup/0.23.2048.1257/2048.-253.2560.1440@0.23.2048.1257" timestamp="1605983562857" />
+    <state x="2993" y="297" width="838" height="668" key="search.everywhere.popup/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608993622211" />
     <state x="756" y="294" width="670" height="601" key="search.everywhere.popup/2048.256.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1600867577917" />
   </component>
 </project>

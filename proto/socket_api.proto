@@ -1,0 +1,11 @@
+syntax = "proto3";
+package socket_api;
+
+/*
+type = 'ack'
+origin = server
+ */
+message Ack {
+  string uuid = 1;
+  string errorMessage = 2;
+}

@@ -77,6 +77,8 @@ class RxMessageData:
         self.headers = json_data.get('headers')
         self.body = json_data.get('body')
         self.authHeader = self.headers.get('authHeader')
+        self.ack = self.headers.get('ack')
+        self.uuid = self.headers.get('uuid')
         self.type = self.headers.get('messageType')
 
 

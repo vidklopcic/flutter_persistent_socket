@@ -10,8 +10,11 @@ import 'package:gm5_utils/gm5_utils.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
 import 'package:moor/moor.dart';
-
 import '../messages.dart';
+
+enum SocketApiAckStatus { success, timeout, messageError }
+
+typedef SocketApiAckCallback = void Function(SocketApiAckStatus status, String errorMessage);
 
 class SocketApi with SubscriptionsMixin, ChangeNotifier {
   bool logging = false;
@@ -69,8 +72,11 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     listen(connection.dataStream, _onData);
   }
 
-  bool sendMessage(SocketTxMessage message) {
+  bool sendMessage(SocketTxMessage message,
+      {SocketApiAckCallback onAck, Duration timeout = const Duration(seconds: 10)}) {
     _txMessageHandlers[message.messageType]?.add(message);
+    bool ack = onAck != null;
+    String instanceUuid = uuidObj.v4();
     String msg = json.encode({
       'body': message.data,
       'headers': {
@@ -78,9 +84,22 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         'authHeader': message.authRequired ? _token : null,
         'eventTime': gm5Utils.secondsFromEpoch,
         'localTime': gm5Utils.secondsFromEpoch,
+        'ack': ack,
+        'uuid': instanceUuid,
       }
     });
     if (logging) print('txevent: $msg');
+
+    if (ack) {
+      getMessageHandler(RxAck()).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout).then((event) {
+        final e = event as RxAck;
+        final status = e.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
+        onAck(status, e.data.errorMessage);
+      }).catchError(() {
+        onAck(SocketApiAckStatus.timeout, '');
+      });
+    }
+
     try {
       connection.channel.sink.add(msg);
     } catch (e) {
