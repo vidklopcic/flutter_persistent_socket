@@ -41,7 +41,7 @@ TX_MESSAGE_CLASS = '''class Tx{proto} extends SocketTxMessage {{
   
   static {proto} get newProto => {proto}();
   
-  static Tx{proto} create({proto} Function({proto} data) setData) => Tx{proto}(setData(Tx{proto}.newProto));
+  static Tx{proto} create([{proto} Function({proto} data) setData]) => Tx{proto}((setData ?? (p) => p)(Tx{proto}.newProto));
 }}
 '''
 

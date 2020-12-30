@@ -102,7 +102,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     // handle ack message
     if (ack) {
       try {
-        final e = getMessageHandler(RxAck()).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout)
+        final e = await getMessageHandler(RxAck()).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout)
             as RxAck;
         final status = e.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
         return SocketApiTxStatus(status, e.data.errorMessage);
