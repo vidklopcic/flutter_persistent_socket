@@ -125,23 +125,30 @@ class MessageGen():
                 common_fields.append('''final {prefix}{proto}CacheKeys cacheKeys = const {prefix}{proto}CacheKeys();'''.format(
                     prefix=self.get_client_prefix(), proto=self.proto))
                 cache_fields = []
+                cache_keys = []
                 for i in range(len(text_keys)):
                     text_key = text_keys[i]
+                    cache_keys.append(
+                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
                     cache_fields.append(
-                        '''final CacheKey {0} = const CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
+                        '''GeneratedTextColumn {0}(table) => {0}Key.textField(table);'''.format(text_key, i))
                 for i in range(len(real_keys)):
                     real_key = real_keys[i]
+                    cache_keys.append(
+                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
                     cache_fields.append(
-                        '''final CacheKey {0} = const CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
+                        '''GeneratedRealColumn {0}(table) => {0}Key.realField(table);'''.format(real_key, i))
                 for i in range(len(date_keys)):
                     date_key = date_keys[i]
+                    cache_keys.append(
+                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
                     cache_fields.append(
-                        '''final CacheKey {0} = const CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
+                        '''GeneratedDateColumn {0}(table) => {0}Key.dateField(table);'''.format(date_key, i))
                 cache_class = CACHE_KEYS_CLASS.format(prefix=self.get_client_prefix(), proto=self.proto,
                                                       text_keys="'" + "', '".join(text_keys) + "'" if text_keys else '',
                                                       real_keys="'" + "', '".join(real_keys) + "'" if real_keys else '',
                                                       date_keys="'" + "', '".join(date_keys) + "'" if date_keys else '',
-                                                      fields='\n  '.join(cache_fields))
+                                                      fields='\n  '.join(cache_keys + cache_fields))
 
         return common_fields, rx_fields, tx_fields, cache_class
 
@@ -196,6 +203,7 @@ imports.add("import 'package:flutter_persistent_socket/communication/socket_mess
 imports.add("import 'package:provider/provider.dart';")
 imports.add("import 'package:flutter_persistent_socket/communication/socket_api.dart';")
 imports.add("import 'package:provider/single_child_widget.dart';")
+imports.add("import 'package:moor/moor.dart';")
 imports.update(set([i.get_import() for i in generators]))
 
 with open('../lib/messages.dart', 'w', encoding='utf-8') as f:

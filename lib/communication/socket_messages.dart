@@ -107,7 +107,6 @@ abstract class SocketRxMessage {
 
   /// Provides a set of `real`, `date` and `text` keys that can be used to query and differentiate messages
   /// of the same type in the cache
-  final CacheKeys cacheKeys;
 
   /// Protobuf generated class that provides easier access to the data.
   final GeneratedMessage data = null;
