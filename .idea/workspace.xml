@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609330783091</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="simplify cache keys">
+      <created>1610611916506</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1610611916506</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -273,6 +278,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="finalized core functionality (untested)" />
     <MESSAGE value="caching fixes, authentication improvements (check if token valid on start)" />
     <MESSAGE value="web support" />
@@ -297,20 +303,22 @@
     <MESSAGE value="add ack callback" />
     <MESSAGE value="replaced ack callback with future return value" />
     <MESSAGE value="add ack" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ack" />
+    <MESSAGE value="simplify cache keys" />
+    <option name="LAST_COMMIT_MESSAGE" value="simplify cache keys" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3030" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608992876243">
       <screen x="2048" y="-29" width="2560" height="1417" />
     </state>
     <state x="3030" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1608992876243" />
-    <state x="2888" y="289" key="CommitChangelistDialog2" timestamp="1609330782971">
-      <screen x="2048" y="-29" width="2560" height="1417" />
+    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1610611916367">
+      <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="672" y="287" key="CommitChangelistDialog2/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581108481" />
     <state x="588" y="251" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1606346546680" />
     <state x="672" y="287" key="CommitChangelistDialog2/0.0.2048.1280@0.0.2048.1280" timestamp="1605461015383" />
     <state x="840" y="323" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1607255975646" />
+    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1610611916367" />
     <state x="2888" y="289" key="CommitChangelistDialog2/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1609330782971" />
     <state x="2158" y="149" width="1638" height="1024" key="DiffContextDialog" timestamp="1610611660296">
       <screen x="1792" y="-29" width="2560" height="1417" />
@@ -339,22 +347,23 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2772" y="397" key="RollbackChangesDialog/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1610611660777" />
-    <state x="2928" y="424" key="Vcs.Push.Dialog.v2" timestamp="1609330784289">
-      <screen x="2048" y="-29" width="2560" height="1417" />
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1610611917998">
+      <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/-1366.97.1366.1024/0.0.2048.1280@0.0.2048.1280" timestamp="1604581109737" />
     <state x="616" y="358" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1606346548954" />
     <state x="704" y="409" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1605461016563" />
     <state x="880" y="460" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1607255976773" />
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1610611917998" />
     <state x="2928" y="424" key="Vcs.Push.Dialog.v2/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1609330784289" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1610611883584">
+    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1610612015110">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="653" y="371" width="695" height="486" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1606346461738" />
     <state x="2981" y="425" width="869" height="547" key="find.popup/0.0.2048.1280/2048.-52.2560.1440@2048.-52.2560.1440" timestamp="1608227794667" />
     <state x="746" y="424" width="695" height="486" key="find.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1605460941957" />
     <state x="933" y="477" width="869" height="547" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1607368119514" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1610611883584" />
+    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1610612015110" />
     <state x="2981" y="440" width="869" height="539" key="find.popup/0.23.2048.1257/2048.-29.2560.1417@2048.-29.2560.1417" timestamp="1609279299149" />
     <state x="2993" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1609273218611">
       <screen x="2048" y="-29" width="2560" height="1417" />
