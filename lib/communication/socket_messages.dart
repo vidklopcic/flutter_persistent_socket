@@ -15,22 +15,30 @@ class SocketRxMessageData {
   /// Indicates if the message was modified locally (set to `false` when calling `save()` on the `SocketRxMessage`).
   bool online;
 
-  /// Date and time of reception
-  final DateTime time;
+  /// Date and time of reception or modification
+  DateTime time;
 
   /// Raw JSON string
-  final String raw;
+  String get raw => _raw ?? '{}';
+
+  set raw(String newRaw) {
+    _raw = newRaw;
+    data = json.decode(raw);
+    time = DateTime.now();
+  }
+
+  String _raw;
 
   /// Tries to find the `messageType` attribute. There are two possible locations in order to be compatible
   /// with skljoc
   String get messageType => data['headers']['messageType'] ?? data['messageType'];
 
   /// Decoded JSON map.
-  final Map<String, dynamic> data;
+  Map<String, dynamic> data;
 
-  SocketRxMessageData(this.raw, {@required this.online, this.fromCache = false})
+  SocketRxMessageData(this._raw, {@required this.online, this.fromCache = false})
       : this.time = DateTime.now(),
-        this.data = json.decode(raw);
+        this.data = json.decode(_raw ?? '{}');
 
   /// There can be two location of the body in order to be compatible with skljoc.
   Map<String, dynamic> get body => data['body'] ?? data;
@@ -45,7 +53,7 @@ class SocketRxMessageData {
       : fromCache = true,
         online = event.online,
         time = event.timeReceived,
-        raw = event.jsonContent,
+        _raw = event.jsonContent,
         data = json.decode(event.jsonContent);
 
   @override
@@ -64,9 +72,10 @@ abstract class SocketTxMessage {
 
   final CacheKeys cacheKeys;
 
-  String get cacheUuid => cacheKeys == null
-      ? uuidObj.v4()
-      : '${messageType}${'|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
+  String get cacheUuid =>
+      cacheKeys == null
+          ? uuidObj.v4()
+          : '${messageType}${'|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
 
   const SocketTxMessage(this.messageType, {this.authRequired = true})
       : cacheKeys = null,
@@ -118,9 +127,10 @@ abstract class SocketRxMessage {
   String get cacheUuid =>
       '${messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
 
-  SocketRxMessage(this.messageType, this.message)
+  SocketRxMessage(this.messageType, SocketRxMessageData message)
       : cache = null,
-        cacheKeys = null {
+        cacheKeys = null,
+        message = message ?? SocketRxMessageData(null, online: false) {
     if (message != null && data != null) {
       data.mergeFromJsonMap(message.body);
     }
@@ -143,8 +153,10 @@ abstract class SocketRxMessage {
 
   /// Save local changes to the cache (**if cacheUuid changed due to these changes,
   /// it is user's responsibility to invalidate old message if that is desired**)
-  Future save() {
+  Future save([SocketApi socketApi]) {
+    socketApi?.fireLocalUpdate(this);
     message.online = false;
+    message.raw = data.writeToJson();
     return database.socketRxEventDao.cacheEvent(this);
   }
 

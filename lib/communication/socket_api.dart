@@ -52,7 +52,6 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   void setAuth(String token) {
-    bool changed = _token != token;
     _token = token;
     authenticated.val = token != null;
     notifyListeners();

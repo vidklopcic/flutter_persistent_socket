@@ -117,7 +117,8 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
   Future<List<SocketTxEvent>> unhandledEvents(int limit, {int offset = 0}) {
     return (select(socketTxEvents)
           ..where((tbl) => tbl.expires.isBiggerThanValue(DateTime.now()))
-          ..limit(limit, offset: offset))
+          ..limit(limit, offset: offset)
+          ..orderBy([(q) => OrderingTerm(expression: q.timeRecorded)]))
         .get();
   }
 
