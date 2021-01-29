@@ -14,13 +14,19 @@ class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
   final FileUploadController Function(RxUploadStartSlot) createUploadController;
   final StreamController<RxUploadProgress> _progressEvents = StreamController.broadcast();
-  int _nTries = 0;
+  int nConcurrent;
+  List<String> _uploadingLocalKeys = [];
+  Set<String> _pendingAndUploadingLocalKeys = {};
+  List<RxUploadStartSlot> _pendingUploads = [];
 
   Stream<RxUploadProgress> get progressEvents => _progressEvents.stream;
   Map<String, FileUploadController> _uploadControllers = {};
 
-  FilesController(this.socketApi, this.createUploadController) {
-    listen(socketApi.getMessageHandler(RxUploadStartSlot()), _onUploadStart);
+  FilesController(this.socketApi, this.createUploadController, {this.nConcurrent = 3}) {
+    listen(socketApi.getMessageHandler(RxUploadStartSlot()), (m) {
+      if (_pendingAndUploadingLocalKeys.contains(m.data.localKey)) return;
+      _onUploadStart(m);
+    });
   }
 
   void dispose() {
@@ -28,6 +34,31 @@ class FilesController with SubscriptionsMixin {
   }
 
   void _onUploadStart(RxUploadStartSlot message) async {
+    _pendingAndUploadingLocalKeys.add(message.data.localKey);
+    if (_uploadingLocalKeys.contains(message.data.localKey)) return;
+    if (_uploadingLocalKeys.length >= nConcurrent) {
+      _pendingUploads.add(message);
+      return;
+    }
+    print('uploading ${message.data.localKey}');
+    _uploadingLocalKeys.add(message.data.localKey);
+
+    try {
+      await __onUploadStart(message);
+    } catch (e) {
+      // should not happen
+      print('Unhandled upload exception! $e');
+    }
+
+    _uploadingLocalKeys.remove(message.data.localKey);
+    _pendingAndUploadingLocalKeys.remove(message.data.localKey);
+
+    if (_pendingUploads.length > 0) {
+      _onUploadStart(_pendingUploads.removeAt(0));
+    }
+  }
+
+  Future __onUploadStart(RxUploadStartSlot message, [int tryN = 0]) async {
     _uploadControllers[message.data.localKey]?.cancel();
     FileUploadController controller = createUploadController(message);
     _uploadControllers[message.data.localKey] = controller;
@@ -35,6 +66,8 @@ class FilesController with SubscriptionsMixin {
 
     Completer _doneCompleter = Completer();
     final _doneSub = socketApi.getMessageHandler(RxUploadDone()).listen((devent) {
+      database.socketRxEventDao.invalidateCacheForCacheUuid(message);
+      print('uploaded ${message.data.localKey}');
       final event = devent as RxUploadDone;
       if (event.data.file.id != message.data.key) return;
       if (!_doneCompleter.isCompleted) _doneCompleter.complete();
@@ -42,22 +75,26 @@ class FilesController with SubscriptionsMixin {
 
     try {
       await controller.startUpload(message.data.key);
-      if (!_doneCompleter.isCompleted) await _doneCompleter.future.timeout(Duration(seconds: 5));
+      if (!_doneCompleter.isCompleted) await _doneCompleter.future.timeout(Duration(seconds: 2));
       _doneSub.cancel();
     } catch (e) {
       print('Upload error, reuploading $e , ${message.data.localKey}');
-      if (!socketApi.connection.connected.val) return;
-      if (_nTries < 2 || !kIsWeb) {
-        await Future.delayed(Duration(seconds: 5));
-        _onUploadStart(message);
-        _doneSub.cancel();
-        _nTries++;
+      try {
+        socketApi.connection.whenConnected.timeout(Duration(seconds: 10));
+      } catch (e) {
+        // we lost the connection
         return;
+      }
+      if (tryN < (kIsWeb ? 2 : 10)) {
+        await Future.delayed(Duration(seconds: 1));
+        _doneSub.cancel();
+        await __onUploadStart(message, tryN + 1);
       }
     }
 
-    database.socketRxEventDao.invalidateCacheForCacheUuid(message);
-    print('uploaded ${message.data.localKey}');
+    if (kIsWeb && tryN == 0) {
+      database.socketRxEventDao.invalidateCacheForCacheUuid(message);
+    }
   }
 
   static void delete(SocketApi api, UploadedFile file) {
@@ -158,7 +195,6 @@ class FileUploadController with SubscriptionsMixin {
           }
         }
         uploadApi.sendMessage(TxUploadEnd(UploadEnd()));
-        await Future.delayed(Duration(seconds: 1));
         _uploadInProgress = false;
         _log('upload done');
         dispose(failed);

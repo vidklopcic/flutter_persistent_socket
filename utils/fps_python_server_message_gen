@@ -80,6 +80,7 @@ class RxMessageData:
         self.ack = self.headers.get('ack')
         self.uuid = self.headers.get('uuid')
         self.type = self.headers.get('messageType')
+        self.retryCount = self.headers.get('retryCount', 0)
 
 
 class RxMessage(ABC):

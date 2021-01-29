@@ -106,6 +106,10 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
     );
   }
 
+  Future saveEvent(SocketTxEvent event) {
+    into(socketTxEvents).insertOnConflictUpdate(event);
+  }
+
   SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> filter(SocketTxMessage message) {
     SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> query = select(socketTxEvents);
     query.where((tbl) => tbl.type.equals(message.messageType));
