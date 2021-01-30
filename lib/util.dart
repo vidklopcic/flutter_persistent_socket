@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:fixnum/fixnum.dart';
 
 class FPSUtil {
