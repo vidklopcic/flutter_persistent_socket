@@ -72,10 +72,9 @@ abstract class SocketTxMessage {
 
   final CacheKeys cacheKeys;
 
-  String get cacheUuid =>
-      cacheKeys == null
-          ? uuidObj.v4()
-          : '${messageType}${'|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
+  String get cacheUuid => cacheKeys == null
+      ? uuidObj.v4()
+      : '${messageType}${'|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
 
   const SocketTxMessage(this.messageType, {this.authRequired = true})
       : cacheKeys = null,
@@ -164,7 +163,7 @@ abstract class SocketRxMessage {
   @override
   dynamic operator [](String key) {
     int tag = data.getTagNumber(key);
-    if (tag == null) return null;
+    if (tag == null || !data.hasField(tag)) return null;
     return data.getField(tag);
   }
 }
