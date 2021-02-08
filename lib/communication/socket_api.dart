@@ -14,6 +14,7 @@ import 'package:moor/moor.dart';
 import '../messages.dart';
 
 class SocketApi with SubscriptionsMixin, ChangeNotifier {
+  bool noCache = false;
   bool logging = false;
   int retryCount = 0;
   static Map<String, SocketApi> _instances = {};
@@ -118,7 +119,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       print('error sending $e');
       if (isCacheable) {
         if (logging) print('connection error - caching event!');
-        database.socketTxEventDao.cacheEvent(message, msg);
+        if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
       }
       return SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
     }
@@ -132,7 +133,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       if (isCacheable &&
           status.status != SocketApiAckStatus.success &&
           status.status != SocketApiAckStatus.messageError) {
-        database.socketTxEventDao.cacheEvent(message, msg);
+        if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
       }
     }
     return status;
@@ -150,7 +151,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     if (message == null) return; // todo proper logging
     _messageHandlers[messageData.messageType]?.add(message);
     if (message.cache != null && message.cache != Duration.zero) {
-      database.socketRxEventDao.cacheEvent(message);
+      if (!noCache) database.socketRxEventDao.cacheEvent(message);
     }
   }
 
