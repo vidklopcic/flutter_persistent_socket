@@ -20,6 +20,8 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   static Map<String, SocketApi> _instances = {};
   String _token;
 
+  int apiVersion = 1;
+
   String get token => _token;
   SocketConnector connection;
   Observable<bool> authenticated = Observable(false);
@@ -106,6 +108,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         'localTime': gm5Utils.secondsFromEpoch,
         'ack': ack,
         'retryCount': 0,
+        'apiVersion': apiVersion,
         'uuid': instanceUuid,
       }
     });
