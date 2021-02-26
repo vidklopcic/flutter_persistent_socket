@@ -14,7 +14,7 @@ class FPSUtil {
     return DateTime.fromMillisecondsSinceEpoch(ts.toInt());
   }
 
-  Int64 toTimestamp(DateTime dateTime) {
+  Int64 toTimestamp(DateTime dateTime, [bool useTz]) {
     return Int64(dateTime.millisecondsSinceEpoch);
   }
 }

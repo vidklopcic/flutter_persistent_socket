@@ -407,3 +407,54 @@ class UploadEnd extends $pb.GeneratedMessage {
   static UploadEnd _defaultInstance;
 }
 
+class PostUploadSlot extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PostUploadSlot', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'sfiles'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'key')
+    ..aOM<UploadedFile>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'file', subBuilder: UploadedFile.create)
+    ..hasRequiredFields = false
+  ;
+
+  PostUploadSlot._() : super();
+  factory PostUploadSlot() => create();
+  factory PostUploadSlot.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PostUploadSlot.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PostUploadSlot clone() => PostUploadSlot()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PostUploadSlot copyWith(void Function(PostUploadSlot) updates) => super.copyWith((message) => updates(message as PostUploadSlot)); // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static PostUploadSlot create() => PostUploadSlot._();
+  PostUploadSlot createEmptyInstance() => create();
+  static $pb.PbList<PostUploadSlot> createRepeated() => $pb.PbList<PostUploadSlot>();
+  @$core.pragma('dart2js:noInline')
+  static PostUploadSlot getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PostUploadSlot>(create);
+  static PostUploadSlot _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get key => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set key($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasKey() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearKey() => clearField(1);
+
+  @$pb.TagNumber(2)
+  UploadedFile get file => $_getN(1);
+  @$pb.TagNumber(2)
+  set file(UploadedFile v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasFile() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearFile() => clearField(2);
+  @$pb.TagNumber(2)
+  UploadedFile ensureFile() => $_ensure(1);
+}
+

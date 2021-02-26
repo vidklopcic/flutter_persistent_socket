@@ -69,3 +69,14 @@ origin = client
  */
 message UploadEnd {
 }
+
+/*
+type = 'post-upload-slot'
+origin = server
+client cache = years(10)
+client cache_key = text('key')
+ */
+message PostUploadSlot {
+  string key = 1;
+  sfiles.UploadedFile file = 2;
+}

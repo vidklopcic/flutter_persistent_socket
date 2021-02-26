@@ -88,9 +88,10 @@ class RxMessage(ABC):
     type = None
     auth_required = True
 
-    def __init__(self, data: RxMessageData):
+    def __init__(self, data: RxMessageData, user=None):
         self.data = data
         self.set_data(data)
+        self.user = user
 
     def set_data(self, data: RxMessageData):
         self.proto = self.proto().from_dict(data.body)
