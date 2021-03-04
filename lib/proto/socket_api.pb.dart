@@ -58,3 +58,42 @@ class Ack extends $pb.GeneratedMessage {
   void clearErrorMessage() => clearField(2);
 }
 
+class UpgradeApiVersion extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UpgradeApiVersion', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'socket_api'), createEmptyInstance: create)
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'latest', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  UpgradeApiVersion._() : super();
+  factory UpgradeApiVersion() => create();
+  factory UpgradeApiVersion.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpgradeApiVersion.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpgradeApiVersion clone() => UpgradeApiVersion()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpgradeApiVersion copyWith(void Function(UpgradeApiVersion) updates) => super.copyWith((message) => updates(message as UpgradeApiVersion)); // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static UpgradeApiVersion create() => UpgradeApiVersion._();
+  UpgradeApiVersion createEmptyInstance() => create();
+  static $pb.PbList<UpgradeApiVersion> createRepeated() => $pb.PbList<UpgradeApiVersion>();
+  @$core.pragma('dart2js:noInline')
+  static UpgradeApiVersion getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpgradeApiVersion>(create);
+  static UpgradeApiVersion _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get latest => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set latest($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasLatest() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLatest() => clearField(1);
+}
+

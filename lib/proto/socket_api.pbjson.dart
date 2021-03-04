@@ -13,3 +13,10 @@ const Ack$json = const {
   ],
 };
 
+const UpgradeApiVersion$json = const {
+  '1': 'UpgradeApiVersion',
+  '2': const [
+    const {'1': 'latest', '3': 1, '4': 1, '5': 5, '10': 'latest'},
+  ],
+};
+

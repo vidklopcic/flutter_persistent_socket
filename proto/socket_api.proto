@@ -9,3 +9,12 @@ message Ack {
   string uuid = 1;
   string errorMessage = 2;
 }
+
+/*
+type = 'upgrade-api-version'
+origin = server
+ */
+message UpgradeApiVersion {
+  int32 latest = 1;
+}
+

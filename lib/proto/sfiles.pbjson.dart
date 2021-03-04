@@ -64,11 +64,3 @@ const UploadEnd$json = const {
   '1': 'UploadEnd',
 };
 
-const PostUploadSlot$json = const {
-  '1': 'PostUploadSlot',
-  '2': const [
-    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'file', '3': 2, '4': 1, '5': 11, '6': '.sfiles.UploadedFile', '10': 'file'},
-  ],
-};
-

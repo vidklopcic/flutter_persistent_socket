@@ -234,6 +234,8 @@ def from_dict_patch(self: T, value: dict) -> T:
                     elif meta.proto_type == TYPE_ENUM:
                         # already in correct format as received
                         pass
+                    elif meta.proto_type == TYPE_MAP:
+                        v = {o['1']: o['2'] for o in value[key]}
 
 
                     if v is not None:

@@ -75,7 +75,7 @@ class FilesController with SubscriptionsMixin {
 
     try {
       await controller.startUpload(message.data.key);
-      if (!_doneCompleter.isCompleted) await _doneCompleter.future.timeout(Duration(seconds: 2));
+      if (!_doneCompleter.isCompleted) await _doneCompleter.future.timeout(Duration(seconds: 20));
       _doneSub.cancel();
     } catch (e) {
       print('Upload error, reuploading $e , ${message.data.localKey}');
