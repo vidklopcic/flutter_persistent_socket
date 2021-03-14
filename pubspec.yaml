@@ -6,17 +6,16 @@ homepage:
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   sqlite3_flutter_libs: ^0.2.0
-  moor: ^3.4.0
-  path_provider: ^1.6.10
-  provider: ^4.3.2+2
+  moor: ^4.1.0
+  provider: ^5.0.0
+  path_provider: ^2.0.1
   path: ^1.6.4
-  uuid: ^2.0.4
+  uuid: ^3.0.1
   web_socket_channel: ^1.1.0
   gm5_utils:
     git: git@github.com:vidklopcic/gm5_utils.git
@@ -28,7 +27,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  moor_generator: ^3.4.0
+  conr_generator: ^4.1.0
   build_runner: ^1.10.0
 
 # For information on the generic Dart part of this file, see the
