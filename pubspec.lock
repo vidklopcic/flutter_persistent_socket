@@ -219,8 +219,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "26e762910b192bffbb143b7f62ba60889f5de67a"
-      url: "git@github.com:vidklopcic/gm5_utils.git"
+      resolved-ref: "8a257deb7f63c8bcad3207da16ce37672ddf17ba"
+      url: "https://github.com/vidklopcic/gm5_utils.git"
     source: git
     version: "0.0.1"
   graphs:
@@ -257,7 +257,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
