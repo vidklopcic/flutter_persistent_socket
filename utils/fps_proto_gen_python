@@ -12,7 +12,7 @@ s.run('rm -rf ./proto/*', shell=True)
 config = json.load(open('fps_config.json'))
 
 proto_path = ' '.join(['-I ' + i for i in config['protos']])
-protos = ' '.join(['/' + i.strip('/') + '**/*.proto' for i in config['protos']])
+protos = ' '.join([i.rstrip('/') + '**/*.proto' for i in config['protos']])
 
 s.run(
     'protoc -I /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto %s  --python_betterproto_out=proto /Users/vidklopcic/StudioProjects/flutter_persistent_socket/proto**/*.proto %s' % (

@@ -5,8 +5,8 @@ import sys
 import json
 
 PROTO_ROOT = os.environ.get('FPS_PROTO_ROOT')
-
-if not os.path.isfile('pubspec.yaml') or not os.path.isdir('proto'):
+has_local_proto = os.path.isdir('proto')
+if not os.path.isfile('pubspec.yaml') or (not has_local_proto and not os.path.isfile('fps_config.json')):
     print('Run the command from python project root, containing proto directory')
     sys.exit(1)
 
@@ -16,16 +16,23 @@ except:
     config = {
         'protos': []
     }
+
+if has_local_proto:
+    config['protos'].append('./proto')
+
 print(config)
-os.chdir('proto')
-proto_path = ' '.join(['-I ' + i for i in config['protos'] + ['./']])
-protos = ' '.join(['/' + i.strip('/') + '**/*.proto' for i in config['protos']])
-if os.getcwd() != PROTO_ROOT:
+
+proto_path = ' '.join(['-I ' + i for i in config['protos']])
+protos = ' '.join([i.rstrip('/') + '**/*.proto' for i in config['protos']])
+if os.path.join(os.getcwd(), 'proto') != PROTO_ROOT:
     proto_path += ' -I {}'.format(PROTO_ROOT)
 
-s.run('rm -rf ../lib/proto/*', shell=True, executable="/bin/zsh")
-s.run('protoc {} --dart_out=../lib/proto **/*.proto {}'.format(proto_path, protos), shell=True, executable="/bin/zsh")
-s.run("sed -i '' 's/sfiles.pb.dart/package:flutter_persistent_socket\/proto\/sfiles.pb.dart/g' ../lib/proto/*",
+if has_local_proto:
+    protos += ' ./proto/**/*.proto'
+
+s.run('rm -rf ./lib/proto/*', shell=True, executable="/bin/zsh")
+s.run('protoc {} --dart_out=./lib/proto {}'.format(proto_path, protos), shell=True, executable="/bin/zsh")
+s.run("sed -i '' 's/sfiles.pb.dart/package:flutter_persistent_socket\/proto\/sfiles.pb.dart/g' ./lib/proto/*",
       shell=True, executable="/bin/zsh")
-s.run("fps_dart_client_message_gen ./*.proto {}".format(protos), shell=True, executable="/bin/zsh")
-s.run("git add ../lib/proto ../lib/messages.dart", shell=True, executable="/bin/zsh")
+s.run("fps_dart_client_message_gen {}".format(protos), shell=True, executable="/bin/zsh")
+s.run("git add ./lib/proto ./lib/messages.dart", shell=True, executable="/bin/zsh")
