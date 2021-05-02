@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: authentication.proto
 //
-// @dart = 2.3
+// @dart = 2.7
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -16,7 +16,15 @@ class LoginToken extends $pb.GeneratedMessage {
   ;
 
   LoginToken._() : super();
-  factory LoginToken() => create();
+  factory LoginToken({
+    $core.String token,
+  }) {
+    final _result = create();
+    if (token != null) {
+      _result.token = token;
+    }
+    return _result;
+  }
   factory LoginToken.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory LoginToken.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -28,7 +36,7 @@ class LoginToken extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LoginToken copyWith(void Function(LoginToken) updates) => super.copyWith((message) => updates(message as LoginToken)); // ignore: deprecated_member_use
+  LoginToken copyWith(void Function(LoginToken) updates) => super.copyWith((message) => updates(message as LoginToken)) as LoginToken; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static LoginToken create() => LoginToken._();
@@ -56,7 +64,19 @@ class LoginError extends $pb.GeneratedMessage {
   ;
 
   LoginError._() : super();
-  factory LoginError() => create();
+  factory LoginError({
+    $core.String errorText,
+    $core.String errorCode,
+  }) {
+    final _result = create();
+    if (errorText != null) {
+      _result.errorText = errorText;
+    }
+    if (errorCode != null) {
+      _result.errorCode = errorCode;
+    }
+    return _result;
+  }
   factory LoginError.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory LoginError.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -68,7 +88,7 @@ class LoginError extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LoginError copyWith(void Function(LoginError) updates) => super.copyWith((message) => updates(message as LoginError)); // ignore: deprecated_member_use
+  LoginError copyWith(void Function(LoginError) updates) => super.copyWith((message) => updates(message as LoginError)) as LoginError; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static LoginError create() => LoginError._();
@@ -105,7 +125,19 @@ class Login extends $pb.GeneratedMessage {
   ;
 
   Login._() : super();
-  factory Login() => create();
+  factory Login({
+    $core.String username,
+    $core.String password,
+  }) {
+    final _result = create();
+    if (username != null) {
+      _result.username = username;
+    }
+    if (password != null) {
+      _result.password = password;
+    }
+    return _result;
+  }
   factory Login.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory Login.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -117,7 +149,7 @@ class Login extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Login copyWith(void Function(Login) updates) => super.copyWith((message) => updates(message as Login)); // ignore: deprecated_member_use
+  Login copyWith(void Function(Login) updates) => super.copyWith((message) => updates(message as Login)) as Login; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static Login create() => Login._();
@@ -157,7 +189,31 @@ class AppleLogin extends $pb.GeneratedMessage {
   ;
 
   AppleLogin._() : super();
-  factory AppleLogin() => create();
+  factory AppleLogin({
+    $core.String code,
+    $core.String firstName,
+    $core.String lastName,
+    $core.bool useBundleId,
+    $core.String state,
+  }) {
+    final _result = create();
+    if (code != null) {
+      _result.code = code;
+    }
+    if (firstName != null) {
+      _result.firstName = firstName;
+    }
+    if (lastName != null) {
+      _result.lastName = lastName;
+    }
+    if (useBundleId != null) {
+      _result.useBundleId = useBundleId;
+    }
+    if (state != null) {
+      _result.state = state;
+    }
+    return _result;
+  }
   factory AppleLogin.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory AppleLogin.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -169,7 +225,7 @@ class AppleLogin extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  AppleLogin copyWith(void Function(AppleLogin) updates) => super.copyWith((message) => updates(message as AppleLogin)); // ignore: deprecated_member_use
+  AppleLogin copyWith(void Function(AppleLogin) updates) => super.copyWith((message) => updates(message as AppleLogin)) as AppleLogin; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static AppleLogin create() => AppleLogin._();
@@ -243,7 +299,7 @@ class VerifyToken extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  VerifyToken copyWith(void Function(VerifyToken) updates) => super.copyWith((message) => updates(message as VerifyToken)); // ignore: deprecated_member_use
+  VerifyToken copyWith(void Function(VerifyToken) updates) => super.copyWith((message) => updates(message as VerifyToken)) as VerifyToken; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static VerifyToken create() => VerifyToken._();
@@ -272,7 +328,7 @@ class TokenInvalid extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  TokenInvalid copyWith(void Function(TokenInvalid) updates) => super.copyWith((message) => updates(message as TokenInvalid)); // ignore: deprecated_member_use
+  TokenInvalid copyWith(void Function(TokenInvalid) updates) => super.copyWith((message) => updates(message as TokenInvalid)) as TokenInvalid; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TokenInvalid create() => TokenInvalid._();

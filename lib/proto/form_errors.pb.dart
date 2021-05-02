@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: form_errors.proto
 //
-// @dart = 2.3
+// @dart = 2.7
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -17,7 +17,19 @@ class FormErrors extends $pb.GeneratedMessage {
   ;
 
   FormErrors._() : super();
-  factory FormErrors() => create();
+  factory FormErrors({
+    $core.String relatedMessageType,
+    $core.Map<$core.String, SList> errors,
+  }) {
+    final _result = create();
+    if (relatedMessageType != null) {
+      _result.relatedMessageType = relatedMessageType;
+    }
+    if (errors != null) {
+      _result.errors.addAll(errors);
+    }
+    return _result;
+  }
   factory FormErrors.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory FormErrors.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -29,7 +41,7 @@ class FormErrors extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  FormErrors copyWith(void Function(FormErrors) updates) => super.copyWith((message) => updates(message as FormErrors)); // ignore: deprecated_member_use
+  FormErrors copyWith(void Function(FormErrors) updates) => super.copyWith((message) => updates(message as FormErrors)) as FormErrors; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static FormErrors create() => FormErrors._();
@@ -59,7 +71,15 @@ class SList extends $pb.GeneratedMessage {
   ;
 
   SList._() : super();
-  factory SList() => create();
+  factory SList({
+    $core.Iterable<$core.String> list,
+  }) {
+    final _result = create();
+    if (list != null) {
+      _result.list.addAll(list);
+    }
+    return _result;
+  }
   factory SList.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SList.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -71,7 +91,7 @@ class SList extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  SList copyWith(void Function(SList) updates) => super.copyWith((message) => updates(message as SList)); // ignore: deprecated_member_use
+  SList copyWith(void Function(SList) updates) => super.copyWith((message) => updates(message as SList)) as SList; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SList create() => SList._();

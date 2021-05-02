@@ -17,6 +17,7 @@ dependencies:
   path: ^1.6.4
   uuid: ^3.0.1
   web_socket_channel: ^1.1.0
+  tus_client: ^1.0.0
   gm5_utils:
     git: https://github.com/vidklopcic/gm5_utils.git
 #  gm5_utils:

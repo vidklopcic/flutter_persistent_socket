@@ -226,19 +226,28 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>().widget as SocketApiProvider).socketApi;
   }
 
-  Future<int> fireFromCache(SocketRxMessage message,
+  Future<List<T>> getFromCache<T extends SocketRxMessage>(T message,
       {SocketRxMessageQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>> filter}) async {
-    if (message.cache == null || message.cache == Duration.zero) return 0;
+    if (message.cache == null || message.cache == Duration.zero) return null;
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
         (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
-    List<SocketRxEvent> events = await query.get();
+    final events = await query.get();
+    List<T> parsedEvents = [];
     for (SocketRxEvent cachedEvent in events) {
       try {
-        final msg = message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent));
-        _messageHandlers[message.messageType].add(msg);
+        parsedEvents.add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
       } catch (e) {
         print('Exception while parsing cached rx message. Schema changed?');
       }
+    }
+    return parsedEvents.isEmpty ? null : parsedEvents;
+  }
+
+  Future<int> fireFromCache(SocketRxMessage message,
+      {SocketRxMessageQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>> filter}) async {
+    List<SocketRxMessage> events = await getFromCache(message, filter: filter) ?? [];
+    for (SocketRxMessage cachedMsg in events) {
+      fireLocalUpdate(cachedMsg);
     }
     return events.length;
   }

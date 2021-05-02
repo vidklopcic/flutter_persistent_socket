@@ -1,0 +1,28 @@
+syntax = "proto3";
+package uploader;
+
+/*
+type = 'upload-task'
+origin = server
+client cache = years(1)
+client cache_keys = text('fingerprint')
+ */
+message UploadTask {
+  uint64 created = 1;
+  string path = 2;
+  string name = 3;
+  string mime = 4;
+  UploadStatus status = 5;
+  int32 retryCounter = 6;
+  string error = 7;
+  string fingerprint = 8;
+  string url = 9;
+}
+
+enum UploadStatus {
+  scheduled = 0;
+  uploading = 1;
+  paused = 3;
+  done = 4;
+  error = 5;
+}

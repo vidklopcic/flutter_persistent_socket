@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: sfiles.proto
 //
-// @dart = 2.3
+// @dart = 2.7
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -18,7 +18,19 @@ class UploadStartSlot extends $pb.GeneratedMessage {
   ;
 
   UploadStartSlot._() : super();
-  factory UploadStartSlot() => create();
+  factory UploadStartSlot({
+    $core.String key,
+    $core.String localKey,
+  }) {
+    final _result = create();
+    if (key != null) {
+      _result.key = key;
+    }
+    if (localKey != null) {
+      _result.localKey = localKey;
+    }
+    return _result;
+  }
   factory UploadStartSlot.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadStartSlot.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -30,7 +42,7 @@ class UploadStartSlot extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadStartSlot copyWith(void Function(UploadStartSlot) updates) => super.copyWith((message) => updates(message as UploadStartSlot)); // ignore: deprecated_member_use
+  UploadStartSlot copyWith(void Function(UploadStartSlot) updates) => super.copyWith((message) => updates(message as UploadStartSlot)) as UploadStartSlot; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static UploadStartSlot create() => UploadStartSlot._();
@@ -68,7 +80,23 @@ class UploadProgress extends $pb.GeneratedMessage {
   ;
 
   UploadProgress._() : super();
-  factory UploadProgress() => create();
+  factory UploadProgress({
+    $fixnum.Int64 nBytes,
+    $core.String key,
+    $core.String localKey,
+  }) {
+    final _result = create();
+    if (nBytes != null) {
+      _result.nBytes = nBytes;
+    }
+    if (key != null) {
+      _result.key = key;
+    }
+    if (localKey != null) {
+      _result.localKey = localKey;
+    }
+    return _result;
+  }
   factory UploadProgress.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadProgress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -80,7 +108,7 @@ class UploadProgress extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadProgress copyWith(void Function(UploadProgress) updates) => super.copyWith((message) => updates(message as UploadProgress)); // ignore: deprecated_member_use
+  UploadProgress copyWith(void Function(UploadProgress) updates) => super.copyWith((message) => updates(message as UploadProgress)) as UploadProgress; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static UploadProgress create() => UploadProgress._();
@@ -126,7 +154,19 @@ class UploadDone extends $pb.GeneratedMessage {
   ;
 
   UploadDone._() : super();
-  factory UploadDone() => create();
+  factory UploadDone({
+    $core.String key,
+    UploadedFile file,
+  }) {
+    final _result = create();
+    if (key != null) {
+      _result.key = key;
+    }
+    if (file != null) {
+      _result.file = file;
+    }
+    return _result;
+  }
   factory UploadDone.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadDone.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -138,7 +178,7 @@ class UploadDone extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadDone copyWith(void Function(UploadDone) updates) => super.copyWith((message) => updates(message as UploadDone)); // ignore: deprecated_member_use
+  UploadDone copyWith(void Function(UploadDone) updates) => super.copyWith((message) => updates(message as UploadDone)) as UploadDone; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static UploadDone create() => UploadDone._();
@@ -182,7 +222,39 @@ class UploadedFile extends $pb.GeneratedMessage {
   ;
 
   UploadedFile._() : super();
-  factory UploadedFile() => create();
+  factory UploadedFile({
+    $core.String localKey,
+    $core.String url,
+    $core.String id,
+    $core.String mime,
+    $core.String thumbUrl,
+    $core.String name,
+    $core.bool downloadable,
+  }) {
+    final _result = create();
+    if (localKey != null) {
+      _result.localKey = localKey;
+    }
+    if (url != null) {
+      _result.url = url;
+    }
+    if (id != null) {
+      _result.id = id;
+    }
+    if (mime != null) {
+      _result.mime = mime;
+    }
+    if (thumbUrl != null) {
+      _result.thumbUrl = thumbUrl;
+    }
+    if (name != null) {
+      _result.name = name;
+    }
+    if (downloadable != null) {
+      _result.downloadable = downloadable;
+    }
+    return _result;
+  }
   factory UploadedFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadedFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -194,7 +266,7 @@ class UploadedFile extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadedFile copyWith(void Function(UploadedFile) updates) => super.copyWith((message) => updates(message as UploadedFile)); // ignore: deprecated_member_use
+  UploadedFile copyWith(void Function(UploadedFile) updates) => super.copyWith((message) => updates(message as UploadedFile)) as UploadedFile; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static UploadedFile create() => UploadedFile._();
@@ -278,7 +350,27 @@ class UploadStart extends $pb.GeneratedMessage {
   ;
 
   UploadStart._() : super();
-  factory UploadStart() => create();
+  factory UploadStart({
+    $core.String localKey,
+    $core.String extension_2,
+    $core.String name,
+    $core.String mime,
+  }) {
+    final _result = create();
+    if (localKey != null) {
+      _result.localKey = localKey;
+    }
+    if (extension_2 != null) {
+      _result.extension_2 = extension_2;
+    }
+    if (name != null) {
+      _result.name = name;
+    }
+    if (mime != null) {
+      _result.mime = mime;
+    }
+    return _result;
+  }
   factory UploadStart.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadStart.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -290,7 +382,7 @@ class UploadStart extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadStart copyWith(void Function(UploadStart) updates) => super.copyWith((message) => updates(message as UploadStart)); // ignore: deprecated_member_use
+  UploadStart copyWith(void Function(UploadStart) updates) => super.copyWith((message) => updates(message as UploadStart)) as UploadStart; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static UploadStart create() => UploadStart._();
@@ -344,7 +436,15 @@ class DeleteFile extends $pb.GeneratedMessage {
   ;
 
   DeleteFile._() : super();
-  factory DeleteFile() => create();
+  factory DeleteFile({
+    UploadedFile file,
+  }) {
+    final _result = create();
+    if (file != null) {
+      _result.file = file;
+    }
+    return _result;
+  }
   factory DeleteFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory DeleteFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -356,7 +456,7 @@ class DeleteFile extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  DeleteFile copyWith(void Function(DeleteFile) updates) => super.copyWith((message) => updates(message as DeleteFile)); // ignore: deprecated_member_use
+  DeleteFile copyWith(void Function(DeleteFile) updates) => super.copyWith((message) => updates(message as DeleteFile)) as DeleteFile; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static DeleteFile create() => DeleteFile._();
@@ -396,7 +496,7 @@ class UploadEnd extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadEnd copyWith(void Function(UploadEnd) updates) => super.copyWith((message) => updates(message as UploadEnd)); // ignore: deprecated_member_use
+  UploadEnd copyWith(void Function(UploadEnd) updates) => super.copyWith((message) => updates(message as UploadEnd)) as UploadEnd; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static UploadEnd create() => UploadEnd._();
