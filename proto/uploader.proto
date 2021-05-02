@@ -17,6 +17,7 @@ message UploadTask {
   string error = 7;
   string fingerprint = 8;
   string url = 9;
+  string id = 10;
 }
 
 enum UploadStatus {

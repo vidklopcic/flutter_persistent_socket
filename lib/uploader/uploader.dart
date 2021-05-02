@@ -10,8 +10,8 @@ import 'package:tus_client/tus_client.dart';
 export 'package:tus_client/tus_client.dart' show TusClient;
 import '../messages.dart';
 export 'file_picker/file_picker_stub.dart'
-if (dart.library.io) 'file_picker/file_picker_mobile.dart'
-if (dart.library.html) 'file_picker/file_picker_web.dart';
+    if (dart.library.io) 'file_picker/file_picker_mobile.dart'
+    if (dart.library.html) 'file_picker/file_picker_web.dart';
 export 'file_picker/file_picker_types.dart';
 
 typedef FPSUploaderTusFactory = TusClient Function(UploadTaskHolder task, XFile file);
@@ -70,21 +70,23 @@ class _FPSUploaderInstance {
   void _startUpload(UploadTaskHolder task) {
     if (uploader.config.nConcurrent <= inProgress.length) {
       pending.add(task);
+      return;
     }
     assert(task._client == null && task.status != UploadStatus.uploading);
     task._client = uploader.tusFactory(task, task._file);
+    if (task._client == null) return;
     task.setStatus(UploadStatus.uploading);
     task._client
         .upload(
-      onProgress: task._onProgress,
-      onComplete: () {
-        if (pending.isNotEmpty) {
-          _startUpload(pending.removeLast());
-        }
-        task._onComplete();
-        tasks.remove(task);
-      },
-    )
+          onProgress: task._onProgress,
+          onComplete: () {
+            if (pending.isNotEmpty) {
+              _startUpload(pending.removeLast());
+            }
+            task._onComplete();
+            tasks.remove(task);
+          },
+        )
         .catchError((e) => task._onError(e.runtimeType == ProtocolException ? e.message : e.toString()));
   }
 
@@ -215,8 +217,7 @@ class FPSTusStore extends TusStore {
   FPSTusStore(this.api);
 
   Future<RxUploadTask> _message(String fingerprint) async {
-    final message = RxUploadTask()
-      ..data.fingerprint = fingerprint;
+    final message = RxUploadTask()..data.fingerprint = fingerprint;
     final events = await api.getFromCache(
       message,
       filter: (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
@@ -233,8 +234,7 @@ class FPSTusStore extends TusStore {
 
   @override
   Future<void> remove(String fingerprint) async {
-    final message = RxUploadTask()
-      ..data.fingerprint = fingerprint;
+    final message = RxUploadTask()..data.fingerprint = fingerprint;
     await database.socketRxEventDao.invalidateCacheForCacheUuid(message);
   }
 

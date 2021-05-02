@@ -1,39 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="added e">
-      <change afterPath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_mobile.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_stub.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_types.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/uploader/uploader.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto/uploader.proto" afterDir="false" />
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/uploader.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/uploader.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617097694564</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="added file uploading">
+      <created>1619942563669</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1619942563669</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -392,7 +369,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="bugfix - remove connector instance on close" />
     <MESSAGE value="add option to invalidate cache" />
     <MESSAGE value="invalidate token on logout" />
     <MESSAGE value="remove timeout for connection on web" />
@@ -417,18 +393,19 @@
     <MESSAGE value="update dependencies" />
     <MESSAGE value="typo" />
     <MESSAGE value="use https access for public git repos" />
-    <option name="LAST_COMMIT_MESSAGE" value="use https access for public git repos" />
+    <MESSAGE value="added file uploading" />
+    <option name="LAST_COMMIT_MESSAGE" value="added file uploading" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614353998894">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614353998894" />
-    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1619942550699">
+    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1619942563465">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094563962" />
-    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619942550699" />
+    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619942563465" />
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097694433" />
     <state x="256" y="161" width="1004" height="679" key="DiffContextDialog" timestamp="1617094572160">
       <screen x="0" y="23" width="1792" height="1097" />
@@ -463,21 +440,21 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2560" y="261" key="SettingsEditor/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614355388321" />
-    <state x="616" y="374" key="Vcs.Push.Dialog.v2" timestamp="1617097697807">
-      <screen x="0" y="23" width="1792" height="1097" />
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1619942565018">
+      <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572636" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1615704622156" />
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619942565018" />
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097697807" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1619892337370">
+    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1619970118980">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="653" y="386" width="695" height="486" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094560375" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619892337370" />
-    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1619891548883">
+    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619970118980" />
+    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1619969896085">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="662" y="275" width="670" height="518" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617083920922" />
-    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619891548883" />
+    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619969896085" />
   </component>
 </project>
