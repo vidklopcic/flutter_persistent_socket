@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/uploader.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/uploader.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/uploader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/uploader.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619942563669</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="uploading add id and exit if client is null">
+      <created>1619970179742</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1619970179742</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -369,7 +376,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="add option to invalidate cache" />
     <MESSAGE value="invalidate token on logout" />
     <MESSAGE value="remove timeout for connection on web" />
     <MESSAGE value="fix web reconnect issues" />
@@ -394,18 +400,19 @@
     <MESSAGE value="typo" />
     <MESSAGE value="use https access for public git repos" />
     <MESSAGE value="added file uploading" />
-    <option name="LAST_COMMIT_MESSAGE" value="added file uploading" />
+    <MESSAGE value="uploading add id and exit if client is null" />
+    <option name="LAST_COMMIT_MESSAGE" value="uploading add id and exit if client is null" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614353998894">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614353998894" />
-    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1619942563465">
+    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1619970179618">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094563962" />
-    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619942563465" />
+    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619970179618" />
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097694433" />
     <state x="256" y="161" width="1004" height="679" key="DiffContextDialog" timestamp="1617094572160">
       <screen x="0" y="23" width="1792" height="1097" />
@@ -440,17 +447,17 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2560" y="261" key="SettingsEditor/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614355388321" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1619942565018">
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1619970180887">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572636" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619942565018" />
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619970180887" />
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097697807" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1619970118980">
+    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1620018901209">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="653" y="386" width="695" height="486" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094560375" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1619970118980" />
+    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620018901209" />
     <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1619969896085">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>

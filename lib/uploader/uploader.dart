@@ -114,7 +114,7 @@ class UploadTaskHolder {
 
   UploadProgressUpdate get progress => _progress ?? UploadProgressUpdate(this, 0);
 
-  UploadTask get task => _task.data;
+  UploadTask get data => _task.data;
 
   Future<int> length() async => await _file?.length() ?? 0;
 
@@ -189,7 +189,7 @@ class UploadStatusUpdate {
   final UploadTaskHolder holder;
   final UploadStatus status;
 
-  UploadTask get task => holder.task;
+  UploadTask get task => holder.data;
 
   UploadStatusUpdate(this.holder, this.status);
 }
@@ -197,7 +197,7 @@ class UploadStatusUpdate {
 class UploadProgressUpdate {
   final UploadTaskHolder holder;
 
-  UploadTask get task => holder.task;
+  UploadTask get task => holder.data;
   final double progress;
 
   UploadProgressUpdate(this.holder, this.progress);
