@@ -15,6 +15,7 @@ class UploadStatus extends $pb.ProtobufEnum {
   static const UploadStatus paused = UploadStatus._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'paused');
   static const UploadStatus done = UploadStatus._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'done');
   static const UploadStatus error = UploadStatus._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'error');
+  static const UploadStatus restored = UploadStatus._(6, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'restored');
 
   static const $core.List<UploadStatus> values = <UploadStatus> [
     scheduled,
@@ -22,6 +23,7 @@ class UploadStatus extends $pb.ProtobufEnum {
     paused,
     done,
     error,
+    restored,
   ];
 
   static final $core.Map<$core.int, UploadStatus> _byValue = $pb.ProtobufEnum.initByValue(values);

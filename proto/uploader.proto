@@ -26,4 +26,5 @@ enum UploadStatus {
   paused = 3;
   done = 4;
   error = 5;
+  restored = 6;
 }

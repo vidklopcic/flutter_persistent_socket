@@ -17,11 +17,12 @@ const UploadStatus$json = const {
     const {'1': 'paused', '2': 3},
     const {'1': 'done', '2': 4},
     const {'1': 'error', '2': 5},
+    const {'1': 'restored', '2': 6},
   ],
 };
 
 /// Descriptor for `UploadStatus`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List uploadStatusDescriptor = $convert.base64Decode('CgxVcGxvYWRTdGF0dXMSDQoJc2NoZWR1bGVkEAASDQoJdXBsb2FkaW5nEAESCgoGcGF1c2VkEAMSCAoEZG9uZRAEEgkKBWVycm9yEAU=');
+final $typed_data.Uint8List uploadStatusDescriptor = $convert.base64Decode('CgxVcGxvYWRTdGF0dXMSDQoJc2NoZWR1bGVkEAASDQoJdXBsb2FkaW5nEAESCgoGcGF1c2VkEAMSCAoEZG9uZRAEEgkKBWVycm9yEAUSDAoIcmVzdG9yZWQQBg==');
 @$core.Deprecated('Use uploadTaskDescriptor instead')
 const UploadTask$json = const {
   '1': 'UploadTask',
@@ -35,8 +36,9 @@ const UploadTask$json = const {
     const {'1': 'error', '3': 7, '4': 1, '5': 9, '10': 'error'},
     const {'1': 'fingerprint', '3': 8, '4': 1, '5': 9, '10': 'fingerprint'},
     const {'1': 'url', '3': 9, '4': 1, '5': 9, '10': 'url'},
+    const {'1': 'id', '3': 10, '4': 1, '5': 9, '10': 'id'},
   ],
 };
 
 /// Descriptor for `UploadTask`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List uploadTaskDescriptor = $convert.base64Decode('CgpVcGxvYWRUYXNrEhgKB2NyZWF0ZWQYASABKARSB2NyZWF0ZWQSEgoEcGF0aBgCIAEoCVIEcGF0aBISCgRuYW1lGAMgASgJUgRuYW1lEhIKBG1pbWUYBCABKAlSBG1pbWUSLgoGc3RhdHVzGAUgASgOMhYudXBsb2FkZXIuVXBsb2FkU3RhdHVzUgZzdGF0dXMSIgoMcmV0cnlDb3VudGVyGAYgASgFUgxyZXRyeUNvdW50ZXISFAoFZXJyb3IYByABKAlSBWVycm9yEiAKC2ZpbmdlcnByaW50GAggASgJUgtmaW5nZXJwcmludBIQCgN1cmwYCSABKAlSA3VybA==');
+final $typed_data.Uint8List uploadTaskDescriptor = $convert.base64Decode('CgpVcGxvYWRUYXNrEhgKB2NyZWF0ZWQYASABKARSB2NyZWF0ZWQSEgoEcGF0aBgCIAEoCVIEcGF0aBISCgRuYW1lGAMgASgJUgRuYW1lEhIKBG1pbWUYBCABKAlSBG1pbWUSLgoGc3RhdHVzGAUgASgOMhYudXBsb2FkZXIuVXBsb2FkU3RhdHVzUgZzdGF0dXMSIgoMcmV0cnlDb3VudGVyGAYgASgFUgxyZXRyeUNvdW50ZXISFAoFZXJyb3IYByABKAlSBWVycm9yEiAKC2ZpbmdlcnByaW50GAggASgJUgtmaW5nZXJwcmludBIQCgN1cmwYCSABKAlSA3VybBIOCgJpZBgKIAEoCVICaWQ=');

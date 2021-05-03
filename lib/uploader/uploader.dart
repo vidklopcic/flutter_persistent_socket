@@ -14,15 +14,18 @@ export 'file_picker/file_picker_stub.dart'
     if (dart.library.html) 'file_picker/file_picker_web.dart';
 export 'file_picker/file_picker_types.dart';
 
-typedef FPSUploaderTusFactory = TusClient Function(UploadTaskHolder task, XFile file);
+typedef FPSUploaderTusFactory = TusClient Function(TusStore store, UploadTaskHolder task, XFile file);
 
 class FPSUploader {
   final FPSUploaderConfig config;
   final SocketApi api;
   final FPSUploaderTusFactory tusFactory;
   _FPSUploaderInstance _instance;
+  TusStore store;
 
-  FPSUploader(this.api, this.tusFactory, {this.config = const FPSUploaderConfig()});
+  FPSUploader(this.api, this.tusFactory, {this.config = const FPSUploaderConfig()}) {
+    store = FPSTusStore(api);
+  }
 
   Future init() async {
     assert(_instance == null);
@@ -73,7 +76,7 @@ class _FPSUploaderInstance {
       return;
     }
     assert(task._client == null && task.status != UploadStatus.uploading);
-    task._client = uploader.tusFactory(task, task._file);
+    task._client = uploader.tusFactory(uploader.store, task, task._file);
     if (task._client == null) return;
     task.setStatus(UploadStatus.uploading);
     task._client
@@ -121,7 +124,7 @@ class UploadTaskHolder {
   UploadTaskHolder._existing(this._task)
       : _file = XFile(_task.data.path),
         metadata = {} {
-    _task.data.status = UploadStatus.scheduled;
+    _task.data.status = UploadStatus.restored;
   }
 
   UploadTaskHolder.create(XFile file, {this.metadata = const {}}) : _task = RxUploadTask() {
@@ -174,7 +177,7 @@ class UploadTaskHolder {
   }
 
   Future<bool> resume() {
-    assert(status == UploadStatus.paused);
+    assert(status == UploadStatus.paused || status == UploadStatus.restored);
     return _client.resume();
   }
 

@@ -25,6 +25,7 @@ class UploadTask extends $pb.GeneratedMessage {
     ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'error')
     ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fingerprint')
     ..aOS(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
+    ..aOS(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
     ..hasRequiredFields = false
   ;
 
@@ -39,6 +40,7 @@ class UploadTask extends $pb.GeneratedMessage {
     $core.String error,
     $core.String fingerprint,
     $core.String url,
+    $core.String id,
   }) {
     final _result = create();
     if (created != null) {
@@ -67,6 +69,9 @@ class UploadTask extends $pb.GeneratedMessage {
     }
     if (url != null) {
       _result.url = url;
+    }
+    if (id != null) {
+      _result.id = id;
     }
     return _result;
   }
@@ -171,5 +176,14 @@ class UploadTask extends $pb.GeneratedMessage {
   $core.bool hasUrl() => $_has(8);
   @$pb.TagNumber(9)
   void clearUrl() => clearField(9);
+
+  @$pb.TagNumber(10)
+  $core.String get id => $_getSZ(9);
+  @$pb.TagNumber(10)
+  set id($core.String v) { $_setString(9, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasId() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearId() => clearField(10);
 }
 
