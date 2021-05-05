@@ -21,11 +21,11 @@ class UploadTask extends $pb.GeneratedMessage {
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mime')
     ..e<UploadStatus>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: UploadStatus.scheduled, valueOf: UploadStatus.valueOf, enumValues: UploadStatus.values)
-    ..a<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'retryCounter', $pb.PbFieldType.O3, protoName: 'retryCounter')
+    ..a<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'retryCounter', $pb.PbFieldType.O3)
     ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'error')
     ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fingerprint')
     ..aOS(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
-    ..aOS(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
+    ..m<$core.String, $core.String>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', entryClassName: 'UploadTask.MetadataEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('uploader'))
     ..hasRequiredFields = false
   ;
 
@@ -40,7 +40,7 @@ class UploadTask extends $pb.GeneratedMessage {
     $core.String error,
     $core.String fingerprint,
     $core.String url,
-    $core.String id,
+    $core.Map<$core.String, $core.String> metadata,
   }) {
     final _result = create();
     if (created != null) {
@@ -70,8 +70,8 @@ class UploadTask extends $pb.GeneratedMessage {
     if (url != null) {
       _result.url = url;
     }
-    if (id != null) {
-      _result.id = id;
+    if (metadata != null) {
+      _result.metadata.addAll(metadata);
     }
     return _result;
   }
@@ -178,12 +178,6 @@ class UploadTask extends $pb.GeneratedMessage {
   void clearUrl() => clearField(9);
 
   @$pb.TagNumber(10)
-  $core.String get id => $_getSZ(9);
-  @$pb.TagNumber(10)
-  set id($core.String v) { $_setString(9, v); }
-  @$pb.TagNumber(10)
-  $core.bool hasId() => $_has(9);
-  @$pb.TagNumber(10)
-  void clearId() => clearField(10);
+  $core.Map<$core.String, $core.String> get metadata => $_getMap(9);
 }
 

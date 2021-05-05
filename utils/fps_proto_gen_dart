@@ -34,5 +34,7 @@ s.run('rm -rf ./lib/proto/*', shell=True, executable="/bin/zsh")
 s.run('protoc {} --dart_out=./lib/proto {}'.format(proto_path, protos), shell=True, executable="/bin/zsh")
 s.run("sed -i '' 's/sfiles.pb.dart/package:flutter_persistent_socket\/proto\/sfiles.pb.dart/g' ./lib/proto/*",
       shell=True, executable="/bin/zsh")
+s.run("sed -i '' 's/uploader.pb.dart/package:flutter_persistent_socket\/proto\/uploader.pb.dart/g' ./lib/proto/*",
+      shell=True, executable="/bin/zsh")
 s.run("fps_dart_client_message_gen {}".format(protos), shell=True, executable="/bin/zsh")
 s.run("git add ./lib/proto ./lib/messages.dart", shell=True, executable="/bin/zsh")

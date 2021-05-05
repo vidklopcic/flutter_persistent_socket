@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="pass tus store">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/uploader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/uploader.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/uploader.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/uploader.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_dart" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620018925255</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="pass tus store">
+      <created>1620019949739</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1620019949739</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -386,7 +395,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="remove timeout for connection on web" />
     <MESSAGE value="fix web reconnect issues" />
     <MESSAGE value="minor fixes and file upload improvements" />
     <MESSAGE value="do not fire from cache for messages that have duration zero" />
@@ -411,18 +419,19 @@
     <MESSAGE value="added file uploading" />
     <MESSAGE value="uploading add id and exit if client is null" />
     <MESSAGE value="refactor api" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor api" />
+    <MESSAGE value="pass tus store" />
+    <option name="LAST_COMMIT_MESSAGE" value="pass tus store" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614353998894">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614353998894" />
-    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1620018925127">
+    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1620021857466">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094563962" />
-    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620018925127" />
+    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620021857466" />
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097694433" />
     <state x="256" y="161" width="1004" height="679" key="DiffContextDialog" timestamp="1617094572160">
       <screen x="0" y="23" width="1792" height="1097" />
@@ -457,21 +466,21 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2560" y="261" key="SettingsEditor/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614355388321" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1620018926763">
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1620019951179">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572636" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620018926763" />
+    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620019951179" />
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097697807" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1620018901209">
+    <state x="2725" y="440" width="869" height="539" key="find.popup" timestamp="1620190310052">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="653" y="386" width="695" height="486" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094560375" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620018901209" />
-    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1620019763770">
+    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620190310052" />
+    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup" timestamp="1620106399258">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="662" y="275" width="670" height="518" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617083920922" />
-    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620019763770" />
+    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620106399258" />
   </component>
 </project>

@@ -13,11 +13,11 @@ message UploadTask {
   string name = 3;
   string mime = 4;
   UploadStatus status = 5;
-  int32 retryCounter = 6;
+  int32 retry_counter = 6;
   string error = 7;
   string fingerprint = 8;
   string url = 9;
-  string id = 10;
+  map<string, string> metadata = 10;
 }
 
 enum UploadStatus {

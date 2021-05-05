@@ -14,23 +14,15 @@ export 'file_picker/file_picker_stub.dart'
     if (dart.library.html) 'file_picker/file_picker_web.dart';
 export 'file_picker/file_picker_types.dart';
 
-typedef FPSUploaderTusFactory = TusClient Function(TusStore store, UploadTaskHolder task, XFile file);
-
 class FPSUploader {
   final FPSUploaderConfig config;
   final SocketApi api;
-  final FPSUploaderTusFactory tusFactory;
   _FPSUploaderInstance _instance;
   TusStore store;
 
-  FPSUploader(this.api, this.tusFactory, {this.config = const FPSUploaderConfig()}) {
+  FPSUploader(this.api, {this.config = const FPSUploaderConfig()}) {
     store = FPSTusStore(api);
-  }
-
-  Future init() async {
-    assert(_instance == null);
     _instance = _FPSUploaderInstance._(this);
-    await _instance.init();
   }
 
   List<UploadTaskHolder> get tasks => _instance.tasks;
@@ -44,13 +36,23 @@ class FPSUploader {
   List<UploadTaskHolder> get paused =>
       _instance.tasks.where((element) => element.status == UploadStatus.paused).toList();
 
-  List<UploadTaskHolder> get restored => _instance.tasks.where((element) => element._task.message.fromCache).toList();
+  Future<bool> schedule(TusClient client, UploadTaskHolder task, {bool resume = false}) =>
+      _instance.schedule(client, task, resume);
 
-  void schedule(UploadTaskHolder task) => _instance.schedule(task);
+  void pause(UploadTaskHolder task) => _instance.pause(task);
+
+  Future<bool> resume(UploadTaskHolder task) => _instance.resume(task);
+
+  Future<List<UploadTaskHolder>> restore() => _instance.restore();
+
+  Future cancel(UploadTaskHolder task) => _instance.cancel(task);
+
+  UploadTaskHolder getTask(String fingerprint) => _instance.taskMap[fingerprint];
 }
 
 class _FPSUploaderInstance {
   final FPSUploader uploader;
+  Map<String, UploadTaskHolder> taskMap = {};
   List<UploadTaskHolder> tasks = [];
   List<UploadTaskHolder> pending = [];
   List<UploadTaskHolder> inProgress = [];
@@ -58,16 +60,39 @@ class _FPSUploaderInstance {
 
   _FPSUploaderInstance._(this.uploader);
 
-  Future init() async {
-    if (!kIsWeb) {
-      tasks =
-          (await uploader.api.getFromCache(RxUploadTask()) ?? []).map((e) => UploadTaskHolder._existing(e)).toList();
+  Future<List<UploadTaskHolder>> restore() async {
+    if (kIsWeb) {
+      return [];
     }
+    return (await uploader.api.getFromCache(RxUploadTask()) ?? []).map((e) => UploadTaskHolder._existing(e)).toList();
   }
 
-  void schedule(UploadTaskHolder task) {
+  Future<bool> schedule(TusClient client, UploadTaskHolder task, bool resume) async {
+    assert(task._client == null);
+    if (resume && !await client.resume()) {
+      return false;
+    }
+    task._client = client;
     tasks.add(task);
+    taskMap[task.data.fingerprint] = task;
     _startUpload(task);
+    return true;
+  }
+
+  void pause(UploadTaskHolder task) {
+    assert(task.status == UploadStatus.uploading);
+    task._client.pause();
+    task._setStatus(UploadStatus.paused);
+  }
+
+  Future<bool> resume(UploadTaskHolder task) async {
+    assert(task.status == UploadStatus.paused || task._task.message.fromCache);
+    if (await task._client.resume()) {
+      task._client.upload();
+      task._setStatus(UploadStatus.uploading);
+    } else {
+      return false;
+    }
   }
 
   void _startUpload(UploadTaskHolder task) {
@@ -75,37 +100,42 @@ class _FPSUploaderInstance {
       pending.add(task);
       return;
     }
-    assert(task._client == null && task.status != UploadStatus.uploading);
-    task._client = uploader.tusFactory(uploader.store, task, task._file);
+    inProgress.add(task);
+    if (task.status == UploadStatus.uploading) {
+      if (pending.isNotEmpty) {
+        _startUpload(pending.removeLast());
+      }
+      return;
+    }
     if (task._client == null) return;
-    task.setStatus(UploadStatus.uploading);
-    task._client
-        .upload(
-          onProgress: task._onProgress,
-          onComplete: () {
-            if (pending.isNotEmpty) {
-              _startUpload(pending.removeLast());
-            }
-            task._onComplete();
-            tasks.remove(task);
-          },
-        )
-        .catchError((e) => task._onError(e.runtimeType == ProtocolException ? e.message : e.toString()));
+    task._setStatus(UploadStatus.uploading);
+    task._client.upload(
+      onProgress: task._onProgress,
+      onComplete: () {
+        inProgress.remove(task);
+        if (pending.isNotEmpty) {
+          _startUpload(pending.removeLast());
+        }
+        task._onComplete();
+        tasks.remove(task);
+        taskMap.remove(task.data.fingerprint);
+      },
+    );
   }
 
-  void cancel(UploadTaskHolder task) {
-    task._client.pause();
-    task._delete();
+  Future cancel(UploadTaskHolder task) async {
+    task._client?.pause();
     tasks.remove(task);
+    taskMap.remove(task.data.fingerprint);
+    await task._delete();
   }
 }
 
 class UploadTaskHolder {
-  XFile _file;
+  XFile xFile;
   final RxUploadTask _task;
   final StreamController<UploadStatusUpdate> _statusEvents = StreamController.broadcast();
   final StreamController<UploadProgressUpdate> _progressEvents = StreamController.broadcast();
-  final Map<String, String> metadata;
   TusClient _client;
 
   Stream<UploadStatusUpdate> get statusEvents => _statusEvents.stream;
@@ -119,27 +149,27 @@ class UploadTaskHolder {
 
   UploadTask get data => _task.data;
 
-  Future<int> length() async => await _file?.length() ?? 0;
-
-  UploadTaskHolder._existing(this._task)
-      : _file = XFile(_task.data.path),
-        metadata = {} {
+  UploadTaskHolder._existing(this._task) : xFile = XFile(_task.data.path) {
     _task.data.status = UploadStatus.restored;
   }
 
-  UploadTaskHolder.create(XFile file, {this.metadata = const {}}) : _task = RxUploadTask() {
+  UploadTaskHolder.create(XFile file, {Map<String, String> metadata}) : _task = RxUploadTask() {
     _task.data.status = UploadStatus.scheduled;
     _task.data.created = FPSUtil().toTimestamp(DateTime.now());
     _task.data.name = file.name;
     _task.data.path = file.path;
-    _task.data.mime = file.mimeType;
-    _file = file;
-    _task.data.fingerprint = TusClient(null, _file).fingerprint;
+    _task.data.fingerprint = TusClient(null, file).fingerprint;
+    if (file.mimeType != null) {
+      _task.data.mime = file.mimeType;
+    }
+    _task.data.metadata.addAll(metadata ?? {});
+    xFile = file;
     _save();
   }
 
   Future _save() async {
     if (kIsWeb) return;
+    print('saving task $_task');
     await _task.save();
   }
 
@@ -159,12 +189,12 @@ class UploadTaskHolder {
   }
 
   void _onComplete() {
-    setStatus(UploadStatus.done);
+    _setStatus(UploadStatus.done);
     _delete();
     _dispose();
   }
 
-  void setStatus(UploadStatus status) {
+  void _setStatus(UploadStatus status) {
     if (status == _task.data.status) return;
     _task.data.status = status;
     _statusEvents.add(UploadStatusUpdate(this, status));
@@ -172,19 +202,8 @@ class UploadTaskHolder {
 
   void _onError(String string) {
     _task.data.error = string;
-    setStatus(UploadStatus.error);
+    _setStatus(UploadStatus.error);
     _save();
-  }
-
-  Future<bool> resume() {
-    assert(status == UploadStatus.paused || status == UploadStatus.restored);
-    return _client.resume();
-  }
-
-  void pause() {
-    assert(status == UploadStatus.uploading);
-    _client.pause();
-    setStatus(UploadStatus.paused);
   }
 }
 
@@ -225,13 +244,13 @@ class FPSTusStore extends TusStore {
       message,
       filter: (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
     );
-    return events.isEmpty ? null : events.first;
+    return events?.first;
   }
 
   @override
   Future<Uri> get(String fingerprint) async {
     final event = await _message(fingerprint);
-    if (event == null) return null;
+    if (event == null || !event.data.hasUrl()) return null;
     return Uri.parse(event.data.url);
   }
 
