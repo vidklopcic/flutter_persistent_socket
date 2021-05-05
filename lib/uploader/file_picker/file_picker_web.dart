@@ -35,7 +35,7 @@ class XFileWeb extends XFile {
         );
 
   Stream<Uint8List> openRead([int start, int end]) async* {
-    final chunkSize = (htmlFile.size / 10).clamp(1e5, 5e6);
+    final chunkSize = (htmlFile.size ~/ 10).clamp(1e5, 5e6);
     var fileReader = html.FileReader();
     Completer<Uint8List> completer = Completer();
     fileReader.onLoad.listen((event) {
