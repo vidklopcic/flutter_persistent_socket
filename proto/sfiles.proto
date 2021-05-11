@@ -4,7 +4,7 @@ package sfiles;
 /*
 type = 'upload-start'
 origin = server
-client cache = years(1)
+client cache = days(7)
 client cache_keys = text('localKey')
  */
 message UploadStartSlot {

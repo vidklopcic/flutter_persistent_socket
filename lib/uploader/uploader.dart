@@ -109,7 +109,8 @@ class _FPSUploaderInstance {
     }
     if (task._client == null) return;
     task._setStatus(UploadStatus.uploading);
-    task._client.upload(
+    task._client
+        .upload(
       onProgress: task._onProgress,
       onComplete: () {
         inProgress.remove(task);
@@ -120,7 +121,21 @@ class _FPSUploaderInstance {
         tasks.remove(task);
         taskMap.remove(task.data.fingerprint);
       },
-    );
+    )
+        .catchError((e) {
+      inProgress.remove(task);
+      if (pending.isNotEmpty) {
+        _startUpload(pending.removeLast());
+      }
+      task._onError(e.toString());
+      tasks.remove(task);
+      taskMap.remove(task.data.fingerprint);
+      if (e.runtimeType == ProtocolException && !e.toString().contains('(500)')) {
+        // 410.. means that resource is missing
+        task._delete();
+        task._dispose();
+      }
+    });
   }
 
   Future cancel(UploadTaskHolder task) async {
