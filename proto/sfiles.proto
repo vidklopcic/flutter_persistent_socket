@@ -5,11 +5,11 @@ package sfiles;
 type = 'upload-start'
 origin = server
 client cache = days(7)
-client cache_keys = text('localKey')
+client cache_keys = text('local_key')
  */
 message UploadStartSlot {
   string key = 1;
-  string localKey = 2;
+  string local_key = 2;
 }
 
 /*
@@ -17,9 +17,9 @@ type = 'upload-progress'
 origin = server
  */
 message UploadProgress {
-  int64 nBytes = 1;
+  int64 n_bytes = 1;
   string key = 2;
-  string localKey = 3;
+  string local_key = 3;
 }
 
 /*
@@ -32,11 +32,11 @@ message UploadDone {
 }
 
 message UploadedFile {
-  string localKey = 1;
+  string local_key = 1;
   string url = 2;
   string id = 3;
   string mime = 4;
-  string thumbUrl = 5;
+  string thumb_url = 5;
   string name = 6;
   bool downloadable = 7;
 }
@@ -45,10 +45,10 @@ message UploadedFile {
 type = 'upload-start'
 origin = client
 client cache = years(1)
-client cache_keys = text('localKey')
+client cache_keys = text('local_key')
  */
 message UploadStart {
-  string localKey = 1;
+  string local_key = 1;
   string extension = 2;
   string name = 3;
   string mime = 4;

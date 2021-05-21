@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="fix web filepicker">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/uploader/uploader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/uploader.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/sfiles.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/sfiles.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/vidklopcic/.android/avd/Pixel_3a_API_30_x86.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -23,20 +27,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1ewrK43L657UKDbwuOSa5jur53y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/uploader/file_picker" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="protobuf.language" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -51,6 +65,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -397,13 +412,14 @@
             </State>
           </value>
         </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
       </map>
     </option>
-    <option name="OPEN_TABS">
-      <set>
-        <option value="1" />
-      </set>
-    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -433,46 +449,5 @@
     <MESSAGE value="uploader tweaks" />
     <MESSAGE value="fix web filepicker" />
     <option name="LAST_COMMIT_MESSAGE" value="fix web filepicker" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614353998894">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614353998894" />
-    <state x="2632" y="289" key="CommitChangelistDialog2" timestamp="1620741904735">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620309114521" />
-    <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741904735" />
-    <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097694433" />
-    <state x="2158" y="149" width="1004" height="679" key="DiffContextDialog" timestamp="1620741903324">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="256" y="161" width="1004" height="679" key="DiffContextDialog/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572160" />
-    <state x="2158" y="149" width="1433" height="877" key="DiffContextDialog/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741903324" />
-    <state x="2768" y="397" key="RollbackChangesDialog" timestamp="1620241926673">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="2768" y="397" key="RollbackChangesDialog/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620241926673" />
-    <state x="2560" y="261" key="SettingsEditor" timestamp="1614355388321">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="2560" y="261" key="SettingsEditor/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614355388321" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1620241936144">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572636" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620241936144" />
-    <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097697807" />
-    <state x="653" y="386" width="695" height="486" key="find.popup" timestamp="1620672778579">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state x="653" y="386" width="695" height="486" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620672778579" />
-    <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620214520785" />
-    <state x="662" y="275" width="670" height="518" key="search.everywhere.popup" timestamp="1620731701300">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state x="662" y="275" width="670" height="518" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620731701300" />
-    <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620214389565" />
   </component>
 </project>
