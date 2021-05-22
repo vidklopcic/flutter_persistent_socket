@@ -446,18 +446,27 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614353998894" />
-    <state x="2632" y="291" key="CommitChangelistDialog2" timestamp="1621336058446">
-      <screen x="1792" y="-27" width="2560" height="1415" />
+    <state x="588" y="271" key="CommitChangelistDialog2" timestamp="1621697546120">
+      <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620309114521" />
     <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741913165" />
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097694433" />
+    <state x="588" y="271" key="CommitChangelistDialog2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697546120" />
     <state x="2632" y="291" key="CommitChangelistDialog2/0.25.1792.1095/1792.-27.2560.1415@1792.-27.2560.1415" timestamp="1621336058446" />
     <state x="2158" y="149" width="1004" height="679" key="DiffContextDialog" timestamp="1620741903324">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="256" y="161" width="1004" height="679" key="DiffContextDialog/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572160" />
     <state x="2158" y="149" width="1433" height="877" key="DiffContextDialog/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741903324" />
+    <state x="179" y="120" key="MergeDialog" timestamp="1621697568968">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="179" y="120" key="MergeDialog/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697568968" />
+    <state x="606" y="292" key="MultipleFileMergeDialog" timestamp="1621697572370">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="606" y="292" key="MultipleFileMergeDialog/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697572370" />
     <state x="2768" y="397" key="RollbackChangesDialog" timestamp="1620241926673">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
@@ -466,12 +475,13 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2560" y="261" key="SettingsEditor/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614355388321" />
-    <state x="2672" y="424" key="Vcs.Push.Dialog.v2" timestamp="1620741915333">
-      <screen x="1792" y="-29" width="2560" height="1417" />
+    <state x="616" y="375" key="Vcs.Push.Dialog.v2" timestamp="1621697547812">
+      <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572636" />
     <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741915333" />
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097697807" />
+    <state x="616" y="375" key="Vcs.Push.Dialog.v2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697547812" />
     <state x="2725" y="441" width="993" height="627" key="find.popup" timestamp="1621334824603">
       <screen x="1792" y="-27" width="2560" height="1415" />
     </state>
