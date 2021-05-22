@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqlite3_flutter_libs: ^0.2.0
-  moor: ^4.1.0
+  sqlite3_flutter_libs: ^0.4.0+1
+  moor: ^4.3.0
   provider: ^5.0.0
   path_provider: ^2.0.1
   path: ^1.6.4
