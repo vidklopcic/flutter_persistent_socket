@@ -5,19 +5,21 @@ import 'package:moor/moor.dart';
 import 'dart:html' as html;
 import 'file_picker_types.dart';
 
-Future<List<XFile>> pickXFile({FileType accept}) {
-  html.InputElement uploadInput = html.FileUploadInputElement();
+Future<List<XFile>> pickXFile({FileType? accept}) {
+  html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
   uploadInput.multiple = true;
   switch (accept) {
     case FileType.image:
       uploadInput.accept = 'image/*';
+      break;
+    default:
       break;
   }
   uploadInput.click();
 
   Completer<List<XFile>> completer = Completer();
   uploadInput.onChange.listen((e) async {
-    completer.complete(uploadInput.files.map((f) => XFileWeb(f)).toList());
+    completer.complete(uploadInput.files?.map((f) => XFileWeb(f)).toList());
   });
   return completer.future;
 }
@@ -34,17 +36,19 @@ class XFileWeb extends XFile {
           lastModified: htmlFile.lastModifiedDate,
         );
 
-  Stream<Uint8List> openRead([int start, int end]) async* {
-    final chunkSize = (htmlFile.size ~/ 10).clamp(1e5, 5e6);
+  Stream<Uint8List> openRead([int? start, int? end]) async* {
+    int chunkSize = (htmlFile.size ~/ 10).clamp(1e5, 5e6) as int;
     var fileReader = html.FileReader();
     Completer<Uint8List> completer = Completer();
     fileReader.onLoad.listen((event) {
-      completer.complete(fileReader.result);
+      completer.complete(fileReader.result as Uint8List);
     });
-    int i = start;
-    for (; i < end.clamp(0, htmlFile.size); i += chunkSize) {
+    int i = start ?? 0;
+    int e = end?.clamp(0, htmlFile.size) ?? htmlFile.size;
+    for (; i < e; i += chunkSize) {
       completer = Completer();
-      fileReader.readAsArrayBuffer(htmlFile.slice(i, (i + chunkSize).clamp(0, end)));
+      fileReader
+          .readAsArrayBuffer(htmlFile.slice(i, (i + chunkSize).clamp(0, e)));
       yield await completer.future;
     }
   }

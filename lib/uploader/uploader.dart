@@ -17,8 +17,8 @@ export 'file_picker/file_picker_types.dart';
 class FPSUploader {
   final FPSUploaderConfig config;
   final SocketApi api;
-  _FPSUploaderInstance _instance;
-  TusStore store;
+  late _FPSUploaderInstance _instance;
+  TusStore? store;
 
   FPSUploader(this.api, {this.config = const FPSUploaderConfig()}) {
     store = FPSTusStore(api);
@@ -27,16 +27,20 @@ class FPSUploader {
 
   List<UploadTaskHolder> get tasks => _instance.tasks;
 
-  List<UploadTaskHolder> get uploading =>
-      _instance.tasks.where((element) => element.status == UploadStatus.uploading).toList();
+  List<UploadTaskHolder> get uploading => _instance.tasks
+      .where((element) => element.status == UploadStatus.uploading)
+      .toList();
 
-  List<UploadTaskHolder> get scheduled =>
-      _instance.tasks.where((element) => element.status == UploadStatus.scheduled).toList();
+  List<UploadTaskHolder> get scheduled => _instance.tasks
+      .where((element) => element.status == UploadStatus.scheduled)
+      .toList();
 
-  List<UploadTaskHolder> get paused =>
-      _instance.tasks.where((element) => element.status == UploadStatus.paused).toList();
+  List<UploadTaskHolder> get paused => _instance.tasks
+      .where((element) => element.status == UploadStatus.paused)
+      .toList();
 
-  Future<bool> schedule(TusClient client, UploadTaskHolder task, {bool resume = false}) =>
+  Future<bool> schedule(TusClient client, UploadTaskHolder task,
+          {bool resume = false}) =>
       _instance.schedule(client, task, resume);
 
   void pause(UploadTaskHolder task) => _instance.pause(task);
@@ -47,7 +51,8 @@ class FPSUploader {
 
   Future cancel(UploadTaskHolder task) => _instance.cancel(task);
 
-  UploadTaskHolder getTask(String fingerprint) => _instance.taskMap[fingerprint];
+  UploadTaskHolder? getTask(String fingerprint) =>
+      _instance.taskMap[fingerprint];
 }
 
 class _FPSUploaderInstance {
@@ -56,7 +61,7 @@ class _FPSUploaderInstance {
   List<UploadTaskHolder> tasks = [];
   List<UploadTaskHolder> pending = [];
   List<UploadTaskHolder> inProgress = [];
-  TusClient client;
+  TusClient? client;
 
   _FPSUploaderInstance._(this.uploader);
 
@@ -64,10 +69,13 @@ class _FPSUploaderInstance {
     if (kIsWeb) {
       return [];
     }
-    return (await uploader.api.getFromCache(RxUploadTask()) ?? []).map((e) => UploadTaskHolder._existing(e)).toList();
+    return (await uploader.api.getFromCache(RxUploadTask()) ?? [])
+        .map((e) => UploadTaskHolder._existing(e))
+        .toList();
   }
 
-  Future<bool> schedule(TusClient client, UploadTaskHolder task, bool resume) async {
+  Future<bool> schedule(
+      TusClient client, UploadTaskHolder task, bool resume) async {
     assert(task._client == null);
     if (resume && !await client.resume()) {
       return false;
@@ -81,15 +89,17 @@ class _FPSUploaderInstance {
 
   void pause(UploadTaskHolder task) {
     assert(task.status == UploadStatus.uploading);
-    task._client.pause();
+    task._client!.pause();
     task._setStatus(UploadStatus.paused);
   }
 
   Future<bool> resume(UploadTaskHolder task) async {
-    assert(task.status == UploadStatus.paused || task._task.message.fromCache);
-    if (await task._client.resume()) {
-      task._client.upload();
+    assert(task.status == UploadStatus.paused ||
+        (task._task.message?.fromCache ?? false));
+    if (await task._client!.resume()) {
+      task._client!.upload();
       task._setStatus(UploadStatus.uploading);
+      return true;
     } else {
       return false;
     }
@@ -109,7 +119,7 @@ class _FPSUploaderInstance {
     }
     if (task._client == null) return;
     task._setStatus(UploadStatus.uploading);
-    task._client
+    task._client!
         .upload(
       onProgress: task._onProgress,
       onComplete: () {
@@ -130,7 +140,8 @@ class _FPSUploaderInstance {
       task._onError(e.toString());
       tasks.remove(task);
       taskMap.remove(task.data.fingerprint);
-      if (e.runtimeType == ProtocolException && !e.toString().contains('(500)')) {
+      if (e.runtimeType == ProtocolException &&
+          !e.toString().contains('(500)')) {
         // 410.. means that resource is missing
         task._delete();
         task._dispose();
@@ -147,20 +158,23 @@ class _FPSUploaderInstance {
 }
 
 class UploadTaskHolder {
-  XFile xFile;
+  XFile? xFile;
   final RxUploadTask _task;
-  final StreamController<UploadStatusUpdate> _statusEvents = StreamController.broadcast();
-  final StreamController<UploadProgressUpdate> _progressEvents = StreamController.broadcast();
-  TusClient _client;
+  final StreamController<UploadStatusUpdate> _statusEvents =
+      StreamController.broadcast();
+  final StreamController<UploadProgressUpdate> _progressEvents =
+      StreamController.broadcast();
+  TusClient? _client;
 
   Stream<UploadStatusUpdate> get statusEvents => _statusEvents.stream;
 
   Stream<UploadProgressUpdate> get progressEvents => _progressEvents.stream;
 
   UploadStatus get status => _task.data.status;
-  UploadProgressUpdate _progress;
+  UploadProgressUpdate? _progress;
 
-  UploadProgressUpdate get progress => _progress ?? UploadProgressUpdate(this, 0);
+  UploadProgressUpdate get progress =>
+      _progress ?? UploadProgressUpdate(this, 0);
 
   UploadTask get data => _task.data;
 
@@ -168,14 +182,15 @@ class UploadTaskHolder {
     _task.data.status = UploadStatus.restored;
   }
 
-  UploadTaskHolder.create(XFile file, {Map<String, String> metadata}) : _task = RxUploadTask() {
+  UploadTaskHolder.create(XFile file, {Map<String, String>? metadata})
+      : _task = RxUploadTask() {
     _task.data.status = UploadStatus.scheduled;
     _task.data.created = FPSUtil().toTimestamp(DateTime.now());
     _task.data.name = file.name;
     _task.data.path = file.path;
-    _task.data.fingerprint = TusClient(null, file).fingerprint;
+    _task.data.fingerprint = TusClient(Uri(), file).fingerprint;
     if (file.mimeType != null) {
-      _task.data.mime = file.mimeType;
+      _task.data.mime = file.mimeType!;
     }
     _task.data.metadata.addAll(metadata ?? {});
     xFile = file;
@@ -200,7 +215,7 @@ class UploadTaskHolder {
 
   void _onProgress(double progress) {
     _progress = UploadProgressUpdate(this, progress);
-    _progressEvents.add(_progress);
+    _progressEvents.add(_progress!);
   }
 
   void _onComplete() {
@@ -253,7 +268,7 @@ class FPSTusStore extends TusStore {
 
   FPSTusStore(this.api);
 
-  Future<RxUploadTask> _message(String fingerprint) async {
+  Future<RxUploadTask?> _message(String fingerprint) async {
     final message = RxUploadTask()..data.fingerprint = fingerprint;
     final events = await api.getFromCache(
       message,
@@ -263,7 +278,7 @@ class FPSTusStore extends TusStore {
   }
 
   @override
-  Future<Uri> get(String fingerprint) async {
+  Future<Uri?> get(String fingerprint) async {
     final event = await _message(fingerprint);
     if (event == null || !event.data.hasUrl()) return null;
     return Uri.parse(event.data.url);

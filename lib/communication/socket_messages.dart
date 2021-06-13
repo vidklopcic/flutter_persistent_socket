@@ -1,13 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
-import 'package:gm5_utils/gm5_utils.dart';
 import 'package:moor/moor.dart';
 import 'package:protobuf/protobuf.dart';
-import 'package:uuid/uuid.dart';
 
 class SocketRxMessageData {
   final bool fromCache;
@@ -21,22 +18,23 @@ class SocketRxMessageData {
   /// Raw JSON string
   String get raw => _raw ?? '{}';
 
-  set raw(String newRaw) {
+  set raw(String? newRaw) {
     _raw = newRaw;
     data = json.decode(raw);
     time = DateTime.now();
   }
 
-  String _raw;
+  String? _raw;
 
   /// Tries to find the `messageType` attribute. There are two possible locations in order to be compatible
   /// with skljoc
-  String get messageType => data['headers']['messageType'] ?? data['messageType'];
+  String get messageType =>
+      data['headers']['messageType'] ?? data['messageType'];
 
   /// Decoded JSON map.
   Map<String, dynamic> data;
 
-  SocketRxMessageData(this._raw, {@required this.online, this.fromCache = false})
+  SocketRxMessageData(this._raw, {required this.online, this.fromCache = false})
       : this.time = DateTime.now(),
         this.data = json.decode(_raw ?? '{}');
 
@@ -67,14 +65,14 @@ abstract class SocketTxMessage {
   final bool authRequired;
 
   /// If sending failed, cache the message for this duration and try to send it when reconnected.
-  final Duration cache;
-  final GeneratedMessage proto = null;
+  final Duration? cache;
+  final GeneratedMessage? proto = null;
 
-  final CacheKeys cacheKeys;
+  final CacheKeys? cacheKeys;
 
   String get cacheUuid => cacheKeys == null
       ? uuidObj.v4()
-      : '${messageType}${'|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
+      : '$messageType${'|' + cacheKeys!.keys.map((cacheKey) => this[cacheKey]).join('|')}';
 
   const SocketTxMessage(this.messageType, {this.authRequired = true})
       : cacheKeys = null,
@@ -85,17 +83,17 @@ abstract class SocketTxMessage {
   /// Returns the value from the `GeneratedMessage data` based on a string key (`null` if the field does not exist).
   @override
   dynamic operator [](String key) {
-    int tag = proto.getTagNumber(key);
+    int? tag = proto!.getTagNumber(key);
     if (tag == null) return null;
-    return proto.getField(tag);
+    return proto!.getField(tag);
   }
 
   /// Returns the value from the `data` field based on the cache key.
   dynamic getCacheVal(CacheKeyType type, int index) {
-    String key = cacheKeys?.getKey(type, index);
+    String? key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
     print('getting key $key');
-    final field = proto.getField(proto.getTagNumber(key));
+    final field = proto!.getField(proto!.getTagNumber(key) ?? -1);
     if (field is ProtobufEnum) {
       return (field as ProtobufEnum).value.toDouble();
     }
@@ -107,31 +105,31 @@ abstract class SocketTxMessage {
 abstract class SocketRxMessage {
   /// Wraps the raw JSON data received from the server and holds
   /// some metadata (eg. whether message originates from cache or from server).
-  final SocketRxMessageData message;
+  final SocketRxMessageData? message;
   final String messageType;
 
   /// After the `cache` duration, the message gets removed from the cache.
-  final Duration cache;
+  final Duration? cache;
 
   /// Provides a set of `real`, `date` and `text` keys that can be used to query and differentiate messages
   /// of the same type in the cache
-  final CacheKeys cacheKeys;
+  final CacheKeys? cacheKeys;
 
   /// Protobuf generated class that provides easier access to the data.
-  final GeneratedMessage data = null;
+  final GeneratedMessage? data = null;
 
   /// returns the uuid that is assembled based on the contents of the `message` and keys
   /// specified in `cacheKeys` (eg. `<messageType>|<key1>|<key2>`). **When there is a clash,
   /// the old cached message gets overwritten**.
   String get cacheUuid =>
-      '${messageType}${cacheKeys == null ? '' : '|' + cacheKeys.keys.map((cacheKey) => this[cacheKey]).join('|')}';
+      '${messageType}${cacheKeys == null ? '' : '|' + cacheKeys!.keys.map((cacheKey) => this[cacheKey]).join('|')}';
 
-  SocketRxMessage(this.messageType, SocketRxMessageData message)
+  SocketRxMessage(this.messageType, SocketRxMessageData? message)
       : cache = null,
         cacheKeys = null,
         message = message ?? SocketRxMessageData(null, online: false) {
-    if (message != null && data != null) {
-      data.mergeFromJsonMap(message.body);
+    if (message != null) {
+      data?.mergeFromJsonMap(message.body);
     }
   }
 
@@ -140,11 +138,11 @@ abstract class SocketRxMessage {
 
   /// Returns the value from the `data` field based on the cache key.
   dynamic getCacheVal(CacheKeyType type, int index) {
-    String key = cacheKeys?.getKey(type, index);
+    String? key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
-    final field = data.getField(data.getTagNumber(key));
+    final field = data?.getField(data?.getTagNumber(key) ?? -1);
     if (field is ProtobufEnum) {
-      return (field as ProtobufEnum).value.toDouble();
+      return field.value.toDouble();
     }
     if (type == CacheKeyType.real) return field?.toDouble();
     return field;
@@ -152,19 +150,19 @@ abstract class SocketRxMessage {
 
   /// Save local changes to the cache (**if cacheUuid changed due to these changes,
   /// it is user's responsibility to invalidate old message if that is desired**)
-  Future save([SocketApi socketApi]) {
+  Future save([SocketApi? socketApi]) {
     socketApi?.fireLocalUpdate(this);
-    message.online = false;
-    message.raw = data.writeToJson();
+    message?.online = false;
+    message?.raw = data?.writeToJson();
     return database.socketRxEventDao.cacheEvent(this);
   }
 
   /// Returns the value from the `GeneratedMessage data` based on a string key (`null` if the field does not exist).
   @override
   dynamic operator [](String key) {
-    int tag = data.getTagNumber(key);
-    if (tag == null || !data.hasField(tag)) return null;
-    return data.getField(tag);
+    int? tag = data?.getTagNumber(key);
+    if (tag == null || !data!.hasField(tag)) return null;
+    return data!.getField(tag);
   }
 }
 
@@ -201,11 +199,14 @@ class CacheKeys {
   final List<String> realKeys;
   final List<String> dateKeys;
 
-  const CacheKeys({this.textKeys = const [], this.realKeys = const [], this.dateKeys = const []});
+  const CacheKeys(
+      {this.textKeys = const [],
+      this.realKeys = const [],
+      this.dateKeys = const []});
 
   List<String> get keys => textKeys + realKeys + dateKeys;
 
-  String getKey(CacheKeyType type, int index) {
+  String? getKey(CacheKeyType type, int index) {
     switch (type) {
       case CacheKeyType.date:
         return dateKeys.length > index ? dateKeys[index] : null;
@@ -214,7 +215,6 @@ class CacheKeys {
       case CacheKeyType.real:
         return realKeys.length > index ? realKeys[index] : null;
     }
-    return null;
   }
 }
 

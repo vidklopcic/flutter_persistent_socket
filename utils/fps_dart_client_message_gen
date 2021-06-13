@@ -25,7 +25,7 @@ RX_MESSAGE_CLASS = '''class Rx{proto} extends SocketRxMessage {{
   final {proto} data = {proto}();
   {fields}
 
-  Rx{proto}([SocketRxMessageData message]) : super(type, message);
+  Rx{proto}([SocketRxMessageData? message]) : super(type, message);
 
   @override
   Rx{proto} fromMessage(SocketRxMessageData message) => Rx{proto}(message);
@@ -37,11 +37,11 @@ TX_MESSAGE_CLASS = '''class Tx{proto} extends SocketTxMessage {{
   final {proto} proto;
   {fields}
   
-  const Tx{proto}([this.proto]) : super(type, authRequired: {auth});
+  const Tx{proto}(this.proto) : super(type, authRequired: {auth});
   
   static {proto} get newProto => {proto}();
   
-  static Tx{proto} create([{proto} Function({proto} data) setData]) => Tx{proto}((setData ?? (p) => p)(Tx{proto}.newProto));
+  static Tx{proto} create([{proto} Function({proto} data)? setData]) => Tx{proto}((setData ?? (p) => p)(Tx{proto}.newProto));
 }}
 '''
 
@@ -223,23 +223,3 @@ with open('./lib/messages.dart', 'w', encoding='utf-8') as f:
 List<SocketRxMessage> rxMessages = [
   %s
 ];''' % ',\n  '.join(['{}()'.format(i) for i in rx_classnames]))
-    f.write('''
-    
-List<SingleChildWidget> getMessageProviders(SocketApi api) => [
-      {}
-];'''.format(
-        ',\n      '.join([
-            '''StreamProvider<{0}>(
-        create: (c) => _getMessageHandler(api, {0}()),
-        lazy: false,
-      )'''.format(m) for m in rx_classnames
-        ])
-    ))
-
-    f.write('''
-
-Stream<T> _getMessageHandler<T extends SocketRxMessage>(SocketApi api, T message) {
-  Stream<T> s = api.getMessageHandler(message);
-  api.fireFromCache(message);
-  return s;
-}''')

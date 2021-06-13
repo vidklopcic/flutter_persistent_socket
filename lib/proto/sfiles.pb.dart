@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: sfiles.proto
 //
-// @dart = 2.7
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -13,14 +13,14 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class UploadStartSlot extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadStartSlot', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'sfiles'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'key')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey', protoName: 'localKey')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey')
     ..hasRequiredFields = false
   ;
 
   UploadStartSlot._() : super();
   factory UploadStartSlot({
-    $core.String key,
-    $core.String localKey,
+    $core.String? key,
+    $core.String? localKey,
   }) {
     final _result = create();
     if (key != null) {
@@ -50,7 +50,7 @@ class UploadStartSlot extends $pb.GeneratedMessage {
   static $pb.PbList<UploadStartSlot> createRepeated() => $pb.PbList<UploadStartSlot>();
   @$core.pragma('dart2js:noInline')
   static UploadStartSlot getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadStartSlot>(create);
-  static UploadStartSlot _defaultInstance;
+  static UploadStartSlot? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get key => $_getSZ(0);
@@ -73,17 +73,17 @@ class UploadStartSlot extends $pb.GeneratedMessage {
 
 class UploadProgress extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadProgress', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'sfiles'), createEmptyInstance: create)
-    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nBytes', protoName: 'nBytes')
+    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nBytes')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'key')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey', protoName: 'localKey')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey')
     ..hasRequiredFields = false
   ;
 
   UploadProgress._() : super();
   factory UploadProgress({
-    $fixnum.Int64 nBytes,
-    $core.String key,
-    $core.String localKey,
+    $fixnum.Int64? nBytes,
+    $core.String? key,
+    $core.String? localKey,
   }) {
     final _result = create();
     if (nBytes != null) {
@@ -116,7 +116,7 @@ class UploadProgress extends $pb.GeneratedMessage {
   static $pb.PbList<UploadProgress> createRepeated() => $pb.PbList<UploadProgress>();
   @$core.pragma('dart2js:noInline')
   static UploadProgress getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadProgress>(create);
-  static UploadProgress _defaultInstance;
+  static UploadProgress? _defaultInstance;
 
   @$pb.TagNumber(1)
   $fixnum.Int64 get nBytes => $_getI64(0);
@@ -155,8 +155,8 @@ class UploadDone extends $pb.GeneratedMessage {
 
   UploadDone._() : super();
   factory UploadDone({
-    $core.String key,
-    UploadedFile file,
+    $core.String? key,
+    UploadedFile? file,
   }) {
     final _result = create();
     if (key != null) {
@@ -186,7 +186,7 @@ class UploadDone extends $pb.GeneratedMessage {
   static $pb.PbList<UploadDone> createRepeated() => $pb.PbList<UploadDone>();
   @$core.pragma('dart2js:noInline')
   static UploadDone getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadDone>(create);
-  static UploadDone _defaultInstance;
+  static UploadDone? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get key => $_getSZ(0);
@@ -211,11 +211,11 @@ class UploadDone extends $pb.GeneratedMessage {
 
 class UploadedFile extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadedFile', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'sfiles'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey', protoName: 'localKey')
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mime')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbUrl', protoName: 'thumbUrl')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbUrl')
     ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'downloadable')
     ..hasRequiredFields = false
@@ -223,13 +223,13 @@ class UploadedFile extends $pb.GeneratedMessage {
 
   UploadedFile._() : super();
   factory UploadedFile({
-    $core.String localKey,
-    $core.String url,
-    $core.String id,
-    $core.String mime,
-    $core.String thumbUrl,
-    $core.String name,
-    $core.bool downloadable,
+    $core.String? localKey,
+    $core.String? url,
+    $core.String? id,
+    $core.String? mime,
+    $core.String? thumbUrl,
+    $core.String? name,
+    $core.bool? downloadable,
   }) {
     final _result = create();
     if (localKey != null) {
@@ -274,7 +274,7 @@ class UploadedFile extends $pb.GeneratedMessage {
   static $pb.PbList<UploadedFile> createRepeated() => $pb.PbList<UploadedFile>();
   @$core.pragma('dart2js:noInline')
   static UploadedFile getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadedFile>(create);
-  static UploadedFile _defaultInstance;
+  static UploadedFile? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get localKey => $_getSZ(0);
@@ -342,7 +342,7 @@ class UploadedFile extends $pb.GeneratedMessage {
 
 class UploadStart extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadStart', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'sfiles'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey', protoName: 'localKey')
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localKey')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extension')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mime')
@@ -351,10 +351,10 @@ class UploadStart extends $pb.GeneratedMessage {
 
   UploadStart._() : super();
   factory UploadStart({
-    $core.String localKey,
-    $core.String extension_2,
-    $core.String name,
-    $core.String mime,
+    $core.String? localKey,
+    $core.String? extension_2,
+    $core.String? name,
+    $core.String? mime,
   }) {
     final _result = create();
     if (localKey != null) {
@@ -390,7 +390,7 @@ class UploadStart extends $pb.GeneratedMessage {
   static $pb.PbList<UploadStart> createRepeated() => $pb.PbList<UploadStart>();
   @$core.pragma('dart2js:noInline')
   static UploadStart getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadStart>(create);
-  static UploadStart _defaultInstance;
+  static UploadStart? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get localKey => $_getSZ(0);
@@ -437,7 +437,7 @@ class DeleteFile extends $pb.GeneratedMessage {
 
   DeleteFile._() : super();
   factory DeleteFile({
-    UploadedFile file,
+    UploadedFile? file,
   }) {
     final _result = create();
     if (file != null) {
@@ -464,7 +464,7 @@ class DeleteFile extends $pb.GeneratedMessage {
   static $pb.PbList<DeleteFile> createRepeated() => $pb.PbList<DeleteFile>();
   @$core.pragma('dart2js:noInline')
   static DeleteFile getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteFile>(create);
-  static DeleteFile _defaultInstance;
+  static DeleteFile? _defaultInstance;
 
   @$pb.TagNumber(1)
   UploadedFile get file => $_getN(0);
@@ -504,6 +504,6 @@ class UploadEnd extends $pb.GeneratedMessage {
   static $pb.PbList<UploadEnd> createRepeated() => $pb.PbList<UploadEnd>();
   @$core.pragma('dart2js:noInline')
   static UploadEnd getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadEnd>(create);
-  static UploadEnd _defaultInstance;
+  static UploadEnd? _defaultInstance;
 }
 

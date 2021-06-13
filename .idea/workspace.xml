@@ -8,8 +8,46 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/sfiles.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/sfiles.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector_native.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector_native.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector_stub.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector_stub.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/error_handling/error_handling_widgets.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/files/files_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/files/files_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/database.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/form_errors.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_stub.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_stub.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/uploader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/uploader.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

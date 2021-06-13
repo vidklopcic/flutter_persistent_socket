@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: uploader.proto
 //
-// @dart = 2.7
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -31,16 +31,16 @@ class UploadTask extends $pb.GeneratedMessage {
 
   UploadTask._() : super();
   factory UploadTask({
-    $fixnum.Int64 created,
-    $core.String path,
-    $core.String name,
-    $core.String mime,
-    UploadStatus status,
-    $core.int retryCounter,
-    $core.String error,
-    $core.String fingerprint,
-    $core.String url,
-    $core.Map<$core.String, $core.String> metadata,
+    $fixnum.Int64? created,
+    $core.String? path,
+    $core.String? name,
+    $core.String? mime,
+    UploadStatus? status,
+    $core.int? retryCounter,
+    $core.String? error,
+    $core.String? fingerprint,
+    $core.String? url,
+    $core.Map<$core.String, $core.String>? metadata,
   }) {
     final _result = create();
     if (created != null) {
@@ -94,7 +94,7 @@ class UploadTask extends $pb.GeneratedMessage {
   static $pb.PbList<UploadTask> createRepeated() => $pb.PbList<UploadTask>();
   @$core.pragma('dart2js:noInline')
   static UploadTask getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadTask>(create);
-  static UploadTask _defaultInstance;
+  static UploadTask? _defaultInstance;
 
   @$pb.TagNumber(1)
   $fixnum.Int64 get created => $_getI64(0);

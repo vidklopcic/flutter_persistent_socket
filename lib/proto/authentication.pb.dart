@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: authentication.proto
 //
-// @dart = 2.7
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -17,7 +17,7 @@ class LoginToken extends $pb.GeneratedMessage {
 
   LoginToken._() : super();
   factory LoginToken({
-    $core.String token,
+    $core.String? token,
   }) {
     final _result = create();
     if (token != null) {
@@ -44,7 +44,7 @@ class LoginToken extends $pb.GeneratedMessage {
   static $pb.PbList<LoginToken> createRepeated() => $pb.PbList<LoginToken>();
   @$core.pragma('dart2js:noInline')
   static LoginToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoginToken>(create);
-  static LoginToken _defaultInstance;
+  static LoginToken? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get token => $_getSZ(0);
@@ -65,8 +65,8 @@ class LoginError extends $pb.GeneratedMessage {
 
   LoginError._() : super();
   factory LoginError({
-    $core.String errorText,
-    $core.String errorCode,
+    $core.String? errorText,
+    $core.String? errorCode,
   }) {
     final _result = create();
     if (errorText != null) {
@@ -96,7 +96,7 @@ class LoginError extends $pb.GeneratedMessage {
   static $pb.PbList<LoginError> createRepeated() => $pb.PbList<LoginError>();
   @$core.pragma('dart2js:noInline')
   static LoginError getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoginError>(create);
-  static LoginError _defaultInstance;
+  static LoginError? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get errorText => $_getSZ(0);
@@ -126,8 +126,8 @@ class Login extends $pb.GeneratedMessage {
 
   Login._() : super();
   factory Login({
-    $core.String username,
-    $core.String password,
+    $core.String? username,
+    $core.String? password,
   }) {
     final _result = create();
     if (username != null) {
@@ -157,7 +157,7 @@ class Login extends $pb.GeneratedMessage {
   static $pb.PbList<Login> createRepeated() => $pb.PbList<Login>();
   @$core.pragma('dart2js:noInline')
   static Login getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Login>(create);
-  static Login _defaultInstance;
+  static Login? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get username => $_getSZ(0);
@@ -190,11 +190,11 @@ class AppleLogin extends $pb.GeneratedMessage {
 
   AppleLogin._() : super();
   factory AppleLogin({
-    $core.String code,
-    $core.String firstName,
-    $core.String lastName,
-    $core.bool useBundleId,
-    $core.String state,
+    $core.String? code,
+    $core.String? firstName,
+    $core.String? lastName,
+    $core.bool? useBundleId,
+    $core.String? state,
   }) {
     final _result = create();
     if (code != null) {
@@ -233,7 +233,7 @@ class AppleLogin extends $pb.GeneratedMessage {
   static $pb.PbList<AppleLogin> createRepeated() => $pb.PbList<AppleLogin>();
   @$core.pragma('dart2js:noInline')
   static AppleLogin getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AppleLogin>(create);
-  static AppleLogin _defaultInstance;
+  static AppleLogin? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get code => $_getSZ(0);
@@ -307,7 +307,7 @@ class VerifyToken extends $pb.GeneratedMessage {
   static $pb.PbList<VerifyToken> createRepeated() => $pb.PbList<VerifyToken>();
   @$core.pragma('dart2js:noInline')
   static VerifyToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VerifyToken>(create);
-  static VerifyToken _defaultInstance;
+  static VerifyToken? _defaultInstance;
 }
 
 class TokenInvalid extends $pb.GeneratedMessage {
@@ -336,6 +336,6 @@ class TokenInvalid extends $pb.GeneratedMessage {
   static $pb.PbList<TokenInvalid> createRepeated() => $pb.PbList<TokenInvalid>();
   @$core.pragma('dart2js:noInline')
   static TokenInvalid getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenInvalid>(create);
-  static TokenInvalid _defaultInstance;
+  static TokenInvalid? _defaultInstance;
 }
 

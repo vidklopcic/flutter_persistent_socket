@@ -78,20 +78,21 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
   }
 
   Future<int> invalidateCache(
-      [SocketRxMessageQueryFilter<DeleteStatement<$SocketRxEventsTable, SocketRxEvent>> filter]) {
+      [SocketRxMessageQueryFilter<DeleteStatement<$SocketRxEventsTable, SocketRxEvent>>? filter]) {
     return ((filter ?? (f) => f)(delete(socketRxEvents))).go();
   }
 
-  Future cacheEvent(SocketRxMessage message) {
+  Future cacheEvent(SocketRxMessage message) async {
+    if (message.message == null || message.cache == null) return;
     print('caching ${message.messageType}');
-    return into(socketRxEvents).insertOnConflictUpdate(
+    return await into(socketRxEvents).insertOnConflictUpdate(
       SocketRxEventsCompanion.insert(
         uuid: message.cacheUuid,
         type: message.messageType,
-        jsonContent: message.message.toString(),
-        timeReceived: message.message.time,
-        expires: DateTime.now().add(message.cache),
-        online: message.message.online,
+        jsonContent: message.message!.toString(),
+        timeReceived: message.message!.time,
+        expires: DateTime.now().add(message.cache!),
+        online: message.message!.online,
         dateKey0: Value(message.getCacheVal(CacheKeyType.date, 0)),
         dateKey1: Value(message.getCacheVal(CacheKeyType.date, 1)),
         dateKey2: Value(message.getCacheVal(CacheKeyType.date, 2)),

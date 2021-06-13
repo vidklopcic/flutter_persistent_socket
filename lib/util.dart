@@ -9,12 +9,11 @@ class FPSUtil {
     return duration.inMilliseconds;
   }
 
-
   DateTime toDateTime(Int64 ts) {
     return DateTime.fromMillisecondsSinceEpoch(ts.toInt());
   }
 
-  Int64 toTimestamp(DateTime dateTime, [bool useTz]) {
+  Int64 toTimestamp(DateTime dateTime, [bool useTz = false]) {
     return Int64(dateTime.millisecondsSinceEpoch);
   }
 }

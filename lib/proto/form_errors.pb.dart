@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: form_errors.proto
 //
-// @dart = 2.7
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -18,8 +18,8 @@ class FormErrors extends $pb.GeneratedMessage {
 
   FormErrors._() : super();
   factory FormErrors({
-    $core.String relatedMessageType,
-    $core.Map<$core.String, SList> errors,
+    $core.String? relatedMessageType,
+    $core.Map<$core.String, SList>? errors,
   }) {
     final _result = create();
     if (relatedMessageType != null) {
@@ -49,7 +49,7 @@ class FormErrors extends $pb.GeneratedMessage {
   static $pb.PbList<FormErrors> createRepeated() => $pb.PbList<FormErrors>();
   @$core.pragma('dart2js:noInline')
   static FormErrors getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FormErrors>(create);
-  static FormErrors _defaultInstance;
+  static FormErrors? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get relatedMessageType => $_getSZ(0);
@@ -72,7 +72,7 @@ class SList extends $pb.GeneratedMessage {
 
   SList._() : super();
   factory SList({
-    $core.Iterable<$core.String> list,
+    $core.Iterable<$core.String>? list,
   }) {
     final _result = create();
     if (list != null) {
@@ -99,7 +99,7 @@ class SList extends $pb.GeneratedMessage {
   static $pb.PbList<SList> createRepeated() => $pb.PbList<SList>();
   @$core.pragma('dart2js:noInline')
   static SList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SList>(create);
-  static SList _defaultInstance;
+  static SList? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<$core.String> get list => $_getList(0);

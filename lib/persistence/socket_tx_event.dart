@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
@@ -75,17 +74,18 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
   }
 
   Future<int> invalidateCache(
-      [SocketTxMessageQueryFilter<DeleteStatement<$SocketTxEventsTable, SocketTxEvent>> filter]) {
+      [SocketTxMessageQueryFilter<DeleteStatement<$SocketTxEventsTable, SocketTxEvent>>? filter]) {
     return ((filter ?? (f) => f)(delete(socketTxEvents))).go();
   }
 
-  Future cacheEvent(SocketTxMessage message, String jsonContent) {
+  Future cacheEvent(SocketTxMessage message, String jsonContent) async {
+    if (message.cache == null) return;
     print('caching ${message.messageType}');
-    return into(socketTxEvents).insertOnConflictUpdate(
+    return await into(socketTxEvents).insertOnConflictUpdate(
       SocketTxEventsCompanion.insert(
         uuid: message.cacheUuid,
         type: message.messageType,
-        expires: DateTime.now().add(message.cache),
+        expires: DateTime.now().add(message.cache!),
         dateKey0: Value(message.getCacheVal(CacheKeyType.date, 0)),
         dateKey1: Value(message.getCacheVal(CacheKeyType.date, 1)),
         dateKey2: Value(message.getCacheVal(CacheKeyType.date, 2)),
@@ -107,7 +107,7 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
   }
 
   Future saveEvent(SocketTxEvent event) {
-    into(socketTxEvents).insertOnConflictUpdate(event);
+    return into(socketTxEvents).insertOnConflictUpdate(event);
   }
 
   SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> filter(SocketTxMessage message) {

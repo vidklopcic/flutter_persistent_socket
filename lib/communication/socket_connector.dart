@@ -14,7 +14,7 @@ class SocketConnector with ChangeNotifier {
   final String address;
   bool autoReconnect = true;
 
-  WebSocketChannel channel;
+  WebSocketChannel? channel;
 
   // is connected
   Observable<bool> connected = Observable(false);
@@ -29,7 +29,7 @@ class SocketConnector with ChangeNotifier {
   }
 
 
-  StreamController _dataStream;
+  late StreamController _dataStream;
 
   Stream get dataStream => _dataStream.stream;
 

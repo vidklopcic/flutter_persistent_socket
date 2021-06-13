@@ -13,27 +13,27 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
   final String jsonContent;
   final DateTime timeRecorded;
   final DateTime expires;
-  final DateTime dateKey0;
-  final DateTime dateKey1;
-  final DateTime dateKey2;
-  final DateTime dateKey3;
-  final DateTime dateKey4;
-  final String textKey0;
-  final String textKey1;
-  final String textKey2;
-  final String textKey3;
-  final String textKey4;
-  final double realKey0;
-  final double realKey1;
-  final double realKey2;
-  final double realKey3;
-  final double realKey4;
+  final DateTime? dateKey0;
+  final DateTime? dateKey1;
+  final DateTime? dateKey2;
+  final DateTime? dateKey3;
+  final DateTime? dateKey4;
+  final String? textKey0;
+  final String? textKey1;
+  final String? textKey2;
+  final String? textKey3;
+  final String? textKey4;
+  final double? realKey0;
+  final double? realKey1;
+  final double? realKey2;
+  final double? realKey3;
+  final double? realKey4;
   SocketTxEvent(
-      {@required this.uuid,
-      @required this.type,
-      @required this.jsonContent,
-      @required this.timeRecorded,
-      @required this.expires,
+      {required this.uuid,
+      required this.type,
+      required this.jsonContent,
+      required this.timeRecorded,
+      required this.expires,
       this.dateKey0,
       this.dateKey1,
       this.dateKey2,
@@ -51,131 +51,114 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       this.realKey4});
   factory SocketTxEvent.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
-      {String prefix}) {
+      {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    final stringType = db.typeSystem.forDartType<String>();
-    final dateTimeType = db.typeSystem.forDartType<DateTime>();
-    final doubleType = db.typeSystem.forDartType<double>();
     return SocketTxEvent(
-      uuid: stringType.mapFromDatabaseResponse(data['${effectivePrefix}uuid']),
-      type: stringType.mapFromDatabaseResponse(data['${effectivePrefix}type']),
-      jsonContent: stringType
-          .mapFromDatabaseResponse(data['${effectivePrefix}json_content']),
-      timeRecorded: dateTimeType
-          .mapFromDatabaseResponse(data['${effectivePrefix}time_recorded']),
-      expires: dateTimeType
-          .mapFromDatabaseResponse(data['${effectivePrefix}expires']),
-      dateKey0: dateTimeType
+      uuid: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}uuid'])!,
+      type: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type'])!,
+      jsonContent: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}json_content'])!,
+      timeRecorded: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}time_recorded'])!,
+      expires: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}expires'])!,
+      dateKey0: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key0']),
-      dateKey1: dateTimeType
+      dateKey1: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key1']),
-      dateKey2: dateTimeType
+      dateKey2: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key2']),
-      dateKey3: dateTimeType
+      dateKey3: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key3']),
-      dateKey4: dateTimeType
+      dateKey4: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key4']),
-      textKey0: stringType
+      textKey0: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key0']),
-      textKey1: stringType
+      textKey1: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key1']),
-      textKey2: stringType
+      textKey2: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key2']),
-      textKey3: stringType
+      textKey3: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key3']),
-      textKey4: stringType
+      textKey4: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key4']),
-      realKey0: doubleType
+      realKey0: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key0']),
-      realKey1: doubleType
+      realKey1: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key1']),
-      realKey2: doubleType
+      realKey2: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key2']),
-      realKey3: doubleType
+      realKey3: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key3']),
-      realKey4: doubleType
+      realKey4: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key4']),
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (!nullToAbsent || uuid != null) {
-      map['uuid'] = Variable<String>(uuid);
-    }
-    if (!nullToAbsent || type != null) {
-      map['type'] = Variable<String>(type);
-    }
-    if (!nullToAbsent || jsonContent != null) {
-      map['json_content'] = Variable<String>(jsonContent);
-    }
-    if (!nullToAbsent || timeRecorded != null) {
-      map['time_recorded'] = Variable<DateTime>(timeRecorded);
-    }
-    if (!nullToAbsent || expires != null) {
-      map['expires'] = Variable<DateTime>(expires);
-    }
+    map['uuid'] = Variable<String>(uuid);
+    map['type'] = Variable<String>(type);
+    map['json_content'] = Variable<String>(jsonContent);
+    map['time_recorded'] = Variable<DateTime>(timeRecorded);
+    map['expires'] = Variable<DateTime>(expires);
     if (!nullToAbsent || dateKey0 != null) {
-      map['date_key0'] = Variable<DateTime>(dateKey0);
+      map['date_key0'] = Variable<DateTime?>(dateKey0);
     }
     if (!nullToAbsent || dateKey1 != null) {
-      map['date_key1'] = Variable<DateTime>(dateKey1);
+      map['date_key1'] = Variable<DateTime?>(dateKey1);
     }
     if (!nullToAbsent || dateKey2 != null) {
-      map['date_key2'] = Variable<DateTime>(dateKey2);
+      map['date_key2'] = Variable<DateTime?>(dateKey2);
     }
     if (!nullToAbsent || dateKey3 != null) {
-      map['date_key3'] = Variable<DateTime>(dateKey3);
+      map['date_key3'] = Variable<DateTime?>(dateKey3);
     }
     if (!nullToAbsent || dateKey4 != null) {
-      map['date_key4'] = Variable<DateTime>(dateKey4);
+      map['date_key4'] = Variable<DateTime?>(dateKey4);
     }
     if (!nullToAbsent || textKey0 != null) {
-      map['text_key0'] = Variable<String>(textKey0);
+      map['text_key0'] = Variable<String?>(textKey0);
     }
     if (!nullToAbsent || textKey1 != null) {
-      map['text_key1'] = Variable<String>(textKey1);
+      map['text_key1'] = Variable<String?>(textKey1);
     }
     if (!nullToAbsent || textKey2 != null) {
-      map['text_key2'] = Variable<String>(textKey2);
+      map['text_key2'] = Variable<String?>(textKey2);
     }
     if (!nullToAbsent || textKey3 != null) {
-      map['text_key3'] = Variable<String>(textKey3);
+      map['text_key3'] = Variable<String?>(textKey3);
     }
     if (!nullToAbsent || textKey4 != null) {
-      map['text_key4'] = Variable<String>(textKey4);
+      map['text_key4'] = Variable<String?>(textKey4);
     }
     if (!nullToAbsent || realKey0 != null) {
-      map['real_key0'] = Variable<double>(realKey0);
+      map['real_key0'] = Variable<double?>(realKey0);
     }
     if (!nullToAbsent || realKey1 != null) {
-      map['real_key1'] = Variable<double>(realKey1);
+      map['real_key1'] = Variable<double?>(realKey1);
     }
     if (!nullToAbsent || realKey2 != null) {
-      map['real_key2'] = Variable<double>(realKey2);
+      map['real_key2'] = Variable<double?>(realKey2);
     }
     if (!nullToAbsent || realKey3 != null) {
-      map['real_key3'] = Variable<double>(realKey3);
+      map['real_key3'] = Variable<double?>(realKey3);
     }
     if (!nullToAbsent || realKey4 != null) {
-      map['real_key4'] = Variable<double>(realKey4);
+      map['real_key4'] = Variable<double?>(realKey4);
     }
     return map;
   }
 
   SocketTxEventsCompanion toCompanion(bool nullToAbsent) {
     return SocketTxEventsCompanion(
-      uuid: uuid == null && nullToAbsent ? const Value.absent() : Value(uuid),
-      type: type == null && nullToAbsent ? const Value.absent() : Value(type),
-      jsonContent: jsonContent == null && nullToAbsent
-          ? const Value.absent()
-          : Value(jsonContent),
-      timeRecorded: timeRecorded == null && nullToAbsent
-          ? const Value.absent()
-          : Value(timeRecorded),
-      expires: expires == null && nullToAbsent
-          ? const Value.absent()
-          : Value(expires),
+      uuid: Value(uuid),
+      type: Value(type),
+      jsonContent: Value(jsonContent),
+      timeRecorded: Value(timeRecorded),
+      expires: Value(expires),
       dateKey0: dateKey0 == null && nullToAbsent
           ? const Value.absent()
           : Value(dateKey0),
@@ -225,7 +208,7 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
   }
 
   factory SocketTxEvent.fromJson(Map<String, dynamic> json,
-      {ValueSerializer serializer}) {
+      {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return SocketTxEvent(
       uuid: serializer.fromJson<String>(json['uuid']),
@@ -233,25 +216,25 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       jsonContent: serializer.fromJson<String>(json['jsonContent']),
       timeRecorded: serializer.fromJson<DateTime>(json['timeRecorded']),
       expires: serializer.fromJson<DateTime>(json['expires']),
-      dateKey0: serializer.fromJson<DateTime>(json['dateKey0']),
-      dateKey1: serializer.fromJson<DateTime>(json['dateKey1']),
-      dateKey2: serializer.fromJson<DateTime>(json['dateKey2']),
-      dateKey3: serializer.fromJson<DateTime>(json['dateKey3']),
-      dateKey4: serializer.fromJson<DateTime>(json['dateKey4']),
-      textKey0: serializer.fromJson<String>(json['textKey0']),
-      textKey1: serializer.fromJson<String>(json['textKey1']),
-      textKey2: serializer.fromJson<String>(json['textKey2']),
-      textKey3: serializer.fromJson<String>(json['textKey3']),
-      textKey4: serializer.fromJson<String>(json['textKey4']),
-      realKey0: serializer.fromJson<double>(json['realKey0']),
-      realKey1: serializer.fromJson<double>(json['realKey1']),
-      realKey2: serializer.fromJson<double>(json['realKey2']),
-      realKey3: serializer.fromJson<double>(json['realKey3']),
-      realKey4: serializer.fromJson<double>(json['realKey4']),
+      dateKey0: serializer.fromJson<DateTime?>(json['dateKey0']),
+      dateKey1: serializer.fromJson<DateTime?>(json['dateKey1']),
+      dateKey2: serializer.fromJson<DateTime?>(json['dateKey2']),
+      dateKey3: serializer.fromJson<DateTime?>(json['dateKey3']),
+      dateKey4: serializer.fromJson<DateTime?>(json['dateKey4']),
+      textKey0: serializer.fromJson<String?>(json['textKey0']),
+      textKey1: serializer.fromJson<String?>(json['textKey1']),
+      textKey2: serializer.fromJson<String?>(json['textKey2']),
+      textKey3: serializer.fromJson<String?>(json['textKey3']),
+      textKey4: serializer.fromJson<String?>(json['textKey4']),
+      realKey0: serializer.fromJson<double?>(json['realKey0']),
+      realKey1: serializer.fromJson<double?>(json['realKey1']),
+      realKey2: serializer.fromJson<double?>(json['realKey2']),
+      realKey3: serializer.fromJson<double?>(json['realKey3']),
+      realKey4: serializer.fromJson<double?>(json['realKey4']),
     );
   }
   @override
-  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'uuid': serializer.toJson<String>(uuid),
@@ -259,45 +242,45 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       'jsonContent': serializer.toJson<String>(jsonContent),
       'timeRecorded': serializer.toJson<DateTime>(timeRecorded),
       'expires': serializer.toJson<DateTime>(expires),
-      'dateKey0': serializer.toJson<DateTime>(dateKey0),
-      'dateKey1': serializer.toJson<DateTime>(dateKey1),
-      'dateKey2': serializer.toJson<DateTime>(dateKey2),
-      'dateKey3': serializer.toJson<DateTime>(dateKey3),
-      'dateKey4': serializer.toJson<DateTime>(dateKey4),
-      'textKey0': serializer.toJson<String>(textKey0),
-      'textKey1': serializer.toJson<String>(textKey1),
-      'textKey2': serializer.toJson<String>(textKey2),
-      'textKey3': serializer.toJson<String>(textKey3),
-      'textKey4': serializer.toJson<String>(textKey4),
-      'realKey0': serializer.toJson<double>(realKey0),
-      'realKey1': serializer.toJson<double>(realKey1),
-      'realKey2': serializer.toJson<double>(realKey2),
-      'realKey3': serializer.toJson<double>(realKey3),
-      'realKey4': serializer.toJson<double>(realKey4),
+      'dateKey0': serializer.toJson<DateTime?>(dateKey0),
+      'dateKey1': serializer.toJson<DateTime?>(dateKey1),
+      'dateKey2': serializer.toJson<DateTime?>(dateKey2),
+      'dateKey3': serializer.toJson<DateTime?>(dateKey3),
+      'dateKey4': serializer.toJson<DateTime?>(dateKey4),
+      'textKey0': serializer.toJson<String?>(textKey0),
+      'textKey1': serializer.toJson<String?>(textKey1),
+      'textKey2': serializer.toJson<String?>(textKey2),
+      'textKey3': serializer.toJson<String?>(textKey3),
+      'textKey4': serializer.toJson<String?>(textKey4),
+      'realKey0': serializer.toJson<double?>(realKey0),
+      'realKey1': serializer.toJson<double?>(realKey1),
+      'realKey2': serializer.toJson<double?>(realKey2),
+      'realKey3': serializer.toJson<double?>(realKey3),
+      'realKey4': serializer.toJson<double?>(realKey4),
     };
   }
 
   SocketTxEvent copyWith(
-          {String uuid,
-          String type,
-          String jsonContent,
-          DateTime timeRecorded,
-          DateTime expires,
-          DateTime dateKey0,
-          DateTime dateKey1,
-          DateTime dateKey2,
-          DateTime dateKey3,
-          DateTime dateKey4,
-          String textKey0,
-          String textKey1,
-          String textKey2,
-          String textKey3,
-          String textKey4,
-          double realKey0,
-          double realKey1,
-          double realKey2,
-          double realKey3,
-          double realKey4}) =>
+          {String? uuid,
+          String? type,
+          String? jsonContent,
+          DateTime? timeRecorded,
+          DateTime? expires,
+          DateTime? dateKey0,
+          DateTime? dateKey1,
+          DateTime? dateKey2,
+          DateTime? dateKey3,
+          DateTime? dateKey4,
+          String? textKey0,
+          String? textKey1,
+          String? textKey2,
+          String? textKey3,
+          String? textKey4,
+          double? realKey0,
+          double? realKey1,
+          double? realKey2,
+          double? realKey3,
+          double? realKey4}) =>
       SocketTxEvent(
         uuid: uuid ?? this.uuid,
         type: type ?? this.type,
@@ -391,7 +374,7 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
                                                                               realKey3.hashCode,
                                                                               realKey4.hashCode))))))))))))))))))));
   @override
-  bool operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SocketTxEvent &&
           other.uuid == this.uuid &&
@@ -422,21 +405,21 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
   final Value<String> jsonContent;
   final Value<DateTime> timeRecorded;
   final Value<DateTime> expires;
-  final Value<DateTime> dateKey0;
-  final Value<DateTime> dateKey1;
-  final Value<DateTime> dateKey2;
-  final Value<DateTime> dateKey3;
-  final Value<DateTime> dateKey4;
-  final Value<String> textKey0;
-  final Value<String> textKey1;
-  final Value<String> textKey2;
-  final Value<String> textKey3;
-  final Value<String> textKey4;
-  final Value<double> realKey0;
-  final Value<double> realKey1;
-  final Value<double> realKey2;
-  final Value<double> realKey3;
-  final Value<double> realKey4;
+  final Value<DateTime?> dateKey0;
+  final Value<DateTime?> dateKey1;
+  final Value<DateTime?> dateKey2;
+  final Value<DateTime?> dateKey3;
+  final Value<DateTime?> dateKey4;
+  final Value<String?> textKey0;
+  final Value<String?> textKey1;
+  final Value<String?> textKey2;
+  final Value<String?> textKey3;
+  final Value<String?> textKey4;
+  final Value<double?> realKey0;
+  final Value<double?> realKey1;
+  final Value<double?> realKey2;
+  final Value<double?> realKey3;
+  final Value<double?> realKey4;
   const SocketTxEventsCompanion({
     this.uuid = const Value.absent(),
     this.type = const Value.absent(),
@@ -460,11 +443,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     this.realKey4 = const Value.absent(),
   });
   SocketTxEventsCompanion.insert({
-    @required String uuid,
-    @required String type,
-    @required String jsonContent,
+    required String uuid,
+    required String type,
+    required String jsonContent,
     this.timeRecorded = const Value.absent(),
-    @required DateTime expires,
+    required DateTime expires,
     this.dateKey0 = const Value.absent(),
     this.dateKey1 = const Value.absent(),
     this.dateKey2 = const Value.absent(),
@@ -485,26 +468,26 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
         jsonContent = Value(jsonContent),
         expires = Value(expires);
   static Insertable<SocketTxEvent> custom({
-    Expression<String> uuid,
-    Expression<String> type,
-    Expression<String> jsonContent,
-    Expression<DateTime> timeRecorded,
-    Expression<DateTime> expires,
-    Expression<DateTime> dateKey0,
-    Expression<DateTime> dateKey1,
-    Expression<DateTime> dateKey2,
-    Expression<DateTime> dateKey3,
-    Expression<DateTime> dateKey4,
-    Expression<String> textKey0,
-    Expression<String> textKey1,
-    Expression<String> textKey2,
-    Expression<String> textKey3,
-    Expression<String> textKey4,
-    Expression<double> realKey0,
-    Expression<double> realKey1,
-    Expression<double> realKey2,
-    Expression<double> realKey3,
-    Expression<double> realKey4,
+    Expression<String>? uuid,
+    Expression<String>? type,
+    Expression<String>? jsonContent,
+    Expression<DateTime>? timeRecorded,
+    Expression<DateTime>? expires,
+    Expression<DateTime?>? dateKey0,
+    Expression<DateTime?>? dateKey1,
+    Expression<DateTime?>? dateKey2,
+    Expression<DateTime?>? dateKey3,
+    Expression<DateTime?>? dateKey4,
+    Expression<String?>? textKey0,
+    Expression<String?>? textKey1,
+    Expression<String?>? textKey2,
+    Expression<String?>? textKey3,
+    Expression<String?>? textKey4,
+    Expression<double?>? realKey0,
+    Expression<double?>? realKey1,
+    Expression<double?>? realKey2,
+    Expression<double?>? realKey3,
+    Expression<double?>? realKey4,
   }) {
     return RawValuesInsertable({
       if (uuid != null) 'uuid': uuid,
@@ -531,26 +514,26 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
   }
 
   SocketTxEventsCompanion copyWith(
-      {Value<String> uuid,
-      Value<String> type,
-      Value<String> jsonContent,
-      Value<DateTime> timeRecorded,
-      Value<DateTime> expires,
-      Value<DateTime> dateKey0,
-      Value<DateTime> dateKey1,
-      Value<DateTime> dateKey2,
-      Value<DateTime> dateKey3,
-      Value<DateTime> dateKey4,
-      Value<String> textKey0,
-      Value<String> textKey1,
-      Value<String> textKey2,
-      Value<String> textKey3,
-      Value<String> textKey4,
-      Value<double> realKey0,
-      Value<double> realKey1,
-      Value<double> realKey2,
-      Value<double> realKey3,
-      Value<double> realKey4}) {
+      {Value<String>? uuid,
+      Value<String>? type,
+      Value<String>? jsonContent,
+      Value<DateTime>? timeRecorded,
+      Value<DateTime>? expires,
+      Value<DateTime?>? dateKey0,
+      Value<DateTime?>? dateKey1,
+      Value<DateTime?>? dateKey2,
+      Value<DateTime?>? dateKey3,
+      Value<DateTime?>? dateKey4,
+      Value<String?>? textKey0,
+      Value<String?>? textKey1,
+      Value<String?>? textKey2,
+      Value<String?>? textKey3,
+      Value<String?>? textKey4,
+      Value<double?>? realKey0,
+      Value<double?>? realKey1,
+      Value<double?>? realKey2,
+      Value<double?>? realKey3,
+      Value<double?>? realKey4}) {
     return SocketTxEventsCompanion(
       uuid: uuid ?? this.uuid,
       type: type ?? this.type,
@@ -594,49 +577,49 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       map['expires'] = Variable<DateTime>(expires.value);
     }
     if (dateKey0.present) {
-      map['date_key0'] = Variable<DateTime>(dateKey0.value);
+      map['date_key0'] = Variable<DateTime?>(dateKey0.value);
     }
     if (dateKey1.present) {
-      map['date_key1'] = Variable<DateTime>(dateKey1.value);
+      map['date_key1'] = Variable<DateTime?>(dateKey1.value);
     }
     if (dateKey2.present) {
-      map['date_key2'] = Variable<DateTime>(dateKey2.value);
+      map['date_key2'] = Variable<DateTime?>(dateKey2.value);
     }
     if (dateKey3.present) {
-      map['date_key3'] = Variable<DateTime>(dateKey3.value);
+      map['date_key3'] = Variable<DateTime?>(dateKey3.value);
     }
     if (dateKey4.present) {
-      map['date_key4'] = Variable<DateTime>(dateKey4.value);
+      map['date_key4'] = Variable<DateTime?>(dateKey4.value);
     }
     if (textKey0.present) {
-      map['text_key0'] = Variable<String>(textKey0.value);
+      map['text_key0'] = Variable<String?>(textKey0.value);
     }
     if (textKey1.present) {
-      map['text_key1'] = Variable<String>(textKey1.value);
+      map['text_key1'] = Variable<String?>(textKey1.value);
     }
     if (textKey2.present) {
-      map['text_key2'] = Variable<String>(textKey2.value);
+      map['text_key2'] = Variable<String?>(textKey2.value);
     }
     if (textKey3.present) {
-      map['text_key3'] = Variable<String>(textKey3.value);
+      map['text_key3'] = Variable<String?>(textKey3.value);
     }
     if (textKey4.present) {
-      map['text_key4'] = Variable<String>(textKey4.value);
+      map['text_key4'] = Variable<String?>(textKey4.value);
     }
     if (realKey0.present) {
-      map['real_key0'] = Variable<double>(realKey0.value);
+      map['real_key0'] = Variable<double?>(realKey0.value);
     }
     if (realKey1.present) {
-      map['real_key1'] = Variable<double>(realKey1.value);
+      map['real_key1'] = Variable<double?>(realKey1.value);
     }
     if (realKey2.present) {
-      map['real_key2'] = Variable<double>(realKey2.value);
+      map['real_key2'] = Variable<double?>(realKey2.value);
     }
     if (realKey3.present) {
-      map['real_key3'] = Variable<double>(realKey3.value);
+      map['real_key3'] = Variable<double?>(realKey3.value);
     }
     if (realKey4.present) {
-      map['real_key4'] = Variable<double>(realKey4.value);
+      map['real_key4'] = Variable<double?>(realKey4.value);
     }
     return map;
   }
@@ -672,12 +655,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
 class $SocketTxEventsTable extends SocketTxEvents
     with TableInfo<$SocketTxEventsTable, SocketTxEvent> {
   final GeneratedDatabase _db;
-  final String _alias;
+  final String? _alias;
   $SocketTxEventsTable(this._db, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
-  GeneratedTextColumn _uuid;
   @override
-  GeneratedTextColumn get uuid => _uuid ??= _constructUuid();
+  late final GeneratedTextColumn uuid = _constructUuid();
   GeneratedTextColumn _constructUuid() {
     return GeneratedTextColumn(
       'uuid',
@@ -687,9 +669,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _typeMeta = const VerificationMeta('type');
-  GeneratedTextColumn _type;
   @override
-  GeneratedTextColumn get type => _type ??= _constructType();
+  late final GeneratedTextColumn type = _constructType();
   GeneratedTextColumn _constructType() {
     return GeneratedTextColumn(
       'type',
@@ -700,10 +681,8 @@ class $SocketTxEventsTable extends SocketTxEvents
 
   final VerificationMeta _jsonContentMeta =
       const VerificationMeta('jsonContent');
-  GeneratedTextColumn _jsonContent;
   @override
-  GeneratedTextColumn get jsonContent =>
-      _jsonContent ??= _constructJsonContent();
+  late final GeneratedTextColumn jsonContent = _constructJsonContent();
   GeneratedTextColumn _constructJsonContent() {
     return GeneratedTextColumn(
       'json_content',
@@ -714,10 +693,8 @@ class $SocketTxEventsTable extends SocketTxEvents
 
   final VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
-  GeneratedDateTimeColumn _timeRecorded;
   @override
-  GeneratedDateTimeColumn get timeRecorded =>
-      _timeRecorded ??= _constructTimeRecorded();
+  late final GeneratedDateTimeColumn timeRecorded = _constructTimeRecorded();
   GeneratedDateTimeColumn _constructTimeRecorded() {
     return GeneratedDateTimeColumn(
       'time_recorded',
@@ -727,9 +704,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
-  GeneratedDateTimeColumn _expires;
   @override
-  GeneratedDateTimeColumn get expires => _expires ??= _constructExpires();
+  late final GeneratedDateTimeColumn expires = _constructExpires();
   GeneratedDateTimeColumn _constructExpires() {
     return GeneratedDateTimeColumn(
       'expires',
@@ -739,9 +715,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _dateKey0Meta = const VerificationMeta('dateKey0');
-  GeneratedDateTimeColumn _dateKey0;
   @override
-  GeneratedDateTimeColumn get dateKey0 => _dateKey0 ??= _constructDateKey0();
+  late final GeneratedDateTimeColumn dateKey0 = _constructDateKey0();
   GeneratedDateTimeColumn _constructDateKey0() {
     return GeneratedDateTimeColumn(
       'date_key0',
@@ -751,9 +726,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _dateKey1Meta = const VerificationMeta('dateKey1');
-  GeneratedDateTimeColumn _dateKey1;
   @override
-  GeneratedDateTimeColumn get dateKey1 => _dateKey1 ??= _constructDateKey1();
+  late final GeneratedDateTimeColumn dateKey1 = _constructDateKey1();
   GeneratedDateTimeColumn _constructDateKey1() {
     return GeneratedDateTimeColumn(
       'date_key1',
@@ -763,9 +737,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _dateKey2Meta = const VerificationMeta('dateKey2');
-  GeneratedDateTimeColumn _dateKey2;
   @override
-  GeneratedDateTimeColumn get dateKey2 => _dateKey2 ??= _constructDateKey2();
+  late final GeneratedDateTimeColumn dateKey2 = _constructDateKey2();
   GeneratedDateTimeColumn _constructDateKey2() {
     return GeneratedDateTimeColumn(
       'date_key2',
@@ -775,9 +748,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _dateKey3Meta = const VerificationMeta('dateKey3');
-  GeneratedDateTimeColumn _dateKey3;
   @override
-  GeneratedDateTimeColumn get dateKey3 => _dateKey3 ??= _constructDateKey3();
+  late final GeneratedDateTimeColumn dateKey3 = _constructDateKey3();
   GeneratedDateTimeColumn _constructDateKey3() {
     return GeneratedDateTimeColumn(
       'date_key3',
@@ -787,9 +759,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _dateKey4Meta = const VerificationMeta('dateKey4');
-  GeneratedDateTimeColumn _dateKey4;
   @override
-  GeneratedDateTimeColumn get dateKey4 => _dateKey4 ??= _constructDateKey4();
+  late final GeneratedDateTimeColumn dateKey4 = _constructDateKey4();
   GeneratedDateTimeColumn _constructDateKey4() {
     return GeneratedDateTimeColumn(
       'date_key4',
@@ -799,9 +770,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _textKey0Meta = const VerificationMeta('textKey0');
-  GeneratedTextColumn _textKey0;
   @override
-  GeneratedTextColumn get textKey0 => _textKey0 ??= _constructTextKey0();
+  late final GeneratedTextColumn textKey0 = _constructTextKey0();
   GeneratedTextColumn _constructTextKey0() {
     return GeneratedTextColumn(
       'text_key0',
@@ -811,9 +781,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _textKey1Meta = const VerificationMeta('textKey1');
-  GeneratedTextColumn _textKey1;
   @override
-  GeneratedTextColumn get textKey1 => _textKey1 ??= _constructTextKey1();
+  late final GeneratedTextColumn textKey1 = _constructTextKey1();
   GeneratedTextColumn _constructTextKey1() {
     return GeneratedTextColumn(
       'text_key1',
@@ -823,9 +792,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _textKey2Meta = const VerificationMeta('textKey2');
-  GeneratedTextColumn _textKey2;
   @override
-  GeneratedTextColumn get textKey2 => _textKey2 ??= _constructTextKey2();
+  late final GeneratedTextColumn textKey2 = _constructTextKey2();
   GeneratedTextColumn _constructTextKey2() {
     return GeneratedTextColumn(
       'text_key2',
@@ -835,9 +803,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _textKey3Meta = const VerificationMeta('textKey3');
-  GeneratedTextColumn _textKey3;
   @override
-  GeneratedTextColumn get textKey3 => _textKey3 ??= _constructTextKey3();
+  late final GeneratedTextColumn textKey3 = _constructTextKey3();
   GeneratedTextColumn _constructTextKey3() {
     return GeneratedTextColumn(
       'text_key3',
@@ -847,9 +814,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _textKey4Meta = const VerificationMeta('textKey4');
-  GeneratedTextColumn _textKey4;
   @override
-  GeneratedTextColumn get textKey4 => _textKey4 ??= _constructTextKey4();
+  late final GeneratedTextColumn textKey4 = _constructTextKey4();
   GeneratedTextColumn _constructTextKey4() {
     return GeneratedTextColumn(
       'text_key4',
@@ -859,9 +825,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _realKey0Meta = const VerificationMeta('realKey0');
-  GeneratedRealColumn _realKey0;
   @override
-  GeneratedRealColumn get realKey0 => _realKey0 ??= _constructRealKey0();
+  late final GeneratedRealColumn realKey0 = _constructRealKey0();
   GeneratedRealColumn _constructRealKey0() {
     return GeneratedRealColumn(
       'real_key0',
@@ -871,9 +836,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _realKey1Meta = const VerificationMeta('realKey1');
-  GeneratedRealColumn _realKey1;
   @override
-  GeneratedRealColumn get realKey1 => _realKey1 ??= _constructRealKey1();
+  late final GeneratedRealColumn realKey1 = _constructRealKey1();
   GeneratedRealColumn _constructRealKey1() {
     return GeneratedRealColumn(
       'real_key1',
@@ -883,9 +847,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _realKey2Meta = const VerificationMeta('realKey2');
-  GeneratedRealColumn _realKey2;
   @override
-  GeneratedRealColumn get realKey2 => _realKey2 ??= _constructRealKey2();
+  late final GeneratedRealColumn realKey2 = _constructRealKey2();
   GeneratedRealColumn _constructRealKey2() {
     return GeneratedRealColumn(
       'real_key2',
@@ -895,9 +858,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _realKey3Meta = const VerificationMeta('realKey3');
-  GeneratedRealColumn _realKey3;
   @override
-  GeneratedRealColumn get realKey3 => _realKey3 ??= _constructRealKey3();
+  late final GeneratedRealColumn realKey3 = _constructRealKey3();
   GeneratedRealColumn _constructRealKey3() {
     return GeneratedRealColumn(
       'real_key3',
@@ -907,9 +869,8 @@ class $SocketTxEventsTable extends SocketTxEvents
   }
 
   final VerificationMeta _realKey4Meta = const VerificationMeta('realKey4');
-  GeneratedRealColumn _realKey4;
   @override
-  GeneratedRealColumn get realKey4 => _realKey4 ??= _constructRealKey4();
+  late final GeneratedRealColumn realKey4 = _constructRealKey4();
   GeneratedRealColumn _constructRealKey4() {
     return GeneratedRealColumn(
       'real_key4',
@@ -954,13 +915,13 @@ class $SocketTxEventsTable extends SocketTxEvents
     final data = instance.toColumns(true);
     if (data.containsKey('uuid')) {
       context.handle(
-          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid'], _uuidMeta));
+          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
     } else if (isInserting) {
       context.missing(_uuidMeta);
     }
     if (data.containsKey('type')) {
       context.handle(
-          _typeMeta, type.isAcceptableOrUnknown(data['type'], _typeMeta));
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
     } else if (isInserting) {
       context.missing(_typeMeta);
     }
@@ -968,7 +929,7 @@ class $SocketTxEventsTable extends SocketTxEvents
       context.handle(
           _jsonContentMeta,
           jsonContent.isAcceptableOrUnknown(
-              data['json_content'], _jsonContentMeta));
+              data['json_content']!, _jsonContentMeta));
     } else if (isInserting) {
       context.missing(_jsonContentMeta);
     }
@@ -976,73 +937,73 @@ class $SocketTxEventsTable extends SocketTxEvents
       context.handle(
           _timeRecordedMeta,
           timeRecorded.isAcceptableOrUnknown(
-              data['time_recorded'], _timeRecordedMeta));
+              data['time_recorded']!, _timeRecordedMeta));
     }
     if (data.containsKey('expires')) {
       context.handle(_expiresMeta,
-          expires.isAcceptableOrUnknown(data['expires'], _expiresMeta));
+          expires.isAcceptableOrUnknown(data['expires']!, _expiresMeta));
     } else if (isInserting) {
       context.missing(_expiresMeta);
     }
     if (data.containsKey('date_key0')) {
       context.handle(_dateKey0Meta,
-          dateKey0.isAcceptableOrUnknown(data['date_key0'], _dateKey0Meta));
+          dateKey0.isAcceptableOrUnknown(data['date_key0']!, _dateKey0Meta));
     }
     if (data.containsKey('date_key1')) {
       context.handle(_dateKey1Meta,
-          dateKey1.isAcceptableOrUnknown(data['date_key1'], _dateKey1Meta));
+          dateKey1.isAcceptableOrUnknown(data['date_key1']!, _dateKey1Meta));
     }
     if (data.containsKey('date_key2')) {
       context.handle(_dateKey2Meta,
-          dateKey2.isAcceptableOrUnknown(data['date_key2'], _dateKey2Meta));
+          dateKey2.isAcceptableOrUnknown(data['date_key2']!, _dateKey2Meta));
     }
     if (data.containsKey('date_key3')) {
       context.handle(_dateKey3Meta,
-          dateKey3.isAcceptableOrUnknown(data['date_key3'], _dateKey3Meta));
+          dateKey3.isAcceptableOrUnknown(data['date_key3']!, _dateKey3Meta));
     }
     if (data.containsKey('date_key4')) {
       context.handle(_dateKey4Meta,
-          dateKey4.isAcceptableOrUnknown(data['date_key4'], _dateKey4Meta));
+          dateKey4.isAcceptableOrUnknown(data['date_key4']!, _dateKey4Meta));
     }
     if (data.containsKey('text_key0')) {
       context.handle(_textKey0Meta,
-          textKey0.isAcceptableOrUnknown(data['text_key0'], _textKey0Meta));
+          textKey0.isAcceptableOrUnknown(data['text_key0']!, _textKey0Meta));
     }
     if (data.containsKey('text_key1')) {
       context.handle(_textKey1Meta,
-          textKey1.isAcceptableOrUnknown(data['text_key1'], _textKey1Meta));
+          textKey1.isAcceptableOrUnknown(data['text_key1']!, _textKey1Meta));
     }
     if (data.containsKey('text_key2')) {
       context.handle(_textKey2Meta,
-          textKey2.isAcceptableOrUnknown(data['text_key2'], _textKey2Meta));
+          textKey2.isAcceptableOrUnknown(data['text_key2']!, _textKey2Meta));
     }
     if (data.containsKey('text_key3')) {
       context.handle(_textKey3Meta,
-          textKey3.isAcceptableOrUnknown(data['text_key3'], _textKey3Meta));
+          textKey3.isAcceptableOrUnknown(data['text_key3']!, _textKey3Meta));
     }
     if (data.containsKey('text_key4')) {
       context.handle(_textKey4Meta,
-          textKey4.isAcceptableOrUnknown(data['text_key4'], _textKey4Meta));
+          textKey4.isAcceptableOrUnknown(data['text_key4']!, _textKey4Meta));
     }
     if (data.containsKey('real_key0')) {
       context.handle(_realKey0Meta,
-          realKey0.isAcceptableOrUnknown(data['real_key0'], _realKey0Meta));
+          realKey0.isAcceptableOrUnknown(data['real_key0']!, _realKey0Meta));
     }
     if (data.containsKey('real_key1')) {
       context.handle(_realKey1Meta,
-          realKey1.isAcceptableOrUnknown(data['real_key1'], _realKey1Meta));
+          realKey1.isAcceptableOrUnknown(data['real_key1']!, _realKey1Meta));
     }
     if (data.containsKey('real_key2')) {
       context.handle(_realKey2Meta,
-          realKey2.isAcceptableOrUnknown(data['real_key2'], _realKey2Meta));
+          realKey2.isAcceptableOrUnknown(data['real_key2']!, _realKey2Meta));
     }
     if (data.containsKey('real_key3')) {
       context.handle(_realKey3Meta,
-          realKey3.isAcceptableOrUnknown(data['real_key3'], _realKey3Meta));
+          realKey3.isAcceptableOrUnknown(data['real_key3']!, _realKey3Meta));
     }
     if (data.containsKey('real_key4')) {
       context.handle(_realKey4Meta,
-          realKey4.isAcceptableOrUnknown(data['real_key4'], _realKey4Meta));
+          realKey4.isAcceptableOrUnknown(data['real_key4']!, _realKey4Meta));
     }
     return context;
   }
@@ -1050,9 +1011,9 @@ class $SocketTxEventsTable extends SocketTxEvents
   @override
   Set<GeneratedColumn> get $primaryKey => {uuid};
   @override
-  SocketTxEvent map(Map<String, dynamic> data, {String tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return SocketTxEvent.fromData(data, _db, prefix: effectivePrefix);
+  SocketTxEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return SocketTxEvent.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
@@ -1069,29 +1030,29 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   final DateTime timeRecorded;
   final DateTime timeReceived;
   final DateTime expires;
-  final DateTime dateKey0;
-  final DateTime dateKey1;
-  final DateTime dateKey2;
-  final DateTime dateKey3;
-  final DateTime dateKey4;
-  final String textKey0;
-  final String textKey1;
-  final String textKey2;
-  final String textKey3;
-  final String textKey4;
-  final double realKey0;
-  final double realKey1;
-  final double realKey2;
-  final double realKey3;
-  final double realKey4;
+  final DateTime? dateKey0;
+  final DateTime? dateKey1;
+  final DateTime? dateKey2;
+  final DateTime? dateKey3;
+  final DateTime? dateKey4;
+  final String? textKey0;
+  final String? textKey1;
+  final String? textKey2;
+  final String? textKey3;
+  final String? textKey4;
+  final double? realKey0;
+  final double? realKey1;
+  final double? realKey2;
+  final double? realKey3;
+  final double? realKey4;
   SocketRxEvent(
-      {@required this.uuid,
-      @required this.type,
-      @required this.jsonContent,
-      @required this.online,
-      @required this.timeRecorded,
-      @required this.timeReceived,
-      @required this.expires,
+      {required this.uuid,
+      required this.type,
+      required this.jsonContent,
+      required this.online,
+      required this.timeRecorded,
+      required this.timeReceived,
+      required this.expires,
       this.dateKey0,
       this.dateKey1,
       this.dateKey2,
@@ -1109,147 +1070,122 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       this.realKey4});
   factory SocketRxEvent.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
-      {String prefix}) {
+      {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    final stringType = db.typeSystem.forDartType<String>();
-    final boolType = db.typeSystem.forDartType<bool>();
-    final dateTimeType = db.typeSystem.forDartType<DateTime>();
-    final doubleType = db.typeSystem.forDartType<double>();
     return SocketRxEvent(
-      uuid: stringType.mapFromDatabaseResponse(data['${effectivePrefix}uuid']),
-      type: stringType.mapFromDatabaseResponse(data['${effectivePrefix}type']),
-      jsonContent: stringType
-          .mapFromDatabaseResponse(data['${effectivePrefix}json_content']),
-      online:
-          boolType.mapFromDatabaseResponse(data['${effectivePrefix}online']),
-      timeRecorded: dateTimeType
-          .mapFromDatabaseResponse(data['${effectivePrefix}time_recorded']),
-      timeReceived: dateTimeType
-          .mapFromDatabaseResponse(data['${effectivePrefix}time_received']),
-      expires: dateTimeType
-          .mapFromDatabaseResponse(data['${effectivePrefix}expires']),
-      dateKey0: dateTimeType
+      uuid: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}uuid'])!,
+      type: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type'])!,
+      jsonContent: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}json_content'])!,
+      online: const BoolType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}online'])!,
+      timeRecorded: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}time_recorded'])!,
+      timeReceived: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}time_received'])!,
+      expires: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}expires'])!,
+      dateKey0: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key0']),
-      dateKey1: dateTimeType
+      dateKey1: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key1']),
-      dateKey2: dateTimeType
+      dateKey2: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key2']),
-      dateKey3: dateTimeType
+      dateKey3: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key3']),
-      dateKey4: dateTimeType
+      dateKey4: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_key4']),
-      textKey0: stringType
+      textKey0: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key0']),
-      textKey1: stringType
+      textKey1: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key1']),
-      textKey2: stringType
+      textKey2: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key2']),
-      textKey3: stringType
+      textKey3: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key3']),
-      textKey4: stringType
+      textKey4: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}text_key4']),
-      realKey0: doubleType
+      realKey0: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key0']),
-      realKey1: doubleType
+      realKey1: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key1']),
-      realKey2: doubleType
+      realKey2: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key2']),
-      realKey3: doubleType
+      realKey3: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key3']),
-      realKey4: doubleType
+      realKey4: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}real_key4']),
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (!nullToAbsent || uuid != null) {
-      map['uuid'] = Variable<String>(uuid);
-    }
-    if (!nullToAbsent || type != null) {
-      map['type'] = Variable<String>(type);
-    }
-    if (!nullToAbsent || jsonContent != null) {
-      map['json_content'] = Variable<String>(jsonContent);
-    }
-    if (!nullToAbsent || online != null) {
-      map['online'] = Variable<bool>(online);
-    }
-    if (!nullToAbsent || timeRecorded != null) {
-      map['time_recorded'] = Variable<DateTime>(timeRecorded);
-    }
-    if (!nullToAbsent || timeReceived != null) {
-      map['time_received'] = Variable<DateTime>(timeReceived);
-    }
-    if (!nullToAbsent || expires != null) {
-      map['expires'] = Variable<DateTime>(expires);
-    }
+    map['uuid'] = Variable<String>(uuid);
+    map['type'] = Variable<String>(type);
+    map['json_content'] = Variable<String>(jsonContent);
+    map['online'] = Variable<bool>(online);
+    map['time_recorded'] = Variable<DateTime>(timeRecorded);
+    map['time_received'] = Variable<DateTime>(timeReceived);
+    map['expires'] = Variable<DateTime>(expires);
     if (!nullToAbsent || dateKey0 != null) {
-      map['date_key0'] = Variable<DateTime>(dateKey0);
+      map['date_key0'] = Variable<DateTime?>(dateKey0);
     }
     if (!nullToAbsent || dateKey1 != null) {
-      map['date_key1'] = Variable<DateTime>(dateKey1);
+      map['date_key1'] = Variable<DateTime?>(dateKey1);
     }
     if (!nullToAbsent || dateKey2 != null) {
-      map['date_key2'] = Variable<DateTime>(dateKey2);
+      map['date_key2'] = Variable<DateTime?>(dateKey2);
     }
     if (!nullToAbsent || dateKey3 != null) {
-      map['date_key3'] = Variable<DateTime>(dateKey3);
+      map['date_key3'] = Variable<DateTime?>(dateKey3);
     }
     if (!nullToAbsent || dateKey4 != null) {
-      map['date_key4'] = Variable<DateTime>(dateKey4);
+      map['date_key4'] = Variable<DateTime?>(dateKey4);
     }
     if (!nullToAbsent || textKey0 != null) {
-      map['text_key0'] = Variable<String>(textKey0);
+      map['text_key0'] = Variable<String?>(textKey0);
     }
     if (!nullToAbsent || textKey1 != null) {
-      map['text_key1'] = Variable<String>(textKey1);
+      map['text_key1'] = Variable<String?>(textKey1);
     }
     if (!nullToAbsent || textKey2 != null) {
-      map['text_key2'] = Variable<String>(textKey2);
+      map['text_key2'] = Variable<String?>(textKey2);
     }
     if (!nullToAbsent || textKey3 != null) {
-      map['text_key3'] = Variable<String>(textKey3);
+      map['text_key3'] = Variable<String?>(textKey3);
     }
     if (!nullToAbsent || textKey4 != null) {
-      map['text_key4'] = Variable<String>(textKey4);
+      map['text_key4'] = Variable<String?>(textKey4);
     }
     if (!nullToAbsent || realKey0 != null) {
-      map['real_key0'] = Variable<double>(realKey0);
+      map['real_key0'] = Variable<double?>(realKey0);
     }
     if (!nullToAbsent || realKey1 != null) {
-      map['real_key1'] = Variable<double>(realKey1);
+      map['real_key1'] = Variable<double?>(realKey1);
     }
     if (!nullToAbsent || realKey2 != null) {
-      map['real_key2'] = Variable<double>(realKey2);
+      map['real_key2'] = Variable<double?>(realKey2);
     }
     if (!nullToAbsent || realKey3 != null) {
-      map['real_key3'] = Variable<double>(realKey3);
+      map['real_key3'] = Variable<double?>(realKey3);
     }
     if (!nullToAbsent || realKey4 != null) {
-      map['real_key4'] = Variable<double>(realKey4);
+      map['real_key4'] = Variable<double?>(realKey4);
     }
     return map;
   }
 
   SocketRxEventsCompanion toCompanion(bool nullToAbsent) {
     return SocketRxEventsCompanion(
-      uuid: uuid == null && nullToAbsent ? const Value.absent() : Value(uuid),
-      type: type == null && nullToAbsent ? const Value.absent() : Value(type),
-      jsonContent: jsonContent == null && nullToAbsent
-          ? const Value.absent()
-          : Value(jsonContent),
-      online:
-          online == null && nullToAbsent ? const Value.absent() : Value(online),
-      timeRecorded: timeRecorded == null && nullToAbsent
-          ? const Value.absent()
-          : Value(timeRecorded),
-      timeReceived: timeReceived == null && nullToAbsent
-          ? const Value.absent()
-          : Value(timeReceived),
-      expires: expires == null && nullToAbsent
-          ? const Value.absent()
-          : Value(expires),
+      uuid: Value(uuid),
+      type: Value(type),
+      jsonContent: Value(jsonContent),
+      online: Value(online),
+      timeRecorded: Value(timeRecorded),
+      timeReceived: Value(timeReceived),
+      expires: Value(expires),
       dateKey0: dateKey0 == null && nullToAbsent
           ? const Value.absent()
           : Value(dateKey0),
@@ -1299,7 +1235,7 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   }
 
   factory SocketRxEvent.fromJson(Map<String, dynamic> json,
-      {ValueSerializer serializer}) {
+      {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return SocketRxEvent(
       uuid: serializer.fromJson<String>(json['uuid']),
@@ -1309,25 +1245,25 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       timeRecorded: serializer.fromJson<DateTime>(json['timeRecorded']),
       timeReceived: serializer.fromJson<DateTime>(json['timeReceived']),
       expires: serializer.fromJson<DateTime>(json['expires']),
-      dateKey0: serializer.fromJson<DateTime>(json['dateKey0']),
-      dateKey1: serializer.fromJson<DateTime>(json['dateKey1']),
-      dateKey2: serializer.fromJson<DateTime>(json['dateKey2']),
-      dateKey3: serializer.fromJson<DateTime>(json['dateKey3']),
-      dateKey4: serializer.fromJson<DateTime>(json['dateKey4']),
-      textKey0: serializer.fromJson<String>(json['textKey0']),
-      textKey1: serializer.fromJson<String>(json['textKey1']),
-      textKey2: serializer.fromJson<String>(json['textKey2']),
-      textKey3: serializer.fromJson<String>(json['textKey3']),
-      textKey4: serializer.fromJson<String>(json['textKey4']),
-      realKey0: serializer.fromJson<double>(json['realKey0']),
-      realKey1: serializer.fromJson<double>(json['realKey1']),
-      realKey2: serializer.fromJson<double>(json['realKey2']),
-      realKey3: serializer.fromJson<double>(json['realKey3']),
-      realKey4: serializer.fromJson<double>(json['realKey4']),
+      dateKey0: serializer.fromJson<DateTime?>(json['dateKey0']),
+      dateKey1: serializer.fromJson<DateTime?>(json['dateKey1']),
+      dateKey2: serializer.fromJson<DateTime?>(json['dateKey2']),
+      dateKey3: serializer.fromJson<DateTime?>(json['dateKey3']),
+      dateKey4: serializer.fromJson<DateTime?>(json['dateKey4']),
+      textKey0: serializer.fromJson<String?>(json['textKey0']),
+      textKey1: serializer.fromJson<String?>(json['textKey1']),
+      textKey2: serializer.fromJson<String?>(json['textKey2']),
+      textKey3: serializer.fromJson<String?>(json['textKey3']),
+      textKey4: serializer.fromJson<String?>(json['textKey4']),
+      realKey0: serializer.fromJson<double?>(json['realKey0']),
+      realKey1: serializer.fromJson<double?>(json['realKey1']),
+      realKey2: serializer.fromJson<double?>(json['realKey2']),
+      realKey3: serializer.fromJson<double?>(json['realKey3']),
+      realKey4: serializer.fromJson<double?>(json['realKey4']),
     );
   }
   @override
-  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'uuid': serializer.toJson<String>(uuid),
@@ -1337,47 +1273,47 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       'timeRecorded': serializer.toJson<DateTime>(timeRecorded),
       'timeReceived': serializer.toJson<DateTime>(timeReceived),
       'expires': serializer.toJson<DateTime>(expires),
-      'dateKey0': serializer.toJson<DateTime>(dateKey0),
-      'dateKey1': serializer.toJson<DateTime>(dateKey1),
-      'dateKey2': serializer.toJson<DateTime>(dateKey2),
-      'dateKey3': serializer.toJson<DateTime>(dateKey3),
-      'dateKey4': serializer.toJson<DateTime>(dateKey4),
-      'textKey0': serializer.toJson<String>(textKey0),
-      'textKey1': serializer.toJson<String>(textKey1),
-      'textKey2': serializer.toJson<String>(textKey2),
-      'textKey3': serializer.toJson<String>(textKey3),
-      'textKey4': serializer.toJson<String>(textKey4),
-      'realKey0': serializer.toJson<double>(realKey0),
-      'realKey1': serializer.toJson<double>(realKey1),
-      'realKey2': serializer.toJson<double>(realKey2),
-      'realKey3': serializer.toJson<double>(realKey3),
-      'realKey4': serializer.toJson<double>(realKey4),
+      'dateKey0': serializer.toJson<DateTime?>(dateKey0),
+      'dateKey1': serializer.toJson<DateTime?>(dateKey1),
+      'dateKey2': serializer.toJson<DateTime?>(dateKey2),
+      'dateKey3': serializer.toJson<DateTime?>(dateKey3),
+      'dateKey4': serializer.toJson<DateTime?>(dateKey4),
+      'textKey0': serializer.toJson<String?>(textKey0),
+      'textKey1': serializer.toJson<String?>(textKey1),
+      'textKey2': serializer.toJson<String?>(textKey2),
+      'textKey3': serializer.toJson<String?>(textKey3),
+      'textKey4': serializer.toJson<String?>(textKey4),
+      'realKey0': serializer.toJson<double?>(realKey0),
+      'realKey1': serializer.toJson<double?>(realKey1),
+      'realKey2': serializer.toJson<double?>(realKey2),
+      'realKey3': serializer.toJson<double?>(realKey3),
+      'realKey4': serializer.toJson<double?>(realKey4),
     };
   }
 
   SocketRxEvent copyWith(
-          {String uuid,
-          String type,
-          String jsonContent,
-          bool online,
-          DateTime timeRecorded,
-          DateTime timeReceived,
-          DateTime expires,
-          DateTime dateKey0,
-          DateTime dateKey1,
-          DateTime dateKey2,
-          DateTime dateKey3,
-          DateTime dateKey4,
-          String textKey0,
-          String textKey1,
-          String textKey2,
-          String textKey3,
-          String textKey4,
-          double realKey0,
-          double realKey1,
-          double realKey2,
-          double realKey3,
-          double realKey4}) =>
+          {String? uuid,
+          String? type,
+          String? jsonContent,
+          bool? online,
+          DateTime? timeRecorded,
+          DateTime? timeReceived,
+          DateTime? expires,
+          DateTime? dateKey0,
+          DateTime? dateKey1,
+          DateTime? dateKey2,
+          DateTime? dateKey3,
+          DateTime? dateKey4,
+          String? textKey0,
+          String? textKey1,
+          String? textKey2,
+          String? textKey3,
+          String? textKey4,
+          double? realKey0,
+          double? realKey1,
+          double? realKey2,
+          double? realKey3,
+          double? realKey4}) =>
       SocketRxEvent(
         uuid: uuid ?? this.uuid,
         type: type ?? this.type,
@@ -1475,7 +1411,7 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
                                                                               realKey1.hashCode,
                                                                               $mrjc(realKey2.hashCode, $mrjc(realKey3.hashCode, realKey4.hashCode))))))))))))))))))))));
   @override
-  bool operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SocketRxEvent &&
           other.uuid == this.uuid &&
@@ -1510,21 +1446,21 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
   final Value<DateTime> timeRecorded;
   final Value<DateTime> timeReceived;
   final Value<DateTime> expires;
-  final Value<DateTime> dateKey0;
-  final Value<DateTime> dateKey1;
-  final Value<DateTime> dateKey2;
-  final Value<DateTime> dateKey3;
-  final Value<DateTime> dateKey4;
-  final Value<String> textKey0;
-  final Value<String> textKey1;
-  final Value<String> textKey2;
-  final Value<String> textKey3;
-  final Value<String> textKey4;
-  final Value<double> realKey0;
-  final Value<double> realKey1;
-  final Value<double> realKey2;
-  final Value<double> realKey3;
-  final Value<double> realKey4;
+  final Value<DateTime?> dateKey0;
+  final Value<DateTime?> dateKey1;
+  final Value<DateTime?> dateKey2;
+  final Value<DateTime?> dateKey3;
+  final Value<DateTime?> dateKey4;
+  final Value<String?> textKey0;
+  final Value<String?> textKey1;
+  final Value<String?> textKey2;
+  final Value<String?> textKey3;
+  final Value<String?> textKey4;
+  final Value<double?> realKey0;
+  final Value<double?> realKey1;
+  final Value<double?> realKey2;
+  final Value<double?> realKey3;
+  final Value<double?> realKey4;
   const SocketRxEventsCompanion({
     this.uuid = const Value.absent(),
     this.type = const Value.absent(),
@@ -1550,13 +1486,13 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     this.realKey4 = const Value.absent(),
   });
   SocketRxEventsCompanion.insert({
-    @required String uuid,
-    @required String type,
-    @required String jsonContent,
-    @required bool online,
+    required String uuid,
+    required String type,
+    required String jsonContent,
+    required bool online,
     this.timeRecorded = const Value.absent(),
-    @required DateTime timeReceived,
-    @required DateTime expires,
+    required DateTime timeReceived,
+    required DateTime expires,
     this.dateKey0 = const Value.absent(),
     this.dateKey1 = const Value.absent(),
     this.dateKey2 = const Value.absent(),
@@ -1579,28 +1515,28 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
         timeReceived = Value(timeReceived),
         expires = Value(expires);
   static Insertable<SocketRxEvent> custom({
-    Expression<String> uuid,
-    Expression<String> type,
-    Expression<String> jsonContent,
-    Expression<bool> online,
-    Expression<DateTime> timeRecorded,
-    Expression<DateTime> timeReceived,
-    Expression<DateTime> expires,
-    Expression<DateTime> dateKey0,
-    Expression<DateTime> dateKey1,
-    Expression<DateTime> dateKey2,
-    Expression<DateTime> dateKey3,
-    Expression<DateTime> dateKey4,
-    Expression<String> textKey0,
-    Expression<String> textKey1,
-    Expression<String> textKey2,
-    Expression<String> textKey3,
-    Expression<String> textKey4,
-    Expression<double> realKey0,
-    Expression<double> realKey1,
-    Expression<double> realKey2,
-    Expression<double> realKey3,
-    Expression<double> realKey4,
+    Expression<String>? uuid,
+    Expression<String>? type,
+    Expression<String>? jsonContent,
+    Expression<bool>? online,
+    Expression<DateTime>? timeRecorded,
+    Expression<DateTime>? timeReceived,
+    Expression<DateTime>? expires,
+    Expression<DateTime?>? dateKey0,
+    Expression<DateTime?>? dateKey1,
+    Expression<DateTime?>? dateKey2,
+    Expression<DateTime?>? dateKey3,
+    Expression<DateTime?>? dateKey4,
+    Expression<String?>? textKey0,
+    Expression<String?>? textKey1,
+    Expression<String?>? textKey2,
+    Expression<String?>? textKey3,
+    Expression<String?>? textKey4,
+    Expression<double?>? realKey0,
+    Expression<double?>? realKey1,
+    Expression<double?>? realKey2,
+    Expression<double?>? realKey3,
+    Expression<double?>? realKey4,
   }) {
     return RawValuesInsertable({
       if (uuid != null) 'uuid': uuid,
@@ -1629,28 +1565,28 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
   }
 
   SocketRxEventsCompanion copyWith(
-      {Value<String> uuid,
-      Value<String> type,
-      Value<String> jsonContent,
-      Value<bool> online,
-      Value<DateTime> timeRecorded,
-      Value<DateTime> timeReceived,
-      Value<DateTime> expires,
-      Value<DateTime> dateKey0,
-      Value<DateTime> dateKey1,
-      Value<DateTime> dateKey2,
-      Value<DateTime> dateKey3,
-      Value<DateTime> dateKey4,
-      Value<String> textKey0,
-      Value<String> textKey1,
-      Value<String> textKey2,
-      Value<String> textKey3,
-      Value<String> textKey4,
-      Value<double> realKey0,
-      Value<double> realKey1,
-      Value<double> realKey2,
-      Value<double> realKey3,
-      Value<double> realKey4}) {
+      {Value<String>? uuid,
+      Value<String>? type,
+      Value<String>? jsonContent,
+      Value<bool>? online,
+      Value<DateTime>? timeRecorded,
+      Value<DateTime>? timeReceived,
+      Value<DateTime>? expires,
+      Value<DateTime?>? dateKey0,
+      Value<DateTime?>? dateKey1,
+      Value<DateTime?>? dateKey2,
+      Value<DateTime?>? dateKey3,
+      Value<DateTime?>? dateKey4,
+      Value<String?>? textKey0,
+      Value<String?>? textKey1,
+      Value<String?>? textKey2,
+      Value<String?>? textKey3,
+      Value<String?>? textKey4,
+      Value<double?>? realKey0,
+      Value<double?>? realKey1,
+      Value<double?>? realKey2,
+      Value<double?>? realKey3,
+      Value<double?>? realKey4}) {
     return SocketRxEventsCompanion(
       uuid: uuid ?? this.uuid,
       type: type ?? this.type,
@@ -1702,49 +1638,49 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       map['expires'] = Variable<DateTime>(expires.value);
     }
     if (dateKey0.present) {
-      map['date_key0'] = Variable<DateTime>(dateKey0.value);
+      map['date_key0'] = Variable<DateTime?>(dateKey0.value);
     }
     if (dateKey1.present) {
-      map['date_key1'] = Variable<DateTime>(dateKey1.value);
+      map['date_key1'] = Variable<DateTime?>(dateKey1.value);
     }
     if (dateKey2.present) {
-      map['date_key2'] = Variable<DateTime>(dateKey2.value);
+      map['date_key2'] = Variable<DateTime?>(dateKey2.value);
     }
     if (dateKey3.present) {
-      map['date_key3'] = Variable<DateTime>(dateKey3.value);
+      map['date_key3'] = Variable<DateTime?>(dateKey3.value);
     }
     if (dateKey4.present) {
-      map['date_key4'] = Variable<DateTime>(dateKey4.value);
+      map['date_key4'] = Variable<DateTime?>(dateKey4.value);
     }
     if (textKey0.present) {
-      map['text_key0'] = Variable<String>(textKey0.value);
+      map['text_key0'] = Variable<String?>(textKey0.value);
     }
     if (textKey1.present) {
-      map['text_key1'] = Variable<String>(textKey1.value);
+      map['text_key1'] = Variable<String?>(textKey1.value);
     }
     if (textKey2.present) {
-      map['text_key2'] = Variable<String>(textKey2.value);
+      map['text_key2'] = Variable<String?>(textKey2.value);
     }
     if (textKey3.present) {
-      map['text_key3'] = Variable<String>(textKey3.value);
+      map['text_key3'] = Variable<String?>(textKey3.value);
     }
     if (textKey4.present) {
-      map['text_key4'] = Variable<String>(textKey4.value);
+      map['text_key4'] = Variable<String?>(textKey4.value);
     }
     if (realKey0.present) {
-      map['real_key0'] = Variable<double>(realKey0.value);
+      map['real_key0'] = Variable<double?>(realKey0.value);
     }
     if (realKey1.present) {
-      map['real_key1'] = Variable<double>(realKey1.value);
+      map['real_key1'] = Variable<double?>(realKey1.value);
     }
     if (realKey2.present) {
-      map['real_key2'] = Variable<double>(realKey2.value);
+      map['real_key2'] = Variable<double?>(realKey2.value);
     }
     if (realKey3.present) {
-      map['real_key3'] = Variable<double>(realKey3.value);
+      map['real_key3'] = Variable<double?>(realKey3.value);
     }
     if (realKey4.present) {
-      map['real_key4'] = Variable<double>(realKey4.value);
+      map['real_key4'] = Variable<double?>(realKey4.value);
     }
     return map;
   }
@@ -1782,12 +1718,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
 class $SocketRxEventsTable extends SocketRxEvents
     with TableInfo<$SocketRxEventsTable, SocketRxEvent> {
   final GeneratedDatabase _db;
-  final String _alias;
+  final String? _alias;
   $SocketRxEventsTable(this._db, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
-  GeneratedTextColumn _uuid;
   @override
-  GeneratedTextColumn get uuid => _uuid ??= _constructUuid();
+  late final GeneratedTextColumn uuid = _constructUuid();
   GeneratedTextColumn _constructUuid() {
     return GeneratedTextColumn(
       'uuid',
@@ -1797,9 +1732,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _typeMeta = const VerificationMeta('type');
-  GeneratedTextColumn _type;
   @override
-  GeneratedTextColumn get type => _type ??= _constructType();
+  late final GeneratedTextColumn type = _constructType();
   GeneratedTextColumn _constructType() {
     return GeneratedTextColumn(
       'type',
@@ -1810,10 +1744,8 @@ class $SocketRxEventsTable extends SocketRxEvents
 
   final VerificationMeta _jsonContentMeta =
       const VerificationMeta('jsonContent');
-  GeneratedTextColumn _jsonContent;
   @override
-  GeneratedTextColumn get jsonContent =>
-      _jsonContent ??= _constructJsonContent();
+  late final GeneratedTextColumn jsonContent = _constructJsonContent();
   GeneratedTextColumn _constructJsonContent() {
     return GeneratedTextColumn(
       'json_content',
@@ -1823,9 +1755,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _onlineMeta = const VerificationMeta('online');
-  GeneratedBoolColumn _online;
   @override
-  GeneratedBoolColumn get online => _online ??= _constructOnline();
+  late final GeneratedBoolColumn online = _constructOnline();
   GeneratedBoolColumn _constructOnline() {
     return GeneratedBoolColumn(
       'online',
@@ -1836,10 +1767,8 @@ class $SocketRxEventsTable extends SocketRxEvents
 
   final VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
-  GeneratedDateTimeColumn _timeRecorded;
   @override
-  GeneratedDateTimeColumn get timeRecorded =>
-      _timeRecorded ??= _constructTimeRecorded();
+  late final GeneratedDateTimeColumn timeRecorded = _constructTimeRecorded();
   GeneratedDateTimeColumn _constructTimeRecorded() {
     return GeneratedDateTimeColumn(
       'time_recorded',
@@ -1850,10 +1779,8 @@ class $SocketRxEventsTable extends SocketRxEvents
 
   final VerificationMeta _timeReceivedMeta =
       const VerificationMeta('timeReceived');
-  GeneratedDateTimeColumn _timeReceived;
   @override
-  GeneratedDateTimeColumn get timeReceived =>
-      _timeReceived ??= _constructTimeReceived();
+  late final GeneratedDateTimeColumn timeReceived = _constructTimeReceived();
   GeneratedDateTimeColumn _constructTimeReceived() {
     return GeneratedDateTimeColumn(
       'time_received',
@@ -1863,9 +1790,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
-  GeneratedDateTimeColumn _expires;
   @override
-  GeneratedDateTimeColumn get expires => _expires ??= _constructExpires();
+  late final GeneratedDateTimeColumn expires = _constructExpires();
   GeneratedDateTimeColumn _constructExpires() {
     return GeneratedDateTimeColumn(
       'expires',
@@ -1875,9 +1801,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _dateKey0Meta = const VerificationMeta('dateKey0');
-  GeneratedDateTimeColumn _dateKey0;
   @override
-  GeneratedDateTimeColumn get dateKey0 => _dateKey0 ??= _constructDateKey0();
+  late final GeneratedDateTimeColumn dateKey0 = _constructDateKey0();
   GeneratedDateTimeColumn _constructDateKey0() {
     return GeneratedDateTimeColumn(
       'date_key0',
@@ -1887,9 +1812,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _dateKey1Meta = const VerificationMeta('dateKey1');
-  GeneratedDateTimeColumn _dateKey1;
   @override
-  GeneratedDateTimeColumn get dateKey1 => _dateKey1 ??= _constructDateKey1();
+  late final GeneratedDateTimeColumn dateKey1 = _constructDateKey1();
   GeneratedDateTimeColumn _constructDateKey1() {
     return GeneratedDateTimeColumn(
       'date_key1',
@@ -1899,9 +1823,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _dateKey2Meta = const VerificationMeta('dateKey2');
-  GeneratedDateTimeColumn _dateKey2;
   @override
-  GeneratedDateTimeColumn get dateKey2 => _dateKey2 ??= _constructDateKey2();
+  late final GeneratedDateTimeColumn dateKey2 = _constructDateKey2();
   GeneratedDateTimeColumn _constructDateKey2() {
     return GeneratedDateTimeColumn(
       'date_key2',
@@ -1911,9 +1834,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _dateKey3Meta = const VerificationMeta('dateKey3');
-  GeneratedDateTimeColumn _dateKey3;
   @override
-  GeneratedDateTimeColumn get dateKey3 => _dateKey3 ??= _constructDateKey3();
+  late final GeneratedDateTimeColumn dateKey3 = _constructDateKey3();
   GeneratedDateTimeColumn _constructDateKey3() {
     return GeneratedDateTimeColumn(
       'date_key3',
@@ -1923,9 +1845,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _dateKey4Meta = const VerificationMeta('dateKey4');
-  GeneratedDateTimeColumn _dateKey4;
   @override
-  GeneratedDateTimeColumn get dateKey4 => _dateKey4 ??= _constructDateKey4();
+  late final GeneratedDateTimeColumn dateKey4 = _constructDateKey4();
   GeneratedDateTimeColumn _constructDateKey4() {
     return GeneratedDateTimeColumn(
       'date_key4',
@@ -1935,9 +1856,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _textKey0Meta = const VerificationMeta('textKey0');
-  GeneratedTextColumn _textKey0;
   @override
-  GeneratedTextColumn get textKey0 => _textKey0 ??= _constructTextKey0();
+  late final GeneratedTextColumn textKey0 = _constructTextKey0();
   GeneratedTextColumn _constructTextKey0() {
     return GeneratedTextColumn(
       'text_key0',
@@ -1947,9 +1867,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _textKey1Meta = const VerificationMeta('textKey1');
-  GeneratedTextColumn _textKey1;
   @override
-  GeneratedTextColumn get textKey1 => _textKey1 ??= _constructTextKey1();
+  late final GeneratedTextColumn textKey1 = _constructTextKey1();
   GeneratedTextColumn _constructTextKey1() {
     return GeneratedTextColumn(
       'text_key1',
@@ -1959,9 +1878,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _textKey2Meta = const VerificationMeta('textKey2');
-  GeneratedTextColumn _textKey2;
   @override
-  GeneratedTextColumn get textKey2 => _textKey2 ??= _constructTextKey2();
+  late final GeneratedTextColumn textKey2 = _constructTextKey2();
   GeneratedTextColumn _constructTextKey2() {
     return GeneratedTextColumn(
       'text_key2',
@@ -1971,9 +1889,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _textKey3Meta = const VerificationMeta('textKey3');
-  GeneratedTextColumn _textKey3;
   @override
-  GeneratedTextColumn get textKey3 => _textKey3 ??= _constructTextKey3();
+  late final GeneratedTextColumn textKey3 = _constructTextKey3();
   GeneratedTextColumn _constructTextKey3() {
     return GeneratedTextColumn(
       'text_key3',
@@ -1983,9 +1900,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _textKey4Meta = const VerificationMeta('textKey4');
-  GeneratedTextColumn _textKey4;
   @override
-  GeneratedTextColumn get textKey4 => _textKey4 ??= _constructTextKey4();
+  late final GeneratedTextColumn textKey4 = _constructTextKey4();
   GeneratedTextColumn _constructTextKey4() {
     return GeneratedTextColumn(
       'text_key4',
@@ -1995,9 +1911,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _realKey0Meta = const VerificationMeta('realKey0');
-  GeneratedRealColumn _realKey0;
   @override
-  GeneratedRealColumn get realKey0 => _realKey0 ??= _constructRealKey0();
+  late final GeneratedRealColumn realKey0 = _constructRealKey0();
   GeneratedRealColumn _constructRealKey0() {
     return GeneratedRealColumn(
       'real_key0',
@@ -2007,9 +1922,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _realKey1Meta = const VerificationMeta('realKey1');
-  GeneratedRealColumn _realKey1;
   @override
-  GeneratedRealColumn get realKey1 => _realKey1 ??= _constructRealKey1();
+  late final GeneratedRealColumn realKey1 = _constructRealKey1();
   GeneratedRealColumn _constructRealKey1() {
     return GeneratedRealColumn(
       'real_key1',
@@ -2019,9 +1933,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _realKey2Meta = const VerificationMeta('realKey2');
-  GeneratedRealColumn _realKey2;
   @override
-  GeneratedRealColumn get realKey2 => _realKey2 ??= _constructRealKey2();
+  late final GeneratedRealColumn realKey2 = _constructRealKey2();
   GeneratedRealColumn _constructRealKey2() {
     return GeneratedRealColumn(
       'real_key2',
@@ -2031,9 +1944,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _realKey3Meta = const VerificationMeta('realKey3');
-  GeneratedRealColumn _realKey3;
   @override
-  GeneratedRealColumn get realKey3 => _realKey3 ??= _constructRealKey3();
+  late final GeneratedRealColumn realKey3 = _constructRealKey3();
   GeneratedRealColumn _constructRealKey3() {
     return GeneratedRealColumn(
       'real_key3',
@@ -2043,9 +1955,8 @@ class $SocketRxEventsTable extends SocketRxEvents
   }
 
   final VerificationMeta _realKey4Meta = const VerificationMeta('realKey4');
-  GeneratedRealColumn _realKey4;
   @override
-  GeneratedRealColumn get realKey4 => _realKey4 ??= _constructRealKey4();
+  late final GeneratedRealColumn realKey4 = _constructRealKey4();
   GeneratedRealColumn _constructRealKey4() {
     return GeneratedRealColumn(
       'real_key4',
@@ -2092,13 +2003,13 @@ class $SocketRxEventsTable extends SocketRxEvents
     final data = instance.toColumns(true);
     if (data.containsKey('uuid')) {
       context.handle(
-          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid'], _uuidMeta));
+          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
     } else if (isInserting) {
       context.missing(_uuidMeta);
     }
     if (data.containsKey('type')) {
       context.handle(
-          _typeMeta, type.isAcceptableOrUnknown(data['type'], _typeMeta));
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
     } else if (isInserting) {
       context.missing(_typeMeta);
     }
@@ -2106,13 +2017,13 @@ class $SocketRxEventsTable extends SocketRxEvents
       context.handle(
           _jsonContentMeta,
           jsonContent.isAcceptableOrUnknown(
-              data['json_content'], _jsonContentMeta));
+              data['json_content']!, _jsonContentMeta));
     } else if (isInserting) {
       context.missing(_jsonContentMeta);
     }
     if (data.containsKey('online')) {
       context.handle(_onlineMeta,
-          online.isAcceptableOrUnknown(data['online'], _onlineMeta));
+          online.isAcceptableOrUnknown(data['online']!, _onlineMeta));
     } else if (isInserting) {
       context.missing(_onlineMeta);
     }
@@ -2120,81 +2031,81 @@ class $SocketRxEventsTable extends SocketRxEvents
       context.handle(
           _timeRecordedMeta,
           timeRecorded.isAcceptableOrUnknown(
-              data['time_recorded'], _timeRecordedMeta));
+              data['time_recorded']!, _timeRecordedMeta));
     }
     if (data.containsKey('time_received')) {
       context.handle(
           _timeReceivedMeta,
           timeReceived.isAcceptableOrUnknown(
-              data['time_received'], _timeReceivedMeta));
+              data['time_received']!, _timeReceivedMeta));
     } else if (isInserting) {
       context.missing(_timeReceivedMeta);
     }
     if (data.containsKey('expires')) {
       context.handle(_expiresMeta,
-          expires.isAcceptableOrUnknown(data['expires'], _expiresMeta));
+          expires.isAcceptableOrUnknown(data['expires']!, _expiresMeta));
     } else if (isInserting) {
       context.missing(_expiresMeta);
     }
     if (data.containsKey('date_key0')) {
       context.handle(_dateKey0Meta,
-          dateKey0.isAcceptableOrUnknown(data['date_key0'], _dateKey0Meta));
+          dateKey0.isAcceptableOrUnknown(data['date_key0']!, _dateKey0Meta));
     }
     if (data.containsKey('date_key1')) {
       context.handle(_dateKey1Meta,
-          dateKey1.isAcceptableOrUnknown(data['date_key1'], _dateKey1Meta));
+          dateKey1.isAcceptableOrUnknown(data['date_key1']!, _dateKey1Meta));
     }
     if (data.containsKey('date_key2')) {
       context.handle(_dateKey2Meta,
-          dateKey2.isAcceptableOrUnknown(data['date_key2'], _dateKey2Meta));
+          dateKey2.isAcceptableOrUnknown(data['date_key2']!, _dateKey2Meta));
     }
     if (data.containsKey('date_key3')) {
       context.handle(_dateKey3Meta,
-          dateKey3.isAcceptableOrUnknown(data['date_key3'], _dateKey3Meta));
+          dateKey3.isAcceptableOrUnknown(data['date_key3']!, _dateKey3Meta));
     }
     if (data.containsKey('date_key4')) {
       context.handle(_dateKey4Meta,
-          dateKey4.isAcceptableOrUnknown(data['date_key4'], _dateKey4Meta));
+          dateKey4.isAcceptableOrUnknown(data['date_key4']!, _dateKey4Meta));
     }
     if (data.containsKey('text_key0')) {
       context.handle(_textKey0Meta,
-          textKey0.isAcceptableOrUnknown(data['text_key0'], _textKey0Meta));
+          textKey0.isAcceptableOrUnknown(data['text_key0']!, _textKey0Meta));
     }
     if (data.containsKey('text_key1')) {
       context.handle(_textKey1Meta,
-          textKey1.isAcceptableOrUnknown(data['text_key1'], _textKey1Meta));
+          textKey1.isAcceptableOrUnknown(data['text_key1']!, _textKey1Meta));
     }
     if (data.containsKey('text_key2')) {
       context.handle(_textKey2Meta,
-          textKey2.isAcceptableOrUnknown(data['text_key2'], _textKey2Meta));
+          textKey2.isAcceptableOrUnknown(data['text_key2']!, _textKey2Meta));
     }
     if (data.containsKey('text_key3')) {
       context.handle(_textKey3Meta,
-          textKey3.isAcceptableOrUnknown(data['text_key3'], _textKey3Meta));
+          textKey3.isAcceptableOrUnknown(data['text_key3']!, _textKey3Meta));
     }
     if (data.containsKey('text_key4')) {
       context.handle(_textKey4Meta,
-          textKey4.isAcceptableOrUnknown(data['text_key4'], _textKey4Meta));
+          textKey4.isAcceptableOrUnknown(data['text_key4']!, _textKey4Meta));
     }
     if (data.containsKey('real_key0')) {
       context.handle(_realKey0Meta,
-          realKey0.isAcceptableOrUnknown(data['real_key0'], _realKey0Meta));
+          realKey0.isAcceptableOrUnknown(data['real_key0']!, _realKey0Meta));
     }
     if (data.containsKey('real_key1')) {
       context.handle(_realKey1Meta,
-          realKey1.isAcceptableOrUnknown(data['real_key1'], _realKey1Meta));
+          realKey1.isAcceptableOrUnknown(data['real_key1']!, _realKey1Meta));
     }
     if (data.containsKey('real_key2')) {
       context.handle(_realKey2Meta,
-          realKey2.isAcceptableOrUnknown(data['real_key2'], _realKey2Meta));
+          realKey2.isAcceptableOrUnknown(data['real_key2']!, _realKey2Meta));
     }
     if (data.containsKey('real_key3')) {
       context.handle(_realKey3Meta,
-          realKey3.isAcceptableOrUnknown(data['real_key3'], _realKey3Meta));
+          realKey3.isAcceptableOrUnknown(data['real_key3']!, _realKey3Meta));
     }
     if (data.containsKey('real_key4')) {
       context.handle(_realKey4Meta,
-          realKey4.isAcceptableOrUnknown(data['real_key4'], _realKey4Meta));
+          realKey4.isAcceptableOrUnknown(data['real_key4']!, _realKey4Meta));
     }
     return context;
   }
@@ -2202,9 +2113,9 @@ class $SocketRxEventsTable extends SocketRxEvents
   @override
   Set<GeneratedColumn> get $primaryKey => {uuid};
   @override
-  SocketRxEvent map(Map<String, dynamic> data, {String tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return SocketRxEvent.fromData(data, _db, prefix: effectivePrefix);
+  SocketRxEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return SocketRxEvent.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
@@ -2215,18 +2126,12 @@ class $SocketRxEventsTable extends SocketRxEvents
 
 abstract class _$Database extends GeneratedDatabase {
   _$Database(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
-  $SocketTxEventsTable _socketTxEvents;
-  $SocketTxEventsTable get socketTxEvents =>
-      _socketTxEvents ??= $SocketTxEventsTable(this);
-  $SocketRxEventsTable _socketRxEvents;
-  $SocketRxEventsTable get socketRxEvents =>
-      _socketRxEvents ??= $SocketRxEventsTable(this);
-  SocketTxEventDao _socketTxEventDao;
-  SocketTxEventDao get socketTxEventDao =>
-      _socketTxEventDao ??= SocketTxEventDao(this as Database);
-  SocketRxEventDao _socketRxEventDao;
-  SocketRxEventDao get socketRxEventDao =>
-      _socketRxEventDao ??= SocketRxEventDao(this as Database);
+  late final $SocketTxEventsTable socketTxEvents = $SocketTxEventsTable(this);
+  late final $SocketRxEventsTable socketRxEvents = $SocketRxEventsTable(this);
+  late final SocketTxEventDao socketTxEventDao =
+      SocketTxEventDao(this as Database);
+  late final SocketRxEventDao socketRxEventDao =
+      SocketRxEventDao(this as Database);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

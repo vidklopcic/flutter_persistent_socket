@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: socket_api.proto
 //
-// @dart = 2.7
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -18,8 +18,8 @@ class Ack extends $pb.GeneratedMessage {
 
   Ack._() : super();
   factory Ack({
-    $core.String uuid,
-    $core.String errorMessage,
+    $core.String? uuid,
+    $core.String? errorMessage,
   }) {
     final _result = create();
     if (uuid != null) {
@@ -49,7 +49,7 @@ class Ack extends $pb.GeneratedMessage {
   static $pb.PbList<Ack> createRepeated() => $pb.PbList<Ack>();
   @$core.pragma('dart2js:noInline')
   static Ack getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Ack>(create);
-  static Ack _defaultInstance;
+  static Ack? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get uuid => $_getSZ(0);
@@ -78,7 +78,7 @@ class UpgradeApiVersion extends $pb.GeneratedMessage {
 
   UpgradeApiVersion._() : super();
   factory UpgradeApiVersion({
-    $core.int latest,
+    $core.int? latest,
   }) {
     final _result = create();
     if (latest != null) {
@@ -105,7 +105,7 @@ class UpgradeApiVersion extends $pb.GeneratedMessage {
   static $pb.PbList<UpgradeApiVersion> createRepeated() => $pb.PbList<UpgradeApiVersion>();
   @$core.pragma('dart2js:noInline')
   static UpgradeApiVersion getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpgradeApiVersion>(create);
-  static UpgradeApiVersion _defaultInstance;
+  static UpgradeApiVersion? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get latest => $_getIZ(0);
