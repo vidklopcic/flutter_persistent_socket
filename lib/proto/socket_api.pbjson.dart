@@ -13,12 +13,27 @@ const Ack$json = const {
   '1': 'Ack',
   '2': const [
     const {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    const {'1': 'errorMessage', '3': 2, '4': 1, '5': 9, '10': 'errorMessage'},
+    const {'1': 'error_message', '3': 2, '4': 1, '5': 9, '10': 'errorMessage'},
+    const {'1': 'async_progress_key', '3': 3, '4': 1, '5': 9, '10': 'asyncProgressKey'},
   ],
 };
 
 /// Descriptor for `Ack`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List ackDescriptor = $convert.base64Decode('CgNBY2sSEgoEdXVpZBgBIAEoCVIEdXVpZBIiCgxlcnJvck1lc3NhZ2UYAiABKAlSDGVycm9yTWVzc2FnZQ==');
+final $typed_data.Uint8List ackDescriptor = $convert.base64Decode('CgNBY2sSEgoEdXVpZBgBIAEoCVIEdXVpZBIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck1lc3NhZ2USLAoSYXN5bmNfcHJvZ3Jlc3Nfa2V5GAMgASgJUhBhc3luY1Byb2dyZXNzS2V5');
+@$core.Deprecated('Use asyncProgressDescriptor instead')
+const AsyncProgress$json = const {
+  '1': 'AsyncProgress',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'progress', '3': 2, '4': 1, '5': 1, '10': 'progress'},
+    const {'1': 'info', '3': 3, '4': 1, '5': 9, '10': 'info'},
+    const {'1': 'done', '3': 4, '4': 1, '5': 8, '10': 'done'},
+    const {'1': 'error_message', '3': 5, '4': 1, '5': 9, '10': 'errorMessage'},
+  ],
+};
+
+/// Descriptor for `AsyncProgress`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List asyncProgressDescriptor = $convert.base64Decode('Cg1Bc3luY1Byb2dyZXNzEhAKA2tleRgBIAEoCVIDa2V5EhoKCHByb2dyZXNzGAIgASgBUghwcm9ncmVzcxISCgRpbmZvGAMgASgJUgRpbmZvEhIKBGRvbmUYBCABKAhSBGRvbmUSIwoNZXJyb3JfbWVzc2FnZRgFIAEoCVIMZXJyb3JNZXNzYWdl');
 @$core.Deprecated('Use upgradeApiVersionDescriptor instead')
 const UpgradeApiVersion$json = const {
   '1': 'UpgradeApiVersion',

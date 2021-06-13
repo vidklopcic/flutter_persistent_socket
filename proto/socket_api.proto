@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package socket_api;
 
 /*
@@ -6,8 +7,21 @@ type = 'ack'
 origin = server
  */
 message Ack {
-  string uuid = 1;
-  string errorMessage = 2;
+    string uuid = 1;
+    string error_message = 2;
+    string async_progress_key = 3;
+}
+
+/*
+type = 'async-progress'
+origin = server
+ */
+message AsyncProgress {
+    string key = 1;
+    double progress = 2;
+    string info = 3;
+    bool done = 4;
+    string error_message = 5;
 }
 
 /*
@@ -15,6 +29,5 @@ type = 'upgrade-api-version'
 origin = server
  */
 message UpgradeApiVersion {
-  int32 latest = 1;
+    int32 latest = 1;
 }
-

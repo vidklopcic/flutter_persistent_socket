@@ -85,7 +85,12 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       final status = msg.data.hasErrorMessage()
           ? SocketApiAckStatus.messageError
           : SocketApiAckStatus.success;
-      return SocketApiTxStatus(status, msg.data.errorMessage);
+      return SocketApiTxStatus(status, msg.data.errorMessage,
+          asyncProgress: msg.data.hasAsyncProgressKey()
+              ? getMessageHandler(RxAsyncProgress())
+                  .cast<RxAsyncProgress>()
+                  .where((event) => event.data.key == msg.data.asyncProgressKey)
+              : null);
     } catch (e) {
       // timeout
       return SocketApiTxStatus(
@@ -310,6 +315,31 @@ enum SocketApiAckStatus { success, connectionError, timeout, messageError }
 class SocketApiTxStatus {
   final SocketApiAckStatus status;
   final String errorMessage;
+  final Stream<RxAsyncProgress>? asyncProgress;
+  SocketApiTxStatus? _asyncResult;
 
-  SocketApiTxStatus(this.status, this.errorMessage);
+  bool get isAsync => asyncProgress != null;
+
+  SocketApiTxStatus(this.status, this.errorMessage, {this.asyncProgress});
+
+  Future<SocketApiTxStatus> asyncResult({Duration? timeout}) async {
+    if (!this.isAsync) return this;
+    if (_asyncResult != null) return _asyncResult!;
+    try {
+      RxAsyncProgress msg = await this
+          .asyncProgress!
+          .where((event) => event.data.done == true)
+          .first
+          .timeout(timeout ?? Duration(days: 1e10.toInt()));
+      final msgStatus = msg.data.hasErrorMessage()
+          ? SocketApiAckStatus.messageError
+          : SocketApiAckStatus.success;
+      _asyncResult = SocketApiTxStatus(msgStatus, msg.data.errorMessage);
+    } catch (e) {
+      // timeout
+      _asyncResult = SocketApiTxStatus(
+          SocketApiAckStatus.timeout, 'No response from server.');
+    }
+    return _asyncResult!;
+  }
 }
