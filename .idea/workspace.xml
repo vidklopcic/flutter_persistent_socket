@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="updated moor versi">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="add sqlite flutter libs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1ewrK43L657UKDbwuOSa5jur53y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -363,7 +361,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620741913450</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="add sqlite flutter libs">
+      <created>1621697546230</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1621697546230</updated>
+    </task>
+    <task id="LOCAL-00045" summary="add sqlite flutter libs">
+      <created>1621697581976</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1621697581976</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -414,7 +426,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="add downloadable field to sfile" />
     <MESSAGE value="add logging flag for tx / rx event printouts" />
     <MESSAGE value="stop reuploading after 2 failed attempts" />
     <MESSAGE value="stop reuploading after 2 failed attempts - only on web" />
@@ -439,21 +450,19 @@
     <MESSAGE value="uploader tweaks" />
     <MESSAGE value="fix web filepicker" />
     <MESSAGE value="handle upload exceptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="handle upload exceptions" />
+    <MESSAGE value="add sqlite flutter libs" />
+    <option name="LAST_COMMIT_MESSAGE" value="add sqlite flutter libs" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614353998894">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="2774" y="489" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614353998894" />
-    <state x="588" y="271" key="CommitChangelistDialog2" timestamp="1621697546120">
+    <state x="588" y="271" key="CommitChangelistDialog2" timestamp="1623827434138">
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620309114521" />
     <state x="2632" y="289" key="CommitChangelistDialog2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741913165" />
     <state x="588" y="269" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097694433" />
-    <state x="588" y="271" key="CommitChangelistDialog2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697546120" />
+    <state x="588" y="271" key="CommitChangelistDialog2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1622094679536" />
     <state x="2632" y="291" key="CommitChangelistDialog2/0.25.1792.1095/1792.-27.2560.1415@1792.-27.2560.1415" timestamp="1621336058446" />
+    <state x="588" y="271" key="CommitChangelistDialog2/1792.-337.1920.1175/0.25.1792.1095@0.25.1792.1095" timestamp="1623827434138" />
     <state x="2158" y="149" width="1004" height="679" key="DiffContextDialog" timestamp="1620741903324">
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
@@ -471,29 +480,31 @@
       <screen x="1792" y="-29" width="2560" height="1417" />
     </state>
     <state x="2768" y="397" key="RollbackChangesDialog/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620241926673" />
-    <state x="2560" y="261" key="SettingsEditor" timestamp="1614355388321">
-      <screen x="1792" y="-29" width="2560" height="1417" />
-    </state>
-    <state x="2560" y="261" key="SettingsEditor/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1614355388321" />
-    <state x="616" y="375" key="Vcs.Push.Dialog.v2" timestamp="1621697547812">
+    <state x="616" y="375" key="Vcs.Push.Dialog.v2" timestamp="1621697583463">
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1617094572636" />
     <state x="2672" y="424" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620741915333" />
     <state x="616" y="374" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1617097697807" />
-    <state x="616" y="375" key="Vcs.Push.Dialog.v2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697547812" />
-    <state x="2725" y="441" width="993" height="627" key="find.popup" timestamp="1621334824603">
-      <screen x="1792" y="-27" width="2560" height="1415" />
+    <state x="616" y="375" key="Vcs.Push.Dialog.v2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697583463" />
+    <state x="676" y="493" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622094681362">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="676" y="493" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1622094681362" />
+    <state x="653" y="387" width="696" height="486" key="find.popup" timestamp="1623827413987">
+      <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="653" y="386" width="695" height="486" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620672778579" />
     <state x="2725" y="440" width="869" height="539" key="find.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620214520785" />
+    <state x="653" y="387" width="696" height="486" key="find.popup/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1623773461525" />
     <state x="2725" y="441" width="993" height="627" key="find.popup/0.25.1792.1095/1792.-27.2560.1415@1792.-27.2560.1415" timestamp="1621334824603" />
-    <state x="662" y="277" width="670" height="517" key="search.everywhere.popup" timestamp="1621697375270">
+    <state x="653" y="387" width="696" height="486" key="find.popup/1792.-337.1920.1175/0.25.1792.1095@0.25.1792.1095" timestamp="1623827413987" />
+    <state x="662" y="277" width="670" height="517" key="search.everywhere.popup" timestamp="1622094687755">
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="662" y="275" width="670" height="518" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@0.23.1792.1097" timestamp="1620731701300" />
     <state x="2737" y="297" width="838" height="668" key="search.everywhere.popup/0.23.1792.1097/1792.-29.2560.1417@1792.-29.2560.1417" timestamp="1620743783678" />
-    <state x="662" y="277" width="670" height="517" key="search.everywhere.popup/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1621697375270" />
+    <state x="662" y="277" width="670" height="517" key="search.everywhere.popup/0.25.1792.1095/1792.-27.2560.1415@0.25.1792.1095" timestamp="1622094687755" />
     <state x="2737" y="299" width="838" height="668" key="search.everywhere.popup/0.25.1792.1095/1792.-27.2560.1415@1792.-27.2560.1415" timestamp="1621336047185" />
   </component>
 </project>
