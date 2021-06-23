@@ -6,7 +6,11 @@ import 'database.dart';
 
 part 'socket_rx_event.g.dart';
 
-typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T Function(T query);
+typedef SocketRxMessageKeyedQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>,
+        V extends SocketRxMessage>
+    = T Function(T query, V keys);
+typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T
+    Function(T query);
 
 final uuidObj = Uuid();
 
@@ -66,7 +70,9 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
   SocketRxEventDao(this.db) : super(db);
 
   Future<int> deleteExpired() {
-    return (delete(socketRxEvents)..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now()))).go();
+    return (delete(socketRxEvents)
+          ..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now())))
+        .go();
   }
 
   Future<int> invalidateCacheForMessageType(SocketRxMessage message) {
