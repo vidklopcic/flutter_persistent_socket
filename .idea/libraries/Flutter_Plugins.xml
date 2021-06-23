@@ -1,12 +1,11 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.0" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/sqlite3_flutter_libs-0.2.0" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.1" />
-      <root url="file://$USER_HOME$/.pub-cache/git/gm5_utils-8a257deb7f63c8bcad3207da16ce37672ddf17ba" />
       <root url="file://$PROJECT_DIR$" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.0.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.1" />
+      <root url="file://$USER_HOME$/.pub-cache/git/gm5_utils-8a257deb7f63c8bcad3207da16ce37672ddf17ba" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
