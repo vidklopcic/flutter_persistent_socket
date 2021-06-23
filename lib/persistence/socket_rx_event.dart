@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart' as sre;
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 import 'database.dart';
@@ -7,7 +8,7 @@ import 'database.dart';
 part 'socket_rx_event.g.dart';
 
 typedef SocketRxMessageKeyedQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>,
-        V extends SocketRxMessage>
+        V extends sre.CacheKeys>
     = T Function(T query, V keys);
 typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T
     Function(T query);
