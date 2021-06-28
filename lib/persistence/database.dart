@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:flutter_persistent_socket/persistence/socket_tx_event.dart';
 import 'package:moor/moor.dart';
@@ -12,8 +10,12 @@ part 'database.g.dart';
 @UseMoor(tables: [SocketTxEvents, SocketRxEvents], daos: [SocketTxEventDao, SocketRxEventDao])
 class Database extends _$Database {
   Database() : super(openDatabaseConnection()) {
-    socketRxEventDao.deleteExpired();
-    socketTxEventDao.deleteExpired();
+    try {
+      socketRxEventDao.deleteExpired();
+      socketTxEventDao.deleteExpired();
+    } catch(e) {
+      print('DB error (deleting expired events): $e.');
+    }
   }
 
   @override
