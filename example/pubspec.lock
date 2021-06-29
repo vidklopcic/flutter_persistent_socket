@@ -166,7 +166,7 @@ packages:
       name: moor
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.3.2"
   nested:
     dependency: transitive
     description:
@@ -277,6 +277,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  sqlite3_flutter_libs:
+    dependency: transitive
+    description:
+      name: sqlite3_flutter_libs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
   stack_trace:
     dependency: transitive
     description:

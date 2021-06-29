@@ -1,6 +1,5 @@
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
-import 'package:flutter_persistent_socket/proto/authentication.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import '../../messages.dart';
 
@@ -16,7 +15,7 @@ abstract class AuthenticationController with SubscriptionsMixin {
     listen(socketApi.getMessageHandler(RxTokenInvalid()), (_) => logout());
   }
 
-  Future init([String token]) async {
+  Future init([String? token]) async {
     if (!socketApi.noCache) {
       await socketApi.fireFromCache(RxLoginToken());
     }
@@ -36,8 +35,8 @@ abstract class AuthenticationController with SubscriptionsMixin {
 
   void verifyToken() {
     if (!socketApi.authenticated.val) return;
-    socketApi.sendMessage(TxVerifyToken());
+    socketApi.sendMessage(TxVerifyToken.create());
   }
 
-  void onTokenChanged(String token) {}
+  void onTokenChanged(String? token) {}
 }

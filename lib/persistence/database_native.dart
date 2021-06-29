@@ -4,7 +4,7 @@ import 'package:moor/ffi.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-QueryExecutor openDatabaseConnection() {
+QueryExecutor? openDatabaseConnection() {
   try {
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();

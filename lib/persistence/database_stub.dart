@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
 
-QueryExecutor openDatabaseConnection() {
+QueryExecutor? openDatabaseConnection() {
   throw UnimplementedError();
 }
