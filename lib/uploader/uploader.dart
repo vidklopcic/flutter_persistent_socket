@@ -272,7 +272,7 @@ class FPSTusStore extends TusStore {
     final message = RxUploadTask()..data.fingerprint = fingerprint;
     final events = await api.getFromCache(
       message,
-      filter: (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
+      filter: (q, _) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
     );
     return events?.first;
   }

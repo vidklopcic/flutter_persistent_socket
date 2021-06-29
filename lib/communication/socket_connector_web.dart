@@ -15,7 +15,7 @@ Future<WebSocketChannel?> getWebSocketChannel(String address,
     html.WebSocket ws = html.WebSocket(address);
     _sockets[address] = ws;
     Future onOpenEvent = ws.onOpen.first;
-    onOpenEvent = onOpenEvent.timeout(Duration(seconds: 5));
+    onOpenEvent = onOpenEvent.timeout(Duration(seconds: 1));
     await onOpenEvent;
     channel = HtmlWebSocketChannel(ws);
     channel.stream.listen((val) => onData(val), onDone: () async {

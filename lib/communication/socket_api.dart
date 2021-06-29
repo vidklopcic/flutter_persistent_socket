@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart' as sre;
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:flutter_persistent_socket/util.dart';
@@ -48,11 +48,13 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   SocketApi._internal(String address) {
-    connection = SocketConnector(address);
-    listen(connection.connected.changes, _connectionStateChange);
-    listen(connection.dataStream, _onData);
     setMessages(rxMessages);
-    connection.addListener(_connectionChange);
+    if (address != null) {
+      connection = SocketConnector(address);
+      listen(connection.connected.changes, _connectionStateChange);
+      listen(connection.dataStream, _onData);
+      connection.addListener(_connectionChange);
+    }
   }
 
   void _connectionChange() {
@@ -75,8 +77,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     listen(connection.dataStream, _onData);
   }
 
-  Future<SocketApiTxStatus> _waitAck(
-      String instanceUuid, Duration timeout) async {
+  Future<SocketApiTxStatus> _waitAck(String instanceUuid, Duration timeout) async {
     try {
       final msg = await getMessageHandler(RxAck())
           .where((event) => event.data.uuid == instanceUuid)
@@ -93,8 +94,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
               : null);
     } catch (e) {
       // timeout
-      return SocketApiTxStatus(
-          SocketApiAckStatus.timeout, 'No response from server.');
+      return SocketApiTxStatus(SocketApiAckStatus.timeout, 'No response from server.');
     }
   }
 
@@ -134,12 +134,10 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         if (logging) print('connection error - caching event!');
         if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
       }
-      return SocketApiTxStatus(
-          SocketApiAckStatus.connectionError, 'Error sending the message.');
+      return SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
     }
 
-    SocketApiTxStatus status =
-        SocketApiTxStatus(SocketApiAckStatus.success, '');
+    SocketApiTxStatus status = SocketApiTxStatus(SocketApiAckStatus.success, '');
 
     if (ack) {
       // handle ack message
@@ -250,19 +248,18 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         .socketApi;
   }
 
-  Future<List<T>?> getFromCache<T extends SocketRxMessage>(T message,
-      {SocketRxMessageQueryFilter<
-              SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>>?
+  Future<List<T>> getFromCache<T extends SocketRxMessage, V extends sre.CacheKeys>(T message,
+      {SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>,
+              V>
           filter}) async {
     if (message.cache == null || message.cache == Duration.zero) return null;
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
-        (filter ?? (f) => f)(database.socketRxEventDao.filter(message));
+        (filter ?? (f, m) => f)(database.socketRxEventDao.filter(message), message.cacheKeys);
     final events = await query.get();
-    List parsedEvents = [];
+    List<T> parsedEvents = [];
     for (SocketRxEvent cachedEvent in events) {
       try {
-        parsedEvents.add(message
-            .fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
+        parsedEvents.add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)));
       } catch (e) {
         print('Exception while parsing cached rx message. Schema changed?');
       }
@@ -270,12 +267,12 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     return parsedEvents.isEmpty ? null : parsedEvents.cast<T>();
   }
 
-  Future<int> fireFromCache(SocketRxMessage message,
-      {SocketRxMessageQueryFilter<
-              SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>>?
+  Future<int> fireFromCache<T extends SocketRxMessage, V extends sre.CacheKeys>(T message,
+      {SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>,
+              V>
           filter}) async {
     List<SocketRxMessage> events =
-        await getFromCache(message, filter: filter) ?? [];
+        await getFromCache(message, filter: (q, k) => filter(q, k)) ?? [];
     for (SocketRxMessage cachedMsg in events) {
       fireLocalUpdate(cachedMsg);
     }
@@ -301,13 +298,12 @@ class SocketApiProvider extends InheritedWidget {
     Key? key,
     required this.socketApi,
     required Widget child,
-  }) : super(key: key, child: child);
+  })  : super(key: key, child: child);
 
   final SocketApi socketApi;
 
   @override
-  bool updateShouldNotify(SocketApiProvider saProvider) =>
-      saProvider.socketApi != socketApi;
+  bool updateShouldNotify(SocketApiProvider saProvider) => saProvider.socketApi != socketApi;
 }
 
 enum SocketApiAckStatus { success, connectionError, timeout, messageError }

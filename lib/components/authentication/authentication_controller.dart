@@ -1,5 +1,6 @@
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
+import 'package:flutter_persistent_socket/proto/authentication.pb.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import '../../messages.dart';
 
@@ -7,23 +8,36 @@ abstract class AuthenticationController with SubscriptionsMixin {
   final SocketApi socketApi;
 
   AuthenticationController(this.socketApi) {
-    listen(socketApi.getMessageHandler(RxLoginToken()),
-        (RxLoginToken message) => socketApi.setAuth(message.data.token));
+    listen(socketApi.getMessageHandler(RxLoginToken()), (RxLoginToken message) {
+      socketApi.setAuth(message.data.token);
+      onTokenChanged(message.data.token);
+    });
     listen(socketApi.getMessageHandler(RxLoginError()), (_) => logout());
     listen(socketApi.getMessageHandler(RxTokenInvalid()), (_) => logout());
   }
 
-  Future init() async {
-    await socketApi.fireFromCache(RxLoginToken());
+  Future init([String token]) async {
+    if (!socketApi.noCache) {
+      await socketApi.fireFromCache(RxLoginToken());
+    }
+
+    if (token != null) {
+      socketApi.setAuth(token);
+    }
   }
 
   void logout() {
-    database.socketRxEventDao.invalidateCache();
+    if (!socketApi.noCache) {
+      database.socketRxEventDao.invalidateCache();
+    }
     socketApi.setAuth(null);
+    onTokenChanged(null);
   }
 
   void verifyToken() {
     if (!socketApi.authenticated.val) return;
-    socketApi.sendMessage(TxVerifyToken.create());
+    socketApi.sendMessage(TxVerifyToken());
   }
+
+  void onTokenChanged(String token) {}
 }
