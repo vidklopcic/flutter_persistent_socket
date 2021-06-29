@@ -5,7 +5,7 @@ import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 Future<WebSocketChannel?> getWebSocketChannel(String address,
-    {required void Function(List<int>) onData,
+    {required void Function(String) onData,
     required VoidCallback onDone,
     required void Function(dynamic) onError}) async {
   IOWebSocketChannel channel;

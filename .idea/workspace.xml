@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_native.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_native.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_stub.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_stub.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_web.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/uploader/file_picker" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -387,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623584562224</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="merged latest changes into null safety">
+      <created>1624988641198</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1624988641198</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -439,7 +436,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="add downloadable field to sfile" />
     <MESSAGE value="add logging flag for tx / rx event printouts" />
     <MESSAGE value="stop reuploading after 2 failed attempts" />
     <MESSAGE value="stop reuploading after 2 failed attempts - only on web" />
@@ -464,6 +460,7 @@
     <MESSAGE value="uploader tweaks" />
     <MESSAGE value="fix web filepicker" />
     <MESSAGE value="added async progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="added async progress" />
+    <MESSAGE value="merged latest changes into null safety" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged latest changes into null safety" />
   </component>
 </project>

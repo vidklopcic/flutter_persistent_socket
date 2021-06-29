@@ -6,7 +6,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 Map<String, html.WebSocket> _sockets = {};
 
 Future<WebSocketChannel?> getWebSocketChannel(String address,
-    {required void Function(List<int>) onData,
+    {required void Function(String) onData,
     required VoidCallback onDone,
     required void Function(dynamic) onError}) async {
   HtmlWebSocketChannel channel;
