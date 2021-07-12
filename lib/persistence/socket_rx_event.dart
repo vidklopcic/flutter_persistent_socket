@@ -125,7 +125,7 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
 }
 
 extension CacheKeys on $SocketRxEventsTable {
-  List<GeneratedDateTimeColumn> get dateKeys => [
+  List<GeneratedColumn<DateTime?>> get dateKeys => [
         dateKey0,
         dateKey1,
         dateKey2,
@@ -133,7 +133,7 @@ extension CacheKeys on $SocketRxEventsTable {
         dateKey4,
       ];
 
-  List<GeneratedTextColumn> get textKeys => [
+  List<GeneratedColumn<String?>> get textKeys => [
         textKey0,
         textKey1,
         textKey2,
@@ -141,7 +141,7 @@ extension CacheKeys on $SocketRxEventsTable {
         textKey4,
       ];
 
-  List<GeneratedRealColumn> get realKeys => [
+  List<GeneratedColumn<double?>> get realKeys => [
         realKey0,
         realKey1,
         realKey2,

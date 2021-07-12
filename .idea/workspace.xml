@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/database.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/vidklopcic/.android/avd/Pixel_3a_API_30_x86.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -462,5 +465,15 @@
     <MESSAGE value="added async progress" />
     <MESSAGE value="merged latest changes into null safety" />
     <option name="LAST_COMMIT_MESSAGE" value="merged latest changes into null safety" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2451" y="156" width="602" height="735" key="find.popup" timestamp="1626104276285">
+      <screen x="1792" y="25" width="1920" height="997" />
+    </state>
+    <state x="2451" y="156" width="602" height="735" key="find.popup/1792.25.1920.997/0.25.1792.1095@1792.25.1920.997" timestamp="1626104276285" />
+    <state x="2417" y="245" width="670" height="676" key="search.everywhere.popup" timestamp="1626103862712">
+      <screen x="1792" y="25" width="1920" height="997" />
+    </state>
+    <state x="2417" y="245" width="670" height="676" key="search.everywhere.popup/1792.25.1920.997/0.25.1792.1095@1792.25.1920.997" timestamp="1626103862712" />
   </component>
 </project>

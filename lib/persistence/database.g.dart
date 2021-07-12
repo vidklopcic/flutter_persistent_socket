@@ -658,227 +658,89 @@ class $SocketTxEventsTable extends SocketTxEvents
   final String? _alias;
   $SocketTxEventsTable(this._db, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
-  @override
-  late final GeneratedTextColumn uuid = _constructUuid();
-  GeneratedTextColumn _constructUuid() {
-    return GeneratedTextColumn(
-      'uuid',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
+      'uuid', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
-  @override
-  late final GeneratedTextColumn type = _constructType();
-  GeneratedTextColumn _constructType() {
-    return GeneratedTextColumn(
-      'type',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> type = GeneratedColumn<String?>(
+      'type', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _jsonContentMeta =
       const VerificationMeta('jsonContent');
-  @override
-  late final GeneratedTextColumn jsonContent = _constructJsonContent();
-  GeneratedTextColumn _constructJsonContent() {
-    return GeneratedTextColumn(
-      'json_content',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> jsonContent = GeneratedColumn<String?>(
+      'json_content', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
-  @override
-  late final GeneratedDateTimeColumn timeRecorded = _constructTimeRecorded();
-  GeneratedDateTimeColumn _constructTimeRecorded() {
-    return GeneratedDateTimeColumn(
-      'time_recorded',
-      $tableName,
-      false,
-    )..clientDefault = () => DateTime.now();
-  }
-
+  late final GeneratedColumn<DateTime?> timeRecorded =
+      GeneratedColumn<DateTime?>('time_recorded', aliasedName, false,
+          typeName: 'INTEGER',
+          requiredDuringInsert: false,
+          clientDefault: () => DateTime.now());
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
-  @override
-  late final GeneratedDateTimeColumn expires = _constructExpires();
-  GeneratedDateTimeColumn _constructExpires() {
-    return GeneratedDateTimeColumn(
-      'expires',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> expires = GeneratedColumn<DateTime?>(
+      'expires', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
   final VerificationMeta _dateKey0Meta = const VerificationMeta('dateKey0');
-  @override
-  late final GeneratedDateTimeColumn dateKey0 = _constructDateKey0();
-  GeneratedDateTimeColumn _constructDateKey0() {
-    return GeneratedDateTimeColumn(
-      'date_key0',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey0 = GeneratedColumn<DateTime?>(
+      'date_key0', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey1Meta = const VerificationMeta('dateKey1');
-  @override
-  late final GeneratedDateTimeColumn dateKey1 = _constructDateKey1();
-  GeneratedDateTimeColumn _constructDateKey1() {
-    return GeneratedDateTimeColumn(
-      'date_key1',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey1 = GeneratedColumn<DateTime?>(
+      'date_key1', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey2Meta = const VerificationMeta('dateKey2');
-  @override
-  late final GeneratedDateTimeColumn dateKey2 = _constructDateKey2();
-  GeneratedDateTimeColumn _constructDateKey2() {
-    return GeneratedDateTimeColumn(
-      'date_key2',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey2 = GeneratedColumn<DateTime?>(
+      'date_key2', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey3Meta = const VerificationMeta('dateKey3');
-  @override
-  late final GeneratedDateTimeColumn dateKey3 = _constructDateKey3();
-  GeneratedDateTimeColumn _constructDateKey3() {
-    return GeneratedDateTimeColumn(
-      'date_key3',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey3 = GeneratedColumn<DateTime?>(
+      'date_key3', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey4Meta = const VerificationMeta('dateKey4');
-  @override
-  late final GeneratedDateTimeColumn dateKey4 = _constructDateKey4();
-  GeneratedDateTimeColumn _constructDateKey4() {
-    return GeneratedDateTimeColumn(
-      'date_key4',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey4 = GeneratedColumn<DateTime?>(
+      'date_key4', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _textKey0Meta = const VerificationMeta('textKey0');
-  @override
-  late final GeneratedTextColumn textKey0 = _constructTextKey0();
-  GeneratedTextColumn _constructTextKey0() {
-    return GeneratedTextColumn(
-      'text_key0',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey0 = GeneratedColumn<String?>(
+      'text_key0', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey1Meta = const VerificationMeta('textKey1');
-  @override
-  late final GeneratedTextColumn textKey1 = _constructTextKey1();
-  GeneratedTextColumn _constructTextKey1() {
-    return GeneratedTextColumn(
-      'text_key1',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey1 = GeneratedColumn<String?>(
+      'text_key1', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey2Meta = const VerificationMeta('textKey2');
-  @override
-  late final GeneratedTextColumn textKey2 = _constructTextKey2();
-  GeneratedTextColumn _constructTextKey2() {
-    return GeneratedTextColumn(
-      'text_key2',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey2 = GeneratedColumn<String?>(
+      'text_key2', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey3Meta = const VerificationMeta('textKey3');
-  @override
-  late final GeneratedTextColumn textKey3 = _constructTextKey3();
-  GeneratedTextColumn _constructTextKey3() {
-    return GeneratedTextColumn(
-      'text_key3',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey3 = GeneratedColumn<String?>(
+      'text_key3', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey4Meta = const VerificationMeta('textKey4');
-  @override
-  late final GeneratedTextColumn textKey4 = _constructTextKey4();
-  GeneratedTextColumn _constructTextKey4() {
-    return GeneratedTextColumn(
-      'text_key4',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey4 = GeneratedColumn<String?>(
+      'text_key4', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _realKey0Meta = const VerificationMeta('realKey0');
-  @override
-  late final GeneratedRealColumn realKey0 = _constructRealKey0();
-  GeneratedRealColumn _constructRealKey0() {
-    return GeneratedRealColumn(
-      'real_key0',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey0 = GeneratedColumn<double?>(
+      'real_key0', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey1Meta = const VerificationMeta('realKey1');
-  @override
-  late final GeneratedRealColumn realKey1 = _constructRealKey1();
-  GeneratedRealColumn _constructRealKey1() {
-    return GeneratedRealColumn(
-      'real_key1',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey1 = GeneratedColumn<double?>(
+      'real_key1', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey2Meta = const VerificationMeta('realKey2');
-  @override
-  late final GeneratedRealColumn realKey2 = _constructRealKey2();
-  GeneratedRealColumn _constructRealKey2() {
-    return GeneratedRealColumn(
-      'real_key2',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey2 = GeneratedColumn<double?>(
+      'real_key2', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey3Meta = const VerificationMeta('realKey3');
-  @override
-  late final GeneratedRealColumn realKey3 = _constructRealKey3();
-  GeneratedRealColumn _constructRealKey3() {
-    return GeneratedRealColumn(
-      'real_key3',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey3 = GeneratedColumn<double?>(
+      'real_key3', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey4Meta = const VerificationMeta('realKey4');
-  @override
-  late final GeneratedRealColumn realKey4 = _constructRealKey4();
-  GeneratedRealColumn _constructRealKey4() {
-    return GeneratedRealColumn(
-      'real_key4',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey4 = GeneratedColumn<double?>(
+      'real_key4', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uuid,
@@ -903,11 +765,9 @@ class $SocketTxEventsTable extends SocketTxEvents
         realKey4
       ];
   @override
-  $SocketTxEventsTable get asDslTable => this;
+  String get aliasedName => _alias ?? 'socket_tx_events';
   @override
-  String get $tableName => _alias ?? 'socket_tx_events';
-  @override
-  final String actualTableName = 'socket_tx_events';
+  String get actualTableName => 'socket_tx_events';
   @override
   VerificationContext validateIntegrity(Insertable<SocketTxEvent> instance,
       {bool isInserting = false}) {
@@ -1721,250 +1581,100 @@ class $SocketRxEventsTable extends SocketRxEvents
   final String? _alias;
   $SocketRxEventsTable(this._db, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
-  @override
-  late final GeneratedTextColumn uuid = _constructUuid();
-  GeneratedTextColumn _constructUuid() {
-    return GeneratedTextColumn(
-      'uuid',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
+      'uuid', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
-  @override
-  late final GeneratedTextColumn type = _constructType();
-  GeneratedTextColumn _constructType() {
-    return GeneratedTextColumn(
-      'type',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> type = GeneratedColumn<String?>(
+      'type', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _jsonContentMeta =
       const VerificationMeta('jsonContent');
-  @override
-  late final GeneratedTextColumn jsonContent = _constructJsonContent();
-  GeneratedTextColumn _constructJsonContent() {
-    return GeneratedTextColumn(
-      'json_content',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> jsonContent = GeneratedColumn<String?>(
+      'json_content', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _onlineMeta = const VerificationMeta('online');
-  @override
-  late final GeneratedBoolColumn online = _constructOnline();
-  GeneratedBoolColumn _constructOnline() {
-    return GeneratedBoolColumn(
-      'online',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<bool?> online = GeneratedColumn<bool?>(
+      'online', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: true,
+      defaultConstraints: 'CHECK (online IN (0, 1))');
   final VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
-  @override
-  late final GeneratedDateTimeColumn timeRecorded = _constructTimeRecorded();
-  GeneratedDateTimeColumn _constructTimeRecorded() {
-    return GeneratedDateTimeColumn(
-      'time_recorded',
-      $tableName,
-      false,
-    )..clientDefault = () => DateTime.now();
-  }
-
+  late final GeneratedColumn<DateTime?> timeRecorded =
+      GeneratedColumn<DateTime?>('time_recorded', aliasedName, false,
+          typeName: 'INTEGER',
+          requiredDuringInsert: false,
+          clientDefault: () => DateTime.now());
   final VerificationMeta _timeReceivedMeta =
       const VerificationMeta('timeReceived');
-  @override
-  late final GeneratedDateTimeColumn timeReceived = _constructTimeReceived();
-  GeneratedDateTimeColumn _constructTimeReceived() {
-    return GeneratedDateTimeColumn(
-      'time_received',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> timeReceived =
+      GeneratedColumn<DateTime?>('time_received', aliasedName, false,
+          typeName: 'INTEGER', requiredDuringInsert: true);
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
-  @override
-  late final GeneratedDateTimeColumn expires = _constructExpires();
-  GeneratedDateTimeColumn _constructExpires() {
-    return GeneratedDateTimeColumn(
-      'expires',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> expires = GeneratedColumn<DateTime?>(
+      'expires', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
   final VerificationMeta _dateKey0Meta = const VerificationMeta('dateKey0');
-  @override
-  late final GeneratedDateTimeColumn dateKey0 = _constructDateKey0();
-  GeneratedDateTimeColumn _constructDateKey0() {
-    return GeneratedDateTimeColumn(
-      'date_key0',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey0 = GeneratedColumn<DateTime?>(
+      'date_key0', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey1Meta = const VerificationMeta('dateKey1');
-  @override
-  late final GeneratedDateTimeColumn dateKey1 = _constructDateKey1();
-  GeneratedDateTimeColumn _constructDateKey1() {
-    return GeneratedDateTimeColumn(
-      'date_key1',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey1 = GeneratedColumn<DateTime?>(
+      'date_key1', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey2Meta = const VerificationMeta('dateKey2');
-  @override
-  late final GeneratedDateTimeColumn dateKey2 = _constructDateKey2();
-  GeneratedDateTimeColumn _constructDateKey2() {
-    return GeneratedDateTimeColumn(
-      'date_key2',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey2 = GeneratedColumn<DateTime?>(
+      'date_key2', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey3Meta = const VerificationMeta('dateKey3');
-  @override
-  late final GeneratedDateTimeColumn dateKey3 = _constructDateKey3();
-  GeneratedDateTimeColumn _constructDateKey3() {
-    return GeneratedDateTimeColumn(
-      'date_key3',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey3 = GeneratedColumn<DateTime?>(
+      'date_key3', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dateKey4Meta = const VerificationMeta('dateKey4');
-  @override
-  late final GeneratedDateTimeColumn dateKey4 = _constructDateKey4();
-  GeneratedDateTimeColumn _constructDateKey4() {
-    return GeneratedDateTimeColumn(
-      'date_key4',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<DateTime?> dateKey4 = GeneratedColumn<DateTime?>(
+      'date_key4', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _textKey0Meta = const VerificationMeta('textKey0');
-  @override
-  late final GeneratedTextColumn textKey0 = _constructTextKey0();
-  GeneratedTextColumn _constructTextKey0() {
-    return GeneratedTextColumn(
-      'text_key0',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey0 = GeneratedColumn<String?>(
+      'text_key0', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey1Meta = const VerificationMeta('textKey1');
-  @override
-  late final GeneratedTextColumn textKey1 = _constructTextKey1();
-  GeneratedTextColumn _constructTextKey1() {
-    return GeneratedTextColumn(
-      'text_key1',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey1 = GeneratedColumn<String?>(
+      'text_key1', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey2Meta = const VerificationMeta('textKey2');
-  @override
-  late final GeneratedTextColumn textKey2 = _constructTextKey2();
-  GeneratedTextColumn _constructTextKey2() {
-    return GeneratedTextColumn(
-      'text_key2',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey2 = GeneratedColumn<String?>(
+      'text_key2', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey3Meta = const VerificationMeta('textKey3');
-  @override
-  late final GeneratedTextColumn textKey3 = _constructTextKey3();
-  GeneratedTextColumn _constructTextKey3() {
-    return GeneratedTextColumn(
-      'text_key3',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey3 = GeneratedColumn<String?>(
+      'text_key3', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _textKey4Meta = const VerificationMeta('textKey4');
-  @override
-  late final GeneratedTextColumn textKey4 = _constructTextKey4();
-  GeneratedTextColumn _constructTextKey4() {
-    return GeneratedTextColumn(
-      'text_key4',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> textKey4 = GeneratedColumn<String?>(
+      'text_key4', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _realKey0Meta = const VerificationMeta('realKey0');
-  @override
-  late final GeneratedRealColumn realKey0 = _constructRealKey0();
-  GeneratedRealColumn _constructRealKey0() {
-    return GeneratedRealColumn(
-      'real_key0',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey0 = GeneratedColumn<double?>(
+      'real_key0', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey1Meta = const VerificationMeta('realKey1');
-  @override
-  late final GeneratedRealColumn realKey1 = _constructRealKey1();
-  GeneratedRealColumn _constructRealKey1() {
-    return GeneratedRealColumn(
-      'real_key1',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey1 = GeneratedColumn<double?>(
+      'real_key1', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey2Meta = const VerificationMeta('realKey2');
-  @override
-  late final GeneratedRealColumn realKey2 = _constructRealKey2();
-  GeneratedRealColumn _constructRealKey2() {
-    return GeneratedRealColumn(
-      'real_key2',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey2 = GeneratedColumn<double?>(
+      'real_key2', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey3Meta = const VerificationMeta('realKey3');
-  @override
-  late final GeneratedRealColumn realKey3 = _constructRealKey3();
-  GeneratedRealColumn _constructRealKey3() {
-    return GeneratedRealColumn(
-      'real_key3',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey3 = GeneratedColumn<double?>(
+      'real_key3', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   final VerificationMeta _realKey4Meta = const VerificationMeta('realKey4');
-  @override
-  late final GeneratedRealColumn realKey4 = _constructRealKey4();
-  GeneratedRealColumn _constructRealKey4() {
-    return GeneratedRealColumn(
-      'real_key4',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<double?> realKey4 = GeneratedColumn<double?>(
+      'real_key4', aliasedName, true,
+      typeName: 'REAL', requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uuid,
@@ -1991,11 +1701,9 @@ class $SocketRxEventsTable extends SocketRxEvents
         realKey4
       ];
   @override
-  $SocketRxEventsTable get asDslTable => this;
+  String get aliasedName => _alias ?? 'socket_rx_events';
   @override
-  String get $tableName => _alias ?? 'socket_rx_events';
-  @override
-  final String actualTableName = 'socket_rx_events';
+  String get actualTableName => 'socket_rx_events';
   @override
   VerificationContext validateIntegrity(Insertable<SocketRxEvent> instance,
       {bool isInserting = false}) {

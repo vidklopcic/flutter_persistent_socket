@@ -131,19 +131,19 @@ class MessageGen():
                     cache_keys.append(
                         '''final CacheKey {0}Key = const CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
                     cache_fields.append(
-                        '''GeneratedTextColumn {0}(table) => {0}Key.textField(table);'''.format(text_key, i))
+                        '''GeneratedColumn<String?> {0}(table) => {0}Key.textField(table);'''.format(text_key, i))
                 for i in range(len(real_keys)):
                     real_key = real_keys[i]
                     cache_keys.append(
                         '''final CacheKey {0}Key = const CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
                     cache_fields.append(
-                        '''GeneratedRealColumn {0}(table) => {0}Key.realField(table);'''.format(real_key, i))
+                        '''GeneratedColumn<double?> {0}(table) => {0}Key.realField(table);'''.format(real_key, i))
                 for i in range(len(date_keys)):
                     date_key = date_keys[i]
                     cache_keys.append(
                         '''final CacheKey {0}Key = const CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
                     cache_fields.append(
-                        '''GeneratedDateColumn {0}(table) => {0}Key.dateField(table);'''.format(date_key, i))
+                        '''GeneratedColumn<DateTime?> {0}(table) => {0}Key.dateField(table);'''.format(date_key, i))
                 cache_class = CACHE_KEYS_CLASS.format(prefix=self.get_client_prefix(), proto=self.proto,
                                                       text_keys="'" + "', '".join(text_keys) + "'" if text_keys else '',
                                                       real_keys="'" + "', '".join(real_keys) + "'" if real_keys else '',

@@ -225,17 +225,17 @@ class CacheKey {
 
   const CacheKey(this.type, this.index, this.key);
 
-  GeneratedDateTimeColumn dateField($SocketRxEventsTable table) {
+  GeneratedColumn<DateTime?> dateField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.date);
     return table.dateKeys[index];
   }
 
-  GeneratedTextColumn textField($SocketRxEventsTable table) {
+  GeneratedColumn<String?> textField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.text);
     return table.textKeys[index];
   }
 
-  GeneratedRealColumn realField($SocketRxEventsTable table) {
+  GeneratedColumn<double?> realField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.real);
     return table.realKeys[index];
   }

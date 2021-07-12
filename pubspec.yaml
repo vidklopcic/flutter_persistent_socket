@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   sqlite3_flutter_libs: ^0.4.0+1
-  moor: ^4.3.0
+  moor: ^4.4.1
   provider: ^5.0.0
   path_provider: ^2.0.1
   path: ^1.6.4
@@ -28,7 +28,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  moor_generator: ^4.1.0
+  moor_generator: ^4.4.1
   build_runner: ^1.10.0
 
 # For information on the generic Dart part of this file, see the
