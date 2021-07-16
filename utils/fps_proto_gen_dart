@@ -36,5 +36,8 @@ s.run("sed -i '' 's/sfiles.pb.dart/package:flutter_persistent_socket\/proto\/sfi
       shell=True, executable="/bin/zsh")
 s.run("sed -i '' 's/uploader.pb.dart/package:flutter_persistent_socket\/proto\/uploader.pb.dart/g' ./lib/proto/*",
       shell=True, executable="/bin/zsh")
-s.run("fps_dart_client_message_gen {}".format(protos), shell=True, executable="/bin/zsh")
+if config.get('null-safety', True):
+    s.run("fps_dart_client_message_gen {}".format(protos), shell=True, executable="/bin/zsh")
+else:
+    s.run("fps_dart_client_message_gen_unsound {}".format(protos), shell=True, executable="/bin/zsh")
 s.run("git add ./lib/proto ./lib/messages.dart", shell=True, executable="/bin/zsh")
