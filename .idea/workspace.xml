@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen_unsound" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_dart" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/socket_api.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/socket_api.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/uploader.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/uploader.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -471,13 +477,15 @@
       <screen x="1792" y="25" width="1920" height="997" />
     </state>
     <state x="2391" y="330" key="#com.intellij.fileTypes.FileTypeChooser/1792.25.1920.997/0.25.1792.1095@1792.25.1920.997" timestamp="1626450291924" />
-    <state x="2451" y="156" width="602" height="735" key="find.popup" timestamp="1626450230314">
-      <screen x="1792" y="25" width="1920" height="997" />
+    <state x="659" y="179" width="602" height="867" key="find.popup" timestamp="1627548043545">
+      <screen x="0" y="25" width="1920" height="1175" />
     </state>
+    <state x="659" y="179" width="602" height="867" key="find.popup/0.25.1920.1175/-2048.25.2048.1255@0.25.1920.1175" timestamp="1627548043545" />
     <state x="2451" y="156" width="602" height="735" key="find.popup/1792.25.1920.997/0.25.1792.1095@1792.25.1920.997" timestamp="1626450230314" />
-    <state x="2417" y="245" width="670" height="676" key="search.everywhere.popup" timestamp="1626452368552">
-      <screen x="1792" y="25" width="1920" height="997" />
+    <state x="625" y="284" width="670" height="797" key="search.everywhere.popup" timestamp="1627547761475">
+      <screen x="0" y="25" width="1920" height="1175" />
     </state>
+    <state x="625" y="284" width="670" height="797" key="search.everywhere.popup/0.25.1920.1175/-2048.25.2048.1255@0.25.1920.1175" timestamp="1627547761475" />
     <state x="2417" y="245" width="670" height="676" key="search.everywhere.popup/1792.25.1920.997/0.25.1792.1095@1792.25.1920.997" timestamp="1626452368552" />
   </component>
 </project>

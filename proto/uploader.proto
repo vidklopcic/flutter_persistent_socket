@@ -28,3 +28,39 @@ enum UploadStatus {
   error = 5;
   restored = 6;
 }
+
+/*
+type = 'upload-ufile'
+origin = client
+ */
+message UploadUFile {
+  string file_id = 1;
+  uploader.UploadTask task = 2;
+}
+
+/*
+type = 'delete-ufile'
+origin = client
+ */
+message DeleteUFile {
+  string id = 1;
+}
+
+/*
+type = 'upload-slot'
+origin = server
+ */
+message UploadSlot {
+  UFile file = 1;
+  map<string, string> metadata = 2;
+}
+
+message UFile {
+  string id = 1;
+  string src = 2;
+  string preview = 3;
+  string previewLarge = 4;
+  string name = 5;
+  string upload_task = 6;
+  string local_path = 7;
+}

@@ -7,7 +7,10 @@ import 'package:moor/moor.dart';
 import 'package:protobuf/protobuf.dart';
 
 class SocketRxMessageData {
-  final bool fromCache;
+  /// if message was retrieved from cache, this variable will store its original db id
+  String? cacheUuid;
+
+  bool get fromCache => cacheUuid != null;
 
   /// Indicates if the message was modified locally (set to `false` when calling `save()` on the `SocketRxMessage`).
   bool online;
@@ -34,7 +37,7 @@ class SocketRxMessageData {
   /// Decoded JSON map.
   Map<String, dynamic> data;
 
-  SocketRxMessageData(this._raw, {required this.online, this.fromCache = false})
+  SocketRxMessageData(this._raw, {required this.online, this.cacheUuid})
       : this.time = DateTime.now(),
         this.data = json.decode(_raw ?? '{}');
 
@@ -48,7 +51,7 @@ class SocketRxMessageData {
   String toString() => raw;
 
   SocketRxMessageData.fromCachedEvent(SocketRxEvent event)
-      : fromCache = true,
+      : cacheUuid = event.uuid,
         online = event.online,
         time = event.timeReceived,
         _raw = event.jsonContent,
@@ -105,7 +108,7 @@ abstract class SocketTxMessage {
 abstract class SocketRxMessage {
   /// Wraps the raw JSON data received from the server and holds
   /// some metadata (eg. whether message originates from cache or from server).
-  final SocketRxMessageData? message;
+  final SocketRxMessageData message;
   final String messageType;
 
   /// After the `cache` duration, the message gets removed from the cache.
@@ -148,13 +151,25 @@ abstract class SocketRxMessage {
     return field;
   }
 
-  /// Save local changes to the cache (**if cacheUuid changed due to these changes,
-  /// it is user's responsibility to invalidate old message if that is desired**)
-  Future save([SocketApi? socketApi]) {
+  /// Save local changes to the cache
+  Future save({
+    SocketApi? socketApi,
+    bool removeOldIfUuidChanged = true,
+  }) async {
     socketApi?.fireLocalUpdate(this);
-    message?.online = false;
-    message?.raw = data?.writeToJson();
-    return database.socketRxEventDao.cacheEvent(this);
+    message.online = false;
+    message.raw = data?.writeToJson();
+
+    if (removeOldIfUuidChanged &&
+        message.cacheUuid != null &&
+        cacheUuid != message.cacheUuid) {
+      await database.socketRxEventDao.invalidateCache(
+        (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
+      );
+      message.cacheUuid = cacheUuid;
+    }
+
+    return await database.socketRxEventDao.cacheEvent(this);
   }
 
   /// Returns the value from the `GeneratedMessage data` based on a string key (`null` if the field does not exist).

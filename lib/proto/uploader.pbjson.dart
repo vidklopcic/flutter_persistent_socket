@@ -53,3 +53,62 @@ const UploadTask_MetadataEntry$json = const {
 
 /// Descriptor for `UploadTask`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List uploadTaskDescriptor = $convert.base64Decode('CgpVcGxvYWRUYXNrEhgKB2NyZWF0ZWQYASABKARSB2NyZWF0ZWQSEgoEcGF0aBgCIAEoCVIEcGF0aBISCgRuYW1lGAMgASgJUgRuYW1lEhIKBG1pbWUYBCABKAlSBG1pbWUSLgoGc3RhdHVzGAUgASgOMhYudXBsb2FkZXIuVXBsb2FkU3RhdHVzUgZzdGF0dXMSIwoNcmV0cnlfY291bnRlchgGIAEoBVIMcmV0cnlDb3VudGVyEhQKBWVycm9yGAcgASgJUgVlcnJvchIgCgtmaW5nZXJwcmludBgIIAEoCVILZmluZ2VycHJpbnQSEAoDdXJsGAkgASgJUgN1cmwSPgoIbWV0YWRhdGEYCiADKAsyIi51cGxvYWRlci5VcGxvYWRUYXNrLk1ldGFkYXRhRW50cnlSCG1ldGFkYXRhGjsKDU1ldGFkYXRhRW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4AQ==');
+@$core.Deprecated('Use uploadUFileDescriptor instead')
+const UploadUFile$json = const {
+  '1': 'UploadUFile',
+  '2': const [
+    const {'1': 'file_id', '3': 1, '4': 1, '5': 9, '10': 'fileId'},
+    const {'1': 'task', '3': 2, '4': 1, '5': 11, '6': '.uploader.UploadTask', '10': 'task'},
+  ],
+};
+
+/// Descriptor for `UploadUFile`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadUFileDescriptor = $convert.base64Decode('CgtVcGxvYWRVRmlsZRIXCgdmaWxlX2lkGAEgASgJUgZmaWxlSWQSKAoEdGFzaxgCIAEoCzIULnVwbG9hZGVyLlVwbG9hZFRhc2tSBHRhc2s=');
+@$core.Deprecated('Use deleteUFileDescriptor instead')
+const DeleteUFile$json = const {
+  '1': 'DeleteUFile',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `DeleteUFile`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deleteUFileDescriptor = $convert.base64Decode('CgtEZWxldGVVRmlsZRIOCgJpZBgBIAEoCVICaWQ=');
+@$core.Deprecated('Use uploadSlotDescriptor instead')
+const UploadSlot$json = const {
+  '1': 'UploadSlot',
+  '2': const [
+    const {'1': 'file', '3': 1, '4': 1, '5': 11, '6': '.uploader.UFile', '10': 'file'},
+    const {'1': 'metadata', '3': 2, '4': 3, '5': 11, '6': '.uploader.UploadSlot.MetadataEntry', '10': 'metadata'},
+  ],
+  '3': const [UploadSlot_MetadataEntry$json],
+};
+
+@$core.Deprecated('Use uploadSlotDescriptor instead')
+const UploadSlot_MetadataEntry$json = const {
+  '1': 'MetadataEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+/// Descriptor for `UploadSlot`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadSlotDescriptor = $convert.base64Decode('CgpVcGxvYWRTbG90EiMKBGZpbGUYASABKAsyDy51cGxvYWRlci5VRmlsZVIEZmlsZRI+CghtZXRhZGF0YRgCIAMoCzIiLnVwbG9hZGVyLlVwbG9hZFNsb3QuTWV0YWRhdGFFbnRyeVIIbWV0YWRhdGEaOwoNTWV0YWRhdGFFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgB');
+@$core.Deprecated('Use uFileDescriptor instead')
+const UFile$json = const {
+  '1': 'UFile',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    const {'1': 'src', '3': 2, '4': 1, '5': 9, '10': 'src'},
+    const {'1': 'preview', '3': 3, '4': 1, '5': 9, '10': 'preview'},
+    const {'1': 'previewLarge', '3': 4, '4': 1, '5': 9, '10': 'previewLarge'},
+    const {'1': 'name', '3': 5, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'upload_task', '3': 6, '4': 1, '5': 9, '10': 'uploadTask'},
+    const {'1': 'local_path', '3': 7, '4': 1, '5': 9, '10': 'localPath'},
+  ],
+};
+
+/// Descriptor for `UFile`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uFileDescriptor = $convert.base64Decode('CgVVRmlsZRIOCgJpZBgBIAEoCVICaWQSEAoDc3JjGAIgASgJUgNzcmMSGAoHcHJldmlldxgDIAEoCVIHcHJldmlldxIiCgxwcmV2aWV3TGFyZ2UYBCABKAlSDHByZXZpZXdMYXJnZRISCgRuYW1lGAUgASgJUgRuYW1lEh8KC3VwbG9hZF90YXNrGAYgASgJUgp1cGxvYWRUYXNrEh0KCmxvY2FsX3BhdGgYByABKAlSCWxvY2FsUGF0aA==');

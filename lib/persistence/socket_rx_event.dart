@@ -1,15 +1,20 @@
 import 'dart:async';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart' as sre;
+import 'package:flutter_persistent_socket/communication/socket_messages.dart'
+    as sre;
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 import 'database.dart';
 
 part 'socket_rx_event.g.dart';
 
-typedef SocketRxMessageKeyedQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>, V extends sre.CacheKeys?>
+typedef SocketRxMessageKeyedQueryFilter<
+        T extends Query<$SocketRxEventsTable, SocketRxEvent>,
+        V extends sre.CacheKeys?>
     = T Function(T query, V? keys);
-typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T Function(T query);
+typedef SocketRxMessageQueryFilter<
+        T extends Query<$SocketRxEventsTable, SocketRxEvent>>
+    = T Function(T query);
 
 final uuidObj = Uuid();
 
@@ -22,7 +27,8 @@ class SocketRxEvents extends Table {
 
   BoolColumn get online => boolean()();
 
-  DateTimeColumn get timeRecorded => dateTime().clientDefault(() => DateTime.now())();
+  DateTimeColumn get timeRecorded =>
+      dateTime().clientDefault(() => DateTime.now())();
 
   DateTimeColumn get timeReceived => dateTime()();
 
@@ -63,39 +69,46 @@ class SocketRxEvents extends Table {
 }
 
 @UseDao(tables: [SocketRxEvents])
-class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDaoMixin {
+class SocketRxEventDao extends DatabaseAccessor<Database>
+    with _$SocketRxEventDaoMixin {
   final Database db;
 
   SocketRxEventDao(this.db) : super(db);
 
   Future<int> deleteExpired() {
-    return (delete(socketRxEvents)..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now()))).go();
+    return (delete(socketRxEvents)
+          ..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now())))
+        .go();
   }
 
   Future<int> invalidateCacheForMessageType(SocketRxMessage message) {
-    return invalidateCache((q) => q..where((tbl) => tbl.type.equals(message.messageType)));
+    return invalidateCache(
+        (q) => q..where((tbl) => tbl.type.equals(message.messageType)));
   }
 
   Future<int> invalidateCacheForCacheUuid(SocketRxMessage message) {
-    return invalidateCache((q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)));
+    return invalidateCache(
+        (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)));
   }
 
   Future<int> invalidateCache(
-      [SocketRxMessageQueryFilter<DeleteStatement<$SocketRxEventsTable, SocketRxEvent>>? filter]) {
+      [SocketRxMessageQueryFilter<
+              DeleteStatement<$SocketRxEventsTable, SocketRxEvent>>?
+          filter]) {
     return ((filter ?? (f) => f)(delete(socketRxEvents))).go();
   }
 
-  Future cacheEvent(SocketRxMessage message) async {
-    if (message.message == null || message.cache == null) return;
+  Future cacheEvent(SocketRxMessage message, {String? uuid}) async {
+    if (message.cache == null) return;
     print('caching ${message.messageType}');
     return await into(socketRxEvents).insertOnConflictUpdate(
       SocketRxEventsCompanion.insert(
         uuid: message.cacheUuid,
         type: message.messageType,
-        jsonContent: message.message!.toString(),
-        timeReceived: message.message!.time,
+        jsonContent: message.message.toString(),
+        timeReceived: message.message.time,
         expires: DateTime.now().add(message.cache!),
-        online: message.message!.online,
+        online: message.message.online,
         dateKey0: Value(message.getCacheVal(CacheKeyType.date, 0)),
         dateKey1: Value(message.getCacheVal(CacheKeyType.date, 1)),
         dateKey2: Value(message.getCacheVal(CacheKeyType.date, 2)),
@@ -115,8 +128,10 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
     );
   }
 
-  SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> filter(SocketRxMessage message) {
-    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query = select(socketRxEvents);
+  SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> filter(
+      SocketRxMessage message) {
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
+        select(socketRxEvents);
     query.where((tbl) => tbl.type.equals(message.messageType));
     query.where((tbl) => tbl.expires.isBiggerOrEqualValue(DateTime.now()));
     query.orderBy([(o) => OrderingTerm(expression: o.timeReceived)]);
