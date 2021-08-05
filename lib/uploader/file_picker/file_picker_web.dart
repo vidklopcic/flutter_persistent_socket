@@ -5,9 +5,9 @@ import 'package:moor/moor.dart';
 import 'dart:html' as html;
 import 'file_picker_types.dart';
 
-Future<List<XFile>> pickXFile({FileType? accept}) {
+Future<List<XFile>> pickXFile({FileType? accept, bool multiple=true}) {
   html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-  uploadInput.multiple = true;
+  uploadInput.multiple = multiple;
   switch (accept) {
     case FileType.image:
       uploadInput.accept = 'image/*';
