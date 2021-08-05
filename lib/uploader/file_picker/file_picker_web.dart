@@ -12,6 +12,9 @@ Future<List<XFile>> pickXFile({FileType? accept}) {
     case FileType.image:
       uploadInput.accept = 'image/*';
       break;
+    case FileType.audio:
+      uploadInput.accept = 'audio/*';
+      break;
     default:
       break;
   }

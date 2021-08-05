@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="merged latest changes into null safety">
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_types.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_types.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +47,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/uploader" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -56,6 +56,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/uploader" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/lib/uploader/file_picker" />
       <recent name="$PROJECT_DIR$/lib/components/files" />
@@ -387,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624988641198</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="always attach auth data">
+      <created>1628148315588</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1628148315588</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -439,7 +447,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="add logging flag for tx / rx event printouts" />
     <MESSAGE value="stop reuploading after 2 failed attempts" />
     <MESSAGE value="stop reuploading after 2 failed attempts - only on web" />
     <MESSAGE value="add ack callback" />
@@ -464,6 +471,7 @@
     <MESSAGE value="fix web filepicker" />
     <MESSAGE value="added async progress" />
     <MESSAGE value="merged latest changes into null safety" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged latest changes into null safety" />
+    <MESSAGE value="always attach auth data" />
+    <option name="LAST_COMMIT_MESSAGE" value="always attach auth data" />
   </component>
 </project>

@@ -1,1 +1,1 @@
-enum FileType { image }
+enum FileType { image, audio }
