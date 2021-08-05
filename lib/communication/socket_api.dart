@@ -110,7 +110,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       'body': message.data,
       'headers': {
         'messageType': message.messageType,
-        'authHeader': message.authRequired ? _token : null,
+        'authHeader': _token,
         'eventTime': gm5Utils.secondsFromEpoch,
         'localTime': gm5Utils.secondsFromEpoch,
         'ack': ack,
