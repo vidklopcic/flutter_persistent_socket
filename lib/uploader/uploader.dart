@@ -21,7 +21,7 @@ class FPSUploader {
   TusStore? store;
 
   FPSUploader(this.api, {this.config = const FPSUploaderConfig()}) {
-    store = FPSTusStore(api);
+    store = kIsWeb ? TusMemoryStore() : FPSTusStore(api);
     _instance = _FPSUploaderInstance._(this);
   }
 
@@ -94,8 +94,8 @@ class _FPSUploaderInstance {
   }
 
   Future<bool> resume(UploadTaskHolder task) async {
-    assert(task.status == UploadStatus.paused ||
-        (task._task.message?.fromCache ?? false));
+    assert(
+        task.status == UploadStatus.paused || (task._task.message.fromCache));
     if (await task._client!.resume()) {
       task._client!.upload();
       task._setStatus(UploadStatus.uploading);
