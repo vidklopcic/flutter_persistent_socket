@@ -144,10 +144,13 @@ abstract class SocketRxMessage {
     String? key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
     final field = data?.getField(data?.getTagNumber(key) ?? -1);
+    if (field == null) return null;
     if (field is ProtobufEnum) {
       return field.value.toDouble();
     }
-    if (type == CacheKeyType.real) return field?.toDouble();
+    if (type == CacheKeyType.real) return field.toDouble();
+    if (type == CacheKeyType.date)
+      return DateTime.fromMillisecondsSinceEpoch(field.toInt());
     return field;
   }
 

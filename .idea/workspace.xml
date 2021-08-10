@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/uploader/uploader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/uploader.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628165663768</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="if web use memory tus store">
+      <created>1628167894390</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1628167894390</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -460,7 +467,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="add ack callback" />
     <MESSAGE value="replaced ack callback with future return value" />
     <MESSAGE value="add ack" />
     <MESSAGE value="simplify cache keys" />
@@ -485,6 +491,7 @@
     <MESSAGE value="always attach auth data" />
     <MESSAGE value="add audio file to accept types" />
     <MESSAGE value="parametrize multiple / single" />
-    <option name="LAST_COMMIT_MESSAGE" value="parametrize multiple / single" />
+    <MESSAGE value="if web use memory tus store" />
+    <option name="LAST_COMMIT_MESSAGE" value="if web use memory tus store" />
   </component>
 </project>
