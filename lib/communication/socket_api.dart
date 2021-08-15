@@ -150,7 +150,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   void fireLocalUpdate(SocketRxMessage message) {
-    message.message?.online = false;
+    message.message.online = false;
     _messageHandlers[message.messageType]?.add(message);
   }
 
