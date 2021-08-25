@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,13 +78,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595243429019</updated>
-    </task>
-    <task id="LOCAL-00001" summary="finalized core functionality (untested)">
-      <created>1595323529095</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1595323529095</updated>
     </task>
     <task id="LOCAL-00002" summary="caching fixes, authentication improvements (check if token valid on start)">
       <created>1595601665588</created>
@@ -421,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628606651349</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="remove redundant null-check">
+      <created>1629049100819</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1629049100819</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -473,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="add ack" />
     <MESSAGE value="simplify cache keys" />
     <MESSAGE value="fixed uploading issues" />
     <MESSAGE value="remove ffi import" />
@@ -498,6 +498,7 @@
     <MESSAGE value="parametrize multiple / single" />
     <MESSAGE value="if web use memory tus store" />
     <MESSAGE value="add support for date keys" />
-    <option name="LAST_COMMIT_MESSAGE" value="add support for date keys" />
+    <MESSAGE value="remove redundant null-check" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove redundant null-check" />
   </component>
 </project>

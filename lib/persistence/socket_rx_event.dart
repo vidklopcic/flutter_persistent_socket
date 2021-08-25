@@ -1,20 +1,17 @@
 import 'dart:async';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart'
-    as sre;
+import 'package:flutter_persistent_socket/communication/socket_messages.dart' as sre;
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 import 'database.dart';
 
 part 'socket_rx_event.g.dart';
 
-typedef SocketRxMessageKeyedQueryFilter<
-        T extends Query<$SocketRxEventsTable, SocketRxEvent>,
+typedef SocketRxMessageKeyedQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>,
         V extends sre.CacheKeys?>
     = T Function(T query, V? keys);
-typedef SocketRxMessageQueryFilter<
-        T extends Query<$SocketRxEventsTable, SocketRxEvent>>
-    = T Function(T query);
+typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T
+    Function(T query);
 
 final uuidObj = Uuid();
 
@@ -27,8 +24,7 @@ class SocketRxEvents extends Table {
 
   BoolColumn get online => boolean()();
 
-  DateTimeColumn get timeRecorded =>
-      dateTime().clientDefault(() => DateTime.now())();
+  DateTimeColumn get timeRecorded => dateTime().clientDefault(() => DateTime.now())();
 
   DateTimeColumn get timeReceived => dateTime()();
 
@@ -69,8 +65,7 @@ class SocketRxEvents extends Table {
 }
 
 @UseDao(tables: [SocketRxEvents])
-class SocketRxEventDao extends DatabaseAccessor<Database>
-    with _$SocketRxEventDaoMixin {
+class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDaoMixin {
   final Database db;
 
   SocketRxEventDao(this.db) : super(db);
@@ -81,20 +76,25 @@ class SocketRxEventDao extends DatabaseAccessor<Database>
         .go();
   }
 
-  Future<int> invalidateCacheForMessageType(SocketRxMessage message) {
-    return invalidateCache(
-        (q) => q..where((tbl) => tbl.type.equals(message.messageType)));
+  Future<int> invalidateCacheForMessageType<T extends SocketRxMessage, V extends sre.CacheKeys>(
+      T message,
+      {SocketRxMessageKeyedQueryFilter<DeleteStatement<$SocketRxEventsTable, SocketRxEvent>, V?>?
+          filter}) {
+    return invalidateCache((q) {
+      q.where((tbl) => tbl.type.equals(message.messageType));
+      if (filter != null) {
+        q = filter(q, message.cacheKeys as V);
+      }
+      return q;
+    });
   }
 
   Future<int> invalidateCacheForCacheUuid(SocketRxMessage message) {
-    return invalidateCache(
-        (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)));
+    return invalidateCache((q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)));
   }
 
   Future<int> invalidateCache(
-      [SocketRxMessageQueryFilter<
-              DeleteStatement<$SocketRxEventsTable, SocketRxEvent>>?
-          filter]) {
+      [SocketRxMessageQueryFilter<DeleteStatement<$SocketRxEventsTable, SocketRxEvent>>? filter]) {
     return ((filter ?? (f) => f)(delete(socketRxEvents))).go();
   }
 
@@ -128,10 +128,8 @@ class SocketRxEventDao extends DatabaseAccessor<Database>
     );
   }
 
-  SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> filter(
-      SocketRxMessage message) {
-    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
-        select(socketRxEvents);
+  SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> filter(SocketRxMessage message) {
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query = select(socketRxEvents);
     query.where((tbl) => tbl.type.equals(message.messageType));
     query.where((tbl) => tbl.expires.isBiggerOrEqualValue(DateTime.now()));
     query.orderBy([(o) => OrderingTerm(expression: o.timeReceived)]);
