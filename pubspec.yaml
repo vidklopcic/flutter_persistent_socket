@@ -20,10 +20,9 @@ dependencies:
   tus_client: ^1.0.0
   gm5_utils:
     git: https://github.com/vidklopcic/gm5_utils.git
-#  gm5_utils:
-#    path: /Users/vidklopcic/StudioProjects/gm5_utils
 
   protobuf:
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:

@@ -5,7 +5,7 @@ import 'package:moor/moor.dart';
 import 'dart:html' as html;
 import 'file_picker_types.dart';
 
-Future<List<XFile>> pickXFile({FileType? accept, bool multiple=true}) {
+Future<List<XFile>> pickXFile({FileType? accept, bool multiple = true}) {
   html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
   uploadInput.multiple = multiple;
   switch (accept) {
@@ -36,7 +36,14 @@ class XFileWeb extends XFile {
           mimeType: htmlFile.type,
           name: htmlFile.name,
           length: htmlFile.size,
-          lastModified: htmlFile.lastModifiedDate,
+          lastModified: () {
+            try {
+              return htmlFile.lastModifiedDate;
+            } catch (e) {
+              print('error getting time for picked file - Safari?');
+              return null;
+            }
+          }(),
         );
 
   Stream<Uint8List> openRead([int? start, int? end]) async* {
@@ -50,8 +57,7 @@ class XFileWeb extends XFile {
     int e = end?.clamp(0, htmlFile.size) ?? htmlFile.size;
     for (; i < e; i += chunkSize) {
       completer = Completer();
-      fileReader
-          .readAsArrayBuffer(htmlFile.slice(i, (i + chunkSize).clamp(0, e)));
+      fileReader.readAsArrayBuffer(htmlFile.slice(i, (i + chunkSize).clamp(0, e)));
       yield await completer.future;
     }
   }
