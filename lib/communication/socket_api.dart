@@ -17,7 +17,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   bool noCache = false;
   bool logging = false;
   int retryCount = 0;
-  static Map<String, SocketApi> _instances = {};
+  static Map<String?, SocketApi> _instances = {};
   String? _token;
 
   int apiVersion = 1;
@@ -38,7 +38,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     await authenticated.changes.firstWhere((element) => element);
   }
 
-  factory SocketApi(String address, {bool alwaysNew = false}) {
+  factory SocketApi(String? address, {bool alwaysNew = false}) {
     if (alwaysNew) {
       return SocketApi._internal(address);
     } else {
@@ -46,7 +46,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     }
   }
 
-  SocketApi._internal(String address) {
+  SocketApi._internal(String? address) {
     setMessages(rxMessages);
     if (address != null) {
       connection = SocketConnector(address);
