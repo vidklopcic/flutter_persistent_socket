@@ -11,7 +11,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:http/http.dart' as http;
 
 class HttpSocketConnector with ChangeNotifier {
-  static const int RECONNECT_INTERVAL_S = 2;
+  static const int RECONNECT_INTERVAL_S = 8;
 
   static final Map<String, HttpSocketConnector> _instances = {};
 
