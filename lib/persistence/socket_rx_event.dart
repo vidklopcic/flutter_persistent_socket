@@ -100,7 +100,6 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
 
   Future cacheEvent(SocketRxMessage message, {String? uuid}) async {
     if (message.cache == null) return;
-    print('caching ${message.messageType}');
     return await into(socketRxEvents).insertOnConflictUpdate(
       SocketRxEventsCompanion.insert(
         uuid: message.cacheUuid,

@@ -90,7 +90,6 @@ class SocketTxEventDao extends DatabaseAccessor<Database>
 
   Future cacheEvent(SocketTxMessage message, String jsonContent) async {
     if (message.cache == null) return;
-    print('caching ${message.messageType}');
     return await into(socketTxEvents).insertOnConflictUpdate(
       SocketTxEventsCompanion.insert(
         uuid: message.cacheUuid,

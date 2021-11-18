@@ -78,13 +78,6 @@
       <option name="presentableId" value="Default" />
       <updated>1595243429019</updated>
     </task>
-    <task id="LOCAL-00004" summary="websocket reconnect working">
-      <created>1595678931685</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1595678931685</updated>
-    </task>
     <task id="LOCAL-00005" summary="prepared for websocket uploads">
       <created>1595688485347</created>
       <option name="number" value="00005" />
@@ -421,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633081027530</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="increase reconnect delay">
+      <created>1633541265821</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1633541265821</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -473,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="remove ffi import" />
     <MESSAGE value="discen between null and default value for cacheUuid" />
     <MESSAGE value="add option to disable caching" />
     <MESSAGE value="added post files controller" />
@@ -498,6 +497,7 @@
     <MESSAGE value="remove redundant null-check" />
     <MESSAGE value="catch safari exception for file picker" />
     <MESSAGE value="fix null-safety" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix null-safety" />
+    <MESSAGE value="increase reconnect delay" />
+    <option name="LAST_COMMIT_MESSAGE" value="increase reconnect delay" />
   </component>
 </project>
