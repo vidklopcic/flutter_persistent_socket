@@ -12,12 +12,13 @@ class MessageGen():
         self.proto = proto.strip()
         self.spec = spec.strip()
         self.spec_items = [i.strip() for i in self.spec.split('\n') if i.strip()]
+        self.package = self.path.split(".proto")[0].split("/")[-1]
 
     def get_type(self):
         return re.search('type.+=.+\'(.+)\'', self.spec).group(1)
 
     def get_import(self):
-        return 'from proto.%s import *' % self.path.split('.proto')[0].split('/')[-1]
+        return 'from proto.%s import *' % self.package
 
     def get_server_prefix(self):
         if 'client' in re.search('origin.+=(.+)', self.spec).group(1):

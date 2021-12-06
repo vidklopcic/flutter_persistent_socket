@@ -52,6 +52,7 @@ class MessageGen():
         self.proto = proto.strip()
         self.spec = spec.strip()
         self.spec_items = [i.strip() for i in self.spec.split('\n') if i.strip()]
+        self.package = self.path.split(".proto")[0].split("/")[-1]
 
     def get_type(self):
         return re.search('type.+=.+\'(.+)\'', self.spec).group(1)
@@ -60,7 +61,7 @@ class MessageGen():
         prefix = ''
         if 'flutter_persistent_socket' in self.path:
             prefix = 'package:flutter_persistent_socket/'
-        return "import '{}proto/{}.pb.dart';".format(prefix, self.path.split('.proto')[0].split('/')[-1])
+        return "import '{}proto/{}.pb.dart';".format(prefix, self.package)
 
     def get_client_prefix(self):
         if 'client' in re.search('origin.+=(.+)', self.spec).group(1):
@@ -196,7 +197,8 @@ for f in params.protos:
     proto_content = open(f, 'r', encoding='utf-8').read()
     generators += [MessageGen(f, i[0], i[1]) for i in
                    re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
-generators = set(generators)
+generators = list(set(generators))
+generators.sort(key=lambda g: f'{g.package}_{g.proto}')
 
 imports = set()
 imports.add("import 'package:flutter_persistent_socket/communication/socket_messages.dart';")

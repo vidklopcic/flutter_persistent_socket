@@ -21,7 +21,7 @@ dependencies:
   gm5_utils:
     git: https://github.com/vidklopcic/gm5_utils.git
 
-  protobuf:
+  protobuf: ^2.0.1
   http: ^0.13.3
 
 dev_dependencies:

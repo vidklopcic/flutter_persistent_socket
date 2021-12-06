@@ -10,6 +10,7 @@ if not os.path.isdir('proto') or not os.path.isfile('fps_config.json'):
     sys.exit(1)
 s.run('rm -rf ./proto/*', shell=True)
 config = json.load(open('fps_config.json'))
+config['protos'] = [os.path.expandvars(p) for p in config['protos']]
 
 proto_path = ' '.join(['-I ' + i for i in config['protos']])
 protos = ' '.join([i.rstrip('/') + '**/*.proto' for i in config['protos']])

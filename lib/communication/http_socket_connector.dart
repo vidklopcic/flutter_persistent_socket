@@ -25,10 +25,10 @@ class HttpSocketConnector with ChangeNotifier {
   Observable<bool> connected = Observable(false);
 
   Future get whenConnected async {
-    if (connected.val) {
+    if (connected.val!) {
       return;
     }
-    await connected.changes.firstWhere((element) => element);
+    await connected.changes.firstWhere((element) => element!);
   }
 
   late StreamController _dataStream;

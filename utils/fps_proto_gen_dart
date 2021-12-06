@@ -20,6 +20,7 @@ except:
 if has_local_proto:
     config['protos'].append('./proto')
 
+config['protos'] = [os.path.expandvars(p) for p in config['protos']]
 print(config)
 
 proto_path = ' '.join(['-I ' + i for i in config['protos']])

@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+import os
+import subprocess as s
+import sys
+import json
+
+PROTO_ROOT = os.environ.get('FPS_PROTO_ROOT')
+if not os.path.isfile('package.json') or not os.path.isfile('fps_config.json'):
+    print('Run the command from react project root, containing fps_config.json')
+    sys.exit(1)
+
+try:
+    config = json.load(open('fps_config.json'))
+except:
+    config = {
+        'protos': []
+    }
+
+config['protos'] = [os.path.expandvars(p) for p in config['protos']]
+print(config)
+
+proto_path = ' '.join(['-p ' + i for i in config['protos']])
+protos = ' '.join([i.rstrip('/') + '**/*.proto' for i in config['protos']])
+if os.path.join(os.getcwd(), 'proto') != PROTO_ROOT:
+    proto_path += f' -p {PROTO_ROOT}'
+    protos += ' ' + PROTO_ROOT.rstrip('/') + '**/*.proto'
+
+s.run('rm -rf ./src/proto/*', shell=True, executable="/bin/zsh")
+s.run(f'pbjs {proto_path} -t static-module -w es6 -o src/proto/compiled.js {protos}', shell=True, executable="/bin/zsh")
+s.run(f'pbts -o src/proto/compiled.d.ts src/proto/compiled.js', shell=True, executable="/bin/zsh")
+
+# s.run("sed -i '' 's/sfiles.pb.dart/package:flutter_persistent_socket\/proto\/sfiles.pb.dart/g' ./src/proto/*",
+#       shell=True, executable="/bin/zsh")
+# s.run("sed -i '' 's/uploader.pb.dart/package:flutter_persistent_socket\/proto\/uploader.pb.dart/g' ./src/proto/*",
+#       shell=True, executable="/bin/zsh")
+
+s.run("fps_react_client_message_gen {}".format(protos), shell=True, executable="/bin/zsh")
+s.run("git add ./src/proto", shell=True, executable="/bin/zsh")

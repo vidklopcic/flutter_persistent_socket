@@ -22,10 +22,10 @@ class SocketConnector with ChangeNotifier {
   bool _closed = false;
 
   Future get whenConnected async {
-    if (connected.val) {
+    if (connected.val!) {
       return;
     }
-    await connected.changes.firstWhere((element) => element);
+    await connected.changes.firstWhere((element) => element!);
   }
 
 

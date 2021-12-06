@@ -4,15 +4,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="react support halfway done">
+      <change afterPath="$PROJECT_DIR$/utils/fps_proto_gen_react" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/fps_react_client_message_gen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/http_socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/http_socket_connector.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen_unsound" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen_unsound" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_dart" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_python" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_python" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fps_python_server_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_python_server_message_gen" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/vidklopcic/.android/avd/Pixel_3a_API_30_x86.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/vidklopcic/.android/avd/7_WSVGA_Tablet_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -43,9 +57,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -54,8 +73,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/uploader" />
       <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/lib/uploader" />
       <recent name="$PROJECT_DIR$/lib/uploader/file_picker" />
       <recent name="$PROJECT_DIR$/lib/components/files" />
     </key>
@@ -77,13 +96,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595243429019</updated>
-    </task>
-    <task id="LOCAL-00005" summary="prepared for websocket uploads">
-      <created>1595688485347</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1595688485347</updated>
+      <workItem from="1638540389015" duration="1210000" />
+      <workItem from="1638785454412" duration="8518000" />
     </task>
     <task id="LOCAL-00006" summary="upload is working">
       <created>1595768282625</created>
@@ -421,8 +435,18 @@
       <option name="project" value="LOCAL" />
       <updated>1633541265821</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="remove redundant print statements">
+      <created>1637235794939</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1637235794939</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ID_ORDER">
@@ -472,8 +496,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="discen between null and default value for cacheUuid" />
     <MESSAGE value="add option to disable caching" />
     <MESSAGE value="added post files controller" />
     <MESSAGE value="add apiVersion" />
@@ -498,6 +520,7 @@
     <MESSAGE value="catch safari exception for file picker" />
     <MESSAGE value="fix null-safety" />
     <MESSAGE value="increase reconnect delay" />
-    <option name="LAST_COMMIT_MESSAGE" value="increase reconnect delay" />
+    <MESSAGE value="remove redundant print statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove redundant print statements" />
   </component>
 </project>

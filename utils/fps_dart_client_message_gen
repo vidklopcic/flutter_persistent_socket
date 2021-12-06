@@ -52,6 +52,7 @@ class MessageGen():
         self.proto = proto.strip()
         self.spec = spec.strip()
         self.spec_items = [i.strip() for i in self.spec.split('\n') if i.strip()]
+        self.package = self.path.split(".proto")[0].split("/")[-1]
 
     def get_type(self):
         return re.search('type.+=.+\'(.+)\'', self.spec).group(1)
@@ -60,7 +61,7 @@ class MessageGen():
         prefix = ''
         if 'flutter_persistent_socket' in self.path:
             prefix = 'package:flutter_persistent_socket/'
-        return "import '{}proto/{}.pb.dart';".format(prefix, self.path.split('.proto')[0].split('/')[-1])
+        return "import '{}proto/{}.pb.dart';".format(prefix, self.package)
 
     def get_client_prefix(self):
         if 'client' in re.search('origin.+=(.+)', self.spec).group(1):
@@ -122,26 +123,30 @@ class MessageGen():
                 text_keys = [to_camel_case(k) for k in text_keys]
                 real_keys = [to_camel_case(k) for k in real_keys]
                 date_keys = [to_camel_case(k) for k in date_keys]
-                common_fields.append('''final {prefix}{proto}CacheKeys cacheKeys = const {prefix}{proto}CacheKeys();'''.format(
-                    prefix=self.get_client_prefix(), proto=self.proto))
+                common_fields.append(
+                    '''final {prefix}{proto}CacheKeys cacheKeys = const {prefix}{proto}CacheKeys();'''.format(
+                        prefix=self.get_client_prefix(), proto=self.proto))
                 cache_fields = []
                 cache_keys = []
                 for i in range(len(text_keys)):
                     text_key = text_keys[i]
                     cache_keys.append(
-                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key, i))
+                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.text, {1}, '{0}');'''.format(text_key,
+                                                                                                            i))
                     cache_fields.append(
                         '''GeneratedColumn<String?> {0}(table) => {0}Key.textField(table);'''.format(text_key, i))
                 for i in range(len(real_keys)):
                     real_key = real_keys[i]
                     cache_keys.append(
-                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key, i))
+                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.real, {1}, '{0}');'''.format(real_key,
+                                                                                                            i))
                     cache_fields.append(
                         '''GeneratedColumn<double?> {0}(table) => {0}Key.realField(table);'''.format(real_key, i))
                 for i in range(len(date_keys)):
                     date_key = date_keys[i]
                     cache_keys.append(
-                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key, i))
+                        '''final CacheKey {0}Key = const CacheKey(CacheKeyType.date, {1}, '{0}');'''.format(date_key,
+                                                                                                            i))
                     cache_fields.append(
                         '''GeneratedColumn<DateTime?> {0}(table) => {0}Key.dateField(table);'''.format(date_key, i))
                 cache_class = CACHE_KEYS_CLASS.format(prefix=self.get_client_prefix(), proto=self.proto,
@@ -196,7 +201,8 @@ for f in params.protos:
     proto_content = open(f, 'r', encoding='utf-8').read()
     generators += [MessageGen(f, i[0], i[1]) for i in
                    re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
-generators = set(generators)
+generators = list(set(generators))
+generators.sort(key=lambda g: f'{g.package}_{g.proto}')
 
 imports = set()
 imports.add("import 'package:flutter_persistent_socket/communication/socket_messages.dart';")
