@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="react support halfway done">
-      <change afterPath="$PROJECT_DIR$/utils/fps_proto_gen_react" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/fps_react_client_message_gen" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/http_socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/http_socket_connector.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_connector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_connector.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_dart_client_message_gen_unsound" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_dart_client_message_gen_unsound" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_dart" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fps_proto_gen_python" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_proto_gen_python" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/fps_python_server_message_gen" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fps_python_server_message_gen" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +14,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/vidklopcic/.android/avd/7_WSVGA_Tablet_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -98,13 +85,8 @@
       <updated>1595243429019</updated>
       <workItem from="1638540389015" duration="1210000" />
       <workItem from="1638785454412" duration="8518000" />
-    </task>
-    <task id="LOCAL-00006" summary="upload is working">
-      <created>1595768282625</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1595768282625</updated>
+      <workItem from="1638951362876" duration="1101000" />
+      <workItem from="1638953510994" duration="1144000" />
     </task>
     <task id="LOCAL-00007" summary="depend from github">
       <created>1597226734575</created>
@@ -442,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637235794939</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="react">
+      <created>1638826080412</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1638826080413</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +485,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add option to disable caching" />
     <MESSAGE value="added post files controller" />
     <MESSAGE value="add apiVersion" />
     <MESSAGE value="stability improvements, post uploader" />
@@ -521,6 +509,7 @@
     <MESSAGE value="fix null-safety" />
     <MESSAGE value="increase reconnect delay" />
     <MESSAGE value="remove redundant print statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove redundant print statements" />
+    <MESSAGE value="react" />
+    <option name="LAST_COMMIT_MESSAGE" value="react" />
   </component>
 </project>

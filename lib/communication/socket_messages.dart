@@ -31,8 +31,7 @@ class SocketRxMessageData {
 
   /// Tries to find the `messageType` attribute. There are two possible locations in order to be compatible
   /// with skljoc
-  String get messageType =>
-      data['headers']['messageType'] ?? data['messageType'];
+  String get messageType => data['headers']['messageType'] ?? data['messageType'];
 
   /// Decoded JSON map.
   Map<String, dynamic> data;
@@ -81,7 +80,7 @@ abstract class SocketTxMessage {
       : cacheKeys = null,
         cache = null;
 
-  Map<String, dynamic> get data => proto?.writeToJsonMap() ?? {};
+  Map<String, dynamic> get data => (proto?.toProto3Json() ?? {}) as Map<String, dynamic>;
 
   /// Returns the value from the `GeneratedMessage data` based on a string key (`null` if the field does not exist).
   @override
@@ -132,7 +131,7 @@ abstract class SocketRxMessage {
         cacheKeys = null,
         message = message ?? SocketRxMessageData(null, online: false) {
     if (message != null) {
-      data?.mergeFromJsonMap(message.body);
+      data?.mergeFromProto3Json(message.body);
     }
   }
 
@@ -149,8 +148,7 @@ abstract class SocketRxMessage {
       return field.value.toDouble();
     }
     if (type == CacheKeyType.real) return field.toDouble();
-    if (type == CacheKeyType.date)
-      return DateTime.fromMillisecondsSinceEpoch(field.toInt());
+    if (type == CacheKeyType.date) return DateTime.fromMillisecondsSinceEpoch(field.toInt());
     return field;
   }
 
@@ -163,9 +161,7 @@ abstract class SocketRxMessage {
     message.online = false;
     message.raw = data?.writeToJson();
 
-    if (removeOldIfUuidChanged &&
-        message.cacheUuid != null &&
-        cacheUuid != message.cacheUuid) {
+    if (removeOldIfUuidChanged && message.cacheUuid != null && cacheUuid != message.cacheUuid) {
       await database.socketRxEventDao.invalidateCache(
         (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
       );
@@ -217,10 +213,7 @@ class CacheKeys {
   final List<String> realKeys;
   final List<String> dateKeys;
 
-  const CacheKeys(
-      {this.textKeys = const [],
-      this.realKeys = const [],
-      this.dateKeys = const []});
+  const CacheKeys({this.textKeys = const [], this.realKeys = const [], this.dateKeys = const []});
 
   List<String> get keys => textKeys + realKeys + dateKeys;
 
