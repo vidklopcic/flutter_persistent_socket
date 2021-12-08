@@ -161,9 +161,9 @@ generators.sort(key=lambda g: f'{g.package}_{g.proto}')
 
 imports = set()
 if config.get('proto-socket-module', False):
-    imports.add('import {SerializableMessageStatic, SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";')
+    imports.add('import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";')
 else:
-    imports.add('import {SerializableMessageStatic, SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "proto_socket_typescript";')
+    imports.add('import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "proto_socket_typescript";')
 
 import_names = ', '.join(set([i.package for i in generators]))
 imports.add(f'import {{{import_names}}} from "./compiled";')
