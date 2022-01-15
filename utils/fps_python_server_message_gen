@@ -47,7 +47,8 @@ class {prefix}{proto}({prefix}Message):
     proto = {proto}
     auth_required = {auth}
     permissions = [{permissions}]
-'''.format(prefix=self.get_server_prefix(), proto=self.proto, type=self.get_type(), auth=self.is_auth_required(), permissions=self.permissions())
+'''.format(prefix=self.get_server_prefix(), proto=self.proto, type=self.get_type(), auth=self.is_auth_required(),
+           permissions=self.permissions())
 
         return message
 
@@ -60,13 +61,12 @@ args.add_argument(type=str, nargs='+', dest='protos', help='list of proto files'
 params = args.parse_args(sys.argv[1:])
 
 generators = []
+imports = {'from abc import ABC', 'import dataclasses', 'from betterproto import *'}
 for f in params.protos:
     proto_content = open(f, 'r', encoding='utf-8').read()
+    imports.add(f'from proto.{os.path.splitext(os.path.basename(f))[0]} import *')
     generators += [MessageGen(f, i[0], i[1]) for i in
                    re.findall('/\*(.+?)\*/\nmessage(.+?){', proto_content, flags=re.S)]
-
-imports = {'from abc import ABC', 'import dataclasses', 'from betterproto import *'}
-imports.update(set([i.get_import() for i in generators]))
 
 with open('proto/messages.py', 'w', encoding='utf-8') as f:
     f.write('\n'.join(imports))
