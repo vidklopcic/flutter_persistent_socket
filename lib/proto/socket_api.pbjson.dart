@@ -15,11 +15,12 @@ const Ack$json = const {
     const {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
     const {'1': 'error_message', '3': 2, '4': 1, '5': 9, '10': 'errorMessage'},
     const {'1': 'async_progress_key', '3': 3, '4': 1, '5': 9, '10': 'asyncProgressKey'},
+    const {'1': 'error_code', '3': 4, '4': 1, '5': 9, '10': 'errorCode'},
   ],
 };
 
 /// Descriptor for `Ack`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List ackDescriptor = $convert.base64Decode('CgNBY2sSEgoEdXVpZBgBIAEoCVIEdXVpZBIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck1lc3NhZ2USLAoSYXN5bmNfcHJvZ3Jlc3Nfa2V5GAMgASgJUhBhc3luY1Byb2dyZXNzS2V5');
+final $typed_data.Uint8List ackDescriptor = $convert.base64Decode('CgNBY2sSEgoEdXVpZBgBIAEoCVIEdXVpZBIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck1lc3NhZ2USLAoSYXN5bmNfcHJvZ3Jlc3Nfa2V5GAMgASgJUhBhc3luY1Byb2dyZXNzS2V5Eh0KCmVycm9yX2NvZGUYBCABKAlSCWVycm9yQ29kZQ==');
 @$core.Deprecated('Use asyncProgressDescriptor instead')
 const AsyncProgress$json = const {
   '1': 'AsyncProgress',

@@ -331,48 +331,27 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(
-      uuid.hashCode,
-      $mrjc(
-          type.hashCode,
-          $mrjc(
-              jsonContent.hashCode,
-              $mrjc(
-                  timeRecorded.hashCode,
-                  $mrjc(
-                      expires.hashCode,
-                      $mrjc(
-                          dateKey0.hashCode,
-                          $mrjc(
-                              dateKey1.hashCode,
-                              $mrjc(
-                                  dateKey2.hashCode,
-                                  $mrjc(
-                                      dateKey3.hashCode,
-                                      $mrjc(
-                                          dateKey4.hashCode,
-                                          $mrjc(
-                                              textKey0.hashCode,
-                                              $mrjc(
-                                                  textKey1.hashCode,
-                                                  $mrjc(
-                                                      textKey2.hashCode,
-                                                      $mrjc(
-                                                          textKey3.hashCode,
-                                                          $mrjc(
-                                                              textKey4.hashCode,
-                                                              $mrjc(
-                                                                  realKey0
-                                                                      .hashCode,
-                                                                  $mrjc(
-                                                                      realKey1
-                                                                          .hashCode,
-                                                                      $mrjc(
-                                                                          realKey2
-                                                                              .hashCode,
-                                                                          $mrjc(
-                                                                              realKey3.hashCode,
-                                                                              realKey4.hashCode))))))))))))))))))));
+  int get hashCode => Object.hash(
+      uuid,
+      type,
+      jsonContent,
+      timeRecorded,
+      expires,
+      dateKey0,
+      dateKey1,
+      dateKey2,
+      dateKey3,
+      dateKey4,
+      textKey0,
+      textKey1,
+      textKey2,
+      textKey3,
+      textKey4,
+      realKey0,
+      realKey1,
+      realKey2,
+      realKey3,
+      realKey4);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -658,89 +637,109 @@ class $SocketTxEventsTable extends SocketTxEvents
   final String? _alias;
   $SocketTxEventsTable(this._db, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
+  @override
   late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
       'uuid', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
   late final GeneratedColumn<String?> type = GeneratedColumn<String?>(
       'type', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _jsonContentMeta =
       const VerificationMeta('jsonContent');
+  @override
   late final GeneratedColumn<String?> jsonContent = GeneratedColumn<String?>(
       'json_content', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
+  @override
   late final GeneratedColumn<DateTime?> timeRecorded =
       GeneratedColumn<DateTime?>('time_recorded', aliasedName, false,
-          typeName: 'INTEGER',
+          type: const IntType(),
           requiredDuringInsert: false,
           clientDefault: () => DateTime.now());
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
+  @override
   late final GeneratedColumn<DateTime?> expires = GeneratedColumn<DateTime?>(
       'expires', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _dateKey0Meta = const VerificationMeta('dateKey0');
+  @override
   late final GeneratedColumn<DateTime?> dateKey0 = GeneratedColumn<DateTime?>(
       'date_key0', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey1Meta = const VerificationMeta('dateKey1');
+  @override
   late final GeneratedColumn<DateTime?> dateKey1 = GeneratedColumn<DateTime?>(
       'date_key1', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey2Meta = const VerificationMeta('dateKey2');
+  @override
   late final GeneratedColumn<DateTime?> dateKey2 = GeneratedColumn<DateTime?>(
       'date_key2', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey3Meta = const VerificationMeta('dateKey3');
+  @override
   late final GeneratedColumn<DateTime?> dateKey3 = GeneratedColumn<DateTime?>(
       'date_key3', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey4Meta = const VerificationMeta('dateKey4');
+  @override
   late final GeneratedColumn<DateTime?> dateKey4 = GeneratedColumn<DateTime?>(
       'date_key4', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _textKey0Meta = const VerificationMeta('textKey0');
+  @override
   late final GeneratedColumn<String?> textKey0 = GeneratedColumn<String?>(
       'text_key0', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey1Meta = const VerificationMeta('textKey1');
+  @override
   late final GeneratedColumn<String?> textKey1 = GeneratedColumn<String?>(
       'text_key1', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey2Meta = const VerificationMeta('textKey2');
+  @override
   late final GeneratedColumn<String?> textKey2 = GeneratedColumn<String?>(
       'text_key2', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey3Meta = const VerificationMeta('textKey3');
+  @override
   late final GeneratedColumn<String?> textKey3 = GeneratedColumn<String?>(
       'text_key3', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey4Meta = const VerificationMeta('textKey4');
+  @override
   late final GeneratedColumn<String?> textKey4 = GeneratedColumn<String?>(
       'text_key4', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _realKey0Meta = const VerificationMeta('realKey0');
+  @override
   late final GeneratedColumn<double?> realKey0 = GeneratedColumn<double?>(
       'real_key0', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey1Meta = const VerificationMeta('realKey1');
+  @override
   late final GeneratedColumn<double?> realKey1 = GeneratedColumn<double?>(
       'real_key1', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey2Meta = const VerificationMeta('realKey2');
+  @override
   late final GeneratedColumn<double?> realKey2 = GeneratedColumn<double?>(
       'real_key2', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey3Meta = const VerificationMeta('realKey3');
+  @override
   late final GeneratedColumn<double?> realKey3 = GeneratedColumn<double?>(
       'real_key3', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey4Meta = const VerificationMeta('realKey4');
+  @override
   late final GeneratedColumn<double?> realKey4 = GeneratedColumn<double?>(
       'real_key4', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uuid,
@@ -1228,48 +1227,30 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(
-      uuid.hashCode,
-      $mrjc(
-          type.hashCode,
-          $mrjc(
-              jsonContent.hashCode,
-              $mrjc(
-                  online.hashCode,
-                  $mrjc(
-                      timeRecorded.hashCode,
-                      $mrjc(
-                          timeReceived.hashCode,
-                          $mrjc(
-                              expires.hashCode,
-                              $mrjc(
-                                  dateKey0.hashCode,
-                                  $mrjc(
-                                      dateKey1.hashCode,
-                                      $mrjc(
-                                          dateKey2.hashCode,
-                                          $mrjc(
-                                              dateKey3.hashCode,
-                                              $mrjc(
-                                                  dateKey4.hashCode,
-                                                  $mrjc(
-                                                      textKey0.hashCode,
-                                                      $mrjc(
-                                                          textKey1.hashCode,
-                                                          $mrjc(
-                                                              textKey2.hashCode,
-                                                              $mrjc(
-                                                                  textKey3
-                                                                      .hashCode,
-                                                                  $mrjc(
-                                                                      textKey4
-                                                                          .hashCode,
-                                                                      $mrjc(
-                                                                          realKey0
-                                                                              .hashCode,
-                                                                          $mrjc(
-                                                                              realKey1.hashCode,
-                                                                              $mrjc(realKey2.hashCode, $mrjc(realKey3.hashCode, realKey4.hashCode))))))))))))))))))))));
+  int get hashCode => Object.hashAll([
+        uuid,
+        type,
+        jsonContent,
+        online,
+        timeRecorded,
+        timeReceived,
+        expires,
+        dateKey0,
+        dateKey1,
+        dateKey2,
+        dateKey3,
+        dateKey4,
+        textKey0,
+        textKey1,
+        textKey2,
+        textKey3,
+        textKey4,
+        realKey0,
+        realKey1,
+        realKey2,
+        realKey3,
+        realKey4
+      ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1581,100 +1562,122 @@ class $SocketRxEventsTable extends SocketRxEvents
   final String? _alias;
   $SocketRxEventsTable(this._db, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
+  @override
   late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
       'uuid', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
   late final GeneratedColumn<String?> type = GeneratedColumn<String?>(
       'type', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _jsonContentMeta =
       const VerificationMeta('jsonContent');
+  @override
   late final GeneratedColumn<String?> jsonContent = GeneratedColumn<String?>(
       'json_content', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _onlineMeta = const VerificationMeta('online');
+  @override
   late final GeneratedColumn<bool?> online = GeneratedColumn<bool?>(
       'online', aliasedName, false,
-      typeName: 'INTEGER',
+      type: const BoolType(),
       requiredDuringInsert: true,
       defaultConstraints: 'CHECK (online IN (0, 1))');
   final VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
+  @override
   late final GeneratedColumn<DateTime?> timeRecorded =
       GeneratedColumn<DateTime?>('time_recorded', aliasedName, false,
-          typeName: 'INTEGER',
+          type: const IntType(),
           requiredDuringInsert: false,
           clientDefault: () => DateTime.now());
   final VerificationMeta _timeReceivedMeta =
       const VerificationMeta('timeReceived');
+  @override
   late final GeneratedColumn<DateTime?> timeReceived =
       GeneratedColumn<DateTime?>('time_received', aliasedName, false,
-          typeName: 'INTEGER', requiredDuringInsert: true);
+          type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _expiresMeta = const VerificationMeta('expires');
+  @override
   late final GeneratedColumn<DateTime?> expires = GeneratedColumn<DateTime?>(
       'expires', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _dateKey0Meta = const VerificationMeta('dateKey0');
+  @override
   late final GeneratedColumn<DateTime?> dateKey0 = GeneratedColumn<DateTime?>(
       'date_key0', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey1Meta = const VerificationMeta('dateKey1');
+  @override
   late final GeneratedColumn<DateTime?> dateKey1 = GeneratedColumn<DateTime?>(
       'date_key1', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey2Meta = const VerificationMeta('dateKey2');
+  @override
   late final GeneratedColumn<DateTime?> dateKey2 = GeneratedColumn<DateTime?>(
       'date_key2', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey3Meta = const VerificationMeta('dateKey3');
+  @override
   late final GeneratedColumn<DateTime?> dateKey3 = GeneratedColumn<DateTime?>(
       'date_key3', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _dateKey4Meta = const VerificationMeta('dateKey4');
+  @override
   late final GeneratedColumn<DateTime?> dateKey4 = GeneratedColumn<DateTime?>(
       'date_key4', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _textKey0Meta = const VerificationMeta('textKey0');
+  @override
   late final GeneratedColumn<String?> textKey0 = GeneratedColumn<String?>(
       'text_key0', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey1Meta = const VerificationMeta('textKey1');
+  @override
   late final GeneratedColumn<String?> textKey1 = GeneratedColumn<String?>(
       'text_key1', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey2Meta = const VerificationMeta('textKey2');
+  @override
   late final GeneratedColumn<String?> textKey2 = GeneratedColumn<String?>(
       'text_key2', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey3Meta = const VerificationMeta('textKey3');
+  @override
   late final GeneratedColumn<String?> textKey3 = GeneratedColumn<String?>(
       'text_key3', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _textKey4Meta = const VerificationMeta('textKey4');
+  @override
   late final GeneratedColumn<String?> textKey4 = GeneratedColumn<String?>(
       'text_key4', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _realKey0Meta = const VerificationMeta('realKey0');
+  @override
   late final GeneratedColumn<double?> realKey0 = GeneratedColumn<double?>(
       'real_key0', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey1Meta = const VerificationMeta('realKey1');
+  @override
   late final GeneratedColumn<double?> realKey1 = GeneratedColumn<double?>(
       'real_key1', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey2Meta = const VerificationMeta('realKey2');
+  @override
   late final GeneratedColumn<double?> realKey2 = GeneratedColumn<double?>(
       'real_key2', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey3Meta = const VerificationMeta('realKey3');
+  @override
   late final GeneratedColumn<double?> realKey3 = GeneratedColumn<double?>(
       'real_key3', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _realKey4Meta = const VerificationMeta('realKey4');
+  @override
   late final GeneratedColumn<double?> realKey4 = GeneratedColumn<double?>(
       'real_key4', aliasedName, true,
-      typeName: 'REAL', requiredDuringInsert: false);
+      type: const RealType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uuid,
