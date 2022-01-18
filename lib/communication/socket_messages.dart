@@ -159,7 +159,7 @@ abstract class SocketRxMessage {
   }) async {
     socketApi?.fireLocalUpdate(this);
     message.online = false;
-    message.raw = data?.writeToJson();
+    message.raw = jsonEncode(data?.toProto3Json());
 
     if (removeOldIfUuidChanged && message.cacheUuid != null && cacheUuid != message.cacheUuid) {
       await database.socketRxEventDao.invalidateCache(

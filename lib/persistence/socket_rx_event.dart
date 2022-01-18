@@ -70,6 +70,14 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
 
   SocketRxEventDao(this.db) : super(db);
 
+  Future deleteEvents(List<SocketRxEvent> events) {
+    return transaction(() async {
+      for (SocketRxEvent e in events) {
+        await delete(socketRxEvents).delete(e);
+      }
+    });
+  }
+
   Future<int> deleteExpired() {
     return (delete(socketRxEvents)
           ..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now())))
