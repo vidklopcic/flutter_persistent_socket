@@ -22,10 +22,10 @@ class SocketConnector with ChangeNotifier {
   bool _closed = false;
 
   Future get whenConnected async {
-    if (connected.val) {
+    if (connected.val!) {
       return;
     }
-    await connected.changes.firstWhere((element) => element);
+    await connected.changes.firstWhere((element) => element!);
   }
 
 
@@ -64,7 +64,7 @@ class SocketConnector with ChangeNotifier {
     bool changed = connected.val != false;
     connected.val = false;
     if (changed) notifyListeners();
-    channel?.sink?.close();
+    channel?.sink.close();
     channel = await getWebSocketChannel(address, onData: _onData, onDone: _onDone, onError: _onError);
     if (channel == null) return;
     connected.val = true;
@@ -74,7 +74,7 @@ class SocketConnector with ChangeNotifier {
 
   void close() {
     _closed = true;
-    channel?.sink?.close();
+    channel?.sink.close();
     _instances.remove(address);
   }
 }

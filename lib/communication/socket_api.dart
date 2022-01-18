@@ -32,10 +32,10 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   FPSUtil util = FPSUtil();
 
   Future get whenAuthenticated async {
-    if (authenticated.val) {
+    if (authenticated.val!) {
       return;
     }
-    await authenticated.changes.firstWhere((element) => element);
+    await authenticated.changes.firstWhere((element) => element!);
   }
 
   factory SocketApi(String? address, {bool alwaysNew = false}) {
@@ -124,7 +124,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
     // send event
     try {
-      connection.channel?.sink?.add(msg);
+      connection.channel?.sink.add(msg);
     } catch (e) {
       print('error sending $e');
       if (isCacheable) {
@@ -192,14 +192,14 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     List<SocketTxEvent> sentEvents = [];
     List<SocketTxEvent> cachedEvents = await database.socketTxEventDao.unhandledEvents(10, offset: offset);
     while (cachedEvents.length > 0) {
-      if (!connection.connected.val) break;
+      if (!connection.connected.val!) break;
       for (SocketTxEvent event in cachedEvents) {
         try {
           Map<String, dynamic> content = json.decode(event.jsonContent);
           content['headers']['localTime'] = gm5Utils.secondsFromEpoch;
           content['headers']['retryCount'] ??= 0;
           content['headers']['retryCount']++;
-          connection.channel?.sink?.add(json.encode(content));
+          connection.channel?.sink.add(json.encode(content));
           if (content['headers']['ack'] != true) {
             sentEvents.add(event);
             continue;
