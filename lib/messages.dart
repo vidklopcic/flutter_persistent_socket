@@ -1,13 +1,13 @@
-import 'proto/sfiles.pb.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'proto/form_errors.pb.dart';
-import 'proto/uploader.pb.dart';
-import 'package:moor/moor.dart';
 import 'package:provider/single_child_widget.dart';
 import 'proto/authentication.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'proto/uploader.pb.dart';
+import 'proto/sfiles.pb.dart';
 import 'proto/socket_api.pb.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'proto/form_errors.pb.dart';
+import 'package:moor/moor.dart';
 
 class TxAppleLogin extends SocketTxMessage {
   static const String type = 'apple-login';

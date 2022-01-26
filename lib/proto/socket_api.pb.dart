@@ -14,7 +14,7 @@ class Ack extends $pb.GeneratedMessage {
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errorMessage')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'asyncProgressKey')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errorCode')
+    ..a<$core.int>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errorCode', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -23,7 +23,7 @@ class Ack extends $pb.GeneratedMessage {
     $core.String? uuid,
     $core.String? errorMessage,
     $core.String? asyncProgressKey,
-    $core.String? errorCode,
+    $core.int? errorCode,
   }) {
     final _result = create();
     if (uuid != null) {
@@ -89,9 +89,9 @@ class Ack extends $pb.GeneratedMessage {
   void clearAsyncProgressKey() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get errorCode => $_getSZ(3);
+  $core.int get errorCode => $_getIZ(3);
   @$pb.TagNumber(4)
-  set errorCode($core.String v) { $_setString(3, v); }
+  set errorCode($core.int v) { $_setSignedInt32(3, v); }
   @$pb.TagNumber(4)
   $core.bool hasErrorCode() => $_has(3);
   @$pb.TagNumber(4)
