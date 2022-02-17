@@ -633,9 +633,10 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
 
 class $SocketTxEventsTable extends SocketTxEvents
     with TableInfo<$SocketTxEventsTable, SocketTxEvent> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $SocketTxEventsTable(this._db, [this._alias]);
+  $SocketTxEventsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
   late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
@@ -871,13 +872,13 @@ class $SocketTxEventsTable extends SocketTxEvents
   Set<GeneratedColumn> get $primaryKey => {uuid};
   @override
   SocketTxEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return SocketTxEvent.fromData(data, _db,
+    return SocketTxEvent.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $SocketTxEventsTable createAlias(String alias) {
-    return $SocketTxEventsTable(_db, alias);
+    return $SocketTxEventsTable(attachedDatabase, alias);
   }
 }
 
@@ -1558,9 +1559,10 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
 
 class $SocketRxEventsTable extends SocketRxEvents
     with TableInfo<$SocketRxEventsTable, SocketRxEvent> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $SocketRxEventsTable(this._db, [this._alias]);
+  $SocketRxEventsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
   late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
@@ -1825,13 +1827,13 @@ class $SocketRxEventsTable extends SocketRxEvents
   Set<GeneratedColumn> get $primaryKey => {uuid};
   @override
   SocketRxEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return SocketRxEvent.fromData(data, _db,
+    return SocketRxEvent.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $SocketRxEventsTable createAlias(String alias) {
-    return $SocketRxEventsTable(_db, alias);
+    return $SocketRxEventsTable(attachedDatabase, alias);
   }
 }
 

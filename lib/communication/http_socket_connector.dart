@@ -75,7 +75,7 @@ class HttpSocketConnector with ChangeNotifier {
   }
 
   void close() {
-    channel?.sink.close();
+    channel?.sink?.close();
     _instances.remove(address);
   }
 }

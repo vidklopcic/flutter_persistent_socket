@@ -124,7 +124,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
     // send event
     try {
-      connection.channel?.sink.add(msg);
+      connection.channel?.sink?.add(msg);
     } catch (e) {
       print('error sending $e');
       if (isCacheable) {
