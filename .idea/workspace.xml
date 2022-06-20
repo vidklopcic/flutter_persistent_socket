@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/persistence/database.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_native.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_native.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_stub.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_stub.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_web.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploader/file_picker/file_picker_web.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -104,13 +93,6 @@
       <workItem from="1638953510994" duration="1144000" />
       <workItem from="1639076560788" duration="911000" />
       <workItem from="1640783259921" duration="1755000" />
-    </task>
-    <task id="LOCAL-00010" summary="typo">
-      <created>1597668599850</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1597668599850</updated>
     </task>
     <task id="LOCAL-00011" summary="bugfix - remove connector instance on close">
       <created>1598023800933</created>
@@ -448,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642668992138</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="moor -&gt; drift">
+      <created>1655717642978</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1655717642979</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="typo" />
     <MESSAGE value="use https access for public git repos" />
     <MESSAGE value="added file uploading" />
     <MESSAGE value="uploading add id and exit if client is null" />
@@ -528,6 +516,7 @@
     <MESSAGE value="update moor" />
     <MESSAGE value="update dependencies" />
     <MESSAGE value="error code -&gt; int" />
-    <option name="LAST_COMMIT_MESSAGE" value="error code -&gt; int" />
+    <MESSAGE value="moor -&gt; drift" />
+    <option name="LAST_COMMIT_MESSAGE" value="moor -&gt; drift" />
   </component>
 </project>

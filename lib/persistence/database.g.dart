@@ -6,7 +6,7 @@ part of 'database.dart';
 // MoorGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+// ignore_for_file: type=lint
 class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
   final String uuid;
   final String type;
@@ -631,9 +631,10 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
 
 class $SocketTxEventsTable extends SocketTxEvents
     with TableInfo<$SocketTxEventsTable, SocketTxEvent> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $SocketTxEventsTable(this._db, [this._alias]);
+  $SocketTxEventsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
   late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
@@ -875,7 +876,7 @@ class $SocketTxEventsTable extends SocketTxEvents
 
   @override
   $SocketTxEventsTable createAlias(String alias) {
-    return $SocketTxEventsTable(_db, alias);
+    return $SocketTxEventsTable(attachedDatabase, alias);
   }
 }
 
@@ -1554,9 +1555,10 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
 
 class $SocketRxEventsTable extends SocketRxEvents
     with TableInfo<$SocketRxEventsTable, SocketRxEvent> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $SocketRxEventsTable(this._db, [this._alias]);
+  $SocketRxEventsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
   late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
@@ -1827,7 +1829,7 @@ class $SocketRxEventsTable extends SocketRxEvents
 
   @override
   $SocketRxEventsTable createAlias(String alias) {
-    return $SocketRxEventsTable(_db, alias);
+    return $SocketRxEventsTable(attachedDatabase, alias);
   }
 }
 
