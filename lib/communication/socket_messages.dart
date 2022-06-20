@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import 'package:protobuf/protobuf.dart';
 
 class SocketRxMessageData {

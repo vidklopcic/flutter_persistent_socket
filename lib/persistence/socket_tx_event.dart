@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 import 'database.dart';
 
@@ -58,7 +58,7 @@ class SocketTxEvents extends Table {
   Set<Column> get primaryKey => {uuid};
 }
 
-@UseDao(tables: [SocketTxEvents])
+@DriftAccessor(tables: [SocketTxEvents])
 class SocketTxEventDao extends DatabaseAccessor<Database>
     with _$SocketTxEventDaoMixin {
   final Database db;

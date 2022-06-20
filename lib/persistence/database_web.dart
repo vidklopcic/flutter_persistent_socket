@@ -1,6 +1,6 @@
-import 'package:moor/backends.dart';
-import 'package:moor/moor.dart';
-import 'package:moor/moor_web.dart';
+import 'package:drift/backends.dart';
+import 'package:drift/drift.dart';
+import 'package:drift/web.dart';
 
 QueryExecutor? openDatabaseConnection() {
   try {

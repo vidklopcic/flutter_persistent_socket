@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:cross_file/cross_file.dart' show XFile;
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import 'dart:html' as html;
 import 'file_picker_types.dart';
 

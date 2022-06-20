@@ -10,7 +10,7 @@ import 'package:flutter_persistent_socket/util.dart';
 import 'package:gm5_utils/gm5_utils.dart';
 import 'package:gm5_utils/mixins/subsctiptions_mixin.dart';
 import 'package:gm5_utils/types/observable.dart';
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import '../messages.dart';
 
 class SocketApi with SubscriptionsMixin, ChangeNotifier {

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'proto/form_errors.pb.dart';
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 
 class TxAppleLogin extends SocketTxMessage {
   static const String type = 'apple-login';

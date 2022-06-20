@@ -49,9 +49,7 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       this.realKey2,
       this.realKey3,
       this.realKey4});
-  factory SocketTxEvent.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory SocketTxEvent.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return SocketTxEvent(
       uuid: const StringType()
@@ -209,7 +207,7 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
 
   factory SocketTxEvent.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return SocketTxEvent(
       uuid: serializer.fromJson<String>(json['uuid']),
       type: serializer.fromJson<String>(json['type']),
@@ -235,7 +233,7 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'uuid': serializer.toJson<String>(uuid),
       'type': serializer.toJson<String>(type),
@@ -871,7 +869,7 @@ class $SocketTxEventsTable extends SocketTxEvents
   Set<GeneratedColumn> get $primaryKey => {uuid};
   @override
   SocketTxEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return SocketTxEvent.fromData(data, _db,
+    return SocketTxEvent.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
@@ -927,9 +925,7 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       this.realKey2,
       this.realKey3,
       this.realKey4});
-  factory SocketRxEvent.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory SocketRxEvent.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return SocketRxEvent(
       uuid: const StringType()
@@ -1095,7 +1091,7 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
 
   factory SocketRxEvent.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return SocketRxEvent(
       uuid: serializer.fromJson<String>(json['uuid']),
       type: serializer.fromJson<String>(json['type']),
@@ -1123,7 +1119,7 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'uuid': serializer.toJson<String>(uuid),
       'type': serializer.toJson<String>(type),
@@ -1825,7 +1821,7 @@ class $SocketRxEventsTable extends SocketRxEvents
   Set<GeneratedColumn> get $primaryKey => {uuid};
   @override
   SocketRxEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return SocketRxEvent.fromData(data, _db,
+    return SocketRxEvent.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
