@@ -237,7 +237,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       {SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V?>? filter}) async {
     if (message.cache == null || message.cache == Duration.zero) return null;
     SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
-        (filter ?? (f, m) => f)(database.socketRxEventDao.filter(message), message.cacheKeys as V);
+        (filter ?? (f, m) => f)(database.socketRxEventDao.filter(message), message.cacheKeys as V?);
     final events = await query.get();
     List<T> parsedEvents = [];
     List<SocketRxEvent> invalidEvents = [];
@@ -261,7 +261,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   Future<int> fireFromCache<T extends SocketRxMessage, V extends sre.CacheKeys>(T message,
       {SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V?>? filter}) async {
     List<SocketRxMessage> events =
-        await getFromCache(message, filter: (q, k) => (filter ?? (q, k) => q)(q, k as V)) ?? [];
+        await getFromCache(message, filter: (q, k) => (filter ?? (q, k) => q)(q, k as V?)) ?? [];
     for (SocketRxMessage cachedMsg in events) {
       fireLocalUpdate(cachedMsg);
     }

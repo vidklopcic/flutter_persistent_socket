@@ -91,7 +91,7 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
     return invalidateCache((q) {
       q.where((tbl) => tbl.type.equals(message.messageType));
       if (filter != null) {
-        q = filter(q, message.cacheKeys as V);
+        q = filter(q, message.cacheKeys as V?);
       }
       return q;
     });

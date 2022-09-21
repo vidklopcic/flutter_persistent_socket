@@ -90,13 +90,6 @@
       <workItem from="1639076560788" duration="911000" />
       <workItem from="1640783259921" duration="1755000" />
     </task>
-    <task id="LOCAL-00012" summary="add option to invalidate cache">
-      <created>1598024102754</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1598024102754</updated>
-    </task>
     <task id="LOCAL-00013" summary="invalidate token on logout">
       <created>1598024399564</created>
       <option name="number" value="00013" />
@@ -433,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655718902945</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="fix stream type">
+      <created>1660897569230</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1660897569230</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +488,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added file uploading" />
     <MESSAGE value="uploading add id and exit if client is null" />
     <MESSAGE value="refactor api" />
     <MESSAGE value="pass tus store" />
@@ -513,6 +512,7 @@
     <MESSAGE value="error code -&gt; int" />
     <MESSAGE value="moor -&gt; drift" />
     <MESSAGE value="drift version bump" />
-    <option name="LAST_COMMIT_MESSAGE" value="drift version bump" />
+    <MESSAGE value="fix stream type" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix stream type" />
   </component>
 </project>
