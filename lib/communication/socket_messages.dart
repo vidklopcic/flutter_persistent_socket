@@ -131,7 +131,7 @@ abstract class SocketRxMessage {
         cacheKeys = null,
         message = message ?? SocketRxMessageData(null, online: false) {
     if (message != null) {
-      data?.mergeFromProto3Json(message.body);
+      data?.mergeFromProto3Json(message.body, ignoreUnknownFields: true);
     }
   }
 
