@@ -163,7 +163,7 @@ abstract class SocketRxMessage {
 
     if (removeOldIfUuidChanged && message.cacheUuid != null && cacheUuid != message.cacheUuid) {
       await database.socketRxEventDao.invalidateCache(
-        (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)),
+        (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid!)),
       );
       message.cacheUuid = cacheUuid;
     }
@@ -236,17 +236,17 @@ class CacheKey {
 
   const CacheKey(this.type, this.index, this.key);
 
-  GeneratedColumn<DateTime?> dateField($SocketRxEventsTable table) {
+  GeneratedColumn<DateTime> dateField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.date);
     return table.dateKeys[index];
   }
 
-  GeneratedColumn<String?> textField($SocketRxEventsTable table) {
+  GeneratedColumn<String> textField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.text);
     return table.textKeys[index];
   }
 
-  GeneratedColumn<double?> realField($SocketRxEventsTable table) {
+  GeneratedColumn<double> realField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.real);
     return table.realKeys[index];
   }

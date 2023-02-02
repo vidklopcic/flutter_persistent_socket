@@ -5,30 +5,30 @@ author:
 homepage:
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  sqlite3_flutter_libs: ^0.5.3
-  drift: ^1.7.0
-  provider: ^6.0.2
-  path_provider: ^2.0.8
-  path: ^1.8.0
-  uuid: ^3.0.5
-  web_socket_channel: ^2.1.0
+  sqlite3_flutter_libs: ^0.5.12
+  drift: ^2.5.0
+  provider: ^6.0.5
+  path_provider: ^2.0.12
+  path: ^1.8.2
+  uuid: ^3.0.7
+  web_socket_channel: ^2.3.0
   tus_client: ^1.0.2
   gm5_utils:
     git: https://github.com/vidklopcic/gm5_utils.git
 
-  protobuf: ^2.0.1
-  http: ^0.13.4
+  protobuf: ^2.1.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  drift_dev: ^1.7.0
-  build_runner: ^2.1.7
+  drift_dev: ^2.5.1
+  build_runner: ^2.3.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

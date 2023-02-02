@@ -3,7 +3,7 @@
 //  source: authentication.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 
@@ -176,109 +176,6 @@ class Login extends $pb.GeneratedMessage {
   $core.bool hasPassword() => $_has(1);
   @$pb.TagNumber(2)
   void clearPassword() => clearField(2);
-}
-
-class AppleLogin extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AppleLogin', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'authentication'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'code')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'firstName', protoName: 'firstName')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'lastName', protoName: 'lastName')
-    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'useBundleId', protoName: 'useBundleId')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'state')
-    ..hasRequiredFields = false
-  ;
-
-  AppleLogin._() : super();
-  factory AppleLogin({
-    $core.String? code,
-    $core.String? firstName,
-    $core.String? lastName,
-    $core.bool? useBundleId,
-    $core.String? state,
-  }) {
-    final _result = create();
-    if (code != null) {
-      _result.code = code;
-    }
-    if (firstName != null) {
-      _result.firstName = firstName;
-    }
-    if (lastName != null) {
-      _result.lastName = lastName;
-    }
-    if (useBundleId != null) {
-      _result.useBundleId = useBundleId;
-    }
-    if (state != null) {
-      _result.state = state;
-    }
-    return _result;
-  }
-  factory AppleLogin.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AppleLogin.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  AppleLogin clone() => AppleLogin()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AppleLogin copyWith(void Function(AppleLogin) updates) => super.copyWith((message) => updates(message as AppleLogin)) as AppleLogin; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static AppleLogin create() => AppleLogin._();
-  AppleLogin createEmptyInstance() => create();
-  static $pb.PbList<AppleLogin> createRepeated() => $pb.PbList<AppleLogin>();
-  @$core.pragma('dart2js:noInline')
-  static AppleLogin getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AppleLogin>(create);
-  static AppleLogin? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get code => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set code($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasCode() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCode() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get firstName => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set firstName($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasFirstName() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearFirstName() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get lastName => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set lastName($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasLastName() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearLastName() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.bool get useBundleId => $_getBF(3);
-  @$pb.TagNumber(4)
-  set useBundleId($core.bool v) { $_setBool(3, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasUseBundleId() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearUseBundleId() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $core.String get state => $_getSZ(4);
-  @$pb.TagNumber(5)
-  set state($core.String v) { $_setString(4, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasState() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearState() => clearField(5);
 }
 
 class VerifyToken extends $pb.GeneratedMessage {

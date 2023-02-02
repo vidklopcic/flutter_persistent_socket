@@ -3,7 +3,7 @@
 //  source: sfiles.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 
@@ -217,7 +217,6 @@ class UploadedFile extends $pb.GeneratedMessage {
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mime')
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbUrl')
     ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'downloadable')
     ..hasRequiredFields = false
   ;
 
@@ -229,7 +228,6 @@ class UploadedFile extends $pb.GeneratedMessage {
     $core.String? mime,
     $core.String? thumbUrl,
     $core.String? name,
-    $core.bool? downloadable,
   }) {
     final _result = create();
     if (localKey != null) {
@@ -249,9 +247,6 @@ class UploadedFile extends $pb.GeneratedMessage {
     }
     if (name != null) {
       _result.name = name;
-    }
-    if (downloadable != null) {
-      _result.downloadable = downloadable;
     }
     return _result;
   }
@@ -329,15 +324,6 @@ class UploadedFile extends $pb.GeneratedMessage {
   $core.bool hasName() => $_has(5);
   @$pb.TagNumber(6)
   void clearName() => clearField(6);
-
-  @$pb.TagNumber(7)
-  $core.bool get downloadable => $_getBF(6);
-  @$pb.TagNumber(7)
-  set downloadable($core.bool v) { $_setBool(6, v); }
-  @$pb.TagNumber(7)
-  $core.bool hasDownloadable() => $_has(6);
-  @$pb.TagNumber(7)
-  void clearDownloadable() => clearField(7);
 }
 
 class UploadStart extends $pb.GeneratedMessage {
