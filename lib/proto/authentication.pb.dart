@@ -12,16 +12,21 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class LoginToken extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LoginToken', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'authentication'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'token')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'refresh')
     ..hasRequiredFields = false
   ;
 
   LoginToken._() : super();
   factory LoginToken({
     $core.String? token,
+    $core.String? refresh,
   }) {
     final _result = create();
     if (token != null) {
       _result.token = token;
+    }
+    if (refresh != null) {
+      _result.refresh = refresh;
     }
     return _result;
   }
@@ -54,6 +59,15 @@ class LoginToken extends $pb.GeneratedMessage {
   $core.bool hasToken() => $_has(0);
   @$pb.TagNumber(1)
   void clearToken() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get refresh => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set refresh($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasRefresh() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearRefresh() => clearField(2);
 }
 
 class LoginError extends $pb.GeneratedMessage {
@@ -176,6 +190,53 @@ class Login extends $pb.GeneratedMessage {
   $core.bool hasPassword() => $_has(1);
   @$pb.TagNumber(2)
   void clearPassword() => clearField(2);
+}
+
+class RefreshToken extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RefreshToken', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'authentication'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'refreshToken')
+    ..hasRequiredFields = false
+  ;
+
+  RefreshToken._() : super();
+  factory RefreshToken({
+    $core.String? refreshToken,
+  }) {
+    final _result = create();
+    if (refreshToken != null) {
+      _result.refreshToken = refreshToken;
+    }
+    return _result;
+  }
+  factory RefreshToken.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RefreshToken.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RefreshToken clone() => RefreshToken()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RefreshToken copyWith(void Function(RefreshToken) updates) => super.copyWith((message) => updates(message as RefreshToken)) as RefreshToken; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static RefreshToken create() => RefreshToken._();
+  RefreshToken createEmptyInstance() => create();
+  static $pb.PbList<RefreshToken> createRepeated() => $pb.PbList<RefreshToken>();
+  @$core.pragma('dart2js:noInline')
+  static RefreshToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RefreshToken>(create);
+  static RefreshToken? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get refreshToken => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set refreshToken($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRefreshToken() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRefreshToken() => clearField(1);
 }
 
 class VerifyToken extends $pb.GeneratedMessage {

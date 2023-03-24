@@ -13,11 +13,12 @@ const LoginToken$json = const {
   '1': 'LoginToken',
   '2': const [
     const {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
+    const {'1': 'refresh', '3': 2, '4': 1, '5': 9, '10': 'refresh'},
   ],
 };
 
 /// Descriptor for `LoginToken`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List loginTokenDescriptor = $convert.base64Decode('CgpMb2dpblRva2VuEhQKBXRva2VuGAEgASgJUgV0b2tlbg==');
+final $typed_data.Uint8List loginTokenDescriptor = $convert.base64Decode('CgpMb2dpblRva2VuEhQKBXRva2VuGAEgASgJUgV0b2tlbhIYCgdyZWZyZXNoGAIgASgJUgdyZWZyZXNo');
 @$core.Deprecated('Use loginErrorDescriptor instead')
 const LoginError$json = const {
   '1': 'LoginError',
@@ -40,6 +41,16 @@ const Login$json = const {
 
 /// Descriptor for `Login`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List loginDescriptor = $convert.base64Decode('CgVMb2dpbhIaCgh1c2VybmFtZRgBIAEoCVIIdXNlcm5hbWUSGgoIcGFzc3dvcmQYAiABKAlSCHBhc3N3b3Jk');
+@$core.Deprecated('Use refreshTokenDescriptor instead')
+const RefreshToken$json = const {
+  '1': 'RefreshToken',
+  '2': const [
+    const {'1': 'refresh_token', '3': 1, '4': 1, '5': 9, '10': 'refreshToken'},
+  ],
+};
+
+/// Descriptor for `RefreshToken`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List refreshTokenDescriptor = $convert.base64Decode('CgxSZWZyZXNoVG9rZW4SIwoNcmVmcmVzaF90b2tlbhgBIAEoCVIMcmVmcmVzaFRva2Vu');
 @$core.Deprecated('Use verifyTokenDescriptor instead')
 const VerifyToken$json = const {
   '1': 'VerifyToken',

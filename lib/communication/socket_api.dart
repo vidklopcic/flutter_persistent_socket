@@ -19,6 +19,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   int retryCount = 0;
   static Map<String?, SocketApi> _instances = {};
   String? _token;
+  String? _refreshToken;
 
   int apiVersion = 1;
 
@@ -60,8 +61,9 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     notifyListeners();
   }
 
-  void setAuth(String? token) {
+  void setAuth(String? token, [String? refreshToken]) {
     _token = token;
+    _refreshToken = refreshToken;
     authenticated.val = token != null;
     notifyListeners();
   }
@@ -95,6 +97,26 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     }
   }
 
+  Completer<bool>? _refreshingToken;
+
+  Future<bool> refreshToken() async {
+    if (!(_refreshingToken?.isCompleted ?? true)) {
+      return await _refreshingToken!.future;
+    }
+    final refresh = _refreshToken;
+    if (refresh == null || refresh.isEmpty) {
+      return false;
+    }
+    _refreshingToken = Completer();
+    _refreshToken = null;
+    final response = await sendMessage(
+      TxRefreshToken.create((data) => data..refreshToken = refresh),
+      ack: true,
+    );
+    _refreshingToken!.complete(response.status == SocketApiAckStatus.success);
+    return response.status == SocketApiAckStatus.success;
+  }
+
   Future<SocketApiTxStatus> sendMessage(
     SocketTxMessage message, {
     bool ack = false,
@@ -124,7 +146,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
     // send event
     try {
-      connection.channel?.sink?.add(msg);
+      connection.channel?.sink.add(msg);
     } catch (e) {
       print('error sending $e');
       if (isCacheable) {
@@ -180,7 +202,8 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     }
   }
 
-  void _connectionStateChange(bool connected) {}
+  void _connectionStateChange(bool connected) {
+  }
 
   Future<bool> sendCached() async {
     return await _sendCached();

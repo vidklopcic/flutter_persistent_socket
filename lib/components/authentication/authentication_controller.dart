@@ -5,14 +5,15 @@ import '../../messages.dart';
 
 abstract class AuthenticationController with SubscriptionsMixin {
   final SocketApi socketApi;
+  RxLoginToken? token;
 
   AuthenticationController(this.socketApi) {
     listen(socketApi.getMessageHandler(RxLoginToken()), (RxLoginToken message) {
-      socketApi.setAuth(message.data.token);
+      socketApi.setAuth(message.data.token, message.data.refresh);
       onTokenChanged(message.data.token);
     });
     listen(socketApi.getMessageHandler(RxLoginError()), (_) => logout());
-    listen(socketApi.getMessageHandler(RxTokenInvalid()), (_) => logout());
+    listen(socketApi.getMessageHandler(RxTokenInvalid()), (_) => onTokenInvalid());
   }
 
   Future init([String? token]) async {
@@ -39,4 +40,9 @@ abstract class AuthenticationController with SubscriptionsMixin {
   }
 
   void onTokenChanged(String? token) {}
+
+  void onTokenInvalid() {
+    logout();
+    socketApi.refreshToken();
+  }
 }

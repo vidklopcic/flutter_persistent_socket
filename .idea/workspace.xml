@@ -5,39 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fps_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_rx_event.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_rx_event.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_tx_event.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_tx_event.g.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pb.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbenum.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbjson.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/form_errors.pbserver.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,20 +97,6 @@
       <workItem from="1638953510994" duration="1144000" />
       <workItem from="1639076560788" duration="911000" />
       <workItem from="1640783259921" duration="1755000" />
-    </task>
-    <task id="LOCAL-00014" summary="remove timeout for connection on web">
-      <created>1604327101490</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1604327101490</updated>
-    </task>
-    <task id="LOCAL-00015" summary="fix web reconnect issues">
-      <created>1604327436878</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1604327436878</updated>
     </task>
     <task id="LOCAL-00016" summary="minor fixes and file upload improvements">
       <created>1604581108705</created>
@@ -468,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663749165198</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="upgrade packages">
+      <created>1675348435450</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1675348435450</updated>
+    </task>
+    <task id="LOCAL-00064" summary="ignore unknown fields when merging from json">
+      <created>1675348462461</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1675348462461</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,8 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor api" />
-    <MESSAGE value="pass tus store" />
     <MESSAGE value="uploader tweaks" />
     <MESSAGE value="fix web filepicker" />
     <MESSAGE value="added async progress" />
@@ -547,6 +518,8 @@
     <MESSAGE value="drift version bump" />
     <MESSAGE value="fix stream type" />
     <MESSAGE value="fix type cast" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix type cast" />
+    <MESSAGE value="upgrade packages" />
+    <MESSAGE value="ignore unknown fields when merging from json" />
+    <option name="LAST_COMMIT_MESSAGE" value="ignore unknown fields when merging from json" />
   </component>
 </project>

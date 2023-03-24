@@ -1,12 +1,12 @@
-import 'package:drift/drift.dart';
-import 'package:provider/single_child_widget.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'proto/uploader.pb.dart';
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'package:drift/drift.dart';
 import 'proto/sfiles.pb.dart';
 import 'package:provider/provider.dart';
-import 'proto/socket_api.pb.dart';
-import 'proto/uploader.pb.dart';
+import 'package:provider/single_child_widget.dart';
 import 'proto/authentication.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'proto/socket_api.pb.dart';
 
 class TxLogin extends SocketTxMessage {
   static const String type = 'login';
@@ -42,6 +42,19 @@ class RxLoginToken extends SocketRxMessage {
 
   @override
   RxLoginToken fromMessage(SocketRxMessageData message) => RxLoginToken(message);
+}
+
+
+class TxRefreshToken extends SocketTxMessage {
+  static const String type = 'refresh-token';
+  final RefreshToken proto;
+  
+
+  const TxRefreshToken(this.proto) : super(type, authRequired: true);
+
+  static RefreshToken get newProto => RefreshToken();
+
+  static TxRefreshToken create([RefreshToken Function(RefreshToken data)? setData]) => TxRefreshToken((setData ?? (p) => p)(TxRefreshToken.newProto));
 }
 
 
