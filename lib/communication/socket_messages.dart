@@ -33,6 +33,8 @@ class SocketRxMessageData {
   /// with skljoc
   String get messageType => data['headers']['messageType'] ?? data['messageType'];
 
+  String? get uuid => data['headers']['uuid'];
+
   /// Decoded JSON map.
   Map<String, dynamic> data;
 

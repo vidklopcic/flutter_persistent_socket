@@ -123,11 +123,12 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     Duration timeout = const Duration(seconds: 10),
     bool cacheOnNack = true,
     bool cacheOnError = true,
+    String? instanceUuid,
   }) async {
     _txMessageHandlers[message.messageType]?.add(message);
     final isCacheable = message.cache != Duration.zero && message.cache != null;
 
-    String instanceUuid = uuidObj.v4();
+    instanceUuid ??= uuidObj.v4();
     String msg = json.encode({
       'body': message.data,
       'headers': {
@@ -171,6 +172,44 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     return status;
   }
 
+  Future<T> fetch<T extends SocketRxMessage>(SocketTxMessage message, T result,
+      {int timeoutMs = 10000, bool waitConnected = true}) async {
+    if (waitConnected) {
+      await connection.whenConnected;
+    }
+
+    var uuid = uuidObj.v4();
+
+    // wait for response
+    getMessageHandler(result)
+        .where((e) => e.message.uuid == uuid)
+        .timeout(Duration(milliseconds: timeoutMs))
+        .listen((e) {
+      result = e;
+    }).onError((error) {
+      if (this.logging) {
+        print('fetch timeout $message $result');
+      }
+    });
+
+    // send message
+    var response = await this.sendMessage(
+      message,
+      ack: true,
+      timeout: Duration(milliseconds: timeoutMs),
+      instanceUuid: uuid,
+      waitConnected: waitConnected,
+    );
+    if (response.status != SocketApiAckStatus.success) {
+      throw response;
+    }
+    if (!result.message.online) {
+      throw Exception('No response from server.');
+    }
+
+    return result;
+  }
+
   void fireLocalUpdate(SocketRxMessage message) {
     message.message.online = false;
     _messageHandlers[message.messageType]?.add(message);
@@ -202,8 +241,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     }
   }
 
-  void _connectionStateChange(bool connected) {
-  }
+  void _connectionStateChange(bool connected) {}
 
   Future<bool> sendCached() async {
     return await _sendCached();

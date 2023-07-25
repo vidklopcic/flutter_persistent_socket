@@ -7,10 +7,7 @@
     <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/authentication/authentication_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_messages.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,13 +94,6 @@
       <workItem from="1638953510994" duration="1144000" />
       <workItem from="1639076560788" duration="911000" />
       <workItem from="1640783259921" duration="1755000" />
-    </task>
-    <task id="LOCAL-00016" summary="minor fixes and file upload improvements">
-      <created>1604581108705</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1604581108705</updated>
     </task>
     <task id="LOCAL-00017" summary="do not fire from cache for messages that have duration zero">
       <created>1605461015485</created>
@@ -441,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675348462461</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="refresh token (tmp: can be improved!)">
+      <created>1679654466394</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1679654466394</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +492,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="uploader tweaks" />
     <MESSAGE value="fix web filepicker" />
     <MESSAGE value="added async progress" />
     <MESSAGE value="merged latest changes into null safety" />
@@ -520,6 +516,7 @@
     <MESSAGE value="fix type cast" />
     <MESSAGE value="upgrade packages" />
     <MESSAGE value="ignore unknown fields when merging from json" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignore unknown fields when merging from json" />
+    <MESSAGE value="refresh token (tmp: can be improved!)" />
+    <option name="LAST_COMMIT_MESSAGE" value="refresh token (tmp: can be improved!)" />
   </component>
 </project>
