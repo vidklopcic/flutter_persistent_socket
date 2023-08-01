@@ -198,7 +198,6 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       ack: true,
       timeout: Duration(milliseconds: timeoutMs),
       instanceUuid: uuid,
-      waitConnected: waitConnected,
     );
     if (response.status != SocketApiAckStatus.success) {
       throw response;
