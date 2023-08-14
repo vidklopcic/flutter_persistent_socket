@@ -33,7 +33,7 @@ class Database extends _$Database {
       );
 }
 
-class _DummyExecutor with QueryExecutor {
+class _DummyExecutor implements QueryExecutor {
   SqlDialect get dialect => SqlDialect.sqlite;
 
   @override
@@ -73,6 +73,11 @@ class _DummyExecutor with QueryExecutor {
 
   @override
   Future<int> runInsert(String statement, List<Object?> args) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> close() {
     throw UnimplementedError();
   }
 }

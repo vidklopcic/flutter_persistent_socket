@@ -14,4 +14,5 @@ QueryExecutor? openDatabaseConnection() {
   } catch (e) {
     print('error opening native DB: $e.');
   }
+  return null;
 }

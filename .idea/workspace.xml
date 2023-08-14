@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="" />
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/database_native.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_native.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/database_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_web.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,13 +95,6 @@
       <workItem from="1638953510994" duration="1144000" />
       <workItem from="1639076560788" duration="911000" />
       <workItem from="1640783259921" duration="1755000" />
-    </task>
-    <task id="LOCAL-00018" summary="add downloadable field to sfile">
-      <created>1606327302079</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1606327302079</updated>
     </task>
     <task id="LOCAL-00019" summary="add logging flag for tx / rx event printouts">
       <created>1606346546773</created>
@@ -434,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690269984166</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="remove waitConnected param">
+      <created>1690886167201</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1690886167201</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added async progress" />
     <MESSAGE value="merged latest changes into null safety" />
     <MESSAGE value="always attach auth data" />
     <MESSAGE value="add audio file to accept types" />
@@ -513,6 +517,7 @@
     <MESSAGE value="ignore unknown fields when merging from json" />
     <MESSAGE value="refresh token (tmp: can be improved!)" />
     <MESSAGE value="fetch api" />
-    <option name="LAST_COMMIT_MESSAGE" value="fetch api" />
+    <MESSAGE value="remove waitConnected param" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove waitConnected param" />
   </component>
 </project>

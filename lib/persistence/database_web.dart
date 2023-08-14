@@ -8,4 +8,5 @@ QueryExecutor? openDatabaseConnection() {
   } catch (e) {
     print('error opening web DB: $e.');
   }
+  return null;
 }
