@@ -1,12 +1,12 @@
-import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'proto/uploader.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
-import 'package:drift/drift.dart';
-import 'proto/sfiles.pb.dart';
 import 'package:provider/provider.dart';
+import 'proto/uploader.pb.dart';
+import 'proto/socket_api.pb.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'proto/sfiles.pb.dart';
+import 'package:drift/drift.dart';
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:provider/single_child_widget.dart';
 import 'proto/authentication.pb.dart';
-import 'proto/socket_api.pb.dart';
 
 class TxLogin extends SocketTxMessage {
   static const String type = 'login';
@@ -55,6 +55,18 @@ class TxRefreshToken extends SocketTxMessage {
   static RefreshToken get newProto => RefreshToken();
 
   static TxRefreshToken create([RefreshToken Function(RefreshToken data)? setData]) => TxRefreshToken((setData ?? (p) => p)(TxRefreshToken.newProto));
+}
+
+
+class RxRefreshTokenInvalid extends SocketRxMessage {
+  static const String type = 'refresh-token-invalid';
+  final RefreshTokenInvalid data = RefreshTokenInvalid();
+  
+
+  RxRefreshTokenInvalid([SocketRxMessageData? message]) : super(type, message);
+
+  @override
+  RxRefreshTokenInvalid fromMessage(SocketRxMessageData message) => RxRefreshTokenInvalid(message);
 }
 
 
@@ -268,6 +280,7 @@ class TxUploadUFile extends SocketTxMessage {
         List<SocketRxMessage> rxMessages = [
           RxLoginError(),
   RxLoginToken(),
+  RxRefreshTokenInvalid(),
   RxTokenInvalid(),
   RxUploadDone(),
   RxUploadProgress(),

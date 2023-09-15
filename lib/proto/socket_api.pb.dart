@@ -1,47 +1,52 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: socket_api.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class Ack extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Ack', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'socket_api'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errorMessage')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'asyncProgressKey')
-    ..a<$core.int>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errorCode', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+export 'socket_api.pbenum.dart';
 
-  Ack._() : super();
+///
+/// type = 'ack'
+/// origin = server
+class Ack extends $pb.GeneratedMessage {
   factory Ack({
     $core.String? uuid,
     $core.String? errorMessage,
-    $core.String? asyncProgressKey,
     $core.int? errorCode,
   }) {
-    final _result = create();
+    final $result = create();
     if (uuid != null) {
-      _result.uuid = uuid;
+      $result.uuid = uuid;
     }
     if (errorMessage != null) {
-      _result.errorMessage = errorMessage;
-    }
-    if (asyncProgressKey != null) {
-      _result.asyncProgressKey = asyncProgressKey;
+      $result.errorMessage = errorMessage;
     }
     if (errorCode != null) {
-      _result.errorCode = errorCode;
+      $result.errorCode = errorCode;
     }
-    return _result;
+    return $result;
   }
+  Ack._() : super();
   factory Ack.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory Ack.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Ack', package: const $pb.PackageName(_omitMessageNames ? '' : 'socket_api'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..aOS(2, _omitFieldNames ? '' : 'errorMessage')
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'errorCode', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -51,8 +56,10 @@ class Ack extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Ack copyWith(void Function(Ack) updates) => super.copyWith((message) => updates(message as Ack)) as Ack; // ignore: deprecated_member_use
+  Ack copyWith(void Function(Ack) updates) => super.copyWith((message) => updates(message as Ack)) as Ack;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Ack create() => Ack._();
   Ack createEmptyInstance() => create();
@@ -79,63 +86,63 @@ class Ack extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearErrorMessage() => clearField(2);
 
-  @$pb.TagNumber(3)
-  $core.String get asyncProgressKey => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set asyncProgressKey($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasAsyncProgressKey() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearAsyncProgressKey() => clearField(3);
-
   @$pb.TagNumber(4)
-  $core.int get errorCode => $_getIZ(3);
+  $core.int get errorCode => $_getIZ(2);
   @$pb.TagNumber(4)
-  set errorCode($core.int v) { $_setSignedInt32(3, v); }
+  set errorCode($core.int v) { $_setSignedInt32(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasErrorCode() => $_has(3);
+  $core.bool hasErrorCode() => $_has(2);
   @$pb.TagNumber(4)
   void clearErrorCode() => clearField(4);
 }
 
+///
+/// type = 'async-progress'
+/// origin = server
 class AsyncProgress extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AsyncProgress', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'socket_api'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'key')
-    ..a<$core.double>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'progress', $pb.PbFieldType.OD)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'info')
-    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'done')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'errorMessage')
-    ..hasRequiredFields = false
-  ;
-
-  AsyncProgress._() : super();
   factory AsyncProgress({
     $core.String? key,
     $core.double? progress,
     $core.String? info,
     $core.bool? done,
     $core.String? errorMessage,
+    $core.int? errorCode,
   }) {
-    final _result = create();
+    final $result = create();
     if (key != null) {
-      _result.key = key;
+      $result.key = key;
     }
     if (progress != null) {
-      _result.progress = progress;
+      $result.progress = progress;
     }
     if (info != null) {
-      _result.info = info;
+      $result.info = info;
     }
     if (done != null) {
-      _result.done = done;
+      $result.done = done;
     }
     if (errorMessage != null) {
-      _result.errorMessage = errorMessage;
+      $result.errorMessage = errorMessage;
     }
-    return _result;
+    if (errorCode != null) {
+      $result.errorCode = errorCode;
+    }
+    return $result;
   }
+  AsyncProgress._() : super();
   factory AsyncProgress.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory AsyncProgress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AsyncProgress', package: const $pb.PackageName(_omitMessageNames ? '' : 'socket_api'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'key')
+    ..a<$core.double>(2, _omitFieldNames ? '' : 'progress', $pb.PbFieldType.OD)
+    ..aOS(3, _omitFieldNames ? '' : 'info')
+    ..aOB(4, _omitFieldNames ? '' : 'done')
+    ..aOS(5, _omitFieldNames ? '' : 'errorMessage')
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'errorCode', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -145,8 +152,10 @@ class AsyncProgress extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  AsyncProgress copyWith(void Function(AsyncProgress) updates) => super.copyWith((message) => updates(message as AsyncProgress)) as AsyncProgress; // ignore: deprecated_member_use
+  AsyncProgress copyWith(void Function(AsyncProgress) updates) => super.copyWith((message) => updates(message as AsyncProgress)) as AsyncProgress;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AsyncProgress create() => AsyncProgress._();
   AsyncProgress createEmptyInstance() => create();
@@ -199,26 +208,39 @@ class AsyncProgress extends $pb.GeneratedMessage {
   $core.bool hasErrorMessage() => $_has(4);
   @$pb.TagNumber(5)
   void clearErrorMessage() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get errorCode => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set errorCode($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasErrorCode() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearErrorCode() => clearField(6);
 }
 
+///
+/// type = 'upgrade-api-version'
+/// origin = server
 class UpgradeApiVersion extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UpgradeApiVersion', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'socket_api'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'latest', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
-
-  UpgradeApiVersion._() : super();
   factory UpgradeApiVersion({
     $core.int? latest,
   }) {
-    final _result = create();
+    final $result = create();
     if (latest != null) {
-      _result.latest = latest;
+      $result.latest = latest;
     }
-    return _result;
+    return $result;
   }
+  UpgradeApiVersion._() : super();
   factory UpgradeApiVersion.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UpgradeApiVersion.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpgradeApiVersion', package: const $pb.PackageName(_omitMessageNames ? '' : 'socket_api'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'latest', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -228,8 +250,10 @@ class UpgradeApiVersion extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UpgradeApiVersion copyWith(void Function(UpgradeApiVersion) updates) => super.copyWith((message) => updates(message as UpgradeApiVersion)) as UpgradeApiVersion; // ignore: deprecated_member_use
+  UpgradeApiVersion copyWith(void Function(UpgradeApiVersion) updates) => super.copyWith((message) => updates(message as UpgradeApiVersion)) as UpgradeApiVersion;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UpgradeApiVersion create() => UpgradeApiVersion._();
   UpgradeApiVersion createEmptyInstance() => create();
@@ -248,3 +272,6 @@ class UpgradeApiVersion extends $pb.GeneratedMessage {
   void clearLatest() => clearField(1);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

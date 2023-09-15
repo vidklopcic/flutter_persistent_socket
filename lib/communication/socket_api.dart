@@ -80,20 +80,14 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
   Future<SocketApiTxStatus> _waitAck(String instanceUuid, Duration timeout) async {
     try {
-      final msg = await getMessageHandler(RxAck())
-          .where((event) => event.data.uuid == instanceUuid)
-          .first
-          .timeout(timeout) as RxAck;
+      final msg = await getMessageHandler(
+        RxAck(),
+      ).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout);
       final status = msg.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
-      return SocketApiTxStatus(status, msg.data.errorMessage,
-          asyncProgress: msg.data.hasAsyncProgressKey()
-              ? getMessageHandler(RxAsyncProgress())
-                  .cast<RxAsyncProgress>()
-                  .where((event) => event.data.key == msg.data.asyncProgressKey)
-              : null);
+      return SocketApiTxStatus(status, error: msg.data.errorCode, errorMessage: msg.data.errorMessage);
     } catch (e) {
       // timeout
-      return SocketApiTxStatus(SocketApiAckStatus.timeout, 'No response from server.');
+      return SocketApiTxStatus(SocketApiAckStatus.timeout, errorMessage: 'No response from server.');
     }
   }
 
@@ -154,10 +148,10 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         if (logging) print('connection error - caching event!');
         if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
       }
-      return SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
+      return SocketApiTxStatus(SocketApiAckStatus.connectionError, errorMessage: 'Error sending the message.');
     }
 
-    SocketApiTxStatus status = SocketApiTxStatus(SocketApiAckStatus.success, '');
+    SocketApiTxStatus status = SocketApiTxStatus(SocketApiAckStatus.success, errorMessage: '');
 
     if (ack) {
       // handle ack message
@@ -359,29 +353,8 @@ enum SocketApiAckStatus { success, connectionError, timeout, messageError }
 
 class SocketApiTxStatus {
   final SocketApiAckStatus status;
-  final String errorMessage;
-  final Stream<RxAsyncProgress>? asyncProgress;
-  SocketApiTxStatus? _asyncResult;
+  final int? error;
+  final String? errorMessage;
 
-  bool get isAsync => asyncProgress != null;
-
-  SocketApiTxStatus(this.status, this.errorMessage, {this.asyncProgress});
-
-  Future<SocketApiTxStatus> asyncResult({Duration? timeout}) async {
-    if (!this.isAsync) return this;
-    if (_asyncResult != null) return _asyncResult!;
-    try {
-      RxAsyncProgress msg = await this
-          .asyncProgress!
-          .where((event) => event.data.done == true)
-          .first
-          .timeout(timeout ?? Duration(days: 1e10.toInt()));
-      final msgStatus = msg.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
-      _asyncResult = SocketApiTxStatus(msgStatus, msg.data.errorMessage);
-    } catch (e) {
-      // timeout
-      _asyncResult = SocketApiTxStatus(SocketApiAckStatus.timeout, 'No response from server.');
-    }
-    return _asyncResult!;
-  }
+  SocketApiTxStatus(this.status, {this.error, this.errorMessage});
 }

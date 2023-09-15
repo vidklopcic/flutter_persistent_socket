@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: uploader.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -14,22 +18,12 @@ import 'uploader.pbenum.dart';
 
 export 'uploader.pbenum.dart';
 
+///
+/// type = 'upload-task'
+/// origin = server
+/// client cache = years(1)
+/// client cache_keys = text('fingerprint')
 class UploadTask extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadTask', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'uploader'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'created', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'path')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mime')
-    ..e<UploadStatus>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: UploadStatus.scheduled, valueOf: UploadStatus.valueOf, enumValues: UploadStatus.values)
-    ..a<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'retryCounter', $pb.PbFieldType.O3)
-    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'error')
-    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fingerprint')
-    ..aOS(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
-    ..m<$core.String, $core.String>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', entryClassName: 'UploadTask.MetadataEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('uploader'))
-    ..hasRequiredFields = false
-  ;
-
-  UploadTask._() : super();
   factory UploadTask({
     $fixnum.Int64? created,
     $core.String? path,
@@ -42,41 +36,57 @@ class UploadTask extends $pb.GeneratedMessage {
     $core.String? url,
     $core.Map<$core.String, $core.String>? metadata,
   }) {
-    final _result = create();
+    final $result = create();
     if (created != null) {
-      _result.created = created;
+      $result.created = created;
     }
     if (path != null) {
-      _result.path = path;
+      $result.path = path;
     }
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (mime != null) {
-      _result.mime = mime;
+      $result.mime = mime;
     }
     if (status != null) {
-      _result.status = status;
+      $result.status = status;
     }
     if (retryCounter != null) {
-      _result.retryCounter = retryCounter;
+      $result.retryCounter = retryCounter;
     }
     if (error != null) {
-      _result.error = error;
+      $result.error = error;
     }
     if (fingerprint != null) {
-      _result.fingerprint = fingerprint;
+      $result.fingerprint = fingerprint;
     }
     if (url != null) {
-      _result.url = url;
+      $result.url = url;
     }
     if (metadata != null) {
-      _result.metadata.addAll(metadata);
+      $result.metadata.addAll(metadata);
     }
-    return _result;
+    return $result;
   }
+  UploadTask._() : super();
   factory UploadTask.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadTask.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UploadTask', package: const $pb.PackageName(_omitMessageNames ? '' : 'uploader'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'created', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(2, _omitFieldNames ? '' : 'path')
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOS(4, _omitFieldNames ? '' : 'mime')
+    ..e<UploadStatus>(5, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: UploadStatus.scheduled, valueOf: UploadStatus.valueOf, enumValues: UploadStatus.values)
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'retryCounter', $pb.PbFieldType.O3)
+    ..aOS(7, _omitFieldNames ? '' : 'error')
+    ..aOS(8, _omitFieldNames ? '' : 'fingerprint')
+    ..aOS(9, _omitFieldNames ? '' : 'url')
+    ..m<$core.String, $core.String>(10, _omitFieldNames ? '' : 'metadata', entryClassName: 'UploadTask.MetadataEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('uploader'))
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -86,8 +96,10 @@ class UploadTask extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadTask copyWith(void Function(UploadTask) updates) => super.copyWith((message) => updates(message as UploadTask)) as UploadTask; // ignore: deprecated_member_use
+  UploadTask copyWith(void Function(UploadTask) updates) => super.copyWith((message) => updates(message as UploadTask)) as UploadTask;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UploadTask create() => UploadTask._();
   UploadTask createEmptyInstance() => create();
@@ -181,29 +193,33 @@ class UploadTask extends $pb.GeneratedMessage {
   $core.Map<$core.String, $core.String> get metadata => $_getMap(9);
 }
 
+///
+/// type = 'upload-ufile'
+/// origin = client
 class UploadUFile extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadUFile', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'uploader'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fileId')
-    ..aOM<UploadTask>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'task', subBuilder: UploadTask.create)
-    ..hasRequiredFields = false
-  ;
-
-  UploadUFile._() : super();
   factory UploadUFile({
     $core.String? fileId,
     UploadTask? task,
   }) {
-    final _result = create();
+    final $result = create();
     if (fileId != null) {
-      _result.fileId = fileId;
+      $result.fileId = fileId;
     }
     if (task != null) {
-      _result.task = task;
+      $result.task = task;
     }
-    return _result;
+    return $result;
   }
+  UploadUFile._() : super();
   factory UploadUFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadUFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UploadUFile', package: const $pb.PackageName(_omitMessageNames ? '' : 'uploader'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'fileId')
+    ..aOM<UploadTask>(2, _omitFieldNames ? '' : 'task', subBuilder: UploadTask.create)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -213,8 +229,10 @@ class UploadUFile extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadUFile copyWith(void Function(UploadUFile) updates) => super.copyWith((message) => updates(message as UploadUFile)) as UploadUFile; // ignore: deprecated_member_use
+  UploadUFile copyWith(void Function(UploadUFile) updates) => super.copyWith((message) => updates(message as UploadUFile)) as UploadUFile;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UploadUFile create() => UploadUFile._();
   UploadUFile createEmptyInstance() => create();
@@ -244,24 +262,28 @@ class UploadUFile extends $pb.GeneratedMessage {
   UploadTask ensureTask() => $_ensure(1);
 }
 
+///
+/// type = 'delete-ufile'
+/// origin = client
 class DeleteUFile extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'DeleteUFile', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'uploader'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..hasRequiredFields = false
-  ;
-
-  DeleteUFile._() : super();
   factory DeleteUFile({
     $core.String? id,
   }) {
-    final _result = create();
+    final $result = create();
     if (id != null) {
-      _result.id = id;
+      $result.id = id;
     }
-    return _result;
+    return $result;
   }
+  DeleteUFile._() : super();
   factory DeleteUFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory DeleteUFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeleteUFile', package: const $pb.PackageName(_omitMessageNames ? '' : 'uploader'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -271,8 +293,10 @@ class DeleteUFile extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  DeleteUFile copyWith(void Function(DeleteUFile) updates) => super.copyWith((message) => updates(message as DeleteUFile)) as DeleteUFile; // ignore: deprecated_member_use
+  DeleteUFile copyWith(void Function(DeleteUFile) updates) => super.copyWith((message) => updates(message as DeleteUFile)) as DeleteUFile;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static DeleteUFile create() => DeleteUFile._();
   DeleteUFile createEmptyInstance() => create();
@@ -291,29 +315,33 @@ class DeleteUFile extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 }
 
+///
+/// type = 'upload-slot'
+/// origin = server
 class UploadSlot extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadSlot', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'uploader'), createEmptyInstance: create)
-    ..aOM<UFile>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'file', subBuilder: UFile.create)
-    ..m<$core.String, $core.String>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', entryClassName: 'UploadSlot.MetadataEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('uploader'))
-    ..hasRequiredFields = false
-  ;
-
-  UploadSlot._() : super();
   factory UploadSlot({
     UFile? file,
     $core.Map<$core.String, $core.String>? metadata,
   }) {
-    final _result = create();
+    final $result = create();
     if (file != null) {
-      _result.file = file;
+      $result.file = file;
     }
     if (metadata != null) {
-      _result.metadata.addAll(metadata);
+      $result.metadata.addAll(metadata);
     }
-    return _result;
+    return $result;
   }
+  UploadSlot._() : super();
   factory UploadSlot.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UploadSlot.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UploadSlot', package: const $pb.PackageName(_omitMessageNames ? '' : 'uploader'), createEmptyInstance: create)
+    ..aOM<UFile>(1, _omitFieldNames ? '' : 'file', subBuilder: UFile.create)
+    ..m<$core.String, $core.String>(2, _omitFieldNames ? '' : 'metadata', entryClassName: 'UploadSlot.MetadataEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('uploader'))
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -323,8 +351,10 @@ class UploadSlot extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UploadSlot copyWith(void Function(UploadSlot) updates) => super.copyWith((message) => updates(message as UploadSlot)) as UploadSlot; // ignore: deprecated_member_use
+  UploadSlot copyWith(void Function(UploadSlot) updates) => super.copyWith((message) => updates(message as UploadSlot)) as UploadSlot;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UploadSlot create() => UploadSlot._();
   UploadSlot createEmptyInstance() => create();
@@ -349,18 +379,6 @@ class UploadSlot extends $pb.GeneratedMessage {
 }
 
 class UFile extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UFile', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'uploader'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'src')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'preview')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'previewLarge', protoName: 'previewLarge')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTask')
-    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localPath')
-    ..hasRequiredFields = false
-  ;
-
-  UFile._() : super();
   factory UFile({
     $core.String? id,
     $core.String? src,
@@ -370,32 +388,45 @@ class UFile extends $pb.GeneratedMessage {
     $core.String? uploadTask,
     $core.String? localPath,
   }) {
-    final _result = create();
+    final $result = create();
     if (id != null) {
-      _result.id = id;
+      $result.id = id;
     }
     if (src != null) {
-      _result.src = src;
+      $result.src = src;
     }
     if (preview != null) {
-      _result.preview = preview;
+      $result.preview = preview;
     }
     if (previewLarge != null) {
-      _result.previewLarge = previewLarge;
+      $result.previewLarge = previewLarge;
     }
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (uploadTask != null) {
-      _result.uploadTask = uploadTask;
+      $result.uploadTask = uploadTask;
     }
     if (localPath != null) {
-      _result.localPath = localPath;
+      $result.localPath = localPath;
     }
-    return _result;
+    return $result;
   }
+  UFile._() : super();
   factory UFile.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UFile.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UFile', package: const $pb.PackageName(_omitMessageNames ? '' : 'uploader'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'src')
+    ..aOS(3, _omitFieldNames ? '' : 'preview')
+    ..aOS(4, _omitFieldNames ? '' : 'previewLarge', protoName: 'previewLarge')
+    ..aOS(5, _omitFieldNames ? '' : 'name')
+    ..aOS(6, _omitFieldNames ? '' : 'uploadTask')
+    ..aOS(7, _omitFieldNames ? '' : 'localPath')
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -405,8 +436,10 @@ class UFile extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UFile copyWith(void Function(UFile) updates) => super.copyWith((message) => updates(message as UFile)) as UFile; // ignore: deprecated_member_use
+  UFile copyWith(void Function(UFile) updates) => super.copyWith((message) => updates(message as UFile)) as UFile;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UFile create() => UFile._();
   UFile createEmptyInstance() => create();
@@ -479,3 +512,6 @@ class UFile extends $pb.GeneratedMessage {
   void clearLocalPath() => clearField(7);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

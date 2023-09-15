@@ -4,11 +4,35 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="">
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="upgrade flutter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_native.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_native.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/persistence/database_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/database_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/messages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/authentication.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/sfiles.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/socket_api.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbenum.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbjson.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/proto/uploader.pbserver.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/authentication.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/form_errors.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/sfiles.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/socket_api.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/uploader.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +76,6 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -95,13 +118,6 @@
       <workItem from="1638953510994" duration="1144000" />
       <workItem from="1639076560788" duration="911000" />
       <workItem from="1640783259921" duration="1755000" />
-    </task>
-    <task id="LOCAL-00019" summary="add logging flag for tx / rx event printouts">
-      <created>1606346546773</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1606346546773</updated>
     </task>
     <task id="LOCAL-00020" summary="stop reuploading after 2 failed attempts">
       <created>1607255975755</created>
@@ -439,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690886167201</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="upgrade flutter">
+      <created>1692030049047</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1692030049047</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +475,6 @@
         <option value="Default.Author" />
         <option value="Default.Date" />
         <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
       </list>
     </option>
   </component>
@@ -493,7 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merged latest changes into null safety" />
     <MESSAGE value="always attach auth data" />
     <MESSAGE value="add audio file to accept types" />
     <MESSAGE value="parametrize multiple / single" />
@@ -518,6 +539,7 @@
     <MESSAGE value="refresh token (tmp: can be improved!)" />
     <MESSAGE value="fetch api" />
     <MESSAGE value="remove waitConnected param" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove waitConnected param" />
+    <MESSAGE value="upgrade flutter" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgrade flutter" />
   </component>
 </project>
