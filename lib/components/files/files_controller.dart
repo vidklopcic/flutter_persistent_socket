@@ -12,8 +12,7 @@ import '../../messages.dart';
 class FilesController with SubscriptionsMixin {
   final SocketApi socketApi;
   final FileUploadController Function(RxUploadStartSlot) createUploadController;
-  final StreamController<RxUploadProgress> _progressEvents =
-      StreamController.broadcast();
+  final StreamController<RxUploadProgress> _progressEvents = StreamController.broadcast();
   int nConcurrent;
   List<String> _uploadingLocalKeys = [];
   Set<String> _pendingAndUploadingLocalKeys = {};
@@ -22,10 +21,8 @@ class FilesController with SubscriptionsMixin {
   Stream<RxUploadProgress> get progressEvents => _progressEvents.stream;
   Map<String, FileUploadController> _uploadControllers = {};
 
-  FilesController(this.socketApi, this.createUploadController,
-      {this.nConcurrent = 3}) {
-    listen(socketApi.getMessageHandler(RxUploadStartSlot()),
-        (RxUploadStartSlot m) {
+  FilesController(this.socketApi, this.createUploadController, {this.nConcurrent = 3}) {
+    listen(socketApi.getMessageHandler(RxUploadStartSlot()), (RxUploadStartSlot m) {
       if (_pendingAndUploadingLocalKeys.contains(m.data.localKey)) return;
       _onUploadStart(m);
     });
@@ -67,8 +64,7 @@ class FilesController with SubscriptionsMixin {
     controller.filesController = this;
 
     Completer _doneCompleter = Completer();
-    final _doneSub =
-        socketApi.getMessageHandler(RxUploadDone()).listen((devent) {
+    final _doneSub = socketApi.getMessageHandler(RxUploadDone()).listen((devent) {
       database.socketRxEventDao.invalidateCacheForCacheUuid(message);
       print('uploaded ${message.data.localKey}');
       final event = devent as RxUploadDone;
@@ -78,8 +74,7 @@ class FilesController with SubscriptionsMixin {
 
     try {
       await controller.startUpload(message.data.key);
-      if (!_doneCompleter.isCompleted)
-        await _doneCompleter.future.timeout(Duration(seconds: 20));
+      if (!_doneCompleter.isCompleted) await _doneCompleter.future.timeout(Duration(seconds: 20));
       _doneSub.cancel();
     } catch (e) {
       print('Upload error, reuploading $e , ${message.data.localKey}');
@@ -102,8 +97,7 @@ class FilesController with SubscriptionsMixin {
   }
 
   static void delete(SocketApi api, UploadedFile file) {
-    if (file.url != null && file.id != null)
-      api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
+    if (file.url != null && file.id != null) api.sendMessage(TxDeleteFile(DeleteFile()..file = file));
     file.clearLocalKey();
     file.clearUrl();
   }
@@ -192,8 +186,7 @@ class FileUploadController with SubscriptionsMixin {
           _targetSizeCompleter = Completer();
           try {
             uploadApi.connection.channel!.sink.add(chunk);
-            await _targetSizeCompleter!.future
-                .timeout(Duration(seconds: 20)); // FIXME: handle this better?
+            await _targetSizeCompleter!.future.timeout(Duration(seconds: 20)); // FIXME: handle this better?
           } catch (e) {
             _log('upload failed $e');
             failed = true;
@@ -205,8 +198,8 @@ class FileUploadController with SubscriptionsMixin {
         _log('upload done');
         dispose(failed);
       },
-    ).catchError((e) => _uploadCompleter?.completeError(Exception(
-        'Could not establish connection to ${uploadApi.connection.address}')));
+    ).catchError((e) => _uploadCompleter
+        ?.completeError(Exception('Could not establish connection to ${uploadApi.connection.address}')));
   }
 
   void _log(String message) {

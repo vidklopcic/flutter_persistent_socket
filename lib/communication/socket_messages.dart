@@ -106,7 +106,7 @@ abstract class SocketTxMessage {
   }
 }
 
-abstract class SocketRxMessage {
+abstract class SocketRxMessage<TableT> {
   /// Wraps the raw JSON data received from the server and holds
   /// some metadata (eg. whether message originates from cache or from server).
   final SocketRxMessageData message;
@@ -144,7 +144,7 @@ abstract class SocketRxMessage {
   dynamic getCacheVal(CacheKeyType type, int index) {
     String? key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
-    final field = data?.getField(data?.getTagNumber(key) ?? -1);
+    final field = data?.getFieldOrNull(data?.getTagNumber(key) ?? -1);
     if (field == null) return null;
     if (field is ProtobufEnum) {
       return field.value.toDouble();
@@ -180,6 +180,8 @@ abstract class SocketRxMessage {
     if (tag == null || !data!.hasField(tag)) return null;
     return data!.getField(tag);
   }
+
+  void setTable(table) => throw UnimplementedError();
 }
 
 /// CacheKeys usage example:
@@ -238,17 +240,17 @@ class CacheKey {
 
   const CacheKey(this.type, this.index, this.key);
 
-  GeneratedColumn<DateTime> dateField($SocketRxEventsTable table) {
+  DateTimeColumn dateField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.date);
     return table.dateKeys[index];
   }
 
-  GeneratedColumn<String> textField($SocketRxEventsTable table) {
+  TextColumn textField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.text);
     return table.textKeys[index];
   }
 
-  GeneratedColumn<double> realField($SocketRxEventsTable table) {
+  RealColumn realField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.real);
     return table.realKeys[index];
   }

@@ -10,11 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   sqlite3_flutter_libs: ^0.5.17
-  drift: ^2.11.1
+  drift: ^2.12.1
   provider: ^6.0.5
   path_provider: ^2.1.1
   path: ^1.8.3
-  uuid: ^4.0.0
+  uuid: ^4.1.0
   web_socket_channel: ^2.4.0
   tus_client: ^1.0.2
   gm5_utils:
@@ -25,8 +25,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  drift_dev: ^2.11.2
-  build_runner: ^2.3.3
+  drift_dev: ^2.12.1
+  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -14,8 +14,8 @@ class PostFilesController with SubscriptionsMixin {
     listen(socketApi.getMessageHandler(RxUploadStartSlot()), _onUploadSlot);
   }
 
-  void startCached() {
-    socketApi.fireFromCache(RxUploadStartSlot());
+  Future startCached() async {
+    socketApi.fireFromCache(await socketApi.getFromCache(RxUploadStartSlot()));
   }
 
   void dispose() {

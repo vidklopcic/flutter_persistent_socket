@@ -287,11 +287,30 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
         .socketApi;
   }
 
-  Future<List<T>?> getFromCache<T extends SocketRxMessage, V extends sre.CacheKeys>(T message,
-      {SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V?>? filter}) async {
-    if (message.cache == null || message.cache == Duration.zero) return null;
-    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
-        (filter ?? (f, m) => f)(database.socketRxEventDao.filter(message), message.cacheKeys as V?);
+  Future<List<T>> getFromCache<T extends SocketRxMessage<TableT>, TableT, V extends sre.CacheKeys>(
+    T message, {
+    SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, T>? filter,
+    SocketRxMessageKeyedQueryFilterV1<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V>? filterV1,
+    Expression<bool> Function(T)? where,
+  }) async {
+    if (message.cache == null || message.cache == Duration.zero) return [];
+
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query = database.socketRxEventDao.filter(message);
+
+    final V? cacheKeys = message.cacheKeys as V?;
+    if (cacheKeys != null) {
+      message.setTable(query.table.asDslTable);
+      if (where != null) {
+        query.where((tbl) => where(message));
+      }
+      if (filterV1 != null) {
+        query = filterV1(query, cacheKeys);
+      }
+      if (filter != null) {
+        query = filter(query, message);
+      }
+    }
+
     final events = await query.get();
     List<T> parsedEvents = [];
     List<SocketRxEvent> invalidEvents = [];
@@ -309,17 +328,13 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
       database.socketRxEventDao.deleteEvents(invalidEvents);
     }
 
-    return parsedEvents.isEmpty ? null : parsedEvents.cast<T>();
+    return parsedEvents.cast<T>();
   }
 
-  Future<int> fireFromCache<T extends SocketRxMessage, V extends sre.CacheKeys>(T message,
-      {SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V?>? filter}) async {
-    List<SocketRxMessage> events =
-        await getFromCache(message, filter: (q, k) => (filter ?? (q, k) => q)(q, k as V?)) ?? [];
-    for (SocketRxMessage cachedMsg in events) {
+  void fireFromCache<T extends SocketRxMessage>(List<T> messages) {
+    for (SocketRxMessage cachedMsg in messages) {
       fireLocalUpdate(cachedMsg);
     }
-    return events.length;
   }
 
   void close() {

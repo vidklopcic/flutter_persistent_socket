@@ -153,9 +153,10 @@ class $SocketTxEventsTable extends SocketTxEvents
         realKey4
       ];
   @override
-  String get aliasedName => _alias ?? 'socket_tx_events';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'socket_tx_events';
+  String get actualTableName => $name;
+  static const String $name = 'socket_tx_events';
   @override
   VerificationContext validateIntegrity(Insertable<SocketTxEvent> instance,
       {bool isInserting = false}) {
@@ -656,6 +657,7 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
   final Value<double?> realKey2;
   final Value<double?> realKey3;
   final Value<double?> realKey4;
+  final Value<int> rowid;
   const SocketTxEventsCompanion({
     this.uuid = const Value.absent(),
     this.type = const Value.absent(),
@@ -677,6 +679,7 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   SocketTxEventsCompanion.insert({
     required String uuid,
@@ -699,6 +702,7 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.rowid = const Value.absent(),
   })  : uuid = Value(uuid),
         type = Value(type),
         jsonContent = Value(jsonContent),
@@ -724,6 +728,7 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     Expression<double>? realKey2,
     Expression<double>? realKey3,
     Expression<double>? realKey4,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (uuid != null) 'uuid': uuid,
@@ -746,6 +751,7 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       if (realKey2 != null) 'real_key2': realKey2,
       if (realKey3 != null) 'real_key3': realKey3,
       if (realKey4 != null) 'real_key4': realKey4,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -769,7 +775,8 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       Value<double?>? realKey1,
       Value<double?>? realKey2,
       Value<double?>? realKey3,
-      Value<double?>? realKey4}) {
+      Value<double?>? realKey4,
+      Value<int>? rowid}) {
     return SocketTxEventsCompanion(
       uuid: uuid ?? this.uuid,
       type: type ?? this.type,
@@ -791,6 +798,7 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       realKey2: realKey2 ?? this.realKey2,
       realKey3: realKey3 ?? this.realKey3,
       realKey4: realKey4 ?? this.realKey4,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -857,6 +865,9 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     if (realKey4.present) {
       map['real_key4'] = Variable<double>(realKey4.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -882,7 +893,8 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
           ..write('realKey1: $realKey1, ')
           ..write('realKey2: $realKey2, ')
           ..write('realKey3: $realKey3, ')
-          ..write('realKey4: $realKey4')
+          ..write('realKey4: $realKey4, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -912,15 +924,12 @@ class $SocketRxEventsTable extends SocketRxEvents
       type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _onlineMeta = const VerificationMeta('online');
   @override
-  late final GeneratedColumn<bool> online =
-      GeneratedColumn<bool>('online', aliasedName, false,
-          type: DriftSqlType.bool,
-          requiredDuringInsert: true,
-          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
-            SqlDialect.sqlite: 'CHECK ("online" IN (0, 1))',
-            SqlDialect.mysql: '',
-            SqlDialect.postgres: '',
-          }));
+  late final GeneratedColumn<bool> online = GeneratedColumn<bool>(
+      'online', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("online" IN (0, 1))'));
   static const VerificationMeta _timeRecordedMeta =
       const VerificationMeta('timeRecorded');
   @override
@@ -1057,9 +1066,10 @@ class $SocketRxEventsTable extends SocketRxEvents
         realKey4
       ];
   @override
-  String get aliasedName => _alias ?? 'socket_rx_events';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'socket_rx_events';
+  String get actualTableName => $name;
+  static const String $name = 'socket_rx_events';
   @override
   VerificationContext validateIntegrity(Insertable<SocketRxEvent> instance,
       {bool isInserting = false}) {
@@ -1603,6 +1613,7 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
   final Value<double?> realKey2;
   final Value<double?> realKey3;
   final Value<double?> realKey4;
+  final Value<int> rowid;
   const SocketRxEventsCompanion({
     this.uuid = const Value.absent(),
     this.type = const Value.absent(),
@@ -1626,6 +1637,7 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   SocketRxEventsCompanion.insert({
     required String uuid,
@@ -1650,6 +1662,7 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.rowid = const Value.absent(),
   })  : uuid = Value(uuid),
         type = Value(type),
         jsonContent = Value(jsonContent),
@@ -1679,6 +1692,7 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     Expression<double>? realKey2,
     Expression<double>? realKey3,
     Expression<double>? realKey4,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (uuid != null) 'uuid': uuid,
@@ -1703,6 +1717,7 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       if (realKey2 != null) 'real_key2': realKey2,
       if (realKey3 != null) 'real_key3': realKey3,
       if (realKey4 != null) 'real_key4': realKey4,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -1728,7 +1743,8 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       Value<double?>? realKey1,
       Value<double?>? realKey2,
       Value<double?>? realKey3,
-      Value<double?>? realKey4}) {
+      Value<double?>? realKey4,
+      Value<int>? rowid}) {
     return SocketRxEventsCompanion(
       uuid: uuid ?? this.uuid,
       type: type ?? this.type,
@@ -1752,6 +1768,7 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       realKey2: realKey2 ?? this.realKey2,
       realKey3: realKey3 ?? this.realKey3,
       realKey4: realKey4 ?? this.realKey4,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -1824,6 +1841,9 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     if (realKey4.present) {
       map['real_key4'] = Variable<double>(realKey4.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -1851,7 +1871,8 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
           ..write('realKey1: $realKey1, ')
           ..write('realKey2: $realKey2, ')
           ..write('realKey3: $realKey3, ')
-          ..write('realKey4: $realKey4')
+          ..write('realKey4: $realKey4, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }

@@ -18,7 +18,7 @@ abstract class AuthenticationController with SubscriptionsMixin {
 
   Future init([String? token]) async {
     if (!socketApi.noCache) {
-      await socketApi.fireFromCache(RxLoginToken());
+      socketApi.fireFromCache(await socketApi.getFromCache(RxLoginToken()));
     }
 
     if (token != null) {

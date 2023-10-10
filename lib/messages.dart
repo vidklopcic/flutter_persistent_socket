@@ -1,12 +1,12 @@
-import 'package:provider/provider.dart';
-import 'proto/uploader.pb.dart';
-import 'proto/socket_api.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:provider/single_child_widget.dart';
 import 'proto/sfiles.pb.dart';
 import 'package:drift/drift.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
-import 'package:provider/single_child_widget.dart';
+import 'proto/uploader.pb.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'proto/authentication.pb.dart';
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'package:provider/provider.dart';
+import 'proto/socket_api.pb.dart';
 
 class TxLogin extends SocketTxMessage {
   static const String type = 'login';
@@ -146,10 +146,19 @@ class RxUploadProgress extends SocketRxMessage {
 
 class TxUploadStartCacheKeys extends CacheKeys {
   final CacheKey localKeyKey = const CacheKey(CacheKeyType.text, 0, 'localKey');
-  GeneratedColumn<String> localKey(table) => localKeyKey.textField(table);
+  TextColumn localKey(table) => localKeyKey.textField(table);
 
   const TxUploadStartCacheKeys() : super(textKeys: const ['localKey'], realKeys: const [], dateKeys: const []);
 }
+
+
+class TxUploadStartTable {
+  final TxUploadStart message;
+  final TextColumn localKey;
+
+  TxUploadStartTable(this.message, table) : localKey = message.cacheKeys.localKeyKey.textField(table);
+}
+
 
 class TxUploadStart extends SocketTxMessage {
   static const String type = 'upload-start';
@@ -166,21 +175,33 @@ class TxUploadStart extends SocketTxMessage {
 
 class RxUploadStartSlotCacheKeys extends CacheKeys {
   final CacheKey localKeyKey = const CacheKey(CacheKeyType.text, 0, 'localKey');
-  GeneratedColumn<String> localKey(table) => localKeyKey.textField(table);
+  TextColumn localKey(table) => localKeyKey.textField(table);
 
   const RxUploadStartSlotCacheKeys() : super(textKeys: const ['localKey'], realKeys: const [], dateKeys: const []);
 }
 
-class RxUploadStartSlot extends SocketRxMessage {
+
+class RxUploadStartSlotTable {
+  final RxUploadStartSlot message;
+  final TextColumn localKey;
+
+  RxUploadStartSlotTable(this.message, table) : localKey = message.cacheKeys.localKeyKey.textField(table);
+}
+
+
+class RxUploadStartSlot extends SocketRxMessage<RxUploadStartSlotTable> {
   static const String type = 'upload-start';
   final UploadStartSlot data = UploadStartSlot();
   final Duration cache = const Duration(days: 7, hours: 0, minutes: 0, seconds: 0);
   final RxUploadStartSlotCacheKeys cacheKeys = const RxUploadStartSlotCacheKeys();
+  late RxUploadStartSlotTable table;
 
   RxUploadStartSlot([SocketRxMessageData? message]) : super(type, message);
 
   @override
   RxUploadStartSlot fromMessage(SocketRxMessageData message) => RxUploadStartSlot(message);
+
+  void setTable(tbl) => table = RxUploadStartSlotTable(this, tbl);
 }
 
 
@@ -246,21 +267,33 @@ class RxUploadSlot extends SocketRxMessage {
 
 class RxUploadTaskCacheKeys extends CacheKeys {
   final CacheKey fingerprintKey = const CacheKey(CacheKeyType.text, 0, 'fingerprint');
-  GeneratedColumn<String> fingerprint(table) => fingerprintKey.textField(table);
+  TextColumn fingerprint(table) => fingerprintKey.textField(table);
 
   const RxUploadTaskCacheKeys() : super(textKeys: const ['fingerprint'], realKeys: const [], dateKeys: const []);
 }
 
-class RxUploadTask extends SocketRxMessage {
+
+class RxUploadTaskTable {
+  final RxUploadTask message;
+  final TextColumn fingerprint;
+
+  RxUploadTaskTable(this.message, table) : fingerprint = message.cacheKeys.fingerprintKey.textField(table);
+}
+
+
+class RxUploadTask extends SocketRxMessage<RxUploadTaskTable> {
   static const String type = 'upload-task';
   final UploadTask data = UploadTask();
   final Duration cache = const Duration(days: 365, hours: 0, minutes: 0, seconds: 0);
   final RxUploadTaskCacheKeys cacheKeys = const RxUploadTaskCacheKeys();
+  late RxUploadTaskTable table;
 
   RxUploadTask([SocketRxMessageData? message]) : super(type, message);
 
   @override
   RxUploadTask fromMessage(SocketRxMessageData message) => RxUploadTask(message);
+
+  void setTable(tbl) => table = RxUploadTaskTable(this, tbl);
 }
 
 

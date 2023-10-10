@@ -7,9 +7,14 @@ import 'database.dart';
 
 part 'socket_rx_event.g.dart';
 
-typedef SocketRxMessageKeyedQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>,
+typedef SocketRxMessageKeyedQueryFilterV1<T extends Query<$SocketRxEventsTable, SocketRxEvent>,
         V extends sre.CacheKeys?>
     = T Function(T query, V? keys);
+
+typedef SocketRxMessageKeyedQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>,
+        M>
+    = T Function(T query, M message);
+
 typedef SocketRxMessageQueryFilter<T extends Query<$SocketRxEventsTable, SocketRxEvent>> = T
     Function(T query);
 
