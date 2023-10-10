@@ -1,12 +1,12 @@
-import 'package:provider/single_child_widget.dart';
 import 'proto/sfiles.pb.dart';
-import 'package:drift/drift.dart';
-import 'proto/uploader.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'proto/authentication.pb.dart';
-import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart';
 import 'proto/socket_api.pb.dart';
+import 'proto/authentication.pb.dart';
+import 'proto/uploader.pb.dart';
+import 'package:drift/drift.dart';
+import 'package:flutter_persistent_socket/communication/socket_api.dart';
 
 class TxLogin extends SocketTxMessage {
   static const String type = 'login';
@@ -148,7 +148,7 @@ class TxUploadStartCacheKeys extends CacheKeys {
   final CacheKey localKeyKey = const CacheKey(CacheKeyType.text, 0, 'localKey');
   TextColumn localKey(table) => localKeyKey.textField(table);
 
-  const TxUploadStartCacheKeys() : super(textKeys: const ['localKey'], realKeys: const [], dateKeys: const []);
+  const TxUploadStartCacheKeys() : super(textKeys: const ['localKey'], realKeys: const [], dateKeys: const [], intKeys: const []);
 }
 
 
@@ -177,7 +177,7 @@ class RxUploadStartSlotCacheKeys extends CacheKeys {
   final CacheKey localKeyKey = const CacheKey(CacheKeyType.text, 0, 'localKey');
   TextColumn localKey(table) => localKeyKey.textField(table);
 
-  const RxUploadStartSlotCacheKeys() : super(textKeys: const ['localKey'], realKeys: const [], dateKeys: const []);
+  const RxUploadStartSlotCacheKeys() : super(textKeys: const ['localKey'], realKeys: const [], dateKeys: const [], intKeys: const []);
 }
 
 
@@ -269,7 +269,7 @@ class RxUploadTaskCacheKeys extends CacheKeys {
   final CacheKey fingerprintKey = const CacheKey(CacheKeyType.text, 0, 'fingerprint');
   TextColumn fingerprint(table) => fingerprintKey.textField(table);
 
-  const RxUploadTaskCacheKeys() : super(textKeys: const ['fingerprint'], realKeys: const [], dateKeys: const []);
+  const RxUploadTaskCacheKeys() : super(textKeys: const ['fingerprint'], realKeys: const [], dateKeys: const [], intKeys: const []);
 }
 
 

@@ -65,6 +65,17 @@ class SocketRxEvents extends Table {
 
   RealColumn get realKey4 => real().nullable()();
 
+  IntColumn get intKey0 => integer().nullable()();
+
+  IntColumn get intKey1 => integer().nullable()();
+
+  IntColumn get intKey2 => integer().nullable()();
+
+  IntColumn get intKey3 => integer().nullable()();
+
+  IntColumn get intKey4 => integer().nullable()();
+
+
   @override
   Set<Column> get primaryKey => {uuid};
 }
@@ -136,6 +147,11 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
         realKey2: Value(message.getCacheVal(CacheKeyType.real, 2)),
         realKey3: Value(message.getCacheVal(CacheKeyType.real, 3)),
         realKey4: Value(message.getCacheVal(CacheKeyType.real, 4)),
+        intKey0: Value(message.getCacheVal(CacheKeyType.int, 0)),
+        intKey1: Value(message.getCacheVal(CacheKeyType.int, 1)),
+        intKey2: Value(message.getCacheVal(CacheKeyType.int, 2)),
+        intKey3: Value(message.getCacheVal(CacheKeyType.int, 3)),
+        intKey4: Value(message.getCacheVal(CacheKeyType.int, 4)),
       ),
     );
   }
@@ -150,7 +166,7 @@ class SocketRxEventDao extends DatabaseAccessor<Database> with _$SocketRxEventDa
 }
 
 extension CacheKeys on $SocketRxEventsTable {
-  List<GeneratedColumn<DateTime>> get dateKeys => [
+  List<DateTimeColumn> get dateKeys => [
         dateKey0,
         dateKey1,
         dateKey2,
@@ -158,7 +174,7 @@ extension CacheKeys on $SocketRxEventsTable {
         dateKey4,
       ];
 
-  List<GeneratedColumn<String>> get textKeys => [
+  List<TextColumn> get textKeys => [
         textKey0,
         textKey1,
         textKey2,
@@ -166,11 +182,19 @@ extension CacheKeys on $SocketRxEventsTable {
         textKey4,
       ];
 
-  List<GeneratedColumn<double>> get realKeys => [
+  List<RealColumn> get realKeys => [
         realKey0,
         realKey1,
         realKey2,
         realKey3,
         realKey4,
+      ];
+
+  List<IntColumn> get intKeys => [
+        intKey0,
+        intKey1,
+        intKey2,
+        intKey3,
+        intKey4,
       ];
 }

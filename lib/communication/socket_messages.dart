@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
@@ -96,12 +95,12 @@ abstract class SocketTxMessage {
   dynamic getCacheVal(CacheKeyType type, int index) {
     String? key = cacheKeys?.getKey(type, index);
     if (key == null) return null;
-    print('getting key $key');
     final field = proto!.getField(proto!.getTagNumber(key) ?? -1);
     if (field is ProtobufEnum) {
       return (field as ProtobufEnum).value.toDouble();
     }
     if (type == CacheKeyType.real) return field?.toDouble();
+    if (type == CacheKeyType.int) return field?.toInt();
     return field;
   }
 }
@@ -149,8 +148,10 @@ abstract class SocketRxMessage<TableT> {
     if (field is ProtobufEnum) {
       return field.value.toDouble();
     }
+
     if (type == CacheKeyType.real) return field.toDouble();
     if (type == CacheKeyType.date) return DateTime.fromMillisecondsSinceEpoch(field.toInt());
+    if (type == CacheKeyType.int) return field.toInt();
     return field;
   }
 
@@ -210,16 +211,22 @@ abstract class SocketRxMessage<TableT> {
 /// socketApi.fireFromCache(message, filter: (query) => query..where((tbl) => message.cacheKeys.token.textField(tbl).equals('value')));
 ///
 
-enum CacheKeyType { date, text, real }
+enum CacheKeyType { date, text, real, int }
 
 class CacheKeys {
   final List<String> textKeys;
   final List<String> realKeys;
+  final List<String> intKeys;
   final List<String> dateKeys;
 
-  const CacheKeys({this.textKeys = const [], this.realKeys = const [], this.dateKeys = const []});
+  const CacheKeys({
+    this.textKeys = const [],
+    this.realKeys = const [],
+    this.dateKeys = const [],
+    this.intKeys = const [],
+  });
 
-  List<String> get keys => textKeys + realKeys + dateKeys;
+  List<String> get keys => textKeys + realKeys + dateKeys + intKeys;
 
   String? getKey(CacheKeyType type, int index) {
     switch (type) {
@@ -229,6 +236,8 @@ class CacheKeys {
         return textKeys.length > index ? textKeys[index] : null;
       case CacheKeyType.real:
         return realKeys.length > index ? realKeys[index] : null;
+      case CacheKeyType.int:
+        return intKeys.length > index ? intKeys[index] : null;
     }
   }
 }
@@ -253,5 +262,10 @@ class CacheKey {
   RealColumn realField($SocketRxEventsTable table) {
     assert(type == CacheKeyType.real);
     return table.realKeys[index];
+  }
+
+  IntColumn intField($SocketRxEventsTable table) {
+    assert(type == CacheKeyType.int);
+    return table.intKeys[index];
   }
 }

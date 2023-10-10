@@ -129,6 +129,36 @@ class $SocketTxEventsTable extends SocketTxEvents
   late final GeneratedColumn<double> realKey4 = GeneratedColumn<double>(
       'real_key4', aliasedName, true,
       type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _intKey0Meta =
+      const VerificationMeta('intKey0');
+  @override
+  late final GeneratedColumn<int> intKey0 = GeneratedColumn<int>(
+      'int_key0', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey1Meta =
+      const VerificationMeta('intKey1');
+  @override
+  late final GeneratedColumn<int> intKey1 = GeneratedColumn<int>(
+      'int_key1', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey2Meta =
+      const VerificationMeta('intKey2');
+  @override
+  late final GeneratedColumn<int> intKey2 = GeneratedColumn<int>(
+      'int_key2', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey3Meta =
+      const VerificationMeta('intKey3');
+  @override
+  late final GeneratedColumn<int> intKey3 = GeneratedColumn<int>(
+      'int_key3', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey4Meta =
+      const VerificationMeta('intKey4');
+  @override
+  late final GeneratedColumn<int> intKey4 = GeneratedColumn<int>(
+      'int_key4', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uuid,
@@ -150,7 +180,12 @@ class $SocketTxEventsTable extends SocketTxEvents
         realKey1,
         realKey2,
         realKey3,
-        realKey4
+        realKey4,
+        intKey0,
+        intKey1,
+        intKey2,
+        intKey3,
+        intKey4
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -254,6 +289,26 @@ class $SocketTxEventsTable extends SocketTxEvents
       context.handle(_realKey4Meta,
           realKey4.isAcceptableOrUnknown(data['real_key4']!, _realKey4Meta));
     }
+    if (data.containsKey('int_key0')) {
+      context.handle(_intKey0Meta,
+          intKey0.isAcceptableOrUnknown(data['int_key0']!, _intKey0Meta));
+    }
+    if (data.containsKey('int_key1')) {
+      context.handle(_intKey1Meta,
+          intKey1.isAcceptableOrUnknown(data['int_key1']!, _intKey1Meta));
+    }
+    if (data.containsKey('int_key2')) {
+      context.handle(_intKey2Meta,
+          intKey2.isAcceptableOrUnknown(data['int_key2']!, _intKey2Meta));
+    }
+    if (data.containsKey('int_key3')) {
+      context.handle(_intKey3Meta,
+          intKey3.isAcceptableOrUnknown(data['int_key3']!, _intKey3Meta));
+    }
+    if (data.containsKey('int_key4')) {
+      context.handle(_intKey4Meta,
+          intKey4.isAcceptableOrUnknown(data['int_key4']!, _intKey4Meta));
+    }
     return context;
   }
 
@@ -303,6 +358,16 @@ class $SocketTxEventsTable extends SocketTxEvents
           .read(DriftSqlType.double, data['${effectivePrefix}real_key3']),
       realKey4: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}real_key4']),
+      intKey0: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key0']),
+      intKey1: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key1']),
+      intKey2: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key2']),
+      intKey3: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key3']),
+      intKey4: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key4']),
     );
   }
 
@@ -333,6 +398,11 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
   final double? realKey2;
   final double? realKey3;
   final double? realKey4;
+  final int? intKey0;
+  final int? intKey1;
+  final int? intKey2;
+  final int? intKey3;
+  final int? intKey4;
   const SocketTxEvent(
       {required this.uuid,
       required this.type,
@@ -353,7 +423,12 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       this.realKey1,
       this.realKey2,
       this.realKey3,
-      this.realKey4});
+      this.realKey4,
+      this.intKey0,
+      this.intKey1,
+      this.intKey2,
+      this.intKey3,
+      this.intKey4});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -406,6 +481,21 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
     }
     if (!nullToAbsent || realKey4 != null) {
       map['real_key4'] = Variable<double>(realKey4);
+    }
+    if (!nullToAbsent || intKey0 != null) {
+      map['int_key0'] = Variable<int>(intKey0);
+    }
+    if (!nullToAbsent || intKey1 != null) {
+      map['int_key1'] = Variable<int>(intKey1);
+    }
+    if (!nullToAbsent || intKey2 != null) {
+      map['int_key2'] = Variable<int>(intKey2);
+    }
+    if (!nullToAbsent || intKey3 != null) {
+      map['int_key3'] = Variable<int>(intKey3);
+    }
+    if (!nullToAbsent || intKey4 != null) {
+      map['int_key4'] = Variable<int>(intKey4);
     }
     return map;
   }
@@ -462,6 +552,21 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       realKey4: realKey4 == null && nullToAbsent
           ? const Value.absent()
           : Value(realKey4),
+      intKey0: intKey0 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey0),
+      intKey1: intKey1 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey1),
+      intKey2: intKey2 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey2),
+      intKey3: intKey3 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey3),
+      intKey4: intKey4 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey4),
     );
   }
 
@@ -489,6 +594,11 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       realKey2: serializer.fromJson<double?>(json['realKey2']),
       realKey3: serializer.fromJson<double?>(json['realKey3']),
       realKey4: serializer.fromJson<double?>(json['realKey4']),
+      intKey0: serializer.fromJson<int?>(json['intKey0']),
+      intKey1: serializer.fromJson<int?>(json['intKey1']),
+      intKey2: serializer.fromJson<int?>(json['intKey2']),
+      intKey3: serializer.fromJson<int?>(json['intKey3']),
+      intKey4: serializer.fromJson<int?>(json['intKey4']),
     );
   }
   @override
@@ -515,6 +625,11 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
       'realKey2': serializer.toJson<double?>(realKey2),
       'realKey3': serializer.toJson<double?>(realKey3),
       'realKey4': serializer.toJson<double?>(realKey4),
+      'intKey0': serializer.toJson<int?>(intKey0),
+      'intKey1': serializer.toJson<int?>(intKey1),
+      'intKey2': serializer.toJson<int?>(intKey2),
+      'intKey3': serializer.toJson<int?>(intKey3),
+      'intKey4': serializer.toJson<int?>(intKey4),
     };
   }
 
@@ -538,7 +653,12 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
           Value<double?> realKey1 = const Value.absent(),
           Value<double?> realKey2 = const Value.absent(),
           Value<double?> realKey3 = const Value.absent(),
-          Value<double?> realKey4 = const Value.absent()}) =>
+          Value<double?> realKey4 = const Value.absent(),
+          Value<int?> intKey0 = const Value.absent(),
+          Value<int?> intKey1 = const Value.absent(),
+          Value<int?> intKey2 = const Value.absent(),
+          Value<int?> intKey3 = const Value.absent(),
+          Value<int?> intKey4 = const Value.absent()}) =>
       SocketTxEvent(
         uuid: uuid ?? this.uuid,
         type: type ?? this.type,
@@ -560,6 +680,11 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
         realKey2: realKey2.present ? realKey2.value : this.realKey2,
         realKey3: realKey3.present ? realKey3.value : this.realKey3,
         realKey4: realKey4.present ? realKey4.value : this.realKey4,
+        intKey0: intKey0.present ? intKey0.value : this.intKey0,
+        intKey1: intKey1.present ? intKey1.value : this.intKey1,
+        intKey2: intKey2.present ? intKey2.value : this.intKey2,
+        intKey3: intKey3.present ? intKey3.value : this.intKey3,
+        intKey4: intKey4.present ? intKey4.value : this.intKey4,
       );
   @override
   String toString() {
@@ -583,33 +708,44 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
           ..write('realKey1: $realKey1, ')
           ..write('realKey2: $realKey2, ')
           ..write('realKey3: $realKey3, ')
-          ..write('realKey4: $realKey4')
+          ..write('realKey4: $realKey4, ')
+          ..write('intKey0: $intKey0, ')
+          ..write('intKey1: $intKey1, ')
+          ..write('intKey2: $intKey2, ')
+          ..write('intKey3: $intKey3, ')
+          ..write('intKey4: $intKey4')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-      uuid,
-      type,
-      jsonContent,
-      timeRecorded,
-      expires,
-      dateKey0,
-      dateKey1,
-      dateKey2,
-      dateKey3,
-      dateKey4,
-      textKey0,
-      textKey1,
-      textKey2,
-      textKey3,
-      textKey4,
-      realKey0,
-      realKey1,
-      realKey2,
-      realKey3,
-      realKey4);
+  int get hashCode => Object.hashAll([
+        uuid,
+        type,
+        jsonContent,
+        timeRecorded,
+        expires,
+        dateKey0,
+        dateKey1,
+        dateKey2,
+        dateKey3,
+        dateKey4,
+        textKey0,
+        textKey1,
+        textKey2,
+        textKey3,
+        textKey4,
+        realKey0,
+        realKey1,
+        realKey2,
+        realKey3,
+        realKey4,
+        intKey0,
+        intKey1,
+        intKey2,
+        intKey3,
+        intKey4
+      ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -633,7 +769,12 @@ class SocketTxEvent extends DataClass implements Insertable<SocketTxEvent> {
           other.realKey1 == this.realKey1 &&
           other.realKey2 == this.realKey2 &&
           other.realKey3 == this.realKey3 &&
-          other.realKey4 == this.realKey4);
+          other.realKey4 == this.realKey4 &&
+          other.intKey0 == this.intKey0 &&
+          other.intKey1 == this.intKey1 &&
+          other.intKey2 == this.intKey2 &&
+          other.intKey3 == this.intKey3 &&
+          other.intKey4 == this.intKey4);
 }
 
 class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
@@ -657,6 +798,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
   final Value<double?> realKey2;
   final Value<double?> realKey3;
   final Value<double?> realKey4;
+  final Value<int?> intKey0;
+  final Value<int?> intKey1;
+  final Value<int?> intKey2;
+  final Value<int?> intKey3;
+  final Value<int?> intKey4;
   final Value<int> rowid;
   const SocketTxEventsCompanion({
     this.uuid = const Value.absent(),
@@ -679,6 +825,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.intKey0 = const Value.absent(),
+    this.intKey1 = const Value.absent(),
+    this.intKey2 = const Value.absent(),
+    this.intKey3 = const Value.absent(),
+    this.intKey4 = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   SocketTxEventsCompanion.insert({
@@ -702,6 +853,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.intKey0 = const Value.absent(),
+    this.intKey1 = const Value.absent(),
+    this.intKey2 = const Value.absent(),
+    this.intKey3 = const Value.absent(),
+    this.intKey4 = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : uuid = Value(uuid),
         type = Value(type),
@@ -728,6 +884,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     Expression<double>? realKey2,
     Expression<double>? realKey3,
     Expression<double>? realKey4,
+    Expression<int>? intKey0,
+    Expression<int>? intKey1,
+    Expression<int>? intKey2,
+    Expression<int>? intKey3,
+    Expression<int>? intKey4,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -751,6 +912,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       if (realKey2 != null) 'real_key2': realKey2,
       if (realKey3 != null) 'real_key3': realKey3,
       if (realKey4 != null) 'real_key4': realKey4,
+      if (intKey0 != null) 'int_key0': intKey0,
+      if (intKey1 != null) 'int_key1': intKey1,
+      if (intKey2 != null) 'int_key2': intKey2,
+      if (intKey3 != null) 'int_key3': intKey3,
+      if (intKey4 != null) 'int_key4': intKey4,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -776,6 +942,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       Value<double?>? realKey2,
       Value<double?>? realKey3,
       Value<double?>? realKey4,
+      Value<int?>? intKey0,
+      Value<int?>? intKey1,
+      Value<int?>? intKey2,
+      Value<int?>? intKey3,
+      Value<int?>? intKey4,
       Value<int>? rowid}) {
     return SocketTxEventsCompanion(
       uuid: uuid ?? this.uuid,
@@ -798,6 +969,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
       realKey2: realKey2 ?? this.realKey2,
       realKey3: realKey3 ?? this.realKey3,
       realKey4: realKey4 ?? this.realKey4,
+      intKey0: intKey0 ?? this.intKey0,
+      intKey1: intKey1 ?? this.intKey1,
+      intKey2: intKey2 ?? this.intKey2,
+      intKey3: intKey3 ?? this.intKey3,
+      intKey4: intKey4 ?? this.intKey4,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -865,6 +1041,21 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
     if (realKey4.present) {
       map['real_key4'] = Variable<double>(realKey4.value);
     }
+    if (intKey0.present) {
+      map['int_key0'] = Variable<int>(intKey0.value);
+    }
+    if (intKey1.present) {
+      map['int_key1'] = Variable<int>(intKey1.value);
+    }
+    if (intKey2.present) {
+      map['int_key2'] = Variable<int>(intKey2.value);
+    }
+    if (intKey3.present) {
+      map['int_key3'] = Variable<int>(intKey3.value);
+    }
+    if (intKey4.present) {
+      map['int_key4'] = Variable<int>(intKey4.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -894,6 +1085,11 @@ class SocketTxEventsCompanion extends UpdateCompanion<SocketTxEvent> {
           ..write('realKey2: $realKey2, ')
           ..write('realKey3: $realKey3, ')
           ..write('realKey4: $realKey4, ')
+          ..write('intKey0: $intKey0, ')
+          ..write('intKey1: $intKey1, ')
+          ..write('intKey2: $intKey2, ')
+          ..write('intKey3: $intKey3, ')
+          ..write('intKey4: $intKey4, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -1040,6 +1236,36 @@ class $SocketRxEventsTable extends SocketRxEvents
   late final GeneratedColumn<double> realKey4 = GeneratedColumn<double>(
       'real_key4', aliasedName, true,
       type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _intKey0Meta =
+      const VerificationMeta('intKey0');
+  @override
+  late final GeneratedColumn<int> intKey0 = GeneratedColumn<int>(
+      'int_key0', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey1Meta =
+      const VerificationMeta('intKey1');
+  @override
+  late final GeneratedColumn<int> intKey1 = GeneratedColumn<int>(
+      'int_key1', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey2Meta =
+      const VerificationMeta('intKey2');
+  @override
+  late final GeneratedColumn<int> intKey2 = GeneratedColumn<int>(
+      'int_key2', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey3Meta =
+      const VerificationMeta('intKey3');
+  @override
+  late final GeneratedColumn<int> intKey3 = GeneratedColumn<int>(
+      'int_key3', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _intKey4Meta =
+      const VerificationMeta('intKey4');
+  @override
+  late final GeneratedColumn<int> intKey4 = GeneratedColumn<int>(
+      'int_key4', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uuid,
@@ -1063,7 +1289,12 @@ class $SocketRxEventsTable extends SocketRxEvents
         realKey1,
         realKey2,
         realKey3,
-        realKey4
+        realKey4,
+        intKey0,
+        intKey1,
+        intKey2,
+        intKey3,
+        intKey4
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1181,6 +1412,26 @@ class $SocketRxEventsTable extends SocketRxEvents
       context.handle(_realKey4Meta,
           realKey4.isAcceptableOrUnknown(data['real_key4']!, _realKey4Meta));
     }
+    if (data.containsKey('int_key0')) {
+      context.handle(_intKey0Meta,
+          intKey0.isAcceptableOrUnknown(data['int_key0']!, _intKey0Meta));
+    }
+    if (data.containsKey('int_key1')) {
+      context.handle(_intKey1Meta,
+          intKey1.isAcceptableOrUnknown(data['int_key1']!, _intKey1Meta));
+    }
+    if (data.containsKey('int_key2')) {
+      context.handle(_intKey2Meta,
+          intKey2.isAcceptableOrUnknown(data['int_key2']!, _intKey2Meta));
+    }
+    if (data.containsKey('int_key3')) {
+      context.handle(_intKey3Meta,
+          intKey3.isAcceptableOrUnknown(data['int_key3']!, _intKey3Meta));
+    }
+    if (data.containsKey('int_key4')) {
+      context.handle(_intKey4Meta,
+          intKey4.isAcceptableOrUnknown(data['int_key4']!, _intKey4Meta));
+    }
     return context;
   }
 
@@ -1234,6 +1485,16 @@ class $SocketRxEventsTable extends SocketRxEvents
           .read(DriftSqlType.double, data['${effectivePrefix}real_key3']),
       realKey4: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}real_key4']),
+      intKey0: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key0']),
+      intKey1: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key1']),
+      intKey2: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key2']),
+      intKey3: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key3']),
+      intKey4: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}int_key4']),
     );
   }
 
@@ -1266,6 +1527,11 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
   final double? realKey2;
   final double? realKey3;
   final double? realKey4;
+  final int? intKey0;
+  final int? intKey1;
+  final int? intKey2;
+  final int? intKey3;
+  final int? intKey4;
   const SocketRxEvent(
       {required this.uuid,
       required this.type,
@@ -1288,7 +1554,12 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       this.realKey1,
       this.realKey2,
       this.realKey3,
-      this.realKey4});
+      this.realKey4,
+      this.intKey0,
+      this.intKey1,
+      this.intKey2,
+      this.intKey3,
+      this.intKey4});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -1343,6 +1614,21 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
     }
     if (!nullToAbsent || realKey4 != null) {
       map['real_key4'] = Variable<double>(realKey4);
+    }
+    if (!nullToAbsent || intKey0 != null) {
+      map['int_key0'] = Variable<int>(intKey0);
+    }
+    if (!nullToAbsent || intKey1 != null) {
+      map['int_key1'] = Variable<int>(intKey1);
+    }
+    if (!nullToAbsent || intKey2 != null) {
+      map['int_key2'] = Variable<int>(intKey2);
+    }
+    if (!nullToAbsent || intKey3 != null) {
+      map['int_key3'] = Variable<int>(intKey3);
+    }
+    if (!nullToAbsent || intKey4 != null) {
+      map['int_key4'] = Variable<int>(intKey4);
     }
     return map;
   }
@@ -1401,6 +1687,21 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       realKey4: realKey4 == null && nullToAbsent
           ? const Value.absent()
           : Value(realKey4),
+      intKey0: intKey0 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey0),
+      intKey1: intKey1 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey1),
+      intKey2: intKey2 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey2),
+      intKey3: intKey3 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey3),
+      intKey4: intKey4 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intKey4),
     );
   }
 
@@ -1430,6 +1731,11 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       realKey2: serializer.fromJson<double?>(json['realKey2']),
       realKey3: serializer.fromJson<double?>(json['realKey3']),
       realKey4: serializer.fromJson<double?>(json['realKey4']),
+      intKey0: serializer.fromJson<int?>(json['intKey0']),
+      intKey1: serializer.fromJson<int?>(json['intKey1']),
+      intKey2: serializer.fromJson<int?>(json['intKey2']),
+      intKey3: serializer.fromJson<int?>(json['intKey3']),
+      intKey4: serializer.fromJson<int?>(json['intKey4']),
     );
   }
   @override
@@ -1458,6 +1764,11 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
       'realKey2': serializer.toJson<double?>(realKey2),
       'realKey3': serializer.toJson<double?>(realKey3),
       'realKey4': serializer.toJson<double?>(realKey4),
+      'intKey0': serializer.toJson<int?>(intKey0),
+      'intKey1': serializer.toJson<int?>(intKey1),
+      'intKey2': serializer.toJson<int?>(intKey2),
+      'intKey3': serializer.toJson<int?>(intKey3),
+      'intKey4': serializer.toJson<int?>(intKey4),
     };
   }
 
@@ -1483,7 +1794,12 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
           Value<double?> realKey1 = const Value.absent(),
           Value<double?> realKey2 = const Value.absent(),
           Value<double?> realKey3 = const Value.absent(),
-          Value<double?> realKey4 = const Value.absent()}) =>
+          Value<double?> realKey4 = const Value.absent(),
+          Value<int?> intKey0 = const Value.absent(),
+          Value<int?> intKey1 = const Value.absent(),
+          Value<int?> intKey2 = const Value.absent(),
+          Value<int?> intKey3 = const Value.absent(),
+          Value<int?> intKey4 = const Value.absent()}) =>
       SocketRxEvent(
         uuid: uuid ?? this.uuid,
         type: type ?? this.type,
@@ -1507,6 +1823,11 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
         realKey2: realKey2.present ? realKey2.value : this.realKey2,
         realKey3: realKey3.present ? realKey3.value : this.realKey3,
         realKey4: realKey4.present ? realKey4.value : this.realKey4,
+        intKey0: intKey0.present ? intKey0.value : this.intKey0,
+        intKey1: intKey1.present ? intKey1.value : this.intKey1,
+        intKey2: intKey2.present ? intKey2.value : this.intKey2,
+        intKey3: intKey3.present ? intKey3.value : this.intKey3,
+        intKey4: intKey4.present ? intKey4.value : this.intKey4,
       );
   @override
   String toString() {
@@ -1532,7 +1853,12 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
           ..write('realKey1: $realKey1, ')
           ..write('realKey2: $realKey2, ')
           ..write('realKey3: $realKey3, ')
-          ..write('realKey4: $realKey4')
+          ..write('realKey4: $realKey4, ')
+          ..write('intKey0: $intKey0, ')
+          ..write('intKey1: $intKey1, ')
+          ..write('intKey2: $intKey2, ')
+          ..write('intKey3: $intKey3, ')
+          ..write('intKey4: $intKey4')
           ..write(')'))
         .toString();
   }
@@ -1560,7 +1886,12 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
         realKey1,
         realKey2,
         realKey3,
-        realKey4
+        realKey4,
+        intKey0,
+        intKey1,
+        intKey2,
+        intKey3,
+        intKey4
       ]);
   @override
   bool operator ==(Object other) =>
@@ -1587,7 +1918,12 @@ class SocketRxEvent extends DataClass implements Insertable<SocketRxEvent> {
           other.realKey1 == this.realKey1 &&
           other.realKey2 == this.realKey2 &&
           other.realKey3 == this.realKey3 &&
-          other.realKey4 == this.realKey4);
+          other.realKey4 == this.realKey4 &&
+          other.intKey0 == this.intKey0 &&
+          other.intKey1 == this.intKey1 &&
+          other.intKey2 == this.intKey2 &&
+          other.intKey3 == this.intKey3 &&
+          other.intKey4 == this.intKey4);
 }
 
 class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
@@ -1613,6 +1949,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
   final Value<double?> realKey2;
   final Value<double?> realKey3;
   final Value<double?> realKey4;
+  final Value<int?> intKey0;
+  final Value<int?> intKey1;
+  final Value<int?> intKey2;
+  final Value<int?> intKey3;
+  final Value<int?> intKey4;
   final Value<int> rowid;
   const SocketRxEventsCompanion({
     this.uuid = const Value.absent(),
@@ -1637,6 +1978,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.intKey0 = const Value.absent(),
+    this.intKey1 = const Value.absent(),
+    this.intKey2 = const Value.absent(),
+    this.intKey3 = const Value.absent(),
+    this.intKey4 = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   SocketRxEventsCompanion.insert({
@@ -1662,6 +2008,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     this.realKey2 = const Value.absent(),
     this.realKey3 = const Value.absent(),
     this.realKey4 = const Value.absent(),
+    this.intKey0 = const Value.absent(),
+    this.intKey1 = const Value.absent(),
+    this.intKey2 = const Value.absent(),
+    this.intKey3 = const Value.absent(),
+    this.intKey4 = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : uuid = Value(uuid),
         type = Value(type),
@@ -1692,6 +2043,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     Expression<double>? realKey2,
     Expression<double>? realKey3,
     Expression<double>? realKey4,
+    Expression<int>? intKey0,
+    Expression<int>? intKey1,
+    Expression<int>? intKey2,
+    Expression<int>? intKey3,
+    Expression<int>? intKey4,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -1717,6 +2073,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       if (realKey2 != null) 'real_key2': realKey2,
       if (realKey3 != null) 'real_key3': realKey3,
       if (realKey4 != null) 'real_key4': realKey4,
+      if (intKey0 != null) 'int_key0': intKey0,
+      if (intKey1 != null) 'int_key1': intKey1,
+      if (intKey2 != null) 'int_key2': intKey2,
+      if (intKey3 != null) 'int_key3': intKey3,
+      if (intKey4 != null) 'int_key4': intKey4,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1744,6 +2105,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       Value<double?>? realKey2,
       Value<double?>? realKey3,
       Value<double?>? realKey4,
+      Value<int?>? intKey0,
+      Value<int?>? intKey1,
+      Value<int?>? intKey2,
+      Value<int?>? intKey3,
+      Value<int?>? intKey4,
       Value<int>? rowid}) {
     return SocketRxEventsCompanion(
       uuid: uuid ?? this.uuid,
@@ -1768,6 +2134,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
       realKey2: realKey2 ?? this.realKey2,
       realKey3: realKey3 ?? this.realKey3,
       realKey4: realKey4 ?? this.realKey4,
+      intKey0: intKey0 ?? this.intKey0,
+      intKey1: intKey1 ?? this.intKey1,
+      intKey2: intKey2 ?? this.intKey2,
+      intKey3: intKey3 ?? this.intKey3,
+      intKey4: intKey4 ?? this.intKey4,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1841,6 +2212,21 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
     if (realKey4.present) {
       map['real_key4'] = Variable<double>(realKey4.value);
     }
+    if (intKey0.present) {
+      map['int_key0'] = Variable<int>(intKey0.value);
+    }
+    if (intKey1.present) {
+      map['int_key1'] = Variable<int>(intKey1.value);
+    }
+    if (intKey2.present) {
+      map['int_key2'] = Variable<int>(intKey2.value);
+    }
+    if (intKey3.present) {
+      map['int_key3'] = Variable<int>(intKey3.value);
+    }
+    if (intKey4.present) {
+      map['int_key4'] = Variable<int>(intKey4.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1872,6 +2258,11 @@ class SocketRxEventsCompanion extends UpdateCompanion<SocketRxEvent> {
           ..write('realKey2: $realKey2, ')
           ..write('realKey3: $realKey3, ')
           ..write('realKey4: $realKey4, ')
+          ..write('intKey0: $intKey0, ')
+          ..write('intKey1: $intKey1, ')
+          ..write('intKey2: $intKey2, ')
+          ..write('intKey3: $intKey3, ')
+          ..write('intKey4: $intKey4, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();

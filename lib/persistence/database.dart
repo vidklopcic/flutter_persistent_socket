@@ -19,15 +19,26 @@ class Database extends _$Database {
   }
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
         onUpgrade: (m, from, to) async {
-          // delete all tables and restart
-          for (var table in allTables) {
-            await m.deleteTable(table.actualTableName);
-            await m.createTable(table);
+          print('Migrating database from $from to $to');
+          if (from == 1) {
+            // TxEvents
+            await m.addColumn(socketTxEvents, socketTxEvents.intKey0);
+            await m.addColumn(socketTxEvents, socketTxEvents.intKey1);
+            await m.addColumn(socketTxEvents, socketTxEvents.intKey2);
+            await m.addColumn(socketTxEvents, socketTxEvents.intKey3);
+            await m.addColumn(socketTxEvents, socketTxEvents.intKey4);
+
+            // RxEvents
+            await m.addColumn(socketRxEvents, socketRxEvents.intKey0);
+            await m.addColumn(socketRxEvents, socketRxEvents.intKey1);
+            await m.addColumn(socketRxEvents, socketRxEvents.intKey2);
+            await m.addColumn(socketRxEvents, socketRxEvents.intKey3);
+            await m.addColumn(socketRxEvents, socketRxEvents.intKey4);
           }
         },
       );
