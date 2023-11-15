@@ -18,7 +18,9 @@ dependencies:
   web_socket_channel: ^2.4.0
   tus_client: ^1.0.2
   gm5_utils:
-    git: https://github.com/vidklopcic/gm5_utils.git
+    git:
+      url: https://github.com/vidklopcic/gm5_utils.git
+      ref: 1.0.1
 
   protobuf: ^3.1.0
 

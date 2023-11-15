@@ -106,6 +106,8 @@ abstract class SocketTxMessage {
 }
 
 abstract class SocketRxMessage<TableT> {
+  static bool proto2Compat = false;
+
   /// Wraps the raw JSON data received from the server and holds
   /// some metadata (eg. whether message originates from cache or from server).
   final SocketRxMessageData message;
@@ -132,7 +134,22 @@ abstract class SocketRxMessage<TableT> {
         cacheKeys = null,
         message = message ?? SocketRxMessageData(null, online: false) {
     if (message != null) {
-      data?.mergeFromProto3Json(message.body, ignoreUnknownFields: true);
+      if (proto2Compat) {
+        bool isOnlyDigits = true;
+        for (String key in message.body.keys) {
+          if (double.tryParse(key) is! double) {
+            isOnlyDigits = false;
+            break;
+          }
+        }
+        if (isOnlyDigits) {
+          data?.mergeFromJsonMap(message.body);
+        } else {
+          data?.mergeFromJsonMap(message.body);
+        }
+      } else {
+        data?.mergeFromProto3Json(message.body, ignoreUnknownFields: true);
+      }
     }
   }
 
