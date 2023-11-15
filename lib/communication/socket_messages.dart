@@ -145,7 +145,7 @@ abstract class SocketRxMessage<TableT> {
         if (isOnlyDigits) {
           data?.mergeFromJsonMap(message.body);
         } else {
-          data?.mergeFromJsonMap(message.body);
+          data?.mergeFromProto3Json(message.body);
         }
       } else {
         data?.mergeFromProto3Json(message.body, ignoreUnknownFields: true);
