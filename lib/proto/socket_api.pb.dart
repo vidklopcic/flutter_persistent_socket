@@ -97,6 +97,126 @@ class Ack extends $pb.GeneratedMessage {
 }
 
 ///
+/// type = 'ilol|ack';
+/// origin = server;
+class IlolAck extends $pb.GeneratedMessage {
+  factory IlolAck({
+    $core.String? sourceEventId,
+  }) {
+    final $result = create();
+    if (sourceEventId != null) {
+      $result.sourceEventId = sourceEventId;
+    }
+    return $result;
+  }
+  IlolAck._() : super();
+  factory IlolAck.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory IlolAck.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IlolAck', package: const $pb.PackageName(_omitMessageNames ? '' : 'socket_api'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'sourceEventId')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  IlolAck clone() => IlolAck()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  IlolAck copyWith(void Function(IlolAck) updates) => super.copyWith((message) => updates(message as IlolAck)) as IlolAck;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IlolAck create() => IlolAck._();
+  IlolAck createEmptyInstance() => create();
+  static $pb.PbList<IlolAck> createRepeated() => $pb.PbList<IlolAck>();
+  @$core.pragma('dart2js:noInline')
+  static IlolAck getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<IlolAck>(create);
+  static IlolAck? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get sourceEventId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set sourceEventId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSourceEventId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSourceEventId() => clearField(1);
+}
+
+///
+/// type = 'ilol|error';
+/// origin = server;
+class IlolError extends $pb.GeneratedMessage {
+  factory IlolError({
+    $core.String? sourceEventId,
+    $core.String? reason,
+  }) {
+    final $result = create();
+    if (sourceEventId != null) {
+      $result.sourceEventId = sourceEventId;
+    }
+    if (reason != null) {
+      $result.reason = reason;
+    }
+    return $result;
+  }
+  IlolError._() : super();
+  factory IlolError.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory IlolError.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IlolError', package: const $pb.PackageName(_omitMessageNames ? '' : 'socket_api'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'sourceEventId')
+    ..aOS(2, _omitFieldNames ? '' : 'reason')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  IlolError clone() => IlolError()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  IlolError copyWith(void Function(IlolError) updates) => super.copyWith((message) => updates(message as IlolError)) as IlolError;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IlolError create() => IlolError._();
+  IlolError createEmptyInstance() => create();
+  static $pb.PbList<IlolError> createRepeated() => $pb.PbList<IlolError>();
+  @$core.pragma('dart2js:noInline')
+  static IlolError getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<IlolError>(create);
+  static IlolError? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get sourceEventId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set sourceEventId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSourceEventId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSourceEventId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get reason => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set reason($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasReason() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearReason() => clearField(2);
+}
+
+///
 /// type = 'async-progress'
 /// origin = server
 class AsyncProgress extends $pb.GeneratedMessage {

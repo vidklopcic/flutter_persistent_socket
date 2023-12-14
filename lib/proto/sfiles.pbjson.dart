@@ -66,6 +66,7 @@ const UploadedFile$json = {
     {'1': 'mime', '3': 4, '4': 1, '5': 9, '10': 'mime'},
     {'1': 'thumb_url', '3': 5, '4': 1, '5': 9, '10': 'thumbUrl'},
     {'1': 'name', '3': 6, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'downloadable', '3': 7, '4': 1, '5': 8, '10': 'downloadable'},
   ],
 };
 
@@ -73,7 +74,8 @@ const UploadedFile$json = {
 final $typed_data.Uint8List uploadedFileDescriptor = $convert.base64Decode(
     'CgxVcGxvYWRlZEZpbGUSGwoJbG9jYWxfa2V5GAEgASgJUghsb2NhbEtleRIQCgN1cmwYAiABKA'
     'lSA3VybBIOCgJpZBgDIAEoCVICaWQSEgoEbWltZRgEIAEoCVIEbWltZRIbCgl0aHVtYl91cmwY'
-    'BSABKAlSCHRodW1iVXJsEhIKBG5hbWUYBiABKAlSBG5hbWU=');
+    'BSABKAlSCHRodW1iVXJsEhIKBG5hbWUYBiABKAlSBG5hbWUSIgoMZG93bmxvYWRhYmxlGAcgAS'
+    'gIUgxkb3dubG9hZGFibGU=');
 
 @$core.Deprecated('Use uploadStartDescriptor instead')
 const UploadStart$json = {

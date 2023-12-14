@@ -42,6 +42,32 @@ final $typed_data.Uint8List ackDescriptor = $convert.base64Decode(
     'CgNBY2sSEgoEdXVpZBgBIAEoCVIEdXVpZBIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck'
     '1lc3NhZ2USHQoKZXJyb3JfY29kZRgEIAEoBVIJZXJyb3JDb2Rl');
 
+@$core.Deprecated('Use ilolAckDescriptor instead')
+const IlolAck$json = {
+  '1': 'IlolAck',
+  '2': [
+    {'1': 'source_event_id', '3': 1, '4': 1, '5': 9, '10': 'sourceEventId'},
+  ],
+};
+
+/// Descriptor for `IlolAck`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List ilolAckDescriptor = $convert.base64Decode(
+    'CgdJbG9sQWNrEiYKD3NvdXJjZV9ldmVudF9pZBgBIAEoCVINc291cmNlRXZlbnRJZA==');
+
+@$core.Deprecated('Use ilolErrorDescriptor instead')
+const IlolError$json = {
+  '1': 'IlolError',
+  '2': [
+    {'1': 'source_event_id', '3': 1, '4': 1, '5': 9, '10': 'sourceEventId'},
+    {'1': 'reason', '3': 2, '4': 1, '5': 9, '10': 'reason'},
+  ],
+};
+
+/// Descriptor for `IlolError`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List ilolErrorDescriptor = $convert.base64Decode(
+    'CglJbG9sRXJyb3ISJgoPc291cmNlX2V2ZW50X2lkGAEgASgJUg1zb3VyY2VFdmVudElkEhYKBn'
+    'JlYXNvbhgCIAEoCVIGcmVhc29u');
+
 @$core.Deprecated('Use asyncProgressDescriptor instead')
 const AsyncProgress$json = {
   '1': 'AsyncProgress',

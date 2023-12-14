@@ -241,6 +241,7 @@ class UploadedFile extends $pb.GeneratedMessage {
     $core.String? mime,
     $core.String? thumbUrl,
     $core.String? name,
+    $core.bool? downloadable,
   }) {
     final $result = create();
     if (localKey != null) {
@@ -261,6 +262,9 @@ class UploadedFile extends $pb.GeneratedMessage {
     if (name != null) {
       $result.name = name;
     }
+    if (downloadable != null) {
+      $result.downloadable = downloadable;
+    }
     return $result;
   }
   UploadedFile._() : super();
@@ -274,6 +278,7 @@ class UploadedFile extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'mime')
     ..aOS(5, _omitFieldNames ? '' : 'thumbUrl')
     ..aOS(6, _omitFieldNames ? '' : 'name')
+    ..aOB(7, _omitFieldNames ? '' : 'downloadable')
     ..hasRequiredFields = false
   ;
 
@@ -351,6 +356,15 @@ class UploadedFile extends $pb.GeneratedMessage {
   $core.bool hasName() => $_has(5);
   @$pb.TagNumber(6)
   void clearName() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.bool get downloadable => $_getBF(6);
+  @$pb.TagNumber(7)
+  set downloadable($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasDownloadable() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearDownloadable() => clearField(7);
 }
 
 ///
