@@ -25,7 +25,7 @@ class Database extends _$Database {
   MigrationStrategy get migration => MigrationStrategy(
         onUpgrade: (m, from, to) async {
           print('Migrating database from $from to $to');
-          if (from == 1) {
+          if (from < 2) {
             await transaction(() async {
               // TxEvents
               await m.addColumn(socketTxEvents, socketTxEvents.intKey0);
