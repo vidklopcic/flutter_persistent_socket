@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1" />
       <root url="file://$USER_HOME$/.pub-cache/git/gm5_utils-dfe35f78916c6160ba96b594ea3f60f7d0fde49b" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.0" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sqlite3_flutter_libs-0.5.17" />
       <root url="file://$PROJECT_DIR$" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sqlite3_flutter_libs-0.5.24" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.7" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.3" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
