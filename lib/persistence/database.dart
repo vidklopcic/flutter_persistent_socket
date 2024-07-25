@@ -93,6 +93,11 @@ class _DummyExecutor implements QueryExecutor {
   Future<void> close() {
     throw UnimplementedError();
   }
+
+  @override
+  QueryExecutor beginExclusive() {
+    throw UnimplementedError();
+  }
 }
 
 Database database = Database();
