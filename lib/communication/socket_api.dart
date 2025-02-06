@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_persistent_socket/communication/socket_connector.dart';
 import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart' as sre;
+import 'package:flutter_persistent_socket/communication/socket_messages.dart'
+    as sre;
 import 'package:flutter_persistent_socket/persistence/database.dart';
 import 'package:flutter_persistent_socket/persistence/socket_rx_event.dart';
 import 'package:flutter_persistent_socket/util.dart';
@@ -20,6 +21,7 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   static Map<String?, SocketApi> _instances = {};
   String? _token;
   String? _refreshToken;
+  bool isOffline = false;
 
   int apiVersion = 1;
 
@@ -43,7 +45,8 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     if (alwaysNew) {
       return SocketApi._internal(address);
     } else {
-      return _instances.putIfAbsent(address, () => SocketApi._internal(address));
+      return _instances.putIfAbsent(
+          address, () => SocketApi._internal(address));
     }
   }
 
@@ -78,16 +81,24 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     listen(connection.dataStream, _onData);
   }
 
-  Future<SocketApiTxStatus> _waitAck(String instanceUuid, Duration timeout) async {
+  Future<SocketApiTxStatus> _waitAck(
+      String instanceUuid, Duration timeout) async {
     try {
       final msg = await getMessageHandler(
         RxAck(),
-      ).where((event) => event.data.uuid == instanceUuid).first.timeout(timeout);
-      final status = msg.data.hasErrorMessage() ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
-      return SocketApiTxStatus(status, error: msg.data.errorCode, errorMessage: msg.data.errorMessage);
+      )
+          .where((event) => event.data.uuid == instanceUuid)
+          .first
+          .timeout(timeout);
+      final status = msg.data.hasErrorMessage()
+          ? SocketApiAckStatus.messageError
+          : SocketApiAckStatus.success;
+      return SocketApiTxStatus(status,
+          error: msg.data.errorCode, errorMessage: msg.data.errorMessage);
     } catch (e) {
       // timeout
-      return SocketApiTxStatus(SocketApiAckStatus.timeout, errorMessage: 'No response from server.');
+      return SocketApiTxStatus(SocketApiAckStatus.timeout,
+          errorMessage: 'No response from server.');
     }
   }
 
@@ -140,30 +151,40 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     if (logging) print('txevent: $msg');
 
     // send event
-    try {
-      connection.channel?.sink.add(msg);
-    } catch (e) {
-      print('error sending $e');
-      if (isCacheable) {
-        if (logging) print('connection error - caching event!');
-        if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
+    if (isOffline) {
+      if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
+      return SocketApiTxStatus(
+        SocketApiAckStatus.connectionError,
+        errorMessage: 'SocketApi is in offline mode.',
+        error: -1,
+      );
+    } else {
+      try {
+        connection.channel?.sink.add(msg);
+      } catch (e) {
+        print('error sending $e');
+        if (isCacheable) {
+          if (logging) print('connection error - caching event!');
+          if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
+        }
+        return SocketApiTxStatus(SocketApiAckStatus.connectionError,
+            errorMessage: 'Error sending the message.');
       }
-      return SocketApiTxStatus(SocketApiAckStatus.connectionError, errorMessage: 'Error sending the message.');
-    }
+      SocketApiTxStatus status =
+          SocketApiTxStatus(SocketApiAckStatus.success, errorMessage: '');
 
-    SocketApiTxStatus status = SocketApiTxStatus(SocketApiAckStatus.success, errorMessage: '');
+      if (ack) {
+        // handle ack message
+        status = await _waitAck(instanceUuid, timeout);
 
-    if (ack) {
-      // handle ack message
-      status = await _waitAck(instanceUuid, timeout);
-
-      if (isCacheable &&
-          status.status != SocketApiAckStatus.success &&
-          status.status != SocketApiAckStatus.messageError) {
-        if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
+        if (isCacheable &&
+            status.status != SocketApiAckStatus.success &&
+            status.status != SocketApiAckStatus.messageError) {
+          if (!noCache) database.socketTxEventDao.cacheEvent(message, msg);
+        }
       }
+      return status;
     }
-    return status;
   }
 
   Future<T> fetch<T extends SocketRxMessage>(SocketTxMessage message, T result,
@@ -211,7 +232,8 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   void _onData(event) {
     if (logging) print('rxevent: $event');
     SocketRxMessageData messageData = SocketRxMessageData(event, online: true);
-    SocketRxMessage? message = _messageConverters[messageData.messageType]?.fromMessage(messageData);
+    SocketRxMessage? message =
+        _messageConverters[messageData.messageType]?.fromMessage(messageData);
     if (message == null) return; // todo proper logging
     _messageHandlers[messageData.messageType]?.add(message);
     if (message.cache != null && message.cache != Duration.zero) {
@@ -220,12 +242,17 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   Stream getTxMessageHandler(SocketTxMessage message) {
-    return _txMessageHandlers.putIfAbsent(message.messageType, () => StreamController.broadcast()).stream;
+    return _txMessageHandlers
+        .putIfAbsent(message.messageType, () => StreamController.broadcast())
+        .stream;
   }
 
   Stream<T> getMessageHandler<T extends SocketRxMessage>(T message) {
     _messageConverters.putIfAbsent(message.messageType, () => message);
-    return _messageHandlers.putIfAbsent(message.messageType, () => StreamController<T>.broadcast()).stream.cast<T>();
+    return _messageHandlers
+        .putIfAbsent(message.messageType, () => StreamController<T>.broadcast())
+        .stream
+        .cast<T>();
   }
 
   void setMessages(List<SocketRxMessage> messages) {
@@ -244,7 +271,8 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     bool allWereSent = true;
     int offset = 0;
     List<SocketTxEvent> sentEvents = [];
-    List<SocketTxEvent> cachedEvents = await database.socketTxEventDao.unhandledEvents(10, offset: offset);
+    List<SocketTxEvent> cachedEvents =
+        await database.socketTxEventDao.unhandledEvents(10, offset: offset);
     while (cachedEvents.length > 0) {
       if (!connection.connected.val!) break;
       for (SocketTxEvent event in cachedEvents) {
@@ -259,22 +287,26 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
             continue;
           }
           // handle ack message
-          final status = await _waitAck(content['headers']['uuid'], Duration(seconds: 10));
+          final status =
+              await _waitAck(content['headers']['uuid'], Duration(seconds: 10));
           if (status.status == SocketApiAckStatus.success ||
               status.status == SocketApiAckStatus.messageError ||
-              (retryCount > 0 && content['headers']['retryCount'] > retryCount)) {
+              (retryCount > 0 &&
+                  content['headers']['retryCount'] > retryCount)) {
             // Delete even if status is error. Otherwise we risk backlog of malformed messages.
             sentEvents.add(event);
           } else {
             allWereSent = false;
-            await database.socketTxEventDao.saveEvent(event.copyWith(jsonContent: json.encode(content)));
+            await database.socketTxEventDao
+                .saveEvent(event.copyWith(jsonContent: json.encode(content)));
           }
         } catch (e) {
           print('error resending $e');
         }
       }
       offset += 10;
-      cachedEvents = await database.socketTxEventDao.unhandledEvents(10, offset: offset);
+      cachedEvents =
+          await database.socketTxEventDao.unhandledEvents(10, offset: offset);
     }
     print('successfully sent ${sentEvents.length} cached events');
     database.socketTxEventDao.deleteEvents(sentEvents);
@@ -283,19 +315,27 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
   }
 
   static SocketApi of(BuildContext context) {
-    return (context.getElementForInheritedWidgetOfExactType<SocketApiProvider>()!.widget as SocketApiProvider)
+    return (context
+            .getElementForInheritedWidgetOfExactType<SocketApiProvider>()!
+            .widget as SocketApiProvider)
         .socketApi;
   }
 
-  Future<List<T>> getFromCache<T extends SocketRxMessage<TableT>, TableT, V extends sre.CacheKeys>(
+  Future<List<T>> getFromCache<T extends SocketRxMessage<TableT>, TableT,
+      V extends sre.CacheKeys>(
     T message, {
-    SocketRxMessageKeyedQueryFilter<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, T>? filter,
-    SocketRxMessageKeyedQueryFilterV1<SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V>? filterV1,
+    SocketRxMessageKeyedQueryFilter<
+            SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, T>?
+        filter,
+    SocketRxMessageKeyedQueryFilterV1<
+            SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent>, V>?
+        filterV1,
     Expression<bool> Function(T)? where,
   }) async {
     if (message.cache == null || message.cache == Duration.zero) return [];
 
-    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query = database.socketRxEventDao.filter(message);
+    SimpleSelectStatement<$SocketRxEventsTable, SocketRxEvent> query =
+        database.socketRxEventDao.filter(message);
 
     final V? cacheKeys = message.cacheKeys as V?;
     if (cacheKeys != null) {
@@ -316,9 +356,11 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
     List<SocketRxEvent> invalidEvents = [];
     for (SocketRxEvent cachedEvent in events) {
       try {
-        parsedEvents.add(message.fromMessage(SocketRxMessageData.fromCachedEvent(cachedEvent)) as T);
+        parsedEvents.add(message.fromMessage(
+            SocketRxMessageData.fromCachedEvent(cachedEvent)) as T);
       } catch (e) {
-        print('Exception while parsing cached rx message. Schema changed? ($e)');
+        print(
+            'Exception while parsing cached rx message. Schema changed? ($e)');
         invalidEvents.add(cachedEvent);
       }
     }
@@ -361,7 +403,8 @@ class SocketApiProvider extends InheritedWidget {
   final SocketApi socketApi;
 
   @override
-  bool updateShouldNotify(SocketApiProvider saProvider) => saProvider.socketApi != socketApi;
+  bool updateShouldNotify(SocketApiProvider saProvider) =>
+      saProvider.socketApi != socketApi;
 }
 
 enum SocketApiAckStatus { success, connectionError, timeout, messageError }
