@@ -6,7 +6,9 @@ import 'database.dart';
 
 part 'socket_tx_event.g.dart';
 
-typedef SocketTxMessageQueryFilter<T extends Query<$SocketTxEventsTable, SocketTxEvent>> = T Function(T query);
+typedef SocketTxMessageQueryFilter<
+        T extends Query<$SocketTxEventsTable, SocketTxEvent>>
+    = T Function(T query);
 
 final uuidObj = Uuid();
 
@@ -17,7 +19,8 @@ class SocketTxEvents extends Table {
 
   TextColumn get jsonContent => text()();
 
-  DateTimeColumn get timeRecorded => dateTime().clientDefault(() => DateTime.now())();
+  DateTimeColumn get timeRecorded =>
+      dateTime().clientDefault(() => DateTime.now())();
 
   DateTimeColumn get expires => dateTime()();
 
@@ -66,25 +69,32 @@ class SocketTxEvents extends Table {
 }
 
 @DriftAccessor(tables: [SocketTxEvents])
-class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDaoMixin {
+class SocketTxEventDao extends DatabaseAccessor<Database>
+    with _$SocketTxEventDaoMixin {
   final Database db;
 
   SocketTxEventDao(this.db) : super(db);
 
   Future<int> deleteExpired() {
-    return (delete(socketTxEvents)..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now()))).go();
+    return (delete(socketTxEvents)
+          ..where((tbl) => tbl.expires.isSmallerOrEqualValue(DateTime.now())))
+        .go();
   }
 
   Future<int> invalidateCacheForMessageType(SocketTxMessage message) {
-    return invalidateCache((q) => q..where((tbl) => tbl.type.equals(message.messageType)));
+    return invalidateCache(
+        (q) => q..where((tbl) => tbl.type.equals(message.messageType)));
   }
 
   Future<int> invalidateCacheForCacheUuid(SocketTxMessage message) {
-    return invalidateCache((q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)));
+    return invalidateCache(
+        (q) => q..where((tbl) => tbl.uuid.equals(message.cacheUuid)));
   }
 
   Future<int> invalidateCache(
-      [SocketTxMessageQueryFilter<DeleteStatement<$SocketTxEventsTable, SocketTxEvent>>? filter]) {
+      [SocketTxMessageQueryFilter<
+              DeleteStatement<$SocketTxEventsTable, SocketTxEvent>>?
+          filter]) {
     return ((filter ?? (f) => f)(delete(socketTxEvents))).go();
   }
 
@@ -124,8 +134,10 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
     return into(socketTxEvents).insertOnConflictUpdate(event);
   }
 
-  SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> filter(SocketTxMessage message) {
-    SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> query = select(socketTxEvents);
+  SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> filter(
+      SocketTxMessage message) {
+    SimpleSelectStatement<$SocketTxEventsTable, SocketTxEvent> query =
+        select(socketTxEvents);
     query.where((tbl) => tbl.type.equals(message.messageType));
     query.where((tbl) => tbl.expires.isBiggerOrEqualValue(DateTime.now()));
     query.orderBy([(o) => OrderingTerm(expression: o.timeRecorded)]);
@@ -138,6 +150,13 @@ class SocketTxEventDao extends DatabaseAccessor<Database> with _$SocketTxEventDa
           ..limit(limit, offset: offset)
           ..orderBy([(q) => OrderingTerm(expression: q.timeRecorded)]))
         .get();
+  }
+
+  Future<int> unhandledEventsCount() {
+    return (select(socketTxEvents)
+          ..where((tbl) => tbl.expires.isBiggerThanValue(DateTime.now())))
+        .get()
+        .then((value) => value.length);
   }
 
   Future deleteEvents(List<SocketTxEvent> events) {

@@ -263,14 +263,25 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
   void _connectionStateChange(bool connected) {}
 
-  Future<bool> sendCached({bool forceAck = false}) async {
-    return await _sendCached(forceAck);
+  Future<bool> sendCached({
+    bool forceAck = false,
+    void Function(int sent, int total, int error)? onProgress,
+    Duration ackTimeout = const Duration(seconds: 10),
+  }) async {
+    return await _sendCached(forceAck, onProgress, ackTimeout);
   }
 
-  Future<bool> _sendCached(bool forceAck) async {
+  Future<bool> _sendCached(
+    bool forceAck,
+    void Function(int sent, int total, int error)? progress,
+    Duration ackTimeout,
+  ) async {
     bool allWereSent = true;
     int offset = 0;
     List<SocketTxEvent> sentEvents = [];
+    int unhandledCount = await database.socketTxEventDao.unhandledEventsCount();
+    int nSent = 0;
+    int nError = 0;
     List<SocketTxEvent> cachedEvents =
         await database.socketTxEventDao.unhandledEvents(10, offset: offset);
     while (cachedEvents.length > 0) {
@@ -287,23 +298,27 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
           connection.channel?.sink.add(json.encode(content));
           if (content['headers']['ack'] != true) {
             sentEvents.add(event);
+            progress?.call(++nSent, unhandledCount, nError);
             continue;
           }
           // handle ack message
           final status =
-              await _waitAck(content['headers']['uuid'], Duration(seconds: 10));
+              await _waitAck(content['headers']['uuid'], ackTimeout);
           if (status.status == SocketApiAckStatus.success ||
               status.status == SocketApiAckStatus.messageError ||
               (retryCount > 0 &&
                   content['headers']['retryCount'] > retryCount)) {
             // Delete even if status is error. Otherwise we risk backlog of malformed messages.
             sentEvents.add(event);
+            progress?.call(++nSent, unhandledCount, nError);
           } else {
+            progress?.call(nSent, unhandledCount, ++nError);
             allWereSent = false;
             await database.socketTxEventDao
                 .saveEvent(event.copyWith(jsonContent: json.encode(content)));
           }
         } catch (e) {
+          progress?.call(nSent, unhandledCount, ++nError);
           print('error resending $e');
         }
       }

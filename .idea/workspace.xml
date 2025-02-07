@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="added offline mode">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ed694f81-0b4b-4262-8fff-829606ba6348" name="Default Changelist" comment="allow forceAck on sendCached">
+      <change beforePath="$PROJECT_DIR$/lib/communication/socket_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/communication/socket_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/persistence/socket_tx_event.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,22 +40,28 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="1ewrK43L657UKDbwuOSa5jur53y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dekra&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/vidklopcic/Development/projects/flutter_persistent_socket/lib/communication&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "dekra",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/vidklopcic/Development/projects/flutter_persistent_socket/lib/communication",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/communication" />
@@ -431,7 +438,7 @@
       <option name="project" value="LOCAL" />
       <updated>1702634276459</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="catch safari exception for file picker" />
     <MESSAGE value="fix null-safety" />
     <MESSAGE value="increase reconnect delay" />
     <MESSAGE value="remove redundant print statements" />
@@ -539,6 +545,7 @@
     <MESSAGE value="support migration from old protobufs" />
     <MESSAGE value="fix casting" />
     <MESSAGE value="added offline mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="added offline mode" />
+    <MESSAGE value="allow forceAck on sendCached" />
+    <option name="LAST_COMMIT_MESSAGE" value="allow forceAck on sendCached" />
   </component>
 </project>
