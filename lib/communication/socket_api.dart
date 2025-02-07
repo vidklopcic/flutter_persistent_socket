@@ -263,11 +263,11 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
 
   void _connectionStateChange(bool connected) {}
 
-  Future<bool> sendCached() async {
-    return await _sendCached();
+  Future<bool> sendCached({bool forceAck = false}) async {
+    return await _sendCached(forceAck);
   }
 
-  Future<bool> _sendCached() async {
+  Future<bool> _sendCached(bool forceAck) async {
     bool allWereSent = true;
     int offset = 0;
     List<SocketTxEvent> sentEvents = [];
@@ -281,6 +281,9 @@ class SocketApi with SubscriptionsMixin, ChangeNotifier {
           content['headers']['localTime'] = gm5Utils.secondsFromEpoch;
           content['headers']['retryCount'] ??= 0;
           content['headers']['retryCount']++;
+          if (forceAck) {
+            content['headers']['ack'] = true;
+          }
           connection.channel?.sink.add(json.encode(content));
           if (content['headers']['ack'] != true) {
             sentEvents.add(event);
