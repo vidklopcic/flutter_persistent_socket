@@ -1,13 +1,14 @@
+// This is a generated file - do not edit.
 //
-//  Generated code. Do not modify.
-//  source: socket_api.proto
-//
-// @dart = 2.12
+// Generated from socket_api.proto.
+
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
-// ignore_for_file: constant_identifier_names, library_prefixes
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields
-// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
@@ -42,6 +43,32 @@ final $typed_data.Uint8List ackDescriptor = $convert.base64Decode(
     'CgNBY2sSEgoEdXVpZBgBIAEoCVIEdXVpZBIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck'
     '1lc3NhZ2USHQoKZXJyb3JfY29kZRgEIAEoBVIJZXJyb3JDb2Rl');
 
+@$core.Deprecated('Use ilolAckDescriptor instead')
+const IlolAck$json = {
+  '1': 'IlolAck',
+  '2': [
+    {'1': 'source_event_id', '3': 1, '4': 1, '5': 9, '10': 'sourceEventId'},
+  ],
+};
+
+/// Descriptor for `IlolAck`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List ilolAckDescriptor = $convert.base64Decode(
+    'CgdJbG9sQWNrEiYKD3NvdXJjZV9ldmVudF9pZBgBIAEoCVINc291cmNlRXZlbnRJZA==');
+
+@$core.Deprecated('Use ilolErrorDescriptor instead')
+const IlolError$json = {
+  '1': 'IlolError',
+  '2': [
+    {'1': 'source_event_id', '3': 1, '4': 1, '5': 9, '10': 'sourceEventId'},
+    {'1': 'reason', '3': 2, '4': 1, '5': 9, '10': 'reason'},
+  ],
+};
+
+/// Descriptor for `IlolError`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List ilolErrorDescriptor = $convert.base64Decode(
+    'CglJbG9sRXJyb3ISJgoPc291cmNlX2V2ZW50X2lkGAEgASgJUg1zb3VyY2VFdmVudElkEhYKBn'
+    'JlYXNvbhgCIAEoCVIGcmVhc29u');
+
 @$core.Deprecated('Use asyncProgressDescriptor instead')
 const AsyncProgress$json = {
   '1': 'AsyncProgress',
@@ -73,4 +100,3 @@ const UpgradeApiVersion$json = {
 /// Descriptor for `UpgradeApiVersion`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List upgradeApiVersionDescriptor = $convert.base64Decode(
     'ChFVcGdyYWRlQXBpVmVyc2lvbhIWCgZsYXRlc3QYASABKAVSBmxhdGVzdA==');
-

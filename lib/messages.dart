@@ -1,12 +1,12 @@
-import 'proto/sfiles.pb.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
-import 'package:flutter_persistent_socket/communication/socket_messages.dart';
-import 'proto/socket_api.pb.dart';
-import 'proto/authentication.pb.dart';
-import 'proto/uploader.pb.dart';
 import 'package:drift/drift.dart';
+import 'proto/authentication.pb.dart';
+import 'package:flutter_persistent_socket/communication/socket_messages.dart';
+import 'package:provider/provider.dart';
+import 'proto/uploader.pb.dart';
+import 'proto/socket_api.pb.dart';
 import 'package:flutter_persistent_socket/communication/socket_api.dart';
+import 'proto/sfiles.pb.dart';
+import 'package:provider/single_child_widget.dart';
 
 class TxLogin extends SocketTxMessage {
   static const String type = 'login';
@@ -229,6 +229,30 @@ class RxAsyncProgress extends SocketRxMessage {
 }
 
 
+class RxIlolAck extends SocketRxMessage {
+  static const String type = 'ilol|ack';
+  final IlolAck data = IlolAck();
+  
+
+  RxIlolAck([SocketRxMessageData? message]) : super(type, message);
+
+  @override
+  RxIlolAck fromMessage(SocketRxMessageData message) => RxIlolAck(message);
+}
+
+
+class RxIlolError extends SocketRxMessage {
+  static const String type = 'ilol|error';
+  final IlolError data = IlolError();
+  
+
+  RxIlolError([SocketRxMessageData? message]) : super(type, message);
+
+  @override
+  RxIlolError fromMessage(SocketRxMessageData message) => RxIlolError(message);
+}
+
+
 class RxUpgradeApiVersion extends SocketRxMessage {
   static const String type = 'upgrade-api-version';
   final UpgradeApiVersion data = UpgradeApiVersion();
@@ -320,6 +344,8 @@ class TxUploadUFile extends SocketTxMessage {
   RxUploadStartSlot(),
   RxAck(),
   RxAsyncProgress(),
+  RxIlolAck(),
+  RxIlolError(),
   RxUpgradeApiVersion(),
   RxUploadSlot(),
   RxUploadTask()

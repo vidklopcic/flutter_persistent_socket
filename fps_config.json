@@ -1,5 +1,6 @@
 {
   "protos": [
   ],
-  "null-safety": true
+  "null-safety": true,
+  "include_common": true
 }

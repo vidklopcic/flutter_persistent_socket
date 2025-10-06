@@ -1,13 +1,14 @@
+// This is a generated file - do not edit.
 //
-//  Generated code. Do not modify.
-//  source: uploader.proto
-//
-// @dart = 2.12
+// Generated from uploader.proto.
+
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
-// ignore_for_file: constant_identifier_names, library_prefixes
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields
-// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
@@ -39,12 +40,26 @@ const UploadTask$json = {
     {'1': 'path', '3': 2, '4': 1, '5': 9, '10': 'path'},
     {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
     {'1': 'mime', '3': 4, '4': 1, '5': 9, '10': 'mime'},
-    {'1': 'status', '3': 5, '4': 1, '5': 14, '6': '.uploader.UploadStatus', '10': 'status'},
+    {
+      '1': 'status',
+      '3': 5,
+      '4': 1,
+      '5': 14,
+      '6': '.uploader.UploadStatus',
+      '10': 'status'
+    },
     {'1': 'retry_counter', '3': 6, '4': 1, '5': 5, '10': 'retryCounter'},
     {'1': 'error', '3': 7, '4': 1, '5': 9, '10': 'error'},
     {'1': 'fingerprint', '3': 8, '4': 1, '5': 9, '10': 'fingerprint'},
     {'1': 'url', '3': 9, '4': 1, '5': 9, '10': 'url'},
-    {'1': 'metadata', '3': 10, '4': 3, '5': 11, '6': '.uploader.UploadTask.MetadataEntry', '10': 'metadata'},
+    {
+      '1': 'metadata',
+      '3': 10,
+      '4': 3,
+      '5': 11,
+      '6': '.uploader.UploadTask.MetadataEntry',
+      '10': 'metadata'
+    },
   ],
   '3': [UploadTask_MetadataEntry$json],
 };
@@ -74,7 +89,14 @@ const UploadUFile$json = {
   '1': 'UploadUFile',
   '2': [
     {'1': 'file_id', '3': 1, '4': 1, '5': 9, '10': 'fileId'},
-    {'1': 'task', '3': 2, '4': 1, '5': 11, '6': '.uploader.UploadTask', '10': 'task'},
+    {
+      '1': 'task',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.uploader.UploadTask',
+      '10': 'task'
+    },
   ],
 };
 
@@ -92,15 +114,29 @@ const DeleteUFile$json = {
 };
 
 /// Descriptor for `DeleteUFile`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List deleteUFileDescriptor = $convert.base64Decode(
-    'CgtEZWxldGVVRmlsZRIOCgJpZBgBIAEoCVICaWQ=');
+final $typed_data.Uint8List deleteUFileDescriptor =
+    $convert.base64Decode('CgtEZWxldGVVRmlsZRIOCgJpZBgBIAEoCVICaWQ=');
 
 @$core.Deprecated('Use uploadSlotDescriptor instead')
 const UploadSlot$json = {
   '1': 'UploadSlot',
   '2': [
-    {'1': 'file', '3': 1, '4': 1, '5': 11, '6': '.uploader.UFile', '10': 'file'},
-    {'1': 'metadata', '3': 2, '4': 3, '5': 11, '6': '.uploader.UploadSlot.MetadataEntry', '10': 'metadata'},
+    {
+      '1': 'file',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.uploader.UFile',
+      '10': 'file'
+    },
+    {
+      '1': 'metadata',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.uploader.UploadSlot.MetadataEntry',
+      '10': 'metadata'
+    },
   ],
   '3': [UploadSlot_MetadataEntry$json],
 };
@@ -142,4 +178,3 @@ final $typed_data.Uint8List uFileDescriptor = $convert.base64Decode(
     'EoCVIHcHJldmlldxIiCgxwcmV2aWV3TGFyZ2UYBCABKAlSDHByZXZpZXdMYXJnZRISCgRuYW1l'
     'GAUgASgJUgRuYW1lEh8KC3VwbG9hZF90YXNrGAYgASgJUgp1cGxvYWRUYXNrEh0KCmxvY2FsX3'
     'BhdGgYByABKAlSCWxvY2FsUGF0aA==');
-
